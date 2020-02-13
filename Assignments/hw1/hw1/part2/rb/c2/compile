@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# arguments will be prb_a.c    prb_b.c   or prb_c.c
+# arguments will be prb_a.F90  prb_b.F90 or prb_c.F90
+
+icc  -c  timer.c
+icc  -c  affinity.c -D _GNU_SOURCE
+rm -f a.out_prb_?
+
+#  bash shell magic.  From argument ($1) get the base and suffix
+#                             e.g.  prb_a.c      prb_a    c
+#                             e.g.  prb_a.F90    prb_a    F90
+file=$1
+  base=${file%%.*}
+suffix=${file#*.}
+
+#                            If the base is c, compile c code
+#                            Make executable   = a.out_<base>
+#                            e.g. $1=prb_a.c --> a.out_prb_a
+if [[ $suffix == c ]]; then
+echo icc -qopenmp timer.o affinity.o $file -o a.out_$base
+     icc -qopenmp timer.o affinity.o $file -o a.out_$base
+fi
+
+#                            If the base is F90, compile F90 code
+#                            Make executable     = a.out_<base>
+#                            e.g. $1=prb_a.F90 --> a.out_prb_a
+if [[ $suffix == F90 ]]; then
+echo ifort -qopenmp timer.o affinity.o $file -o a.out_$base
+     ifort -qopenmp timer.o affinity.o $file -o a.out_$base
+fi

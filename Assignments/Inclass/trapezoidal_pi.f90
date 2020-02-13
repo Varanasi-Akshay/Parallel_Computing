@@ -1,0 +1,40 @@
+program pivalue
+implicit none
+include 'mpif.h'
+integer :: n = 1000000000
+integer :: i,ierr,myid,numproc
+double precision :: x2,d,pi,pi1,chunk,sum=0,tot_sum=0,sum1=0,tot_sum1=0
+
+
+
+call mpi_init(ierr)
+call mpi_comm_rank(MPI_COMM_WORLD,myid,ierr)
+call mpi_comm_size(MPI_COMM_WORLD,numproc,ierr)
+
+!chunk=int(n/numproc)
+d=1/(n*n)
+do i=myid,n,numproc
+   x2=i*i*d
+   sum=sum+sqrt(1-x2) ! function 
+   sum1=sum1+(1/(1+x2)) ! different function
+end do
+
+!print *, "Process id is ", myid,"and value of sum",sum
+
+!print *, "Process id is ", myid,"and value of sum",sum1
+
+
+call mpi_reduce(sum,tot_sum,1,mpi_double_precision,mpi_sum,0,MPI_COMM_WORLD,ierr)
+call mpi_reduce(sum1,tot_sum1,1,mpi_double_precision,mpi_sum,0,MPI_COMM_WORLD,ierr)
+
+call mpi_barrier(MPI_COMM_WORLD,ierr)
+if(myid==0) then
+   pi=4.0*(tot_sum)/n
+   pi1=4.0*(tot_sum1)/n
+   print *, 'The value of pi is',pi
+   print *, 'The value of pi using different function is',pi1
+end if 
+call mpi_finalize(ierr)
+end program pivalue
+
+    

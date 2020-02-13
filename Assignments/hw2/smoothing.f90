@@ -1,0 +1,58 @@
+module smoothing
+use mpi 
+contains
+    !*** Initialize with random numbers
+    subroutine initialize(x, n)
+    
+    integer :: n
+    real, dimension(0:n+1,0:n+1) :: x
+
+    call random_number(x)
+
+    end subroutine initialize
+    
+    
+
+    !*** Smooth data
+    subroutine smooth(y, x, n, a, b, c, r, s)
+
+    integer :: i,j,n,r,s,k,l,chunk
+    real :: a,b,c
+    real, dimension(0:n+1,0:n+1) :: x, y
+    chunk=n/s
+    k=1+r*chunk
+    l=k+chunk-1
+     do j=k,l 
+       do i=1, n
+          y(i,j) = a * (x(i-1,j-1) + x(i-1,j+1) + &
+                   x(i+1,j-1) + x(i+1,j+1)) + &
+                   b * (x(i-0,j-1) + x(i-0,j+1) + &
+                   x(i-1,j-0) + x(i+1,j+0)) + &
+                   c * x(i,j)
+       enddo
+     enddo
+    end subroutine
+   
+
+    !*** Count elements below threshold
+    subroutine count(x, n, t, nbx, r, s)
+    
+    integer :: i,j,n,nbx,r,s,k,l,chunk
+    real, dimension(0:n+1,0:n+1) :: x
+    real :: t
+    nbx = 0
+    chunk=n/s
+    k=1+r*chunk
+    l=k+chunk-1
+      do j=k,l
+        do i=1, n
+           if (x(i,j) < t) then
+               nbx = nbx + 1
+            endif
+        enddo
+      enddo
+    end subroutine
+
+
+
+end module smoothing

@@ -1,0 +1,28 @@
+TACC:  Starting up job 1347466 
+TACC:  Starting parallel tasks... 
+ This is thread           0
+ The time taken to allocate x is  1.001358032226562E-005
+ This is thread           1
+ This is thread           2
+ This is thread           3
+ The time taken to allocate y is  4.289150238037109E-004
+ The time taken to initialize x is   1.23919892311096     
+ The time taken to smooth y is  0.119583129882812     
+ The time taken to count x is  7.583713531494141E-002
+ The time taken to count y is  4.862689971923828E-002
+TACC:  Shutdown complete. Exiting. 
+ 
+Summary
+-------
+Number of tasks used ::             4
+Number of elements in a row/column ::         16388
+Number of inner elements in a row/column ::          16386
+Total number of elements ::      268566544
+Total number of inner elements ::      268500996
+Memory (GB) used per array ::  1049088.00000
+Threshold ::           0.10
+Smoothing constants (a, b, c) :: 0.05 0.10 0.40
+Number of elements below threshold (X) ::       26850816
+Fraction of elements below threshold ::    1.00003E-01
+Number of elements below threshold (Y) ::           2981
+Fraction of elements below threshold ::    1.11024E-05

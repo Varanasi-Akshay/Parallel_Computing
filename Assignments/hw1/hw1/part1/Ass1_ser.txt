@@ -1,0 +1,20 @@
+ The time taken to allocate x is  8.9999998E-04
+ The time taken to allocate y is  0.0000000E+00
+ This is thread           0
+ The time taken to initialize x is  0.8411000    
+ The time taken to smooth y is  0.4116000    
+ The time taken to count x is  0.1945000    
+ The time taken to count y is  8.5299999E-02
+Summary
+-------
+Number of elements in a row/column ::         16386
+Number of inner elements in a row/column ::          16384
+Total number of elements ::      268500996
+Total number of inner elements ::      268435456
+Memory (GB) used per array ::  1048832.00000
+Threshold ::           0.10
+Smoothing constants (a, b, c) :: 0.05 0.10 0.40
+Number of elements below threshold (X) ::       26847453
+Fraction of elements below threshold ::    1.00015E-01
+Number of elements below threshold (Y) ::           2950
+Fraction of elements below threshold ::    1.09896E-05

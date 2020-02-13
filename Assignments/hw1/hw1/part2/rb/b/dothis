@@ -1,0 +1,121 @@
+#!/bin/tcsh
+
+if( -e a.out_prb_a ) then     #if this file exist
+
+   echo " prb_a"
+   setenv OMP_SCHEDULE "STATIC,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8) 
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_a
+   end
+
+   setenv OMP_SCHEDULE "dynamic,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_a
+   end
+
+                              #do this
+   echo " prb_a"
+   setenv OMP_SCHEDULE "STATIC"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8) 
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_a
+   end
+
+   setenv OMP_SCHEDULE "dynamic,100000"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_a
+   end
+
+#   setenv OMP_SCHEDULE "guided,100"
+#   setenv OMP_SCHEDULE "guided,10000"
+#  echo "schedule: $OMP_SCHEDULE"
+#  foreach i ( 1 2 3 4 5 6 7 8)
+#     setenv OMP_NUM_THREADS $i
+#     ./a.out_prb_a
+#  end
+
+endif
+
+if( -e a.out_prb_b ) then     #if this file exist
+                               #do this
+   echo " prb_b"
+   setenv OMP_SCHEDULE "STATIC,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_b
+   end
+
+   setenv OMP_SCHEDULE "dynamic,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_b
+   end
+
+   echo " prb_b"
+   setenv OMP_SCHEDULE "STATIC"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_b
+   end
+
+   setenv OMP_SCHEDULE "dynamic,100000"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_b
+   end
+
+
+#  setenv OMP_SCHEDULE "guided,10000"
+#  echo "schedule: $OMP_SCHEDULE"
+#  foreach i ( 1 2 3 4 5 6 7 8)
+#     setenv OMP_NUM_THREADS $i
+#     ./a.out_prb_b
+#  end
+
+endif
+
+
+if( -e a.out_prb_c ) then     #if this file exist
+                               #do this
+   echo " prb_c"
+   setenv OMP_SCHEDULE "STATIC,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_c
+   end
+
+   setenv OMP_SCHEDULE "dynamic,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_c
+   end
+
+   echo " prb_c"
+   setenv OMP_SCHEDULE "STATIC"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_c
+   end
+
+   setenv OMP_SCHEDULE "dynamic,100000"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./a.out_prb_c
+   end
+
+endif

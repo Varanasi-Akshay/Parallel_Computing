@@ -1,0 +1,7 @@
+ The time taken to allocate x is  8.9999998E-04
+ The time taken to allocate y is  0.0000000E+00
+ This is thread           0
+ The time taken to initialize x is  0.8411000    
+ The time taken to smooth y is  0.4116000    
+ The time taken to count x is  0.1945000    
+ The time taken to count y is  8.5299999E-02

@@ -1,0 +1,10 @@
+TACC:  Starting up job 1297917 
+TACC:  Starting parallel tasks... 
+ This is thread           0
+ The time taken to allocate x is  9.9999997E-05
+ The time taken to allocate y is  3.0000001E-04
+ The time taken to initialize x is   6.360100    
+ The time taken to smooth y is  0.9925000    
+ The time taken to count x is   2.311300    
+ The time taken to count y is   2.032600    
+TACC:  Shutdown complete. Exiting. 

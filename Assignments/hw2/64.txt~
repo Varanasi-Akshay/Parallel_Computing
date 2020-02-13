@@ -1,0 +1,73 @@
+TACC:  Starting up job 1347466 
+TACC:  Starting parallel tasks... 
+ This is thread           0
+ This is thread           1
+ This is thread          22
+ This is thread           2
+ This is thread          24
+ This is thread           4
+ This is thread          25
+ This is thread           5
+ This is thread          26
+ This is thread           6
+ This is thread          28
+ This is thread           8
+ This is thread          29
+ This is thread           9
+ This is thread          30
+ This is thread          10
+ This is thread          32
+ This is thread          12
+ This is thread          33
+ This is thread          13
+ This is thread          34
+ This is thread          14
+ This is thread          36
+ This is thread          16
+ This is thread          37
+ This is thread          17
+ This is thread          38
+ This is thread          18
+ This is thread          40
+ This is thread          20
+ This is thread          41
+ This is thread          21
+ This is thread          42
+ This is thread           3
+ This is thread          23
+ This is thread           7
+ This is thread          27
+ This is thread          11
+ This is thread          31
+ This is thread          15
+ This is thread          35
+ This is thread          19
+ This is thread          39
+ This is thread          43
+ This is thread          45
+ This is thread          46
+ This is thread          48
+ This is thread          49
+ This is thread          50
+ This is thread          51
+ This is thread          52
+ This is thread          54
+ This is thread          56
+ This is thread          57
+ This is thread          58
+ This is thread          59
+ This is thread          60
+ This is thread          44
+ This is thread          47
+ This is thread          53
+ This is thread          55
+ This is thread          61
+ This is thread          62
+ This is thread          63
+ The time taken to allocate x is  1.334905624389648E-003
+ The time taken to allocate y is  4.699230194091797E-004
+ The time taken to initialize x is   1.31571888923645     
+ The time taken to smooth y is  1.016092300415039E-002
+ The time taken to count x is  5.458116531372070E-003
+ The time taken to count y is  3.597021102905273E-003
+TACC:  Shutdown complete. Exiting. 
