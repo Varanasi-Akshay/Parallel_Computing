@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}\bfseries History and context}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}\slshape One-byte character sets; Ascii}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}\slshape Code pages}{1}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}\slshape ISO 8859}{3}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}\slshape DBCS}{4}{subsection.1.4}
+\contentsline {section}{\numberline {2}\bfseries Unicode}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}\slshape ISO 10646 and Unicode}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}\slshape BMP and earlier standards}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}\slshape Unicode encodings}{5}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}\slshape UTF-8}{5}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}\slshape Unicode tidbits}{6}{subsection.2.5}
+\contentsline {subsubsection}{\numberline {2.5.1}\rmfamily Line breaking}{6}{subsubsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.2}\rmfamily Bi-directional writing}{6}{subsubsection.2.5.2}
+\contentsline {subsection}{\numberline {2.6}\slshape Unicode and oriental languages}{7}{subsection.2.6}
+\contentsline {section}{\numberline {3}\bfseries More about character sets and encodings}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}\slshape Character sets}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}\slshape From character to encoding in four easy steps}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}\slshape A bootstrapping problem}{8}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}\slshape Character codes in HTML}{8}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}\slshape Characters in email}{9}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}\slshape FTP}{9}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}\slshape Character encodings in editors and programming languages}{9}{subsection.3.7}
+\contentsline {section}{\numberline {4}\bfseries Character issues in T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ / \LaTeX }{9}{section.4}
+\contentsline {subsection}{\numberline {4.1}\slshape Diacritics}{9}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}\slshape \LaTeX \ input file access to fonts}{10}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}\slshape \LaTeX \ output encoding}{10}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}\slshape Virtual fonts}{11}{subsection.4.4}

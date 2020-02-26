@@ -1,0 +1,9 @@
+\begin{examplewithcode}
+\def\LeftDelim{(}\def\RightDelim{)}
+\def\DefineWithDelims#1%
+   {\edef\tmp{\def\expandafter\noexpand\csname#1\endcsname
+                  \LeftDelim ####1\RightDelim}
+    \tmp}
+\DefineWithDelims{foo}{The argument is `#1'.}
+\foo(bar) % note the parentheses!
+\end{examplewithcode}

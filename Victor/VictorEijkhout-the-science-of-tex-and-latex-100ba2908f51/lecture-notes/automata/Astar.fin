@@ -1,0 +1,15 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Wed Sep 08 18:33:11 EDT 2004
+object state id 1 x 64.0 y 130.0 radius 20 label 0 tex {} accept 0 start 1
+object state id 2 x 190.0 y 130.0 radius 20 label s tex {} accept 0 start 0
+object state id 3 x 306.0 y 130.0 radius 20 label s tex {} accept 0 start 0
+object state id 4 x 451.0 y 130.0 radius 20 label 1 tex {} accept 1 start 0
+object line cp1attached 1 cp1angle 42 cp2attached -1 cp2x 129.0 cp2y 109.0 cp3attached 2 cp3angle 142 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 2 cp1angle 23 cp2attached -1 cp2x 261.0 cp2y 113.0 cp3attached 3 cp3angle 165 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 3 cp1angle 24 cp2attached -1 cp2x 379.0 cp2y 116.0 cp3attached 4 cp3angle 153 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 3 cp1angle 302 cp2attached -1 cp2x 267.0 cp2y 182.0 cp3attached 2 cp3angle 288 cpnum 3 tex {} texpos 0.5 anchor top
+object text x 113.0 y 100.0 label text tex {$\epsilon$}
+object text x 246.0 y 104.0 label A tex {}
+object text x 241.0 y 185.0 label text tex {$\epsilon$}
+object text x 369.0 y 102.0 label text tex {$\epsilon$}
+object setting variable export_mp_file value /Users/victor/Projects/tex-course/lecture-notes/automata/Astar.mp

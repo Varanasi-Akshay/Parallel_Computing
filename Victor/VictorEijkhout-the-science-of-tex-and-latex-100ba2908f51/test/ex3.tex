@@ -1,0 +1,14 @@
+\def\three{TTT}
+\newcount\tcount
+\def\threep{\tcount=3 ...}
+\message{Three: \three}
+\message{Not three: \threep}
+
+
+\def\tees#1#2{\tcount=#2 \def#1{} \ttees#1}
+\def\ttees#1{\ifnum\tcount=0 \else subtract.....
+    \def#1{T #1....}
+
+\tees\three{37} %\def\three{TTTTTTTT}
+
+Here are some tees: \three.

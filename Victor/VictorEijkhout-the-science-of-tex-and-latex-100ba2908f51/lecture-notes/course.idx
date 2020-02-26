@@ -1,0 +1,265 @@
+\indexentry{macro|hyperpage}{11}
+\indexentry{control space|hyperpage}{13}
+\indexentry{par@{\tt  \char `\\par}|hyperpage}{13}
+\indexentry{active character|hyperpage}{13}
+\indexentry{control symbol|hyperpage}{13}
+\indexentry{preamble|hyperpage}{13}
+\indexentry{section*@{\tt  \char `\\section*}|hyperpage}{14}
+\indexentry{frontmatter@{\tt  \char `\\frontmatter}|hyperpage}{15}
+\indexentry{mainmatter@{\tt  \char `\\mainmatter}|hyperpage}{15}
+\indexentry{backmatter@{\tt  \char `\\backmatter}|hyperpage}{15}
+\indexentry{DVI file format|hyperpage}{15}
+\indexentry{include@{\tt  \char `\\include}|hyperpage}{16}
+\indexentry{input@{\tt  \char `\\input}|hyperpage}{16}
+\indexentry{includeonly@{\tt  \char `\\includeonly}|hyperpage}{16}
+\indexentry{environment!flushleft|hyperpage}{16}
+\indexentry{environment!flushright|hyperpage}{16}
+\indexentry{environment!center|hyperpage}{16}
+\indexentry{environment!quote|hyperpage}{16}
+\indexentry{environment!quotation|hyperpage}{16}
+\indexentry{environment!abstract|hyperpage}{16}
+\indexentry{environment!verbatim|hyperpage}{16}
+\indexentry{verb@{\tt  \char `\\verb}|hyperpage}{17}
+\indexentry{verb@{\tt  \char `\\verb}|hyperpage}{17}
+\indexentry{verb*@{\tt  \char `\\verb*}|hyperpage}{17}
+\indexentry{environment!verbatim|hyperpage}{17}
+\indexentry{environment!verbatim*|hyperpage}{17}
+\indexentry{verbatiminput@{\tt  \char `\\verbatiminput}|hyperpage}{17}
+\indexentry{list!itemize|hyperpage}{17}
+\indexentry{list!enumerate|hyperpage}{17}
+\indexentry{list!description|hyperpage}{17}
+\indexentry{label!after \cs{item}|hyperpage}{17}
+\indexentry{environment!tabular|hyperpage}{19}
+\indexentry{&@\tt\char`\&|hyperpage}{19}
+\indexentry{hline@{\tt  \char `\\hline}|hyperpage}{19}
+\indexentry{footnote@{\tt  \char `\\footnote}|hyperpage}{20}
+\indexentry{thanks@{\tt  \char `\\thanks}|hyperpage}{20}
+\indexentry{footnotemark@{\tt  \char `\\footnotemark}|hyperpage}{21}
+\indexentry{footnotetext@{\tt  \char `\\footnotetext}|hyperpage}{21}
+\indexentry{mbox@{\tt  \char `\\mbox}|hyperpage}{21}
+\indexentry{roman|hyperpage}{21}
+\indexentry{text!roman|hyperpage}{21}
+\indexentry{italic|hyperpage}{21}
+\indexentry{text!italic|hyperpage}{21}
+\indexentry{cursive|hyperpage}{21}
+\indexentry{slanted|hyperpage}{21}
+\indexentry{text!slanted|hyperpage}{21}
+\indexentry{bold|hyperpage}{21}
+\indexentry{text!bold|hyperpage}{21}
+\indexentry{texrm@{\tt  \char `\\texrm}|hyperpage}{21}
+\indexentry{textit@{\tt  \char `\\textit}|hyperpage}{21}
+\indexentry{textsl@{\tt  \char `\\textsl}|hyperpage}{21}
+\indexentry{textbf@{\tt  \char `\\textbf}|hyperpage}{21}
+\indexentry{emph@{\tt  \char `\\emph}|hyperpage}{22}
+\indexentry{rmfamily@{\tt  \char `\\rmfamily}|hyperpage}{22}
+\indexentry{sffamily@{\tt  \char `\\sffamily}|hyperpage}{22}
+\indexentry{ttfamily@{\tt  \char `\\ttfamily}|hyperpage}{22}
+\indexentry{mdseries@{\tt  \char `\\mdseries}|hyperpage}{22}
+\indexentry{bfseries@{\tt  \char `\\bfseries}|hyperpage}{22}
+\indexentry{upshape@{\tt  \char `\\upshape}|hyperpage}{22}
+\indexentry{itshape@{\tt  \char `\\itshape}|hyperpage}{22}
+\indexentry{slshape@{\tt  \char `\\slshape}|hyperpage}{22}
+\indexentry{scshape@{\tt  \char `\\scshape}|hyperpage}{22}
+\indexentry{mbox@{\tt  \char `\\mbox}|hyperpage}{23}
+\indexentry{\char`\~|hyperpage}{23}
+\indexentry{\char `\~@{\tt  \char `\\\char `\~}|hyperpage}{23}
+\indexentry{linebreak@{\tt  \char `\\linebreak}|hyperpage}{23}
+\indexentry{pagebreak@{\tt  \char `\\pagebreak}|hyperpage}{23}
+\indexentry{nolinebreak@{\tt  \char `\\nolinebreak}|hyperpage}{23}
+\indexentry{newline@{\tt  \char `\\newline}|hyperpage}{24}
+\indexentry{newpage@{\tt  \char `\\newpage}|hyperpage}{24}
+\indexentry{nolinebreak@{\tt  \char `\\nolinebreak}|hyperpage}{24}
+\indexentry{nopagebreak@{\tt  \char `\\nopagebreak}|hyperpage}{24}
+\indexentry{underlining|hyperpage}{24}
+\indexentry{emph@{\tt  \char `\\emph}|hyperpage}{24}
+\indexentry{rule@{\tt  \char `\\rule}|hyperpage}{24}
+\indexentry{fboxrule@{\tt  \char `\\fboxrule}|hyperpage}{24}
+\indexentry{horizontal   mode|hyperpage}{24}
+\indexentry{vertical mode|hyperpage}{24}
+\indexentry{par@{\tt  \char `\\par}|hyperpage}{25}
+\indexentry{mbox@{\tt  \char `\\mbox}|hyperpage}{25}
+\indexentry{listoftables@{\tt  \char `\\listoftables}|hyperpage}{25}
+\indexentry{listoffigures@{\tt  \char `\\listoffigures}|hyperpage}{25}
+\indexentry{nonumber@{\tt  \char `\\nonumber}|hyperpage}{26}
+\indexentry{big@{\tt  \char `\\big}|hyperpage}{27}
+\indexentry{Big@{\tt  \char `\\Big}|hyperpage}{27}
+\indexentry{label@{\tt  \char `\\label}|hyperpage}{28}
+\indexentry{tableofcontents@{\tt  \char `\\tableofcontents}|hyperpage}{29}
+\indexentry{addcontentsline@{\tt  \char `\\addcontentsline}|hyperpage}{29}
+\indexentry{addtocontents@{\tt  \char `\\addtocontents}|hyperpage}{29}
+\indexentry{printindex@{\tt  \char `\\printindex}|hyperpage}{29}
+\indexentry{index@{\tt  \char `\\index}|hyperpage}{29}
+\indexentry{pagestyle@{\tt  \char `\\pagestyle}|hyperpage}{31}
+\indexentry{thispagestyle@{\tt  \char `\\thispagestyle}|hyperpage}{31}
+\indexentry{markright@{\tt  \char `\\markright}|hyperpage}{31}
+\indexentry{markboth@{\tt  \char `\\markboth}|hyperpage}{31}
+\indexentry{rightmark@{\tt  \char `\\rightmark}|hyperpage}{31}
+\indexentry{leftmark@{\tt  \char `\\leftmark}|hyperpage}{31}
+\indexentry{newenvironment@{\tt  \char `\\newenvironment}|hyperpage}{32}
+\indexentry{newtheorem@{\tt  \char `\\newtheorem}|hyperpage}{32}
+\indexentry{CTAN|hyperpage}{35}
+\indexentry{lexical   analysis|hyperpage}{42}
+\indexentry{analysis!lexical|hyperpage}{42}
+\indexentry{token|hyperpage}{42}
+\indexentry{tokenizer|hyperpage}{42}
+\indexentry{FSA|hyperpage}{42}
+\indexentry{Finite State Automaton|hyperpage}{42}
+\indexentry{syntactical analysis|hyperpage}{42}
+\indexentry{analysis!syntactical|hyperpage}{42}
+\indexentry{parser|hyperpage}{42}
+\indexentry{language, formal|hyperpage}{43}
+\indexentry{alphabet|hyperpage}{43}
+\indexentry{regular   expressions|hyperpage}{43}
+\indexentry{grammar|hyperpage}{43}
+\indexentry{rule|hyperpage}{43}
+\indexentry{production|hyperpage}{43}
+\indexentry{rule!type   of|hyperpage}{43}
+\indexentry{language!recursive|hyperpage}{43}
+\indexentry{language!context-sensitive|hyperpage}{44}
+\indexentry{language!context-free|hyperpage}{44}
+\indexentry{language!regular|hyperpage}{44}
+\indexentry{automaton|hyperpage}{44}
+\indexentry{FSA, see Finite State Automaton|hyperpage}{44}
+\indexentry{Finite   State Automaton|hyperpage}{44}
+\indexentry{Pushdown automaton|hyperpage}{44}
+\indexentry{Linear Bounded automaton|hyperpage}{44}
+\indexentry{Turing machine|hyperpage}{44}
+\indexentry{regular expression|hyperpage}{45}
+\indexentry{automaton!deterministic|hyperpage}{46}
+\indexentry{non-deterministic   FSA|hyperpage}{46}
+\indexentry{NFA, see FSA, non-deterministic|hyperpage}{46}
+\indexentry{look ahead!in FSAs|hyperpage}{51}
+\indexentry{derivation|hyperpage}{52}
+\indexentry{parsing|hyperpage}{52}
+\indexentry{grammar!normal form|hyperpage}{54}
+\indexentry{look ahead|hyperpage}{55}
+\indexentry{bottom-up   parsing|hyperpage}{57}
+\indexentry{shift-reduce parsing|hyperpage}{57}
+\indexentry{rightmost   derivation|hyperpage}{57}
+\indexentry{leftmost derivation|hyperpage}{57}
+\indexentry{handle|hyperpage}{58}
+\indexentry{operator   grammar|hyperpage}{58}
+\indexentry{LR parser|hyperpage}{59}
+\indexentry{Item (in $LR$ parser)|hyperpage}{60}
+\indexentry{Follow|hyperpage}{61}
+\indexentry{ambiguity|hyperpage}{63}
+\indexentry{shift/reduce conflict|hyperpage}{63}
+\indexentry{dangling else|hyperpage}{63}
+\indexentry{Reduce/reduce   conflict|hyperpage}{65}
+\indexentry{yyerror|hyperpage}{84}
+\indexentry{associate   storage|hyperpage}{93}
+\indexentry{Hash function|hyperpage}{94}
+\indexentry{separate   chaining|hyperpage}{97}
+\indexentry{open hashing|hyperpage}{97}
+\indexentry{linear rehashing|hyperpage}{101}
+\indexentry{nonlinear rehashing|hyperpage}{101}
+\indexentry{baddness!of line breaks|hyperpage}{118}
+\indexentry{demerit!of line   breaking|hyperpage}{122}
+\indexentry{NP-hard|hyperpage}{135}
+\indexentry{inserts|hyperpage}{139}
+\indexentry{output routine|hyperpage}{139}
+\indexentry{Interpolation|hyperpage}{152}
+\indexentry{Lagrange   interpolation|hyperpage}{153}
+\indexentry{Interpolation!Lagrange|hyperpage}{153}
+\indexentry{Hermite   interpolation|hyperpage}{153}
+\indexentry{Interpolation!Hermite|hyperpage}{153}
+\indexentry{Approximation, of curves|hyperpage}{153}
+\indexentry{divided difference|hyperpage}{155}
+\indexentry{geometry matrix|hyperpage}{159}
+\indexentry{geometric   continuity|hyperpage}{167}
+\indexentry{B-splines|hyperpage}{167}
+\indexentry{vector graphics|hyperpage}{172}
+\indexentry{raster graphics|hyperpage}{172}
+\indexentry{bitmap|hyperpage}{172}
+\indexentry{incremental drawing|hyperpage}{172}
+\indexentry{DDA|hyperpage}{174}
+\indexentry{filter function|hyperpage}{180}
+\indexentry{anti-aliasing|hyperpage}{181}
+\indexentry{lazy evaluation|hyperpage}{196}
+\indexentry{ascii!7-bit|hyperpage}{200}
+\indexentry{ascii|hyperpage}{200}
+\indexentry{ebcdic|hyperpage}{200}
+\indexentry{ascii!unprintable|hyperpage}{200}
+\indexentry{ascii!control   codes|hyperpage}{200}
+\indexentry{ISO!646, 7-bit ascii|hyperpage}{200}
+\indexentry{code point|hyperpage}{200}
+\indexentry{ascii!8-bit|hyperpage}{200}
+\indexentry{ascii!extended|hyperpage}{200}
+\indexentry{code page|hyperpage}{200}
+\indexentry{scan code|hyperpage}{200}
+\indexentry{ISO!8859, Latin alphabets|hyperpage}{202}
+\indexentry{DBCS|hyperpage}{203}
+\indexentry{ISO!10646, Unicode|hyperpage}{203}
+\indexentry{ISO!10646, Unicode|hyperpage}{203}
+\indexentry{UCS, Universal Character   Set|hyperpage}{203}
+\indexentry{BMP|hyperpage}{204}
+\indexentry{charset|hyperpage}{207}
+\indexentry{ISO 2022|hyperpage}{207}
+\indexentry{code point|hyperpage}{207}
+\indexentry{code unit|hyperpage}{207}
+\indexentry{byte     order mark|hyperpage}{208}
+\indexentry{IANA|hyperpage}{208}
+\indexentry{inputenc package|hyperpage}{210}
+\indexentry{code page|hyperpage}{210}
+\indexentry{font encoding|hyperpage}{210}
+\indexentry{OT1|hyperpage}{210}
+\indexentry{T1|hyperpage}{210}
+\indexentry{typeface|hyperpage}{212}
+\indexentry{font|hyperpage}{212}
+\indexentry{glyph|hyperpage}{212}
+\indexentry{ISO!9541|hyperpage}{212}
+\indexentry{compatibility   characters (Unicode)|hyperpage}{214}
+\indexentry{design size|hyperpage}{215}
+\indexentry{Multiple Master font   technology|hyperpage}{215}
+\indexentry{Optical   masters|hyperpage}{215}
+\indexentry{Font!Type 1|hyperpage}{216}
+\indexentry{Font!Postscript|hyperpage}{216}
+\indexentry{Font!Type 3|hyperpage}{216}
+\indexentry{Font!TrueType|hyperpage}{216}
+\indexentry{FreeType|hyperpage}{218}
+\indexentry{OpenType|hyperpage}{218}
+\indexentry{font metrics|hyperpage}{219}
+\indexentry{tfm   file|hyperpage}{219}
+\indexentry{accents|hyperpage}{219}
+\indexentry{italic correction|hyperpage}{219}
+\indexentry{NFSS|hyperpage}{220}
+\indexentry{textnormal@{\tt  \char `\\textnormal}|hyperpage}{220}
+\indexentry{normalfont@{\tt  \char `\\normalfont}|hyperpage}{220}
+\indexentry{textrm@{\tt  \char `\\textrm}|hyperpage}{220}
+\indexentry{rmfamily@{\tt  \char `\\rmfamily}|hyperpage}{220}
+\indexentry{textsf@{\tt  \char `\\textsf}|hyperpage}{220}
+\indexentry{sffamily@{\tt  \char `\\sffamily}|hyperpage}{220}
+\indexentry{texttt@{\tt  \char `\\texttt}|hyperpage}{220}
+\indexentry{ttfamily@{\tt  \char `\\ttfamily}|hyperpage}{220}
+\indexentry{textmd@{\tt  \char `\\textmd}|hyperpage}{220}
+\indexentry{mdseries@{\tt  \char `\\mdseries}|hyperpage}{220}
+\indexentry{textbf@{\tt  \char `\\textbf}|hyperpage}{220}
+\indexentry{bfseries@{\tt  \char `\\bfseries}|hyperpage}{220}
+\indexentry{textup@{\tt  \char `\\textup}|hyperpage}{220}
+\indexentry{upshape@{\tt  \char `\\upshape}|hyperpage}{220}
+\indexentry{textit@{\tt  \char `\\textit}|hyperpage}{220}
+\indexentry{textsl@{\tt  \char `\\textsl}|hyperpage}{220}
+\indexentry{itshape@{\tt  \char `\\itshape}|hyperpage}{220}
+\indexentry{slshape@{\tt  \char `\\slshape}|hyperpage}{220}
+\indexentry{textsc@{\tt  \char `\\textsc}|hyperpage}{220}
+\indexentry{scshape@{\tt  \char `\\scshape}|hyperpage}{220}
+\indexentry{structured   programming|hyperpage}{225}
+\indexentry{Torture test|hyperpage}{226}
+\indexentry{Trip test|hyperpage}{226}
+\indexentry{surgical team|hyperpage}{226}
+\indexentry{Extreme   programming|hyperpage}{227}
+\indexentry{Test-driven   development|hyperpage}{227}
+\indexentry{Unit test|hyperpage}{227}
+\indexentry{Refactoring|hyperpage}{227}
+\indexentry{Regression testing|hyperpage}{228}
+\indexentry{Equivalence partitioning|hyperpage}{228}
+\indexentry{Goldfarb, Charles|hyperpage}{229}
+\indexentry{GML|hyperpage}{229}
+\indexentry{Markup!procedural|hyperpage}{229}
+\indexentry{SGML|hyperpage}{229}
+\indexentry{DTD|hyperpage}{229}
+\indexentry{HTML|hyperpage}{229}
+\indexentry{XML|hyperpage}{229}
+\indexentry{XHTML|hyperpage}{229}
+\indexentry{schema|hyperpage}{229}
+\indexentry{DocBook|hyperpage}{229}

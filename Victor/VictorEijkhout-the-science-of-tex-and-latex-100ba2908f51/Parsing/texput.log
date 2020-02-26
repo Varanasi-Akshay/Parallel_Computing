@@ -1,0 +1,48 @@
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=tex 2004.7.23)  24 JUL 2004 13:04
+**\documentclass{article}
+
+*\begin{document}
+! Undefined control sequence.
+<*> \begin
+          {document}
+? 
+
+*this is {a line} of text.
+
+*handle \control sequences
+! Undefined control sequence.
+<*> handle \control
+                    sequences
+? with \arg{uments}.
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, 
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+?    Aha!
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, 
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? this line has %a comment
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, 
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? 
+
+*
+(Please type a command or say `\end')
+*x
+
+*y%
+
+*z
+
+*
+(Please type a command or say `\end')
+*\end{document}
+[1]
+Output written on texput.dvi (1 page, 292 bytes).

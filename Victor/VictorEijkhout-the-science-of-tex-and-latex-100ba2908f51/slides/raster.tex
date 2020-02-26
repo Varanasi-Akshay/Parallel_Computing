@@ -1,0 +1,315 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Raster Graphics}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\frame{
+  \frametitle{From mathematics to pixels}
+\begin{itemize}
+\item Shapes and curves described mathematically (bezier)
+\item Screen has pixels
+\item different arithmetic
+\item rounding behaviour
+\item Vector graphics vs Bitmap, Raster
+\end{itemize}
+}
+
+\section{Basic raster algorithms}
+\subsection{Lines}
+
+\frame{
+  \frametitle{Line drawing}
+\begin{itemize}
+\item Symmetry: limit to slope~$\leq 1$
+\pgfimage{one-per-column}
+\item one pixel on per column
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Incremental drawing}
+\begin{itemize}
+\item Line $y=mx+B$, slope $m=\delta y/\delta x$.
+\item Pixels: $\delta x\equiv1$, so $\delta y=m$
+\[y_{i+1}=y_i+\delta y.\]
+\item implementation
+\begin{tabbing}
+let $x_0,y_0$ and $m$ be given, then\\
+for \=$i=0\ldots n-1$\\
+\>\n{WritePixel}$(x_i,\mathop{\textrm{Round}}(y_i))$\\
+\>$x_{i+1}=x_i+1$\\
+\>$y_{i+1}=y_i+m$
+\end{tabbing}
+\item roundoff, cost
+\end{itemize}
+}
+
+\subsection{Midpoint algorithm}
+
+\frame{
+  \frametitle{Midpoint algorithm}
+\begin{itemize}
+\item Given `on' pixel, choices are 1~right, 2~right-and-up
+\pgfimage[height=1.5in]{line-midpoint}
+\item Write
+\[ y={dy\over dx}x+B, \qquad F(x,y)=ax+by+c=0.\]
+then $a=dy$, $b=-dx$, $c=B$
+\item derive $dx,dy$ from the end points
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Midpoint location}
+\begin{itemize}
+\item Does the midpoint~$M$ lie above or under the line?
+\item  use~$F(\cdot,\cdot)$: evaluate the `decision value' of the midpoint:
+\[ d=F(x_p+1,y_p+1/2). \]
+\item The two cases to consider then are
+\begin{description}
+\item[$d<0$:] $M$ lies over the line, so we take $y_{p+1}=y_p$;
+\item[$d\geq0$:] $M$ lies under the line, so we take $y_{p+1}=y_p+1$.
+\end{description}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Use of $d$}
+\begin{itemize}
+\item Use $d$ instead of midpoint:
+\[ d'=F(x_{p+1}+1,y_{p+1}+1/2). \]
+\item Two cases:
+\begin{footnotesize}
+\[ \begin{array}{rll}
+    d'=&a(x_{p+1}+1)+b(y_{p+1}+1/2)+c=\\
+    d<0:&= a(x_p+2)+b(y_p+1/2)&=d+a=d+dy\\
+    d\geq0:&= a(x_p+2)+b(y_p+3/2)+c&=d+a+b=d+dy-dx
+\end{array} \]
+\end{footnotesize}
+\item Update~$d$ with $dy$ or~$dy-dx$ depending on
+whether it's negative or non-negative.
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Final refinement}
+\begin{itemize}
+\item Start off
+\[ d_0=F(x_0+1,y_0+1/2)=F(x_0,y_0)+a+b/2=0+dy-dx/2.\]
+\item Get rid of the division by~2:\\
+$\tilde F(x,y)=2F(x,y)$;\\
+ update~$d$ with $2dy$ and~$2(dy-dx)$ in the two cases.
+\item Digital Differential Analyzers (DDA)
+\end{itemize}
+}
+
+\subsectionframe{Circle drawing}
+\frame{
+  \frametitle{}
+\pgfimage[height=1.5in]{circle-midpoint}
+\begin{itemize}
+\item Circle: \[ F(x,y) = x^2+y^2-R^2,\]
+\item  decision value in the midpoint~$M$ is
+\[ d=F(x_p+1,y_p+1/2)=x^2+2x+y^2+y+5/4. \]
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item Cases
+\begin{description}
+\item[$d<0$:] $M$ lies in the circle, so we take $y_{p+1}=y_p$;
+\item[$d\geq0$:] $M$ lies outside the circle, so we take $y_{p+1}=y_p+1$.
+\end{description}
+\item Updating:
+\[ \begin{array}{rll}
+    d'=&F(x_{p+1}+1,y_{p+1}+1/2)=\\
+    d<0:&= x^2+4x+y^2+y+4\,1/4&=d+2x+3\\
+    d\geq0:&= x^2+4x+y^2+3y+6\,1/4&=d+2(x+y)+5
+\end{array} \]
+\item Construct $2x$,$2y$ by shift
+\end{itemize}
+}
+
+\subsectionframe{Cubics}
+
+\frame{
+  \frametitle{Stepwise computation}
+\begin{itemize}
+\item Cubic function $f(t)=at^3+bt^2+ct+d$
+\item Strategy: compute the value $f(t+\delta)$ by updating
+\[ f(t+\delta)=f(t)+\Delta f(t). \]
+\item (alternatives: Horner, midpoint)
+\item Difference:
+\[ \begin{array}{rcl}
+    \Delta f(t)&=&f(t+\delta)-f(t)\\
+        &=&a(3t^2\delta+3t\delta^2+\delta^3)+b(2t\delta+\delta^2)+c\delta\\
+        &=&3a\delta
+    t^2+(3a\delta^2+2b\delta)t+a\delta^3+b\delta^2+c\delta
+\end{array} \]
+\item Quadratic term left
+\end{itemize}
+}
+
+\frame{
+\begin{itemize}
+\item Define
+\[ \begin{array}{rcl}
+    \Delta^2f(t)&=&\Delta f(t+\delta)-\Delta f(t)\\
+        &=&3a\delta(2t\delta+\delta^2)+(3a\delta^2+3b\delta)\delta\\
+        &=&6a\delta^2t+6a\delta^3+2b\delta^2
+\end{array} \]
+\item Third difference:
+$\Delta^3f(t)=\Delta^2f(t+\delta)-\Delta^2f(t)=6a\delta^2$
+\item Together: compute $f_{n+1}\equiv f((n+1)\delta)$ by
+\[ \Delta^3f_0=6a\delta^2,\quad
+    \Delta^2f_0=6a\delta^3+2b\delta^2,\quad
+    \Delta f_0=a\delta^3+b\delta^2+c\delta
+\]
+and computing by update
+\[  f_{n+1}=f_n+\Delta f_n,\quad
+    \Delta f_{n+1}=\Delta f_n+\Delta^2f_n,\quad
+    \Delta^2f_{n+1}=\Delta^2f_n+\Delta^3f_0
+\]
+\end{itemize}
+}
+
+\sectionframe{Rasterizing type}
+
+\frame{
+  \frametitle{}
+Type is tricky: lots of features in small objects\\
+everyone immediately sees when it's wrong\\
+\pgfimage[height=1.3in]{raster-problems}
+\pgfimage[height=1.3in]{illegible}
+}
+
+\frame{
+  \frametitle{Badly rasterized characters}
+Obvious algorithm: pixel on if center in the contour\\
+\pgfimage[height=1.3in]{e-bad}
+\pgfimage[height=1.3in]{e-good}\\
+\begin{itemize}
+\item Problems with curves tangent to $n+1/2$ lines
+\item Different scalings, different raster
+\item Variable placement
+\end{itemize}
+}
+
+\subsection{Basic algorithms}
+
+\frame{
+  \frametitle{Scaling and rasterizing}
+\parbox[b]{1in}{Original character is on internal raster:}
+\pgfimage[height=1in]{fig2-1-1}
+\parbox[b]{1in}{Scale to target raster:}
+\pgfimage[height=1in]{fig2-1-2}
+
+\parbox[b]{1in}{Round to target raster:}
+\pgfimage[height=1in]{fig2-1-3}
+\parbox[b]{1in}{Set pixels:}
+\pgfimage[height=1in]{fig2-1-4}
+}
+
+\frame{
+  \frametitle{Scaling vs design size}
+\pgfimage[height=.25in]{design-size}
+\begin{itemize}
+\item Scaling is a compromise
+\item Different design sizes
+\item Adobe Multiple Master
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Filling in}
+\begin{itemize}
+\item Precisely what does `pixel lies within the contour' mean?
+\item Complications: letters with `bowls'; multiple contours
+\pgfimage[height=1in]{overlapping-contours}
+\pgfimage[height=1in]{winding}
+\item Winding rules
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Winding rules}
+\pgfimage[height=1.2in]{winding_ar4win_100}
+\pgfimage[height=1.2in]{winding_ar4win_150}
+}
+
+\frame{
+  \frametitle{Dropouts}
+\pgfimage[height=2.5in]{dropout}
+}
+
+\subsectionframe{Hinting / instructing}
+
+\frame{
+  \frametitle{}
+\pgfimage[height=1.3in]{o-horizontal}
+\pgfimage[height=1.3in]{o-vertical}
+\begin{itemize}
+\item Small programs per font~/ character
+\item Give constraints on placement, relations, distance
+\end{itemize}
+}
+
+\end{document}
+\sectionframe{Anti-aliasing}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\end{document}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+

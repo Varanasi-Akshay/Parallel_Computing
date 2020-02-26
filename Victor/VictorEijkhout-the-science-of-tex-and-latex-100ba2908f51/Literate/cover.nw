@@ -1,0 +1,20 @@
+% -*- mode: Noweb; noweb-code-mode: c-mode -*-
+
+@ 
+<<*>>=
+<<headers>>
+<<subroutines>>
+<<main program>>
+@ %def 
+
+@ 
+<<headers>>=
+#include <stdlib.h>
+#include <stdio.h>
+@ %def 
+
+@ 
+<<main program>>=
+<<make test data>>
+<<>>=
+@ %def 

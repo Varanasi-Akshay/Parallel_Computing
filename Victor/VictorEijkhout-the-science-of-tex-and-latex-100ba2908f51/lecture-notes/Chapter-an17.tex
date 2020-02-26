@@ -1,0 +1,13 @@
+Given a mapping $I\times S\rightarrow O$, and denote
+$o_{i,s}$~the output symbol for input~$i$ and state~$s$.
+For each state~$s$,
+introduce a new state~$s_i$ for any input symbol that has a defined
+transition out of~$s$. Let that state output the
+symbol~$o_{i,s}$. Now define an $\epsilon$-transition
+from~$s_i$ to the state that was the original transition from~$s$
+under~$i$. Give that state no output.
+
+The reverse equivalence is trivial: if a state maps to an output, then
+it maps to that output with every input. Formally, if
+$s\mapsto o$ in the second definition, then
+$\{i,s\}\mapsto o$ for all~$i$ in the first.

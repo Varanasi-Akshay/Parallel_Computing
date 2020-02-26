@@ -1,0 +1,14 @@
+\begin{inputwithcode}
+\def\Sub#1#2{#1{\SubFrom{#2}}{#2}}
+\def\SubFrom#1#2#3{#1{\SubMinOne{#3}}\Error}
+\def\SubMinOne#1#2#3{\Sub{#1}{#3}}
+\end{inputwithcode}
+Explanation:
+\begin{quote}\begin{ttfamily}\begin{tabular}{r@{$\Rightarrow$}l}
+Sub <total> <term> & <term> SubFrom{<total>} Zero\\
+if <term> is empty & then <total>\\
+otherwise &SubFrom<total> <term-head> <term-tail>\\
+&<total> SubMinOne<term-tail> Error\\
+&SubMinOne<term-tail> <total-head> <total-tail>\\
+&Sub <total-tail> <term-tail>
+\end{tabular}\end{ttfamily}\end{quote}

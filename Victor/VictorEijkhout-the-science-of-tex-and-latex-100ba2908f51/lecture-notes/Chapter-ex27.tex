@@ -1,0 +1,15 @@
+Use the \TeX\ parser you wrote in \lex\ to parse
+\LaTeX\ documents. The parser should
+\begin{itemize}
+\item Report the documentclass used;
+\item Check that \verb+\begin{document}+ and \verb+\end{document}+ are
+  used, with no text before the begin command;
+\item Know about some commands with one argument, such as~\cs{textbf},
+  and properly recognize that argument
+\item Recognize proper matching of begin/end of an environment.
+\end{itemize}
+Bonus: let your parser interpret \cs{newcommand} correctly. You can
+limit yourself to the the case of commands with one argument, that is
+\begin{verbatim}
+\newcommand{\foo}[1]{ ...}
+\end{verbatim}

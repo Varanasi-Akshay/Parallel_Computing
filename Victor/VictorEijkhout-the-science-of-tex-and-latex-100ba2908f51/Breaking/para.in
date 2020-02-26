@@ -1,0 +1,11 @@
+You may never have thought of it, but fonts (better: typefaces)
+usually have a mathematical definition somehow. If a font is given as
+bitmap, this is often a result originating from a more compact
+description. Imagine the situation that you have bitmaps at 300dpi,
+and you buy a 600dpi printer. It wouldn't look pretty.
+There is then a need for a mathematical way of describing arbitrary
+shapes. These shapes can also be three-dimensional; in fact, a~lot of
+the mathematics in this chapter was developed by a car manufacturer
+for modeling car body shapes.
+But let us for now only look in two dimensions, which means that the
+curves are lines, rather than planes.

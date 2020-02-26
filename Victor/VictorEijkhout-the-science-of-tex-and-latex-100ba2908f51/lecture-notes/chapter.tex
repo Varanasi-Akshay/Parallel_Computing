@@ -1,0 +1,55 @@
+\documentclass[letterpaper]{artikel3}
+
+\usepackage{fleqn,verbatim,comment,outliner,times,multicol,graphicx,epic,amssymb}
+\usepackage[noeepic]{qtree}
+\usepackage[pdftex]{hyperref}
+
+\excludecomment{instructor}
+
+\input idxmacs
+\input exmacs
+\input tutmacs
+\def\checkthis{}
+
+\OutlineLevelStart0{\section{#1}}
+\OutlineLevelStart1{\subsection{#1}}
+\OutlineLevelStart2{\subsubsection{#1}}
+\OutlineLevelStart3{\paragraph{#1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\excludecomment{problem}
+
+\addtocounter{tocdepth}{-1}
+\newcounter{chapter} \setcounter{chapter}{3}
+\newcommand{\PageTitle}[1]{
+    \pagebreak[2]\bigskip \textbf{\Large #1.}\nopagebreak\medskip
+    \addcontentsline{toc}{section}{\protect\numberline{}{#1}}
+    }
+
+{\endlinechar=-1 \global\read 16 to \chaptername}
+
+\begin{document}
+
+\title{\chaptertitle}
+\author{Victor Eijkhout}
+\date{August 2004}
+\maketitle
+
+\input{\chaptername}
+\newwrite\nx
+\openout\nx=\chaptername-nx.tex
+\write\nx{\arabic{excounter}}
+\closeout\nx
+
+\clearpage
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+
+\begin{multicols}{2}
+\bibliography{math,cs,tex}
+\bibliographystyle{plain}
+\end{multicols}
+
+\end{document}

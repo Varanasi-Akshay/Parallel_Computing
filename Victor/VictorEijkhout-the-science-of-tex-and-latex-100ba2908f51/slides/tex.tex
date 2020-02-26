@@ -1,0 +1,473 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,rotating}
+\newcommand{\sectionframe}[1]%
+  {\section{#1}
+   \frame{\begin{center}\color{blue}\Large #1\end{center}}
+  }
+\newcommand{\subsectionframe}[1]%
+  {\subsection{#1}
+   \frame{\begin{center}\color{blue}\Large #1\end{center}}
+  }
+
+\input{tutmacs}
+\input idxmacs
+
+\begin{document}
+
+\title{\TeX--slides in progress}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\sectionframe{The input processor}
+
+\frame[containsverbatim]{
+  \frametitle{From file to lines}
+\begin{itemize}
+\item Lines lifted from file, minus line end
+\item Trailing spaces removed
+\item \cs{endlinechar} appended, if~0--255, default~13
+\item accessing all characters: \verb+^+$n$ with~$n<128$ replaced by
+  character $\mod(n+64,128)$; or \verb+^^xy+ with \n{x},~\n{n}
+  lowercase hex replaced by character \n{xy}.
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Category codes}
+\begin{itemize}
+\item Special characters are dynamic: character code to category code
+  mapping during scanning of the line
+\item example: \verb+\catcode36=3+, or \verb+\catcode`\$=3+
+\item Assignment holds immediately!
+\begin{examplewithcode}
+Normal math $n=1$, \catcode`\/=3 /x^2+y^2/.
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Usual catcode assignments}
+\begin{itemize}
+\item 0:~escape character~\verb+/+,
+ 1/2:~beginning/end of group~\verb+{}+,
+ 3:~math shift~\verb+$+,
+  4:~alignment tab~\verb+&+,
+ 5:~line end, 6:~parameter~\verb+#+
+\item 7/8:~super/subscript~\verb+^_+, 9:~ignored~\n{NULL}
+\item 10:~space, 11:~letter, 12:~other
+\item 13:~active~\verb+~+, 14:~comment~\verb+%+, 15:~invalid~\n{DEL}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Token building}
+\begin{itemize}
+\item Backslash (really: escape character) plus letters (really:
+  catcode~11) $\Rightarrow$ control word, definable, many primitives given
+\item backslash plus space: control space (hardwired command)
+\item backslash plus any other character: control symbol; many default
+  definitions, but programmable
+\item \verb+#+$n$ replaced by `parameter token~$n$',
+  \verb+##+~replaced by macro parameter character
+\item Anything else: character token (character plus category)
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Some simple catcode tinkering}
+\begin{itemize}
+\item
+\begin{verbatim}
+\catcode`\@=11
+\def\@InternalMacro{...}
+\def\UserMacro{ .... \@InternalMacro ... }
+\catcode`\@=12
+\end{verbatim}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{States}
+\begin{itemize}
+\item Every line starts in state $N$
+\item in state $N$: spaces ignored, newline gives \cs{par}, with
+  anything else go to~$M$ (middle of line)
+\item State $S$ entered after control word, control space, or space in
+  state~$M$; in this state ignore spaces and line ends
+\item State $M$: entered after almost everything. In state~$M$, line
+  end gives space token.
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{How many levels down are we?}
+\begin{enumerate}
+\item Lifting lines from file, appending EOL
+\item translating \verb+^^xy+ to characters
+\item catcode assignment
+\item tokenization
+\item state transitions
+\end{enumerate}
+}
+
+\frame[containsverbatim]{
+  \frametitle{What does this give us?}
+\begin{itemize}
+\item \TeX\ is now looking at a stream of tokens: mostly control
+  sequences and characters
+\item Actions depend on the nature of the token: expandable tokens get
+  expanded, assignments and such get executed, text and formulas go to
+  output processing.
+\item Read chapters 1,2,3 of \TbT.
+\end{itemize}
+}
+
+\sectionframe{Macros and expansion}
+
+\frame[containsverbatim]{
+  \frametitle{Expansion}
+\begin{itemize}
+\item Expansion takes command, gives replacement text.
+\item Macros: replace command plus arguments by replacement text
+\item Conditionals: yield true or false branch
+\item Various tools
+\item Read chapters 11,12 of \TbT.
+\end{itemize}
+}
+
+\subsectionframe{The basics of macro programming}
+
+\frame[containsverbatim]{
+  \frametitle{Macro definitions}
+\begin{itemize}
+\item Simplest form: \verb+\def\foo#1#2#3{ .. #1 ... }+
+\item Max 9 parameters, each one token or group:
+\begin{examplewithcode}
+\def\a#1#2{1:(#1) 2:(#2)}
+\a b{cde}
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Delimited macro definitions}
+\begin{itemize}
+\item Delimited macro arguments:
+\begin{examplewithcode}
+\def\a#1 {Arg: `#1'}
+\a stuff stuff
+\end{examplewithcode}
+\item Delimited and undelimited:
+\begin{examplewithcode}
+\def\Q#1#2?#3!{Question #1: #2?\par Answer: #3.}
+\Q {5.2}Why did the chicken cross
+        the Moebius strip?Eh\dots!
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Conditionals}
+\begin{itemize}
+\item General form \verb+\if<something> ... \else ... \fi+
+\item \cs{ifx} equality of macro definition (also char, catcode)
+\item 
+\begin{examplewithcode}
+\ifnum\value{section}<3 Just getting started.
+\else On our way\fi
+\end{examplewithcode}
+\item Chapter 13 of \TbT
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Grouping}
+\begin{itemize}
+\item Groups induced by
+  \verb+{} \bgroup \egroup \begingroup \endgroup+
+\item \cs{bgroup}, \cs{egroup} can sometimes replace \verb+{}+
+\item \cs{begingroup}, \cs{endgroup} independent
+\item funky stuff:
+\begin{verbatim}
+\def\open{\begingroup} \def\close{\endgroup}
+\open ... \close
+\end{verbatim}
+\begin{examplewithcode}
+\newenvironment{mybox}{\hbox\bgroup}{\egroup}
+A \begin{mybox}B\end{mybox} C
+\end{examplewithcode}
+\item Chapter 10 of \TbT.
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{More tools}
+\begin{itemize}
+\item Counters:
+\begin{verbatim}
+\newcount\MyCounter \MyCounter=12
+\advance\MyCounter by -3 \number\MyCounter
+\end{verbatim}
+also \cs{multiply}, \cs{divide}
+\item Test numbers by
+\begin{verbatim}
+\ifnum\MyCounter<3 <then part>\else <else part> \fi
+\end{verbatim}
+available relations: \n{> < =}; also \cs{ifodd}, and
+\begin{verbatim}
+\ifcase\MyCounter <case 0>\or <case 1> ...
+    \else <other> \fi
+\end{verbatim}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+Only a finite number of counters in \TeX;\\
+use \verb+\def\Constant{42}+ instead of
+\begin{verbatim}
+\newcount\Constant \Constant=24
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Conditionals}
+\begin{itemize}
+\item Already mentioned \cs{ifnum}, \cs{ifcase}
+\item Programming tools: \cs{iftrue}, \cs{iffalse}
+\begin{verbatim}
+\iftrue {\else }\fi \iffalse {\else }\fi
+\end{verbatim}
+\item \cs{ifx} equality of character (char code and cat code);
+  equality of macro definition
+\item \cs{if} equality of character code after expansion.
+\end{itemize}
+}
+
+\subsectionframe{Bunch of examples}
+
+\frame[containsverbatim]{
+  \frametitle{Grouping trickery}
+\begin{verbatim}
+\def\narrowbox{%
+   \vbox\bgroup \addtolength{\textwidth}{-1in}
+   \let\next=}
+\end{verbatim}
+Use this as
+\begin{verbatim}
+\narrowbox{ <bunch of text> }
+% becomes
+\vbox\bgroup 
+   \addtolength{\textwidth}{-1in}
+   \let\next={ <bunch of text> }
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Use of delimited arguments}
+\begin{verbatim}
+\def\FakeSC#1#2 {%
+   {\uppercase{#1}\footnotesize\uppercase{#2}\ }%
+    \FakeSC}
+\end{verbatim}
+\def\periodstop{.}
+\def\FakeSC#1#2 {\def\tmp{#1}%
+   \ifx\tmp\periodstop 
+     \def\next{.}
+   \else
+     \def\next{%
+         {\uppercase{#1}\footnotesize\uppercase{#2}\ }%
+         \FakeSC}%
+   \fi \next}
+\begin{examplewithcode}
+\FakeSC This sentence is fake small-caps .
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{How did I stop that recursion?}
+\begin{verbatim}
+\def\periodstop{.}
+\def\FakeSC#1#2 {\def\tmp{#1}%
+   \ifx\tmp\periodstop 
+     \def\next{.}
+   \else
+     \def\next{%
+         {\uppercase{#1}\footnotesize\uppercase{#2}\ }%
+         \FakeSC}%
+   \fi \next}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Two-step macros}
+\begin{itemize}
+\item Wanted:
+\begin{verbatim}
+\PickToEOL This text is the macro argument
+and this is not
+\end{verbatim}
+\item Basic idea:
+\begin{verbatim}
+\def\PickToEOL
+   {\begingroup\catcode`\^^M=12 \xPickToEOL}
+\def\xPickToEOL#1^^M{ ...#1... \endgroup\par}
+\end{verbatim}
+\item The \cs{xPickToEOL} definition is not right
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+%  \frametitle{Conditions at the definition count}
+\begin{itemize}
+\item Better:
+\begin{examplewithcode}
+\def\PickToEOL
+   {\begingroup\catcode`\^^M=12 \xPickToEOL}
+{\catcode`\^^M=12 %
+ \gdef\xPickToEOL#1^^M{ \textbf{#1}\endgroup\par}
+}
+\PickToEOL This text is the macro argument
+and this is not
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Optional arguments}
+\begin{itemize}
+\item Example: \verb+\section[Short]{Long title}+
+\begin{examplewithcode}
+\let\brack[
+\def\section{\futurelet\next\xsection}
+\def\xsection
+   {\ifx\next\brack
+          \let\next\sectionwithopt
+    \else \let\next\sectionnoopt \fi \next}
+\def\sectionnoopt#1{\sectionwithopt[#1]{#1}}
+\def\sectionwithopt[#1]#2{Arg: `#2'; Opt `#1'}
+\section[short]{Long}\par
+\section{One}
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{More expansion trickery}
+\begin{itemize}
+\item The \LaTeX\ command \verb+\newcounter{my}+ executes a command
+  \verb+\countdef\mycounter+. How is that name formed?
+\item Form control sequence names with
+  \verb+\csname stuff\endcsname+. However
+\begin{verbatim}
+\def\newcounter#1{\countdef\csname #1\endcsname}
+\end{verbatim}
+would define a counter name \cs{csname}.
+\item Use \cs{expandafter}:
+\begin{verbatim}
+\def\newcounter#1{%
+    \expandafter\countdef\csname #1\endcsname}
+\end{verbatim}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{More expanding after}
+\begin{itemize}
+\item Suppose
+\begin{verbatim}
+\def\a#1#2{Arg1: #1, arg2: #2.}
+\def\b{{one}{two}}
+\end{verbatim}
+How do you give the contents of \cs{b} to~\cs{a}?
+\item Wrong: \verb+\a\b+\par
+Solution:
+\begin{verbatim}
+\expandafter\a\b
+\end{verbatim}
+\item Suppose \verb+\def\c{\b}+, how would you get \verb+\a\c+ to work?
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Expanding definition}
+\begin{itemize}
+\item \verb+\edef\foo{ .... }+ first expands the body, before doing
+  the definition.
+\item Defining based on current conditions:
+\begin{verbatim}
+\edef\restoreatcat{\catcode`\@=\the\catcode`\@\relax}
+\catcode`\@=11
+\def\@foo{...}
+\restoreatcat
+\end{verbatim}
+\item Use as tool (above example revisited)
+\begin{verbatim}
+\def\a#1#2{Arg1: #1, arg2: #2.}
+\def\b{{one}{two}}
+\edef\tmp{\noexpand\a\b}\tmp
+\end{verbatim}
+\item Ponder this:
+\begin{verbatim}
+\edef\foo
+   {\expandafter\noexpand\csname bar\endcsname}
+\end{verbatim}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Nested macro definitions}
+\begin{itemize}
+\item Wrong: \verb+\def\a{\def\b#1{}}+
+\item Also wrong: \verb+\def\a#1{\def\b#1{}}+
+\item Remember that \verb+##+ is replaced by~\verb+#+:
+\begin{examplewithcode}
+\def\a#1{\def\b##1#1{Arg: `##1'}}
+\a ! \b word words!\par
+\a s \b word words!
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{To summarize your toolbox}
+\begin{itemize}
+\item \cs{def}, \cs{edef}
+\item \cs{expandafter}, \cs{noexpand}
+\item \cs{csname}, \cs{endcsname}
+\item \cs{let}, \cs{futurelet}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{How do you debug this stuff?}
+\begin{itemize}
+\item The \TeX\ equivalent of \n{printf}\dots
+\item \verb+\tracingmacros=2+
+\item output goes into the log file
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{More to come}
+so if you downloaded this version, you'll have to do it again
+}
+
+\end{document}
+
+\section{Text handling}
+
+\frame[containsverbatim]{
+  \frametitle{Text handling}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+
+\end{document}

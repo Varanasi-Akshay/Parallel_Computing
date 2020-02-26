@@ -1,0 +1,51 @@
+\project Use the \lex\ and \yacc\ programs you have written for
+\LaTeX\ to write a full \LaTeX-to-HTML translator.
+%
+%
+%
+\project A number of projects involve parsers or code generators for (parts of)
+\TeX\ or \LaTeX.
+\begin{description}
+\item[formulas]
+Reinhold Heckmann and Reinhard Wilhelm. 1997.  A functional
+description of TeX's formula layout.  Journal of Functional
+Programming 7(5):451-485. Available online at
+\url{http://rw4.cs.uni-sb.de/users/heckmann/doc.html}.
+For software, see \url{ftp://ftp.cs.uni-sb.de/formulae/}.
+\item[also formulas]
+Preview-LaTeX (\url{http://preview-latex.sourceforge.net/}) displays
+formulas right in the emacs edit buffer.
+\item[math on web pages]see \url{http://www.forkosh.com/mimetex.html}.
+\item[\LaTeX\ to HTML] HeVeA, TtH, TeX4ht and LaTeX2HTML.
+\item[front end for \LaTeX] \url{http://www.lyx.org/}
+Ages ago there was `griff'. Scientific Word still exists but is commercial.
+\item[reimplementation of \TeX] \TeX\ in Python: \url{http://www.pytex.org/}
+\end{description}
+Investigate these parsers: what is their basic approach and theoretical
+power, what are they good at, what are they bad at.
+%
+%
+%
+\project Develop the full theory of the compound NFA that does lexical
+analysis.
+\begin{itemize}
+\item This automaton basically parses the whole file, rather than
+  small chunks; every once in a while it will report that it has
+  recognized an identifier, number, special symbol~\&c. This means
+  that the definition of the output alphabet has to be
+  expanded. Analyze the structure of this output language.
+\item As explained, the returning $\epsilon$-transition only has to be
+  taken if a maximal string is recognized. Formalyze this notion.
+\item The automaton may need look-ahead of one or more
+  tokens. Formalize this notion and give equivalence proofs.
+\end{itemize}
+%
+%
+%
+\project Do an experimental study of hashing. Implement open and
+closed hash table algorithms, and do a search on the web for hash
+functions. Compare to storing the names in a tree.
+Find some documents to hash: the source of some programs,
+books. Construct some input data sets to trip up the various
+algorithms.
+Measure statistics and do timings.

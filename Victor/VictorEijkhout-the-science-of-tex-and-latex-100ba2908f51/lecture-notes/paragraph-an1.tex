@@ -1,0 +1,8 @@
+A forward approach is possible because the starting point is clear:
+the zeroeth breakpoint is at the left margin of the first line. The
+breakpoint at the beginning of the last line is not fixed in that
+way. This means that we can not trivially solve the last stage.
+A~forward approach to page breaking could use heuristics to flush the
+memory to the output final every once in a while. A~backtracking
+approach would have to store the whole document in memory before it
+could start breaking.

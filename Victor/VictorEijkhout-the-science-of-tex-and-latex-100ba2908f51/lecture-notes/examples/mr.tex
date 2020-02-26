@@ -1,0 +1,25 @@
+\documentclass{artikel3}
+
+\begin{document}
+
+\def\signed#1{\unskip
+  \penalty10000 \hskip 40pt plus 1fill
+  \penalty0
+  \hbox{}\penalty10000
+                \hskip 0pt plus 1fill
+  \hbox{#1}%
+                \par
+  }
+
+\begin{minipage}{6cm}
+This review is rather negative, almost devastating.
+\signed{A. Reviewer}
+\end{minipage}
+
+\begin{minipage}{6cm}
+This review is als very negative but it's 
+longer than the other.
+\signed{A. Nother-Reviewer}
+\end{minipage}
+
+\end{document}

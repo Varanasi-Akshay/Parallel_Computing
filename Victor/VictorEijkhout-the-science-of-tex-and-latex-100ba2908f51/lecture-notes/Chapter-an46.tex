@@ -1,0 +1,5 @@
+\begin{examplewithcode}
+\def\IsNil#1{#1{\expandafter\False\gobbletwo}{\True}}
+\test{Detect NIL}{\IsNil\Nil}
+\test{Detect non-NIL}{\IsNil{\Singleton\Nil}}
+\end{examplewithcode}

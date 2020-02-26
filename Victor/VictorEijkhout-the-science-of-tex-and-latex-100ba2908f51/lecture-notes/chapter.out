@@ -1,0 +1,25 @@
+\BOOKMARK [1][-]{section.1}{ History and context}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{ One-byte character sets; Ascii}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{ Code pages}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{ ISO 8859}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{ DBCS}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{ Unicode}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{ ISO 10646 and Unicode}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{ BMP and earlier standards}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{ Unicode encodings}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{ UTF-8}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.5}{ Unicode tidbits}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.6}{ Unicode and oriental languages}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{ More about character sets and encodings}{}% 13
+\BOOKMARK [2][-]{subsection.3.1}{ Character sets}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.2}{ From character to encoding in four easy steps}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.3}{ A bootstrapping problem}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.4}{ Character codes in HTML}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.5}{ Characters in email}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.6}{ FTP}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.7}{ Character encodings in editors and programming languages}{section.3}% 20
+\BOOKMARK [1][-]{section.4}{ Character issues in TeX / LaTeX}{}% 21
+\BOOKMARK [2][-]{subsection.4.1}{ Diacritics}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.2}{ LaTeX input file access to fonts}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.3}{ LaTeX output encoding}{section.4}% 24
+\BOOKMARK [2][-]{subsection.4.4}{ Virtual fonts}{section.4}% 25

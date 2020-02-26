@@ -1,0 +1,399 @@
+\Level 0 {Introduction}
+
+The unix utility \lex\ parses a file of characters. It uses regular
+expression matching; typically it is used to `tokenize' the contents
+of the file. In that context, it is often used together with the
+\yacc\ utility. However, there are many other applications possible.
+By itself, \lex\ is powerful enough to build interesting programs
+with, as you will see in a few examples.
+
+\Level 0 {Structure of a \lex\ file}
+
+A \lex\ file looks like
+\begin{verbatim}
+  ...definitions...
+%%
+  ...rules...
+%%
+  ...code...
+\end{verbatim}
+Here is a simple example:
+\begin{verbatim}
+%{
+ int charcount=0,linecount=0;
+%}
+
+%%
+
+. charcount++;
+\n {linecount++; charcount++;}
+
+%%
+int main()
+{
+  yylex();
+  printf("There were %d characters in %d lines\n",
+         charcount,linecount);
+  return 0;
+}
+\end{verbatim}
+
+In this example, all three sections are present:
+\begin{description}
+\item[definitions] All code between \verb+%{+ and \verb+%}+
+ is copied to the beginning of the resulting C file.
+\item[rules] A number of combinations of pattern and action: if the
+  action is more than a single command it needs to be in braces.
+\item[code] This can be very elaborate, but the main ingredient is the
+  call to \n{yylex}, the lexical analyser. If the code segment is left
+  out, a default main is used which only calls \n{yylex}.
+\end{description}
+
+\Level 1 {Running \lex}
+
+If you store your \lex\ code in a file \n{count.l}, you can build an
+executable from it by
+\begin{verbatim}
+lex -t count.l > count.c
+cc -c -o count.o count.c
+cc -o counter count.o -ll
+\end{verbatim}
+You see that the \lex\ file is first turned into a normal C file,
+which is then compiled and linked.
+
+If you use the \make\ utility (highly recommended!) you can save a few
+steps because \make\ knows about \lex:
+\begin{verbatim}
+counter: count.o
+        cc -o counter count.o -ll
+\end{verbatim}
+
+\Level 0 {Definitions section}
+\label{lex:def}
+
+There are three things that can go in the definitions section:
+\begin{description}
+\item[C code] Any indented code between \verb+%{+ and \verb+%}+
+  is copied to the C file. This is typically used for defining file
+  variables, and for prototypes of routines that are defined in the
+  code segment.
+\item[definitions] A definition is very much like a
+  \verb+#define+ cpp directive. For example
+\begin{verbatim}
+letter [a-zA-Z]
+digit [0-9]
+punct [,.:;!?]
+nonblank [^ \t]
+\end{verbatim}
+  These definitions can be used in the rules section: one could start
+  a rule
+\begin{verbatim}
+{letter}+ {...
+\end{verbatim}
+\item[state definitions] If a rule depends on context, it's possible
+  to introduce states and incorporate those in the rules. A state
+  definition looks like \verb+%s STATE+, and by default a state
+  \n{INITIAL} is already given. See section~\ref{sec:context} for more info.
+\end{description}
+
+\Level 0 {Rules section}
+
+The rules section has a number of pattern-action pairs. The patterns
+are regular expressions (see section~\ref{sec:regexp}, and the actions
+are either a single C command, or a sequence enclosed in braces.
+
+If more than one rule matches the input, the longer match is taken. If
+two matches are the same length, the earlier one in the list is taken.
+
+It is possible to associate one action with more than one pattern:
+\begin{verbatim}
+[0-9]+          process_integer();
+[0-9]+\.[0-9]*  |
+\.[0.9]+        process_real();
+\end{verbatim}
+
+\Level 1 {Matched text}
+
+When a rule matches part of the input, the matched text is available
+to the programmer as a variable \verb+char* yytext+ of length
+\verb+int yyleng+.
+
+To extend the example from the introduction to be able to count words,
+we would write
+\begin{verbatim}
+%{
+ int charcount=0,linecount=0,wordcount=0;
+%}
+letter [^ \t\n]
+
+%%
+
+{letter}+ {wordcount++; charcount+=yyleng;}
+. charcount++;
+\n {linecount++; charcount++;}
+\end{verbatim}
+
+\begin{594exercise}
+Write an integer postfix calculator in \lex: expression such as
+\verb/1 2 +/ and \verb.1 2 3 4/*-. should be evaluated to \n{3}
+and~\n{-.5} respectively. White space only serves to separate number,
+but is otherwise optional; the line end denotes the end of an
+expression. You will probably need the \n{C} function \n{int
+  atoi(char*)} which converts strings to ints.
+\end{594exercise}
+\begin{answer}
+\verbatiminput{postfix.l}
+\end{answer}
+
+\Level 1 {Context}
+\label{sec:context}
+
+If the application of a rule depends on context, there are a couple of
+ways of dealing with this. We distinguish between `left context' and
+`right context', basically letting a rule depend on what comes before or
+after the matched token.
+
+See section~\ref{sec:cleanup} for an elaborate example of the use
+of context.
+
+\Level 2 {Left context}
+
+Sometimes, using regular expression as we have seen so far is not
+powerful enough. For example:
+\verbatiminput{comm1.l}
+works to filter out comments in
+\begin{verbatim}
+This line /* has a */ comment
+\end{verbatim}
+but not in
+\begin{verbatim}
+This /* line has */ a /* comment */
+\end{verbatim}
+What we want is, after the \verb+/*+ string to change the behaviour
+of~\lex\ to throw away all characters until \verb+*/+ is
+encountered. In other words, we want \lex\ to switch between two
+states, and there is indeed a state mechanism available.
+
+We can consider states to implement implement a dependence on the left
+context of a rule, since it changes the behaviour depending on what
+came earlier.  To use a state, a~rule is prefixed as
+\begin{verbatim}
+<STATE>(some pattern) {...
+\end{verbatim}
+meaning that the rule will only be evaluated if the specified state holds.
+Switching between states is done in the action part of the rule:
+\begin{verbatim}
+<STATE>(some pattern) {some action; BEGIN OTHERSTATE;}
+\end{verbatim}
+where all state names have been defined with \verb+%s SOMESTATE+
+statements, as described in section~\ref{lex:def}. The initial state
+of \lex\ is \n{INITIAL}.
+
+Here is the solution to the comment filtering problem:
+%
+\verbatiminput{comm.l}
+%
+We see that the state is defined
+with~\verb+%x COMM+ rather than as indicated above with~\verb+%s+. This is
+called an `exclusive state'. If an exclusive state is active, rules
+without state prefix will not be matched if there is a match in a rule
+\emph{with} the prefix of the current state.
+
+\Level 2 {Right context}
+
+It is also possible to let a rule depend on what follows the matched
+text. For instance
+\begin{verbatim}
+abc/de {some action}
+\end{verbatim}
+means `match \n{abc} but only when followed by~\n{de}. This is
+different from matching on \n{abcde} because the \n{de} tokens are
+still in the input stream, and they will be submitted to matching next.
+
+It is in fact possible to match on the longer string; in that case the
+command
+\begin{verbatim}
+abcde {yyless(3); .....}
+\end{verbatim}
+pushes back everything after the first 3 characters. The difference
+with the slash approach is that now the right context tokens are
+actually in \n{yytext} so they can be inspected.
+
+\Level 0 {Regular expressions}
+\label{sec:regexp}
+
+\def\titem#1{\item[{\tt #1}]}
+
+Many Unix utilities have regular expressions of some sort, but
+unfortunately they don't all have the same power. Here are the basics:
+\begin{description}
+\titem{.} Match any character except newlines.
+\titem{\char`\\n} A newline character.
+\titem{\char`\\t} A tab character.
+\titem{\char`\^} The beginning of the line.
+\titem{\$} The end of the line.
+\titem{<expr>*} Zero or more occurrences of the expression.
+\titem{<expr>+} One or more occurrences of the expression.
+\titem{(<expr1>|<expr2>)} One expression of another.
+\titem{{[<set>]}} A set of characters or ranges, such as \verb+[,.:;]+
+  or \verb+[a-zA-Z]+.
+\titem{{[\char`\^<set>]}} The complement of the set, for instance
+\verb+[^ \t]+.
+\end{description}
+\begin{594exercise}
+It is possible to have \n{]} and \n{-} in a character range. The
+  \n{]}~character has to be first, and \n{-}~has to be either first or
+    last. Why?
+\end{594exercise}
+\begin{answer}
+The characters would be misinterpreted as the end of the group or an
+indication of a range respectively, otherwise.
+\end{answer}
+
+\begin{594exercise}
+Write regular expressions that match from the beginning of the line to
+the first letter~`a'; to the last letter~`a'. Also expressions that
+match from the first and last~`a' to the end of the line.
+Include representative input and output in your answer.
+\end{594exercise}
+\begin{answer}
+\begin{verbatim}
+^[^a]*\a
+^.*]a
+a.*$
+a[^a]*$
+\end{verbatim}
+\end{answer}
+
+\Level 0 {Remarks}
+
+\Level 1 {User code section}
+
+If the \lex\ program is to be used on its own, this section will
+contain a \n{main} program. If you leave this section empty you will
+get the default main:
+\begin{verbatim}
+int main()
+{
+  yylex();
+  return 0;
+}
+\end{verbatim}
+where \n{yylex} is the parser that is built from the rules.
+
+\Level 1 {Input and output to \lex}
+
+Normally, the executable produced from the \lex\ file will read from
+standard in and write to standard out. However, its exact behaviour is
+that it has two variables
+\begin{verbatim}
+FILE *yyin,*yyout;
+\end{verbatim}
+that are by default set that way. You can open your own files and
+assign the file pointer to these variables.
+
+\Level 1 {Lex and Yacc}
+
+The integration of \lex\ and \yacc\ will be discussed in the \yacc
+tutorial; here are just a few general comments.
+
+\Level 2 {Definition section}
+
+In the section of literal C code, you will most likely have an include
+statement:
+\begin{verbatim}
+#include "mylexyaccprog.h"
+\end{verbatim}
+as well as prototypes of \yacc\ routines such as \n{yyerror} that you
+may be using. In some \yacc\ implementations declarations like 
+\begin{verbatim}
+extern int yylval;
+\end{verbatim}
+are put in the \n{.h} file that the \yacc\ program generates. If this
+is not the case, you need to include that here too if you use \n{yylval}.
+
+\Level 2 {Rules section}
+
+If you \lex programmer is supplying a tokenizer, the \yacc\ program
+will repeatedly call the \n{yylex} routine. The rules will
+probably function by calling \n{return} everytime they have
+constructed a token.
+
+\Level 2 {User code section}
+
+If the \lex\ program is used coupled to a \yacc\ program, you
+obviously do not want a main program: that one will be in the
+\yacc\ code. In that case, leave this section empty; thanks to some
+cleverness you will not get the default main if the compiled \lex\ and
+\yacc\ programs are linked together.
+
+\Level 0 {Examples}
+
+\Level 1 {Text spacing cleanup}
+\label{sec:cleanup}
+
+(This section illustrates the use of contexts; see section~\ref{sec:context}.)
+
+Suppose we want to clean up sloppy spacing and punctuation in typed
+text. For example, in this text:
+\verbatiminput{sloppyp}
+We have
+\begin{itemize}
+\item Multiple consecutive blank lines: those should be compacted.
+\item Multiple consecutive spaces, also to be compacted.
+\item Space before punctuation and after opening parentheses, and
+\item Missing spaces before opening and after closing parentheses.
+\end{itemize}
+That last item is a good illustration of where context comes in: a
+closing paren followed by punctuation is allowed, but followed by a
+letter it is an error to be corrected.
+
+We can solve this problem without using context, but the \lex\ code
+would be longer and more complicated. To see this, consider that we
+need to deal with spacing before and after a parenthesis. Suppose that
+there are $m$~cases of material before, and $n$~of material after, to
+be handled. A~\lex\ code without context would then likely have
+$m\times n$~rules. However, using context, we can reduce this
+to~$m+\nobreak m$.
+
+\Level 2 {Right context solution}
+
+Let us first try a solution that uses `right context': it basically
+describes all cases and corrects the spacing.
+\verbatiminput{pp2.l}
+%
+In the cases where we match superfluous white space, we manipulate
+\n{yyleng} to remove the spaces.
+
+\Level 2 {Left context solution}
+
+Using left context, we implement a finite state automaton in \lex, and
+specify how to treat spacing in the various state
+transitions. Somewhat surprisingly, we discard spaces entirely, and
+reinsert them when appropriate.
+
+We recognise that there are four categories, corresponding to having
+just encountered an open or close parenthesis, text, or
+punctuation. The rules for punctuation and closing parentheses are
+easy, since we discard spaces: these symbols are inserted regardless
+the state. For text and opening parentheses we need to write rules for
+the various states.
+\verbatiminput{pp.l}
+
+\begin{594exercise}
+Write a \lex\ parser that analyzes text the way the \TeX\ input
+processor does with the normal category code values. It should print
+its output with
+\begin{itemize}
+\item \n{<space>} denoting any space that is not ignored or skipped, and
+\item \n{<cs: command>} for recognizing a control sequence
+  \cs{command};
+\item open and close braces should also be marked
+as~\verb+<{>+,~\verb+<}>+.
+\end{itemize}
+Here is some sample input:
+\verbatiminput{texlexerinput}
+\end{594exercise}
+\begin{answer}
+\verbatiminput{texlexer.l}
+\end{answer}

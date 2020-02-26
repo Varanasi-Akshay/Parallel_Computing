@@ -1,0 +1,178 @@
+\Level 0 {The very basics}
+
+\Level 1 {Running}
+
+\begin{itemize}
+\item Interactively: \n{python}
+\item Call python: \n{python myfile.py}
+\item Make executable: \n{chmod +x myfile.py}
+\begin{verbatim}
+file:
+#!/usr/bin/python
+...
+\end{verbatim}
+also \verb+#!/usr/bin/env python+
+\end{itemize}
+
+Use emacs: python mode
+
+\Level 1 {Code layout}
+
+Every statement on a line by itself: no semicolon needed.
+
+With semicolon: more than one statement on a line.
+
+Continuation by escaping line end.
+
+Comments start with~\n{\#}.
+
+\Level 0 {Data}
+
+\Level 1 {Numbers}
+
+Nothing too surprising. $2/3$~gives an integer result~0
+
+\Level 1 {Strings}
+
+Strings in single or double quotes\\
+otherwise largely like lists.
+
+Concatenate: \n{'a'+"b"}
+
+multiply \n{5*'word'}
+
+\Level 1 {Lists}
+
+List: \n{a=[1,2,'a','bcd']}
+
+List run from~0: \n{a[1:3]} is \n{[2,'a']}
+
+Slices: \n{a[2:]}, \n{a[:3]}, \n{a[:]}\\
+(that last one is a copy, as opposed to~\n{a}: copy of pointer)
+
+Assign to slices: \n{a[2]=[3,4]}, \n{a[3:4]=[]}
+
+Concatenate: \n{a+b[:3]}
+
+Length: \n{len(a)}
+
+Multidimensional: list of lists \n{a[3]=[4,5]}
+
+\Level 2 {Other list manipulation}
+
+\n{a.insert(i,x)} insert $x$ before element~$i$
+
+\n{a.remove(x)} remove $x$; has to be present
+
+\n{a.count(x)}, \n{a.index(x)} how many times present, where?
+
+\n{a.append(x)}, \n{a.extend(L)} add at end of list
+
+\Level 2 {Tips and tricks}
+
+\begin{itemize}
+\item A simple assignment \n{list1 = list2} does not create a second list:
+it only copies a pointer. To create~\n{list1} as copy of~\n{list2},
+do~\n{list1 = list2[:]}.
+\item Create empty list: \n{a= n*[0]}
+\end{itemize}
+
+\Level 0 {Statements}
+
+White space is significant: in conditionals and loops and such, the
+clauses are indented.
+\begin{verbatim}
+if a>0:
+    do_something
+    and more
+else:
+    yet more
+\end{verbatim}
+In emacs, this indentation is done automatically
+\begin{description}
+\item[return] next line with proper indentation
+\item[delete] to the previous indentation level
+\item[tab] the the next level, but only if that is possible:
+\begin{verbatim}
+if a>0:
+    do_something
+    and more
+after
+\end{verbatim}
+the \n{after} can be tabbed to belong in the conditional.
+\end{description}
+
+\Level 1 {Control structures}
+
+Conditional:
+\begin{verbatim}
+if a>0:
+    print "yes"
+elif b<0:
+    print "no"
+else:
+    print "hm"
+\end{verbatim}
+Also
+\begin{verbatim}
+if a>0: print a
+\end{verbatim}
+
+Loop:
+\begin{verbatim}
+for w in words:
+    print w
+\end{verbatim}
+range over array elements. Numerical index:
+\begin{verbatim}
+for i in range(4):
+    f(i)
+\end{verbatim}
+ranges over indix array \n{[0,1,2,3]}.
+Also \n{range(1,4)} is \n{[1,2,3]}; \n{range(4,1,-1)} is~\n{[4,3,2]}.
+
+While loop:
+\begin{verbatim}
+while p>0:
+    p = prev[p]
+\end{verbatim}
+
+\n{break} and \n{continue} statements
+
+\Level 1 {Functions}
+
+Define
+\begin{verbatim}
+def fact(n):
+    if n==0: return 1
+    else:
+        return n*fact(n-1)
+\end{verbatim}
+All variables local unless
+\begin{verbatim}
+    global x
+\end{verbatim}
+included
+
+\Level 1 {Input/output}
+
+Use \n{raw_input}; the \n{input} command evaluates its
+input (which can be dangerous, since you can sneak system commands
+in there).
+
+Output with \n{print}. This automatically inserts a newline; prevent
+that with \n{print,}. For precise control over spacing and newlines:
+\begin{verbatim}
+import sys
+sys.stdout.write(<something>)
+\end{verbatim}
+This only works with strings\\
+convert \n{str(23)}
+
+\begin{verbatim}
+try:
+    a = raw_input()
+    print "line:",a
+except (EOFError):
+    break
+\end{verbatim}

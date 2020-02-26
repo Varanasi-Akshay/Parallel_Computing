@@ -1,0 +1,217 @@
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=tex 2004.7.23)  22 AUG 2004 12:43
+**lambda-test
+(./lambda-test.tex (./lambda.sty)
+\testtoks=\toks12
+
+Identity:
+input : \Identity {foo}
+output : foo
+
+Taking first argument:
+input : \First {first}{second}
+output : first
+
+Taking second argument:
+input : \Second {first}{second}
+output : second
+
+Twiddling arguments of First:
+input : \Twiddle \First {first}{second}
+output : second
+
+Twiddling arguments of Second:
+input : \Twiddle \Second {first}{second}
+output : first
+
+True takes first of TF:
+input : \True 
+output : T
+
+False takes second of TF:
+input : \False 
+output : F
+
+Not true is false:
+input : \Not \True 
+output : F
+
+And truth table TrueTrue:
+input : \And \True \True 
+output : T
+
+And truth table TrueFalse:
+input : \And \True \False 
+output : F
+
+And truth table FalseTrue:
+input : \And \False \True 
+output : F
+
+And truth table FalseFalse:
+input : \And \False \False 
+output : F
+
+Or truth table TrueTrue:
+input : \Or \True \True 
+output : T
+
+Or truth table TrueFalse:
+input : \Or \True \False 
+output : T
+
+Or truth table FalseTrue:
+input : \Or \False \True 
+output : T
+
+Or truth table FalseFalse:
+input : \Or \False \False 
+output : F
+
+Conditional positive:
+input : \ConditionalChoice \IfIsPositive \True \False 3
+output : T
+
+Let's put it this way:
+input : \TestResult \IfIsPositive {4}
+output : T
+
+Let's put it this way:
+input : \TestResult \IfIsPositive {-2}\True \False 
+output : F
+
+Let's put it this way:
+input : \TestResult \IfIsPositive {-2}
+output : F
+
+Let's put it this way:
+input : \IfIsPositive {3}\True \False 
+output : T
+
+Let's put it this way:
+input : \IfIsPositive {3}
+output : T
+
+Let's put it this way:
+input : \IfIsPositive {-2}
+output : F
+
+Detect NIL:
+input : \IsNil \Nil 
+output : T
+
+Detect non-NIL:
+input : \IsNil {\Singleton \Nil }
+output : F
+
+Head of a singleton:
+input : \Head {\Singleton \True }
+output : T
+
+Head of a tail of a 2-elt list:
+input : \Head {\Tail {\Cons \True {\Singleton \False }}}
+output : F
+
+Test list content:
+input : \IfIsPositive {\Head {\Singleton {3}}}
+output : T
+
+Test list content:
+input : \IfIsPositive {\Head {\Tail {\Cons {3}{\Singleton {-4}}}}}
+output : F
+
+Infinite objects:
+input : \Head {\Tail {\Stream 3}}
+output : 3
+
+Infinite objects:
+input : \Head {\Tail {\Tail {\Tail {\Tail {\Tail {\Stream 3}}}}}}
+output : 3
+
+Increment:
+input : \Transcribe {\AddOne {\AddOne {\AddOne \Zero }}}
+output : 111
+
+Test even:
+input : \IsEven {\AddOne {\AddOne {\AddOne \Zero }}}
+output : F
+
+Test odd:
+input : \IsOdd {\AddOne {\AddOne {\AddOne \Zero }}}
+output : T
+
+Test even:
+input : \IsEven {\AddOne {\AddOne {\AddOne {\AddOne {\Zero }}}}}
+output : T
+
+Test odd:
+input : \IsOdd {\AddOne {\AddOne {\AddOne {\AddOne {\Zero }}}}}
+output : F
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+Cat two lists:
+input : \Transcribe {\Cat {\Singleton \Nil }{\Cons \Nil {\Singleton \Nil }}}
+output : 111
+
+\dtoks=\toks13
+\n=\count26
+Adding numbers:
+input : \Transcribe {\Add {\Three }{\Five }}
+output : 11111111
+
+Adding a list:
+input : \Transcribe {\AddTogether {\Cons \Two {\Singleton \Three }}}
+output : 11111
+
+Adding a list:
+input : \Transcribe {\AddTogether {\Cons \Two {\Cons \Three {\Singleton \Three 
+}}}}
+output : 11111111
+
+Multiplication:
+input : \Transcribe {\Mult {\Three }{\Two }}
+output : 111111
+
+Multiplication:
+input : \Transcribe {\Mult {\Three }{\Five }}
+output : 111111111111111
+
+Integers:
+input : \Transcribe {\Head {\Tail {\Integers }}}
+output : 1
+
+Integers:
+input : \Transcribe {\Head {\Tail {\Tail {\Tail {\Tail {\Tail {\Integers }}}}}}
+}
+output : 11111
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+Keep even:
+input : \KeepIf \IsEven \One 
+output : 
+
+Keep even:
+input : \KeepIf \IsEven \Two 
+output : 11
+
+Keep odd:
+input : \KeepIf \IsOdd \One 
+output : 1
+
+Keep odd:
+input : \KeepIf \IsOdd \Two 
+output : 
+
+:
+input : \NextEven {\Tail \Integers }
+output : 11
+
+:
+input : \NextSatisfies {\Tail \Integers }
+output : 11
+
+[1] )
+Output written on lambda-test.dvi (1 page, 432 bytes).

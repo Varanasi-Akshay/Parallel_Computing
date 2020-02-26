@@ -1,0 +1,1306 @@
+\Level 0 {Levels of parsing}
+
+A compiler, or other translation software, has two main tasks:
+checking the input for validity, and if it is valid, understanding its
+meaning and transforming it into an executable that realizes this
+meaning. We will not go into the generation of the executable code here,
+but focus on the validity check and the analysis of the meaning, both
+of which are parsing tasks.
+
+A parser needs to look at the input on all sorts of levels:
+\begin{itemize}
+\item Are all characters valid -- no 8-bit ascii?
+\item Are names, or identifiers, well-formed? In most programming
+  languages \n{a1} is a valid name, but \n{1a} is not. By contrast, in
+  \TeX\ a name can only have letters, while in certain Lisp dialects
+  \n{!!important_name!!} is allowed.
+\item Are expressions well-formed? An arithmetic expression like
+  \n{5/*6-} does not make sense, nor does \n{CALL )FOO(} in Fortran.
+\item If the input is well-formed, are constraints satisfied such as
+  that every name that is used is defined first?
+\end{itemize}
+
+These different levels are best handled by several different
+software components. In this chapter we will look at the two initial
+stages of most translators\footnote{I will use the terms `translating'
+  and `translater' as informal concepts that cover both compilers and
+  interpreters and all sorts of mixed forms. This is not the place to
+  get philosophical about the differences.}.
+\begin{enumerate}
+\item First of all there is the \index{lexical
+  analysis}\index{analysis!lexical}lexical analysis. Here a file of
+  characters is turned into a stream of \index{token}tokens. The
+  software that performs this task is called a
+  \index{tokenizer}tokenizer, and it can be formalized. The
+  theoretical construct on which the tokenizer is based is called a
+  \index{FSA}\index{Finite State Automaton}`Finite State Automaton'.
+\item Next, we need to check if the tokens produced by the tokenizer
+  come in a legal sequence. For instance, opening and closing
+  parentheses need to come in matched pairs. This stage is called the
+  \index{syntactical analysis}\index{analysis!syntactical}syntactical
+  analysis, and the software doing this is called a
+  \index{parser}parser.
+\end{enumerate}
+
+%\Level 0 [Very short introduction]{Very short introduction to formal languages and automata}
+\Level 0 {Very short introduction}
+
+A language is a set of words (strings) over an alphabet, that satisfies
+certain properties. It is also possible to define a language as the
+output of a certain type of grammar, or as the strings accepted by a
+certain type of automaton. We then need to prove the equivalences of
+the various formulations. In this section we briefly introduce the
+relevant concepts.
+
+\Level 1 {Languages}
+
+A \index{language, formal}language is a set of words that are
+constructed from an \index{alphabet}alphabet. The alphabet is finite
+in size, and words are finite in length, but languages can have an
+infinite number of words. The alphabet is often not specified
+explicitly.
+
+Languages are often described with set notation and \index{regular
+  expressions}regular expressions, for example
+`$L=\{a^nb^*c^n|n>0\}$', which says that the language is all strings
+of equal number of $a$s and $c$s with an arbitrary number of $b$s in
+between.
+
+Regular expressions are built up from the following ingredients:
+\begin{description}
+\item[$\alpha|\beta$] either the expression $\alpha$ or~$\beta$
+\item[$\alpha\beta$] the expression $\alpha$ followed by the expression~$\beta$
+\item[$\alpha^*$] zero or more occurrences of~$\alpha$
+\item[$\alpha+$] one or more occurrences of~$\alpha$
+\item[$\alpha?$] zero or one occurrences of~$\alpha$
+\end{description}
+We will see more complicated expressions in the \lex\ utility.
+
+\Level 1 {Automata}
+
+A description of a language is not very constructive. To know how to
+generate a language we need a \index{grammar}grammar. A~grammar is a
+set of \index{rule}rules or \index{production}productions
+$\alpha\rightarrow\beta$ that state that, in deriving a word in the
+language, the intermediate string~$\alpha$ can be replaced
+by~$\beta$. These strings can be a combination of
+\begin{itemize}
+\item A start symbol~$S$,
+\item `Terminal' symbols, which are letters from the alphabet; these
+  are traditionally rendered with lowercase letters.
+\item `Non-terminal' symbols, which are not in the alphabet, and which
+  have to be replaced at some point in the derivation; these are
+  traditionally rendered with uppercase letters.
+\item The empty symbol~$\epsilon$.
+\end{itemize}
+
+Languages can be categorized according to the \index{rule!type
+  of}types of rules in their grammar:
+\begin{description}
+\item[type 0] These are called `\index{language!recursive}recursive
+  languages', and their grammar rules can be of any form: both the
+  left and right side can have any combination of terminals,
+  non-terminals, and~$\epsilon$.
+\item[type 1] `\index{language!context-sensitive}Context-sensitive
+  languages' are limited in that $\epsilon$ can not appear in the left
+  side of a production. A~typical type~1 rule would look like
+\[ \alpha A\beta \rightarrow \gamma \]
+  which states that~$A$, in the context of~$\alpha A\beta$, is
+  replaced by~$\gamma$. Hence the name of this class of languages.
+\item[type 2] `Context-free languages\index{language!context-free}'
+  are limited in that the left side of a production can only consist of
+  single non-terminal, as in~$A\rightarrow\gamma$. This means that
+  replacement of the non-terminal is done regardless of context; hence
+  the name.
+\item[type 3] `Regular languages\index{language!regular}' can
+  additionally have only a single non-terminal in each right-hand
+  side.
+\end{description}
+
+In the context of grammars, we use the notation
+$\alpha\Rightarrow\beta$ to indicate that the string~$\beta$ as
+derived from~$\alpha$ by a single application of a grammar rule;
+$\alpha\Rightarrow^*\beta$ indicates multiple rules. For example,
+$\alpha A\beta\Rightarrow\alpha B\gamma$ indicates that the rhs string
+was derived from the lhs by replacing $A\beta$ with~$B\gamma$.
+
+\Level 1 {Automata}
+
+Corresponding to these four types of formal languages, there are four
+types of `\index{automaton}automata': formal machines that can
+recognize these languages. All these machines have a starting state,
+they go from one state to another depending on the input symbols they
+encounter, and if they reach the end state, the string is accepted as
+being in the language. The difference between the different types of
+automata lies in the amount of memory they have to store information.
+Very briefly the classes of automaton are:
+\begin{description}
+\item[for type 3] \index{FSA, see Finite State Automaton}\index{Finite
+  State Automaton}Finite State Automata. These machines have no
+  memory. They can only make transitions.
+\item[for type 2] \index{Pushdown automaton}Pushdown Automata. These
+  machines have a stack where they can store information; only the top
+  of the stack can be inspected.
+\item[for type 1] \index{Linear Bounded automaton}Linear Bounded
+  Automata. These have random-access memory, the size of which is
+  equal to (a linear function of) the size of the input.
+\item[for type 0] \index{Turing machine}Turing machines. These have an
+  unbounded tape for storing intermediate calculations.
+\end{description}
+
+\PageTitle{Lexical analysis}
+
+The lexical analysis phase of program translation takes in a stream of
+characters and outputs a stream of tokens. 
+
+A token is a way of recognizing that certain characters belong
+together, and form an object that we can classify somehow. In some
+cases all that is necessary is knowing the class, for instance if the
+class has only one member. However, in general a token is a pair
+consisting of {\em its type and its value}. For instance, in \n{1/234}
+the lexical analysis recognizes that \n{234} is a number, with the
+value~$234$. In an assignment \n{abc = 456}, the characters \n{abc}
+are recognized as a variable. In this case the value is not the
+numeric value, but rather something like the index of where this
+variable is stored in an internal table.
+
+Lexical analysis is relatively simple; it is performed by software
+that uses the theory of Finite State Automata and Regular Languages;
+see section~\ref{sec:fsa}.
+
+\begin{remark}
+It might be tempting to consider the input stream to consist of
+lines, each of which consist of characters, but this does not always
+make sense. Programming languages such as Fortran do look at the
+source, one line at a time; C~does not. \TeX\ is even more
+complicated: the interpretation of the line end is
+programmable.\footnote{Ok, if we want to be precise, \TeX\ does look
+at the input source on a line-by-line basis. There is something of
+a preprocessor {\em before} the lexical analysis which throws away the
+machine-dependent line end, and replaces it with the \TeX-defined
+one.}
+\end{remark}
+
+\Level 0 {Finite state automata and regular languages}
+\label{sec:fsa}
+
+Regular languages are the strings accepted by a particularly simple
+kind of automaton. However, we initially define these languages
+--~non-constructively~-- by so-called `regular expressions'.
+
+\Level 1 {Definition of regular languages}
+
+A regular language over some alphabet can be described by a
+`\index{regular expression}regular expression'.
+\begin{itemize}
+\item $\epsilon$ denotes the empty language: the language with no
+  words in it.
+\item If \n{a} is a letter in the alphabet, then \n{a} denotes the
+  language~$\{\n{a}\}$.
+\item If $\alpha$ and $\beta$ are expressions denoting regular
+  languages $A$ and~$B$, then
+\begin{itemize}
+\item $\alpha\beta$ or $\alpha\cdot\beta$ denotes the language
+  $\{xy|x\in A,y\in B\}$.
+\item $\alpha|\beta$ denotes the language $A\cup B$.
+\item $\alpha^*$ denotes the language $\cup_{n\geq 0}A^n$.
+\end{itemize}
+\item Parentheses can be used to indicate grouping: $(\alpha)$ simply
+  denotes the language~$A$.
+\end{itemize}
+Any regular expression built up this way describes a regular language.
+
+\Level 1 {Non-deterministic automata}
+\label{sec:nfa}
+
+A Finite State Automaton is an abstract machine that recognizes
+(`accepts') words from a language:
+\begin{itemize}
+\item The automaton is initially in a beginning state;
+\item every letter or `symbol' from the input word causes
+  unambiguously a transition to the same or
+  to a next state; if no transition is defined for a given combination
+  of current state and input symbol, then the word is not in the
+  language;
+\item a word is accepted if the last symbol causes a transition to a
+  state that is marked as an accepting state.
+\end{itemize}
+Formally, we can define a FSA as the combination of 
+\begin{itemize}
+\item A set $S$ of states, with a starting state $S_0$ and a set of final
+  states.
+\item A finite input alphabet~$I$.
+\item A transition diagram $I\times S\rightarrow S$ that specifies how
+  the combination of a state and an input symbol effects a transition
+  to a new state.
+\end{itemize}
+This kind of automaton is \index{automaton!deterministic}deterministic
+in the sense that every transition from one state to the next is
+deterministically made by accepting an input symbol. However, in the
+context of lexical analysis, the so-called `\index{non-deterministic
+  FSA}non-deterministic FSA' is more convenient. A~non-deterministic
+FSA (also \index{NFA, see FSA, non-deterministic}NFA) differs in two
+ways from the deterministic type:
+\begin{itemize}
+\item An NFA can make spontaneous transitions from one state to
+  another. If an automaton has such a transition, we can say that this
+  is caused by the symbol~$\epsilon$, and this is called an
+  $\epsilon$-transition.
+\item An NFA can be ambiguous in that there can be more than one
+  possible transition for a given state and input symbol.
+\end{itemize}
+
+\begin{594exercise}
+Show that the second condition in the definition of an NFA
+can be reduced to the first. Is a reduction the other way possible?
+\end{594exercise}
+\begin{answer}
+Given two transitions one an input symbol, replace that by a single
+transition to a new state, and $\epsilon$-transitions to the original
+two destination states.
+
+If an NFA has an $\epsilon$-transition from state~1 to state~2, we can
+replace that by a jump from state~0 to state~2, triggered by the
+symbol that made the transition from~0 to~1.
+\end{answer}
+
+\Level 1 {The NFA of a given language}
+
+We now construct a nondeterministic automaton that accepts a regular language.
+\begin{itemize}
+\item The automaton that accepts the expression~$\epsilon$ has a single
+  transition from the starting state to the accepting state.
+  \\\convertMPtoPDF{eps.1}{1}{1}
+\item The automaton that accepts the expression~$a$ has a single
+  transition from the starting state to the accepting state.
+  \\\convertMPtoPDF{a.1}{1}{1}
+\item If {\bf A} and {\bf B} are automata accepting the languages $A$
+  and~$B$ with expressions $\alpha$ and~$\beta$, then
+\begin{itemize}
+\item the language $AB$ is accepted by the automaton that
+  has the states and transition of both automata combined, with the
+  initial state of~{\bf A} as the new initial state, the accepting
+  state of~{\bf B} as the new accepting state, and an
+  $\epsilon$-transition from the accepting state of~{\bf A} to the
+  initial state of~{\bf B};
+  \\\convertMPtoPDF{AB.1}{1}{1}
+\item the language $A\cup B$ is accepted by an automaton with a new
+  starting state that has $\epsilon$-transitions to the initial states
+  of {\bf A} and~{\bf B};
+  \\\convertMPtoPDF{AvB.1}{1}{1}
+\item the expression~$\alpha^*$ is accepted by {\bf A} modified such
+  that the initial state is also the accepting state, or equivalently
+  by adding an $\epsilon$-transition from the starting to the
+  accepting state, and one the other way around.
+\end{itemize}
+\end{itemize}
+
+\Level 1 {Examples and characterization}
+\label{pump:regular}
+
+Any language that can be described by the above constructs of
+repetition, grouping, concatenation, and choice, is a regular
+language. It is only slightly harder to take a transition diagram and
+write up the regular expression for the language that it accepts.
+
+An informal way of characterizing regular languages is to say that
+FSAs `do not have memory'. That means that any language where parts of
+words are related, such as $\{a^nb^m|\allowbreak m\geq\nobreak n\}$,
+can not be recognized by a FSA. Proof: suppose there is a recognizing
+FSA. When it first accepts~a~$b$, it can come from only a fixed number
+of states, so that limits the information it can carry with it.
+
+We can give a slightly more rigorous proof if we first characterize
+regular languages:
+\begin{theorem}
+Let $L$ be a regular language, then there is an~$n$ so that all
+strings~$\alpha$ in~$L$ longer than~$n$ can be written as
+$\alpha=uvw$, such that for any~$k$ $uv^kw$~is also in the language.
+\end{theorem}
+Using this theorem it is easy to see that the above language can not
+be regular.
+
+This theorem is proved by observing that in order to accept a
+sufficiently long string the same state must have been encountered
+twice. The symbols accepted in between these encounters can then be
+repeated arbitrarily many times.
+
+\Level 1 {Deterministic automata}
+
+Non-deterministic automata, as defined above, are easy to
+define. However, from a practical point of view they do not look very
+constructive: a~string in the language is accepted by the automaton if
+there is \emph{any} sequence of transitions that accepts
+it. Fortunately, for every NFSA, there is a DFSA that accepts the same
+language.
+
+Sometimes it is easy to derive the DFSA. Consider the
+language~$a^*|b^*$ and the automaton
+
+\convertMPtoPDF{nfa1.1}{1}{1}
+
+The following automaton is derived by splitting off one~$a$ and
+one~$b$:
+
+\convertMPtoPDF{dfa1.1}{1}{1}
+
+This next example leads up to what happens in the lexical analysis of
+a compiler:
+
+\convertMPtoPDF{begin.1}{1}{1}
+
+The resulting DFA is a bit more messy:
+
+\convertMPtoPDF{begind.1}{1}{1}
+
+(and we can collapse states~$6\ldots$ to one.)
+
+Sketch of the proof: the states of the DFSA are sets of states of the
+NFSA. The states we are actually interested in are defined
+inductively, and they satisfy the property that they are closed under
+$\epsilon$-transitions of the original NFSA. The starting state
+contains the original starting state plus everything reachable with
+$\epsilon$-transitions from it. Given a state of the DFSA, we then
+define more states by considering all transitions from the states
+contained in this state: if there is a transition based on a
+symbol~$x$, the next state has all states reachable from this state by
+accepting~$x$, plus any subsequent $\epsilon$-transitions.
+
+Since the number of subsets of a finite set of states is finite, this
+will define a finite number of states for the DFSA, and it is not hard
+to see that an accepting sequence in the one automaton corresponds to
+an accepting sequence in the other.
+
+\Level 1 {Equivalences}
+
+Above, we saw how the NFA of a regular language is constructed. Does
+every NFA correspond to a regular language, and if so, how can that be
+derived? We make a detour by first talking about the equivalence of
+automata and grammars.
+
+Let $X$ be a string in the language~$L$ of a~DFA, and suppose
+that after~$t$ transitions state~$i$ is reached. That means we can
+split $X=X_i(t)Y_i$. This is merely one of the strings that is in
+state~$i$ at time~$t$; let us call the set of all these
+strings~$L_i(t)$. Let us call the set of all strings that, given a
+state~$i$, bring the automaton to an accepting state~$R_i$. This set
+is clearly not dependent on~$t$. Defining $L_i=\cup_{t=0}^\infty
+L_i(t)$, we have that $L=\cup_{i=1}^m L_iR_i$ where $m$~is the number
+of states.
+
+This inspires us to tackle the derivation of a grammar by describing
+the production of the  remainder strings~$R_i$. Suppose the automaton
+is in state~$i$; we will derive the productions~$N_i\rightarrow\dots$.
+If state~$i$ is an accepting state, there will be a
+production~$N_i\rightarrow\epsilon$; for all other transitions by a
+symbol~$x$ to a state~$N_{i'}$ we add a production $N_i\rightarrow
+xN_{i'}$. It is easy to see the equivalence of strings accepted by the
+DFA and derivations of the grammar thus constructed.
+
+Going the other way, constructing an automaton from a grammar runs
+into a snag. If there are productions $N_i\rightarrow aN_{i'}$ and
+$N_i\rightarrow aN_{i''}$, we can of necessity only construct an
+NFA. However, we know that these are equivalent to DFAs.
+
+We note that the grammars used and constructed in this --~informal~--
+proof are right-recursive, so they generate precisely the regular
+languages.
+
+\begin{594exercise}
+Show how this proof can be modified to use left-recursive grammars,
+that is, grammars that have productions of the form $N_i\rightarrow
+N_{i'}a$.
+\end{594exercise}
+
+\begin{comment}
+\Level 1 {Normal form}
+
+Normal form of regular languages, proof of equivalence
+\end{comment}
+
+\Level 0 {Lexical analysis with FSAs}
+
+A FSA will recognize a sequence of language elements. However,
+it's not enough to simply say `yes, this was a legal sequence of
+elements': we need to pass information on to the next stage of the
+translation. This can be done by having some executable code attached
+to the accepting state; if that state is reached, the code snippet
+tells the next stage what kind of element has been recognized, and its
+value. This value can be a numerical value for numbers recognized, but
+more generally it will be an index into some table or other.
+
+Formally, we can extend the definition of a FSA
+(section~\ref{sec:nfa}) by the addition of an output alphabet~$O$ and
+an output table~$I\times S\rightarrow\nobreak O$. This models the
+output of a symbol, possibly~$\epsilon$, at each transition.
+
+\begin{594exercise}
+One could also define the output with a mapping~$S\rightarrow\nobreak
+O$. Show that the definitions are equivalent.
+\end{594exercise}
+\begin{answer}
+Given a mapping $I\times S\rightarrow O$, and denote
+$o_{i,s}$~the output symbol for input~$i$ and state~$s$.
+For each state~$s$,
+introduce a new state~$s_i$ for any input symbol that has a defined
+transition out of~$s$. Let that state output the
+symbol~$o_{i,s}$. Now define an $\epsilon$-transition
+from~$s_i$ to the state that was the original transition from~$s$
+under~$i$. Give that state no output.
+
+The reverse equivalence is trivial: if a state maps to an output, then
+it maps to that output with every input. Formally, if
+$s\mapsto o$ in the second definition, then
+$\{i,s\}\mapsto o$ for all~$i$ in the first.
+\end{answer}
+
+An FSA is not enough to recognize a whole language, but it can
+recognize elements from a language. For instance, we can build
+multiple FSAs for each of the keywords of a language (`begin' or
+`void'), or for things like numbers and identifiers. We can then make
+one big FSA for all the language elements by combining the multiple
+small FSAs into one that has
+\begin{itemize}
+\item a starting state with $\epsilon$-transitions to the start states
+  of the element automata, and
+\item from each of the accepting states an $\epsilon$-transition back
+  to the start state.
+\end{itemize}
+\convertMPtoPDF{compound.1}{1}{1}
+
+
+\begin{594exercise}
+Write a DFA that can parse Fortran arithmetic expressions. In Fortran,
+exponentiation is written like \n{2**n}. It is also not allowed to
+have two operators in a row, so $2\times-3$ is notated~\n{2*(-3)}.
+\end{594exercise}
+
+There is a problem with the $\epsilon$-transition from the final state
+to the initial state in the above NFA. This transition should only be
+taken if no other transitions can be taken, in other words, if the
+maximal string is recognized. For instance, most programming languages
+allow quote characters inside a quoted string by doubling them:
+`\verb+"And then he said ""Boo!"""+'. The final state is reached three
+times in the course of this string; only the last time should the jump
+back be taken.
+
+However, sometimes finding the maximum matched string is not the right
+strategy. For instance, in most languages, \n{4.E3} is a floating
+point number, but matching the~\n{E} after the decimal point is not
+necessarily right. In Fortran, the statement \n{IF (4.EQ.VAR) ...}
+would then be misinterpreted. What is needed here is one token
+`\index{look ahead!in FSAs}look-ahead': the parser needs to see what
+character follows the~\n{E}.
+
+At this point it would be a good idea to learn the Unix tool \lex.
+
+\PageTitle{Syntax parsing}
+
+Programming languages have for decades been described using formal
+grammars. One popular way of notating those grammars is Backus Naur
+Form, but most formalisms are pretty much interchangable. The
+essential point is that the grammars are almost invariably of the
+context-free type. That is, they have rules like
+\begin{bnf}
+<function call>: <function name> ( <optargs> ).
+<optargs>: empty; <args>.
+<args>: word; word , <args>.
+\end{bnf}
+The second and third rule in this example can be generated by a
+regular grammar, but the first rule is different: when the opening
+parenthesis is matched, the parser has to wait an unlimited time for
+the closing parenthesis. This rule is of context-free type\checkthis.
+
+It is important to keep some distinctions straight:
+\begin{itemize}
+\item A grammar has a set of rules, each indicating possible
+  replacements during a derivation of a string in the language. Each
+  rule looks like~$A\rightarrow\alpha$.
+\item A \index{derivation}derivation is a specific sequence of
+  applications of rules; we denote each step in a derivation
+  as~$\alpha\Rightarrow\beta$, where $\beta$~can be derived
+  from~$\alpha$ by application of some rule. The derivation of some
+  string~$\alpha$ is a sequence of step such that
+  $S\Rightarrow\cdots\Rightarrow\alpha$; we abbreviate this
+  as~$S\Rightarrow^*\alpha$.
+\item Ultimately, we are interested in the reverse of a derivation: we
+  have a string that we suspect is in the language, and we want to
+  reconstruct whether and how it could be derived. This reconstruction
+  process is called `\index{parsing}parsing', and the result often
+  takes the form of a `parse tree'.
+\end{itemize}
+
+We will first give some properties of context-free languages, then in
+section~\ref{sec:pparsing} we will discuss the practical parsing of
+context-free languages.
+
+\Level 0 {Context-free languages}
+
+Context-free languages can be defined as the output of a particular
+kind of grammar (the left side can only consist of a single
+nonterminal), or as the set of string accepted by a certain kind of
+automaton. For languages of this type, we use a Pushdown Automaton
+(PDA) to recognize them. A~PDA is a finite-state automaton, with some
+scratch memory that takes the form of a stack: one can only push items
+on it, and inspect or remove the top item. Here we will not give an
+equivalence proof.
+
+An example of a language that is context-free but not regular
+is~$\{a^nb^n\}$. To parse this, the automaton pushes~$a$s on the
+stack, then pops them when it finds a~$b$ in the input, and the string
+is accepted if the stack is empty when the input string is fully read.
+
+\Level 1 {Pumping lemma}
+
+As with regular languages (section~\ref{pump:regular}), there is a way
+to characterize the strings of a context-free language.
+\begin{theorem}
+Let $L$ be a context-free language, then there is an~$n$ so that all
+strings~$\alpha$ in~$L$ longer than~$n$ can be written as
+$\alpha=uvwxy$, such that for any~$k$ the string $uv^kwx^ky$ is also
+in the language.
+\end{theorem}
+The proof is as before: the derivation of a sufficiently long string
+must have used the same production twice.
+\begin{quote}
+\Tree [.S $u$ [.A $v$ [.A $w$ ] $x$ ] $y$ ]
+\end{quote}
+
+\Level 1 {Deterministic and non-deterministic PDAs}
+
+As with Finite State Automata, there are deterministic and
+non-deterministic pushdown automata. However, in this case they are
+not equivalent. As before, any DPA is also a NPA, so any language
+accepted by a DPA is also accepted by a NPA. The question is whether
+there are languages that are accepted by a NPA, and that are not
+accepted by a DPA.
+
+A similar example to the language $\{a^nb^n\}$ above is the language
+over an alphabet of at least two
+symbols~$L=\nobreak\{\alpha\alpha^R\}$, where $\alpha^R$~stands for
+the reverse of~$\alpha$. To recognize this language, the automaton
+pushes the string~$\alpha$ on the stack, and pops it to match the
+reverse part. However, the problem is knowing when to start popping
+the stack.
+
+Let the alphabet have at least three letters, then the language
+$L_c=\{\alpha c\alpha^R|c\not\in\alpha\}$ can deterministically be
+recognized. However, in absence of the middle symbol, the automaton
+needs an $\epsilon$-transition to know when to start popping the stack.
+
+\Level 1 {Normal form}
+
+Context-free grammars have rules of the form $A\rightarrow\alpha$
+with~$A$ a single nonterminal and~$\alpha$ any combination of
+terminals and nonterminals. However, for purposes of parsing it is
+convenient to have the rules in a `\index{grammar!normal form}normal
+form'. For context-free grammars that is the form $A\rightarrow
+a\alpha$ where $a$~is a terminal symbol.
+
+\def\mbx{\mathbf{x}}
+\def\mba{\mathbf{a}}
+\def\mbb{\mathbf{b}}
+\def\mbA{\mathbf{A}}
+\def\mby{\mathbf{y}}
+\def\mbf{\mathbf{f}}
+One proof that grammars can always be rewritten this way uses
+`expression equations'. If $\mbx$ and $\mby$ stand for
+sets of expressions, then $\mbx+\mby$,
+$\mbx\mby$, and~$\mbx^*$ stand for union,
+concatenation, and repetition respectively.
+
+Consider an example of expression equations.  The scalar equation
+$\mbx=\mba+\mbx\mbb$ states that
+$\mbx$~contains the expressions in~$\mba$. But then it
+also contains~$\mba\mbb$,
+$\mba\mbb\mbb$, et cetera. One can verify that
+$\mbx=\mba\mbb^*$.
+
+The equation in this example had a regular language as solution; the
+expression $\mbx=\mba+\mbb\mbx\mathbf{c}$ does
+not have a regular solution.
+
+Now let $\mbx$ be a vector of all non-terminals in the grammar
+of a context-free language, and let~$\mbf$ be the vector of
+righthandsides of rules in the grammar that are of normal form. We can
+then write the grammar as 
+\[ \mbx^t=\mbx^t\mbA+\mbf^t \]
+where the multiplication with~$\mbA$ describes all rules not of
+normal form. 
+
+Example:
+\[
+\begin{array}{ccl}
+S&\rightarrow &aSb|XY|c\\
+X&\rightarrow &YXc|b\\
+Y&\rightarrow &XS
+  \end{array}\quad\Rightarrow\quad
+   [S,X,Y]=[S,X,Y]\left[
+                \begin{array}{ccc}\phi&\phi&\phi\\
+                  Y&\phi&S\\ \phi&Xc&\phi \end{array}\right]
+                +[aSb+c,b,\phi]
+\]
+
+The solution to this equation is
+\[ \mbx^t = \mbf^t\mbA^* \]
+which describes rules on normal form. However,
+we need to find a more explicit expression for~$\mbA^*$.
+
+Noting that $\mbA^*=\lambda+\mbA\mbA^*$ we get
+\begin{equation}
+ \mbx^t = \mbf^t+\mbf^t\mbA\mbA^*
+  =  \mbf^t+\mbf^t\mathbf{B}
+    \label{eq:x-solution}\end{equation}
+where $\mathbf{B}=\mbA\mbA^*$. This is a grammar on normal
+form. It remains to work out the rules for~$\mathbf{B}$. We have
+\[ \mathbf{B}=\mbA\mbA^*=
+  \mbA+\mbA\mbA\mbA^* =
+  \mbA+\mbA\mathbf{B} \]
+These rules need not be of normal
+form. However, any elements of~$\mbA$ that start with a
+nonterminal, can only start with nonterminals in~$\mbx$. Hence
+we can substitute a rule from equation~(\ref{eq:x-solution}).
+
+\Level 0 {Parsing context-free languages}
+\label{sec:pparsing}
+
+The problem of parsing is this:
+\begin{quotation}Given a grammar $G$ and a string~$\alpha$, determine
+  whether the string is in the language of~$G$, and through what
+  sequence of rule applications it was derived.
+\end{quotation}
+We will discuss the $LL$ and $LR$ type parser, which correspond to a
+top-down and bottom-up way of parsing respectively, then go into 
+the problem of ambiguity
+
+\Level 1 {Top-down parsing: $LL$}
+
+One easy parsing strategy starts from the fact that the expression has
+to come from the start symbol. Consider the expression \n{2*5+3},
+which is produced by the grammar
+\begin{bnf}
+Expr: number Tail.
+Tail: $\epsilon$ ; + number Tail; * number Tail
+\end{bnf}
+In the following analysis the stack has its bottom at the right
+\begin{tabbing}
+start symbol on stack:$\quad$\=${}2*5+3{}\quad$\=\kill
+initial queue:\>$2*5+3$\\
+start symbol on stack:\>\>Expr\\
+replace\>\>number Tail\\
+match\>${}*5+3$\>Tail\\
+replace\>\>* number Tail\\
+match\>$5+3$\>number Tail\\
+match\>${}+3$\>Tail\\
+replace\>\>+ number Tail\\
+match\>$3$\>number Tail\\
+match\>$\epsilon$\>Tail\\
+match
+\end{tabbing}
+The derivation that we constructed here is
+\[ E\Rightarrow n\, T\Rightarrow n*n\,T\Rightarrow
+    n*n+n\,T\Rightarrow n*n+n \]
+that is, we are replacing symbols from the left. Therefore this kind
+of parsing is called $LL$~parsing: read from left to right, replace
+from left to right. Because we only need to look at the first symbol in
+the queue to do the replacement, without need for further
+`\index{look ahead}look ahead' tokens, this is $LL(1)$ parsing.
+
+But this grammar was a bit strange. Normally we would write
+\begin{bnf}
+Expr: number; number + Expr; number * Expr
+\end{bnf}
+If our parser can now see the first \emph{two} symbols in the queue,
+it can form
+\begin{tabbing}
+start symbol on stack:$\quad$\=${}2*5+3{}\quad$\=\kill
+initial queue:\>$2*5+3$\\
+start symbol on stack:\>\>Expr\\
+replace\>\>number * Expr\\
+match\>${}5+3$\>Tail\\
+replace\>\>number + Expr\\
+match\>$3$\>Expr\\
+replace\>$3$\>number\\
+match\>$\epsilon$
+\end{tabbing}
+This is called $LL(2)$ parsing: we need one token look ahead.
+
+\Level 2 {Problems with $LL$ parsing}
+
+If our grammar had been written
+\begin{bnf}
+Expr: number; Expr + number; Expr * number
+\end{bnf}
+an $LL(k)$ parser, no matter the value of~$k$, would have gone into an
+infinite loop.
+
+In another way too, there are many constructs that can not be parsed
+with an~$LL(k)$ parser for any~$k$. For instance if both \n{A<B} and
+\n{A<B>} are legal expressions, where \n{B} can be of arbitrary
+length, then no finite amount of look-ahead will allow this to be
+parsed.
+
+\Level 2 {$LL$ and recursive descent}
+
+The advantages of $LL(k)$ parsers are their simplicity. To see which
+rule applies at a given point is a recursive-descent search, which is
+easily implemented. The code for finding which rule to apply can
+broadly be sketched as follows:
+\begin{verbatim}
+define FindIn(Sym,NonTerm)
+  for all expansions of NonTerm:
+    if leftmost symbol == Sym
+      then found
+    else if leftmost symbol is nonterminal
+      then FindIn(Sym,that leftmost symbol)
+\end{verbatim}
+This implies that a grammar is $LL$-parsable if distinct rules for
+some non-terminal can not lead to different terminals. In other words,
+by looking at a terminal, it should be clear what production was used.
+
+The $LR$ parsers we will study next are more
+powerful, but much more complicated to program. The above problems
+with $LL(k)$ are largely non-existent in languages where statements
+start with unique keywords.
+
+\Level 1 {Bottom-up parsing: shift-reduce}
+\label{sec:shift-reduce}
+
+In this section we will look at the `\index{bottom-up
+  parsing}bottom-up' parsing strategy, where terminal symbols are
+gradually replaced by non-terminals.
+
+One easily implemented bottom-up parsing strategy is called
+`\index{shift-reduce parsing}shift-reduce parsing'. The basic idea
+here is to move symbols from the input queue to a stack, and every
+time the symbols on top of the stack form a right hand size of a
+production, reduce them to the left hand side.
+
+For example, consider the grammar
+\begin{bnf}
+E: number; E + E; E * E
+\end{bnf}
+and the expression $2*5+3$. We proceed by moving symbols from the left
+side of the queue to the top of the stack, which is now to the right.
+\begin{tabbing}
+shift, shift, reduce: abcd\=initial state:initial\=\kill
+\>stack\>queue\\
+initial state:\>\>$2*5+3$\\
+shift\>2\>*5+3\\
+reduce\>E\>*5+3\\
+shift\>E*\>5+3\\
+shift\>E*5\>+3\\
+reduce\>E*E\>+3\\
+reduce\>E\>+3\\
+shift, shift, reduce\>E+E\\
+reduce\>E\\
+\end{tabbing}
+(Can you tell that we have ignored something important here?)
+
+The derivation we have reconstructed here is
+\[ E\Rightarrow E+E\Rightarrow E+3\Rightarrow E*E+3
+    \Rightarrow E*5+3\Rightarrow 2*5+3 \]
+which proceeds by each time replacing the right-most
+nonterminal. This is therefore called a `\index{rightmost
+  derivation}rightmost derivation'. Analogously we can define a
+`\index{leftmost derivation}leftmost derivation' as one that proceeds
+by replacing the leftmost nonterminal.
+
+For a formal definition of shift-reduce parsing, we should also define
+an `accept' and `error' action.
+
+\Level 1 {Handles}
+
+Finding the derivation of a legal string is not trivial. Sometimes we
+have a choice between shifting and reducing, and reducing `as soon as
+possible' may not be the right solution. Consider the grammar
+\begin{bnf}
+S:aAcBe.
+A:bA;b.
+B:d.
+\end{bnf}
+and the string \n{abbcde}. This string can be derived (writing the
+derivation backwards for a change) as
+\[ \n{abbcde}\Leftarrow\n{abAcde}\Leftarrow\n{aAcde}\Leftarrow
+    \n{aAcBe}\Leftarrow\n{S}. \]
+However, if we had started
+\[ \n{abbcde}\Leftarrow\n{aAbcde}\Leftarrow aAAcde \Leftarrow ? \]
+we would be stuck because no further reductions would be applicable.
+
+The problem then is to know where to start replacing terminal symbols
+and, later in the derivation, non-terminals. The shift-reduce strategy
+of the previous section is here seen to lead to problems, so some
+extra power is needed. We introduce the concept of
+`\index{handle}handle' as a formal definition of `the right production
+and place to start reducing'. The following definition is totally
+unhelpful:
+\begin{quotation} If $S\Rightarrow^*\alpha Aw\Rightarrow\alpha\beta w$ is a
+  right-most derivation, then $A\rightarrow\beta$ at the position
+  after~$\alpha$ is a handle of~$\alpha Aw$.
+\end{quotation}
+
+Clearly, if we can identify handles, we can derive a parse tree for a
+given string. However, the story so far has not been constructive.
+Next we will look at ways of actually finding handles.
+
+\Level 1 {Operator-precedence grammars}
+
+It is easy to find handles if a grammar is of an `\index{operator
+  grammar}operator grammar'
+form. Loosely, by this we mean that expressions in the language look
+like expression-operator-expression. More strictly, we look at
+grammars where there are never two adjacent nonterminals, and where no
+right hand side is~$\epsilon$. We also assume that precedence
+relations between operators and terminals are known.
+
+Let us look again at arithmetic expressions; we will introduce
+relations $\hbox{op}_1\lessdot\hbox{op}_2$ if the first operator has lower
+precedence, and $\hbox{op}_1\gtrdot\hbox{op}_2$ if it has higher
+precedence. If the two operators are the same, we use predence to
+force associativity rules. For instance, right associativity
+corresponds to definitions such as~$+\gtrdot+$.
+
+For the $+$ and~$*$ operators we then have the following table:\\
+\begin{tabular}{r|ccc}
+&\hbox{number}&$+$&$\times$\\\hline
+\hbox{number}&&$\gtrdot$&$\gtrdot$\\
+$+$&$\lessdot$&$\gtrdot$&$\lessdot$\\
+$\times$&$\lessdot$&$\gtrdot$&$\gtrdot$
+\end{tabular}\\
+Now we can find a handle by scanning left-to-right for the first~$\gtrdot$
+character, then scanning back for the matching~$\lessdot$. After reducing
+handles thus found, we have a string of operators and
+nonterminals. Ignoring the nonterminals, we insert again the
+comparisons; this allows us to find handles again.
+
+For example, $5+2*3$ becomes
+$\lessdot5\gtrdot+\lessdot2\gtrdot*\lessdot3\gtrdot$; replacing
+handles this becomes $E+E*E$. Without the nonterminals, the precedence
+structure is ${\lessdot}+{\lessdot}*{\gtrdot}$, in which we find
+${\lessdot}E*E{\gtrdot}$ as the handle. Reducing this leaves us with
+$E+E$, and we find that we have parsed the string correctly.
+
+This description sounds as if the whole expression is repeatedly
+scanned to insert precedence relations and find/reduce handle. This is
+not true, since we only need to scan as far as the right edge of the
+first handle. Thus, a shift/reduce strategy will still work for
+operator grammars.
+
+\Level 1 {LR parsers}
+\label{sec:LR}
+
+We will now consider \index{LR parser}LR parsers in more detail.
+These are the parsers that scan the input from the left, and construct
+a rightmost derivation, as in the examples we have seen in
+section~\ref{sec:shift-reduce}. Most constructs in programming
+languages can be parsed in an LR fashion.
+
+An LR parser has the following components
+\begin{itemize}
+\item A stack and an input queue as in the shift-reduce examples you
+  have already seen in section~\ref{sec:shift-reduce}. The difference
+  is that we now also push state symbols on the stack.
+\item Actions `shift', `reduce', `accept', `error', again as before.
+\item An \n{Action} and \n{Goto} function that  work as follows:
+\begin{itemize}
+\item Suppose the current input symbol is~$a$ and the state on top of
+  the stack is~$s$.
+\item If \n{Action}$(a,s)$ is `shift', then $a$ and a new state
+  $s'=\n{Goto}(a,s)$ are pushed on the stack.
+\item If \n{Action}$(a,s)$ is `reduce $A\rightarrow\beta$' where
+  $|\beta|=r$, then $2r$ symbols are popped from the stack, a new
+  state $s'=\n{Goto}(a,s'')$ is computed based on the newly exposed
+  state on the top of the stack, and $A$ and~$s'$ are pushed. The
+  input symbol~$a$ stays in the queue.
+\end{itemize}
+\end{itemize}
+An LR parser that looks at the first $k$ tokens in the queue
+is called an LR$(k)$ parser. We will not discuss this issue of
+look-ahead any further.
+
+It is clear that LR parser are more powerful than a simple
+shift-reduce parser. The latter has to reduce when the top of the
+stack is the right hand side of a production; an LR parser
+additionally has states that indicate whether and when the top of the
+stack is a handle.
+
+\Level 2 {A simple example of LR parsing}
+
+It is instructive to see how LR parsers can deal with cases for which
+simple shift/reduce parsing is insufficient. Consider again the
+grammar
+\begin{bnf}
+E: E + E; E * E
+\end{bnf}
+and the input string $1+2*3+4$. Give the~\n{+} operator precedence~1,
+and the~\n{*} operator precedence~2. In addition to moving tokens onto
+the stack, we also push the highest precedence seen so far. In the
+beginning we declare precedence~0, and pushing a non-operator does not
+change the precedence.
+
+Shift/reduce conflicts are now resolved with this rule: if we
+encounter at the front of the queue a lower precedence than the value
+on top of the stack, we reduce the elements on top of the stack.
+\begin{tabbing}
+1 $S_0$ + $S_1$ 2 $S_1$ * $S_2$ 3 $S_2$ \hskip1cm\= $1+2*3+4$ \=\kill
+\>$1+2*3+4$\> push symbol; highest precedence is 0\\
+1 $S_0$\>$+2*3+4$\>highest precedence now becomes 1\\
+1 $S_0$ + $S_1$\>$2*3+4$\\
+1 $S_0$ + $S_1$ 2 $S_1$\>$*3+4$\>highest precedence becoming 2\\
+1 $S_0$ + $S_1$ 2 $S_1$ * $S_2$\>$3+4$\\
+1 $S_0$ + $S_1$ 2 $S_1$ * $S_2$ 3 $S_2$\>$+4$\>reduce because \n{P(+)}${}<2$\\
+1 $S_0$ + $S_1$ 6 $S_1$\>$+4$\>the highest exposed precedence is 1\\
+1 $S_0$ + $S_1$ 6 $S_1$ + $S_1$\>$4$\\
+1 $S_0$ + $S_1$ 6 $S_1$ + $S_1$ 4 $S_1$ \>\>at the end of the queue we reduce\\
+1 $S_0$ + $S_1$ 10 $S_1$ \\
+11
+\end{tabbing}
+Even though this example is phrased very informally, we see the key
+points:
+\begin{itemize}
+\item only the top of the stack and the front of the queue are
+  inspected;
+\item we have a finite set of rules governing shift/reduce behaviour.
+\end{itemize}
+As we shall see, this mechanism can also identify handles.
+
+\Level 2 {States of an LR parser}
+
+An $LR$ parser is constructed automatically from the grammar. Its
+states are somewhat complicated, and to explain them we need
+a couple of auxiliary constructs.
+\begin{description}
+\item[item] An `\index{Item (in $LR$ parser)}item' is a grammar rule
+  with a location indicated. From the rule \parserule{A}{B C} we get
+  the items \parserule{A}{.B C}, \parserule{A}{B .C}, \parserule{A}{B
+    C.}. The interpretation of an item will be that the symbols left
+  of the dot are on the stack, while the right ones are still in the
+  queue. This way, an item describes a stage of the parsing process.
+\item[closure] The closure of an item is defined as
+  the smallest set that
+\begin{itemize}
+\item Contains that item;
+\item If the closure contains an item \parserule{A}{$\alpha$
+  .B $\beta$} with~\n{B} a nonterminal symbol, then it contains all
+  items \parserule{B}{.$\gamma$}. This is a recursive notion: if
+  $\gamma$~starts with a non-terminal, the closure would also contain
+  the items from the rules of~$\gamma$.
+\end{itemize}
+\end{description}
+The states of our $LR$ parser will now be closures of items of the
+grammar. We motivate this by an example.
+
+Consider now an item \parserule{A}{$\beta_1$.$\beta_2$} in the case that
+we have recognized~$\alpha\beta_1$ so far. The item is called
+\emph{valid} for that string, if a rightmost derivation
+$S\Rightarrow^*\alpha Aw\Rightarrow \alpha\beta_1\beta_2w$ exists. If
+$\beta_2=\epsilon$, then $A\rightarrow\beta_1$ is a handle and we can
+reduce. On the other hand, if $\beta_2\not=\epsilon$, we have not
+encountered the full handle yet, so we shift~$\beta_2$.
+
+As an example, take the grammar
+\begin{bnf}
+E:E+T; T.
+T:T*F; F.
+F:(E); id
+\end{bnf}
+and consider the partially parsed string~\n{E+T*}. The (rightmost)
+derivation
+\[ E\Rightarrow E+T\Rightarrow E+T*F \]
+shows that \parserule{T}{T*.F} is a valid item,
+\[ E\Rightarrow E+T\Rightarrow E+T*F\Rightarrow E+T*(E) \]
+gives \parserule{F}{.(E)} as a valid item, and
+\[ E\Rightarrow E+T\Rightarrow E+T*F\Rightarrow E+T*\mathrm{id} \]
+gives \parserule{F}{.id} as a valid item.
+
+\Level 2 {States and transitions}
+
+We now construct the actual states of our parser.
+\begin{itemize}
+\item We add a new start symbol~\n{S'}, and a production
+  \parserule{S'}{S}.
+\item The starting state is the closure of \parserule{S'}{.S}.
+\item The transition function $d(s,\n{X})$ of a state~$s$ and a
+  symbol~\n{X} is defined as the closure of
+\[ \{ \parserule{A}{$\alpha$ X. $\beta$}
+          | \hbox{\parserule{A}{$\alpha$ .X $\beta$} is in $s$} \} \]
+\item The `\index{Follow}follow' of a symbol~\n{A} is the set of all
+  terminal symbols that can follow its possible expansions. This set is
+  easy to derive from a grammar.
+\end{itemize}
+
+Here is an example
+\begin{quotation}
+We construct the states and transition for the grammar
+\begin{bnf}
+S:(S)S;$\epsilon$
+\end{bnf}
+which consists of all strings of properly matched left and right parentheses.
+
+Solution: we add the production \parserule{S'}{.S}. We now find the states
+\begin{enumerate}
+\item $\{ \parserule{S'}{.S}, \parserule{S}{.(S)S}, \parserule{S}{.} \}$ 
+\item $\{ \parserule{S'}{S.} \}$ 
+\item $\{ \parserule{S}{(.S)S}, \parserule{S}{.(S)S}, \parserule{S}{.} \}$ 
+\item $\{ \parserule{S}{(S.)S} \}$ 
+\item $\{ \parserule{S}{(S).S}, \parserule{S}{.(S)S}, \parserule{S}{.} \}$ 
+\item $\{ \parserule{S}{(S)S.} \}$
+\end{enumerate}
+with transitions
+\[ \begin{array}{ll}
+d(0,S) &= 1 \\
+d(0,'(') &= 2 \\
+d(2,S) &= 3 \\
+d(2,'(') &= 2 \\
+d(3,')') &= 4 \\
+d(4,S) &= 5 \\
+d(4,'(') &= 2 
+\end{array} \]
+\end{quotation}
+
+The only thing missing in our parser is the function that describes
+the stack handling.
+The parsing stack consists of states and grammar symbols
+(alternating).  Initially, push the start state onto the stack.  The
+current state is always the state on the top of the stack.  Also, add
+a special endmarker symbol to the end of the input string.
+
+\begin{tabbing}
+\textbf{Loop}:\\
+(1) \textbf{else} \=\kill
+(1) \textbf{if} \>th\=e current state contains \parserule{S'}{S.}\\
+\>\>accept the string\\
+(2) \textbf{else} \>\textbf{if} the current state %
+    contains any other final item \parserule{A}{$\alpha$.}\\
+\>\>pop all the tokens in $\alpha$ from the stack, %
+    along with the corresponding states; \\
+\>\>let $s$ be the state left on top of the stack: %
+    push \n{A}, push \n{d($s$,A)}\\
+(3) \textbf{else} \>\textbf{if} the current state contains any item %
+    \parserule{A}{$\alpha$ .x $\beta$},\\
+\>\>$\qquad$ where x is the next input token\\
+\>\>let $s$ be the state on top of the stack: %
+    push \n{x}, push \n{d($s$,x)}\\
+(1) \=\kill
+\>\textbf{else} report failure
+\end{tabbing}
+Explanation:
+\begin{enumerate}
+\item If we have recognized the initial production, the bottom-up
+  parse process was successful.
+\item If we have a string of terminals on the stack, that is the right
+  hand side of a production, replace by the left hand side
+  non-terminal.
+\item If we have a string of terminals on the stack that is the
+  \emph{start} of a right hand side, we push the current input symbol.
+\end{enumerate}
+
+\begin{594exercise}
+Give the states and transitions for the grammar
+\begin{bnf}
+S:x.
+S:(L).
+L:S.
+L:L S.
+\end{bnf}
+Apply the above parsing algorithm to the string \n{(x,x,(x))}.
+\end{594exercise}
+
+The parsers derived by the above algorithm can only handle cases where
+there is no ambiguity in condition~$(3)$. The class of grammars
+recognized by this type of parser is called~$LR(0)$ and it is not very
+interesting. We get the more interesting class of $SLR(1)$ by adding
+to condition~$(2)$ the clause that the following symbol is in the
+follow of~\n{A}. Another similar class, which is the one recognized
+by~\yacc, is $LALR(1)$.
+
+\Level 1 {Ambiguity and conflicts}
+
+The problem of finding out {\em how} a string was derived is often
+important. For instance, with a grammar
+\begin{bnf}
+%<expression>: <number>; <expression> + <expression>; <expression>
+%$\times$ <expression>.
+<expr>: <number>; <expr> + <expr>; <expr> $\times$ <expr>.
+\end{bnf}
+the expression $2+5*3$ is \index{ambiguity}ambiguous: it can mean
+either $(2+5)*3$ or~$2+\nobreak(5*\nobreak3)$.
+\begin{quote}
+\Tree [.* [.+ $2\quad$ $5\quad$ ] $3\quad$ ]
+\Tree [.+ $2\quad$ [.* $5\quad$ $3\quad$ ] ]
+\end{quote}
+%\verbatiminput{arith}
+An LR parser would report a `\index{shift/reduce conflict}shift/reduce
+conflict' here: after $2+5$ has been reduced to \n{<expr> + <expr>},
+do we reduce that further to~\n{<expr>}, or do we shift the minus,
+since \n{<expr> -} is the start of a legitimate reducible sequence?
+
+Another example of ambiguity is the `\index{dangling else}dangling
+else' problem. Consider the grammar
+\begin{bnf}
+<statement>: if <clause> then <statement>; if <clause> then <statement> else <statement>
+\end{bnf}
+and the string
+\begin{quotation}
+\tt if c$_1$ then if c$_2$ then s$_1$ else s$_2$
+\end{quotation}
+This can be parsed two ways:
+%\verbatiminput{dangle}
+\begin{quote}
+\Tree [.S If Then [.S If Then ] Else ]
+\Tree [.S If Then [.S If Then Else ] ]
+\end{quote}
+Does the \n{else} clause belong to the first \n{if}
+or the second?
+
+Let us investigate the first example. We can solve the ambiguity
+problem in two ways:
+\begin{itemize}
+\item Reformulate the grammar as
+\begin{bnf}
+<expr>: <mulex>; <mulex> + <mulex>.
+<mulex>: <term>; <term> $\times$ <term>.
+<term>: number.
+\end{bnf}
+so that the parser can unambiguously reconstruct the derivation,
+%\verbatiminput{mularith}
+\begin{quote}
+\Tree [.expr [.mulex [.term 2 ] ] + [.mulex [.term 5 ] * [.term 3 ] ] ]
+\end{quote}
+or
+\item Teach the parser about precedence of operators. This second
+  option may be easier to implement if the number of operators is
+  large: the first option would require a large number of rules, with
+  probably a slower parser.
+\end{itemize}
+
+\begin{594exercise}
+Rewrite the grammar of the second example to eliminate the dangling
+else problem.
+\end{594exercise}
+
+Since we are
+not used to thinking of keywords such as \n{then} in terms of
+precedence, it is a better solution to eliminate the dangling else
+problem by introducing a \n{fi} keyword to close the conditional.
+Often, however, ambiguity is not so easy to eliminate.
+
+\begin{594exercise}
+In case of a shift-reduce conflict, yacc shifts. Write an example that
+proves this. Show what this strategy
+implies for the dangling else problem.
+\end{594exercise}
+\begin{answer}
+This question derives from
+\url{http://www.gnu.org/software/bison/manual/html_node/Shift-Reduce.html}
+Proof of shifting, which implies right associativity:
+\verbatiminput{sr-lex.l}
+\verbatiminput{sr.y}
+Ouput
+\begin{verbatim}
+%% sr
+1-2+5
+Result: -6
+\end{verbatim}
+\end{answer}
+
+Another type of conflict is the `\index{Reduce/reduce
+  conflict}reduce/reduce conflict'. Consider this grammar:
+\begin{bnf}
+A : B c d ; E c f.
+  B : x y.
+  E : x y.
+\end{bnf}
+and the input string that starts \n{x y c}.
+\begin{itemize}
+\item An $LR(1)$ parser will shift \n{x y}, but can not decide whether
+  to reduce that to \n{B} or~\n{E} on the basis of the look-ahead
+  token~\n{c}.
+\item An $LR(2)$ parser can see the subsequent \n{d} or~\n{f} and make
+  the right decision.
+\item An $LL$ parser would also be confused, but already at
+  the~\n{x}. Up to three tokens (\n{x y c}) is unsufficient, but an
+  $LL(4)$ parser can again see the  subsequent \n{d} or~\n{f}.
+\end{itemize}
+The following grammar would confuse any $LR(n)$ or $LL(n)$ parser with a
+fixed amount of look-ahead:
+\begin{bnf}
+  A : B C d ; E C f.
+  B : x y .
+  E : x y .
+  C : c ; C c.
+\end{bnf}
+which generates $x\,y\,c^n\,\{d|f\}$.
+
+As usual, the simplest solution is to rewrite the grammar to remove the confusion e.g.:
+\begin{bnf}
+  A    : BorE c d ; BorE c f.
+  BorE : x y.
+\end{bnf}
+or assuming we left-factorise the grammar for an $LL(n)$ parser:
+\begin{bnf}
+  A    : BorE c tail.
+  tail : d ; f.
+  BorE : x y.
+\end{bnf}
+
+Another example of a construct that is not LR parsable, consider
+languages such as Fortran, where function calls and array indexing
+both look like \n{A(B,C)}:
+\begin{bnf}
+<expression>: <function call>; <array element>.
+<function call>: name ( <parameter list> ).
+<array element>: name ( <expression list> ).
+<parameter list>: name; name , <parameter list>.
+<expression list>: name; name, <expression list>.
+\end{bnf}
+After we push \n{B} on the stack, it is not clear whether to reduce it
+to the head of a parameter list or of an expression list, and no
+amount of lookahead will help. This problem can be solved by letting
+the lexical analyzer have access to the symbol table, so that it can
+distinguish between function names and array names.
+
+\endinput
+\Level 1 {LL parsers}
+
+\begin{verbatim}
+If you have two different derivations
+
+	Z -> X -> A<B>
+and	Z -> Y -> A<B
+
+where B has an unbounded expansion, then it isn't LL(k). To be LL(k) you
+have to be able choose X or Y by left context + at most k symbols. In this
+case you have traverse the entire expansion of B which can be more than
+k symbols.
+
+A backtracking parser is not needed for this case, an [LA]LR one will
+do.  There isn't a "grammatical" LL solution (that is a solution that
+can be done, just in an LL grammar, with no outside help, e.g. from
+the lexer), as this is the if-then-else problem.  However, like the
+if-then-else problem, one can probably solve it in an LL grammar /
+parser by accepting a slightly bigger language.  It will be a little
+messy though. However, like most "expression" problems, a simpler
+solution is to use an LR-like parser generator or a precedence one.
+My guess is that's what the original AREV folks did.
+
+Nick Roberts also replied:
+> It seems to raise a bigger question, to my mind. Are, perhaps, all
+> these limited grammar parsers (parser generators) -- LL(1), LL(k),
+> LALR, and so on -- losing their relevance these days (at least with
+> regards to programming language compilers and similar tools)?
+
+Actually, I would say the opposite is true.  A serious number of
+parser generators have been extended with some form of backtracking
+and/or other infinite lookahead mechanism.  Here are just the examples
+off the top of my head--predicates (or "lookahead" declarations):
+ANTLR, JavaCC, Yacc++; backtracking: BTYACC, meta-S, PEG (Brian Ford's
+recent work); Lang/Tomita parsing: ASDL, Bison.  In fact, if one wants
+to do backtracking parser, it is almost always easier to do it in a
+grammar based scheme or a functional (FP) language.  Why, because one
+wants to interpret the grammar and back back up easily.  It is hard to
+back up in an imperative language.  Thus, you want something where the
+"state" is small and easily managed, so that backing the state back up
+is also easy.
+
+\end{verbatim}

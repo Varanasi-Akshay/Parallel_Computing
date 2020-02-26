@@ -1,0 +1,9 @@
+\begin{examplewithcode}
+\newcount\ntees
+\def\tees#1#2{\ntees=#2 \def #1{}\ttees#1}
+\def\ttees#1{
+   \ifnum\ntees>0
+      \edef\tmp{\def\noexpand#1{#1T}}\tmp
+      \advance\ntees by -1 \ttees#1 \fi}
+\tees\sept7 \sept
+\end{examplewithcode}

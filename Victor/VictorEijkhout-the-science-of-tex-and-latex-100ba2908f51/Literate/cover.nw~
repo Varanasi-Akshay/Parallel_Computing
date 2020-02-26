@@ -1,0 +1,35 @@
+% -*- mode: Noweb; noweb-code-mode: c-mode -*-
+
+@ 
+<<*>>=
+<<headers>>
+<<data>>
+<<subroutines>>
+<<main program>>
+@ %def 
+
+@
+<<headers>>=
+#include <stdlib.h>
+@ %def 
+
+@
+<<data>>=
+real speedup=[1, .75, .6, .42];
+@ %def speedup
+
+<<main program>>=
+<<main variables>>
+<<set up>>
+<<find optimal covering>>
+
+@ 
+<<set 0-1 pattern>>=
+int pattern = [1,1,0,0,1,0,1,1,0,0,1,0,1,1,1];
+real 
+@ %def pattern
+
+@ 
+<<main variables>>=
+
+@ %def 

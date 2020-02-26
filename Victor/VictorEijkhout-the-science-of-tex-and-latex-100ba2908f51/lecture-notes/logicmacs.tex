@@ -1,0 +1,44 @@
+\def\test#1{
+  \def\testapply##1{##1TF}
+  \display{#1:}\dotest}
+\def\ttest#1{
+  \def\testapply##1{\Transcribe{##1}TF}
+  \display{#1:}\dotest}
+\def\gtest#1{
+  \def\testapply##1{##1}
+  \display{#1:}\dotest}
+\def\display#1{#1}
+\def\dotest#{\afterassignment\inandout\testtoks=}
+\newtoks\testtoks
+{\escapechar=-1
+ \edef\tmp{\gdef\noexpand\nomarrow
+              \expandafter\string\csname macro:->\endcsname{}}
+ \tmp}%\show\nomarrow
+\def\macromeaning#1{%
+  \expandafter\nomarrow\meaning#1 \par
+  }
+\def\inandout{
+  \begin{ttfamily}
+    \par \penalty50
+    \edef\tmp{input : \the\testtoks}
+    \hangafter=1 \hangindent=.5\unitindent \rightskip 0pt plus 1fil
+    \macromeaning\tmp\par \penalty10
+    \edef\tmp{output : \expandafter\testapply\expandafter
+                          {\the\testtoks}}
+    \hangafter=1 \hangindent=.5\unitindent \rightskip 0pt plus 1fil
+    \tmp\par 
+  \end{ttfamily}
+  \penalty-40
+  }
+
+\def\gobbletwo#1#2{}
+\newenvironment{logix}%
+  {\par\nopagebreak\medskip\hrule width 2\unitindent
+   \begingroup\parskip0pt \advance\leftskip by \unitindent}%
+  {\endgroup
+   \par\nopagebreak\hrule width 2\unitindent\pagebreak[0]}
+\newenvironment{logixx}%
+  {\par\nopagebreak\medskip\hrule width 2\unitindent
+   \begin{multicols}{2}\parskip0pt plus 10pt \interlinepenalty50\relax}%
+  {\par\vfill\hbox{}\end{multicols}
+   \par\nopagebreak\hrule width 2\unitindent\pagebreak[0]}

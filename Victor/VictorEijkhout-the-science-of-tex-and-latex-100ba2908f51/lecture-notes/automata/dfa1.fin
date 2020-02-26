@@ -1,0 +1,14 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Mon Sep 06 20:03:34 EDT 2004
+object state id 1 x 31.0 y 138.0 radius 20 label 0 tex {} accept 1 start 1
+object state id 2 x 116.0 y 62.0 radius 20 label 1 tex {} accept 1 start 0
+object state id 3 x 116.0 y 211.0 radius 20 label 2 tex {} accept 1 start 0
+object line cp1attached 2 cp1angle 126 cp2attached -1 cp2x 114.0 cp2y 0.0 cp3attached 2 cp3angle 45 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 3 cp1angle 118 cp2attached -1 cp2x 112.0 cp2y 126.0 cp3attached 3 cp3angle 66 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 53 cp2attached -1 cp2x 57.0 cp2y 88.0 cp3attached 2 cp3angle 199 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 319 cp2attached -1 cp2x 62.0 cp2y 183.0 cp3attached 3 cp3angle 135 cpnum 3 tex {} texpos 0.5 anchor top
+object text x 38.0 y 83.0 label a tex {}
+object text x 54.0 y 187.0 label b tex {}
+object text x 141.0 y 173.0 label b tex {}
+object text x 147.0 y 30.0 label a tex {}
+object setting variable export_mp_file value /Users/victor/Projects/tex-course/lecture-notes/automata/dfa1.mp

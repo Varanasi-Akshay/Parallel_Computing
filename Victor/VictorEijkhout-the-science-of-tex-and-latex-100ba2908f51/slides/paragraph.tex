@@ -1,0 +1,424 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Line breaking}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Basic problem}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item Problem: break horizontal list into lines
+\item $n$ words: $2^n$ possibilities
+\item (much) better is possible
+\item Aim: visually even `colour'
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{What is a paragraph?}
+\begin{itemize}
+\item Boxes: words, math, other solid objects
+\item Glue: white space, possibly with stretch/shrink
+\item Penalties: prevent or force breaks
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Boxes}
+\begin{itemize}
+\item Words, formulas, actual boxes
+\item described by height, width,depth
+\item (hyphenation)
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Penalties}
+\begin{itemize}
+\item Inserted by user, macro, automatically
+\item Example: \verb+\def~{\penalty10000 \ }+
+\item Automatic: paragraph ends with \verb+\unskip\penalty10000\hfill+
+\item also: penalties for two consecutive hyphenated lines; last full
+  line hyphenated
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Glue}
+\begin{itemize}
+\item Denotations: \verb+\hskip 2cm plus 1cm minus .5cm+
+\item Automatically inserted: \cs{leftskip}, \cs{abovedisplayskip}
+\item Adding glue together: \n{2cm plus 1cm} and \n{2cm plus -1cm}
+  total no stretch
+\item Infinite glue: \cs{hfill} or \verb+\hskip 0pt plus 1fil+
+  (\n{fill}, \n{filll})
+\item infinite glue present: all other stretch/shrink ignored
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Line break locations}
+\begin{itemize}
+\item Foremost: at a glue, but only if preceeded by a non-discardable
+\item At a hyphen or hyphenation location
+\item At a penalty (this can override the above clauses)
+\item (complicated rules for defining extent of a word)
+\end{itemize}
+}
+
+\sectionframe{Examples}
+
+\frame[containsverbatim]{
+  \frametitle{Centered text}
+\begin{examplewithcode}
+\begin{minipage}{4cm}
+\leftskip=0pt plus 1fil \rightskip=0pt plus 1fil
+\parfillskip=0pt
+This paragraph puts infinitely stretchable glue at 
+the left and right of each line.
+The effect is that the lines will be centered.
+\end{minipage}
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Centered last line}
+\begin{examplewithcode}
+\begin{minipage}{5cm}
+\leftskip=0pt plus 1fil \rightskip=0pt plus -1fil
+\parfillskip=0pt plus 2fil
+This paragraph puts infinitely stretchable glue at 
+the left and right of each line, but the amounts cancel out.
+The parfillskip on the last line changes that.
+\end{minipage}
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Hanging punctuation}
+\begin{itemize}
+\item Put punctuation in the right margin
+\item Make right margin look more straight/solid
+\pgfimage{hang}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{hanging punctuation code}
+\begin{verbatim}
+\newbox\pbox \newbox\cbox
+\setbox\pbox\hbox{.} \wd\pbox=0pt
+\setbox\cbox\hbox{,} \wd\cbox=0pt
+\newdimen\csize \csize=\wd\cbox
+\newdimen\psize \psize=\wd\pbox
+
+\catcode`,=13 \catcode`.=13
+\def,{\copy\cbox \penalty0 \hskip\csize\relax}
+\def.{\copy\pbox \penalty0 \hskip\psize\relax}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Mathematical Reviews}
+\begin{itemize}
+\item Reviewer signature separated from review text
+\item but if possible on the same line
+\pgfimage{mr}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{mathematical reviews code}
+\begin{verbatim}
+\def\signed#1{\unskip
+  \penalty10000 \hskip 40pt plus 1fill
+  \penalty0
+  \hbox{}\penalty10000
+                \hskip 0pt plus 1fill
+  \hbox{#1}%
+                \par
+  }
+\end{verbatim}
+}
+
+\sectionframe{\TeX's line breaking algorithm}
+
+\subsection{Glue setting}
+
+\frame[containsverbatim]{
+  \frametitle{Glue ratio}
+\begin{itemize}
+\item Consider a line, and desired length
+\item compare to natural width, stretch, shrink
+\[ \rho=\begin{cases}
+    0&\ell=L\\ (\ell-L)/X&\mbox{(stretch:) $\ell>L$ and $X>0$}\\
+    (\ell-L)/Y&\mbox{(shrink:) $\ell<L$ and $Y>0$}\\
+    \mathrm{undefined}&\mathrm{otherwise}
+        \end{cases}
+\]
+\item note: negative for shrink
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Badness}
+\begin{itemize}
+\item Stretching/shrinking too far is `bad':
+\[ b = \begin{cases}
+          10\,000&\mbox{$\rho<-1$ or undefined}\\
+          \min\left\{10\,000, 100|\rho|^3\right\}&\mbox{otherwise}
+       \end{cases}
+\]
+\item Stretch beyond 100\% possible, shrink not.
+\item Categories:
+\begin{itemize}
+\item[\textit{tight (3)}] if it has shrunk with $b\geq 13$
+\item[\textit{decent (2)}] if $b\leq12$
+\item[\textit{loose (1)}] if it has stretched with $100>b\geq 13$
+\item[\textit{very loose (0)}] if it has stretched with $b\geq100$
+\end{itemize}
+Note $100\times(1/2)^3=12.5$
+\item discourage `visually incompatible' lines
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Demerits}
+\begin{itemize}
+\item Add together badness and penalties
+\item \cs{linepenalty}, \cs{doublehyphendemerits}, \cs{finalhyphendemerits}
+\end{itemize}
+}
+
+\subsectionframe{Breaking strategies}
+
+\frame[containsverbatim]{
+  \frametitle{First fit}
+\begin{itemize}
+\item Wait until word crosses the margin, then
+\item if the line can be shrunk: shrink
+\item otherwise, if it can be stretched: stretch
+\item otherwise, try hyphenating
+\item otherwise, really stretch
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Best fit and total fit}
+\begin{itemize}
+\item (Best fit) Decide between stretch/shrink/hyphenate based on badness
+\item (Total fit) Add all badnesses together; minimize over whole paragraph
+\end{itemize}
+}
+
+\subsection{Implementation}
+
+\frame{
+  \frametitle{Program structure}
+\begin{itemize}
+\item Loop over all words, check if feasible breakpoint
+\item<2-> Inner loop: over all previous words, check if feasible start
+  of line
+\item<3-> Optimization: cutoff on previous words
+\item<4-> `active list'
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Main program}
+\footnotesize
+\begin{verbatim}
+active = [0]; nwords = len(paragraph)
+for w in range(1,nwords):
+    # compute the cost of breaking after word w
+    print "Recent word",w
+    for a in active:
+        line = paragraph[a:w+1]
+        if w==nwords-1:
+            ratio = 0 # last line will be set perfect
+        else:
+            ratio = compute_ratio(line)
+            print "..line=",line,"; ratio=",ratio
+        if ratio<-1:
+            active.remove(a)
+            print "active point",a,"removed"
+        else:
+            update_cost(a,w,ratio)
+    report_cost(w)
+    active.append(w)
+    print
+\end{verbatim}
+}
+
+\subsection{First fit, best fit}
+\frame[containsverbatim]{
+  \frametitle{Data structure}
+\begin{verbatim}
+def init_costs():
+    global cost
+    cost = len(paragraph)*[0]
+    for i in range(len(paragraph)):
+        cost[i] = {'cost':0, 'from':0}
+    cost[0] = {'cost':10000, 'from':-1}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Cost function; first fit}
+\begin{verbatim}
+def update_cost(a,w,ratio):
+    global cost
+    if a>0 and cost[a-1]['cost']<10000:
+        if ratio<=1 and ratio>=-1:
+            to_here = abs(ratio)
+        else: to_here = 10000
+        if cost[w]['cost']==0 or to_here<cost[w]['cost']:
+            cost[w]['cost'] = to_here
+            cost[w]['from'] = a-1
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{First fit, dynamic version}
+\begin{verbatim}
+def update_cost(a,w,ratio):
+    global cost
+    if ratio<=1 and ratio>=-1:
+        to_here = abs(ratio)
+    else: to_here = 10000
+    if a>0:
+        from_there = cost[a-1]['cost']
+        to_here = to_here+from_there
+    else: from_there = 0
+    if cost[w]['cost']==0 or to_here<cost[w]['cost']:
+        cost[w]['cost'] = to_here
+        cost[w]['from'] = a-1
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{example}
+\begin{footnotesize}
+\begin{verbatim}
+You may  never  have  thought  of  it,  but  fonts  (better:   -0.111111111111
+typefaces) usually have a mathematical  definition  somehow.   -0.666666666667
+If   a   font   is   given   as   bitmap,   this   is  often   0.888888888889
+a  result  originating  from  a  more  compact  description.   0.0
+Imagine the situation that you have bitmaps at  300dpi,  and   -0.777777777778
+you   buy   a  600dpi  printer.  It  wouldn't  look  pretty.   0.25
+There   is   then   a   need   for  a  mathematical  way  of   0.555555555556
+describing  arbitrary  shapes.  These  shapes  can  also  be   0.0
+three-dimensional; in fact,  a~lot  of  the  mathematics  in   -0.285714285714
+this  chapter  was  developed  by  a  car  manufacturer  for   0.0
+modeling   car   body  shapes.  But  let  us  for  now  only   0.222222222222
+look   in  two  dimensions,  which  means  that  the  curves   0.125
+are  lines,  rather  than  planes.
+\end{verbatim}
+\end{footnotesize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Best fit cost function}
+\begin{verbatim}
+def update_cost(a,w,ratio):
+    global cost
+    to_here = 100*abs(ratio)**2
+    if a>0:
+        from_there = cost[a-1]['cost']
+        to_here = to_here+from_there
+    else: from_there = 0
+    if cost[w]['cost']==0 or to_here<cost[w]['cost']:
+        cost[w]['cost'] = to_here; cost[w]['from'] = a-1
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{example}
+\begin{footnotesize}
+\begin{verbatim}
+You may  never  have  thought  of  it,  but  fonts  (better:   -0.111111111111
+typefaces) usually have a mathematical  definition  somehow.   -0.666666666667
+If   a   font   is   given   as  bitmap,  this  is  often  a   0.5
+result   originating   from   a  more  compact  description.   0.5
+Imagine the situation that you have bitmaps at  300dpi,  and   -0.777777777778
+you   buy   a  600dpi  printer.  It  wouldn't  look  pretty.   0.25
+There   is   then   a   need   for  a  mathematical  way  of   0.555555555556
+describing  arbitrary  shapes.  These  shapes  can  also  be   0.0
+three-dimensional; in fact,  a~lot  of  the  mathematics  in   -0.285714285714
+this  chapter  was  developed  by  a  car  manufacturer  for   0.0
+modeling   car   body  shapes.  But  let  us  for  now  only   0.222222222222
+look   in  two  dimensions,  which  means  that  the  curves   0.125
+are  lines,  rather  than  planes.
+\end{verbatim}
+\end{footnotesize}
+}
+
+\subsection{Total fit}
+\frame[containsverbatim]{
+  \frametitle{Total fit, data structure}
+\begin{verbatim}
+def init_costs():
+    global cost
+    nul = [0,0,0]
+    cost = len(paragraph)*[ 0 ]
+    for i in range(len(paragraph)):
+        cost[i] = nul[:]
+        for j in range(3):
+            cost[i][j] = {'cost':10000, 'from':-2}
+    for j in range(3):
+        cost[0][j] = {'cost':10000, 'from':-1}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{cost function}
+\begin{verbatim}
+def update_cost(a,w,ratio):
+    global cost
+    type = stretch_type(ratio)
+    to_here = 100*abs(ratio)**2
+    if a>0:
+        [from_there,from_type] = minimum_cost_and_type(a-1)
+        to_here += from_there
+    else: from_there = 0
+    if cost[w][type]['cost']==0 or\
+       to_here<cost[w][type]['cost']:
+        cost[w][type]['cost'] = to_here;
+        cost[w][type]['from'] = a-1
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{example}
+\begin{footnotesize}
+\begin{verbatim}
+You may  never  have  thought  of  it,  but  fonts  (better:   -0.111111111111
+typefaces)   usually   have   a   mathematical   definition    1.2
+somehow. If a font is given  as  bitmap,  this  is  often  a   -0.454545454545
+result   originating   from   a  more  compact  description.   0.5
+Imagine   the   situation   that   you   have   bitmaps   at   1.0
+300dpi, and you buy  a  600dpi  printer.  It  wouldn't  look   -0.333333333333
+pretty. There is then a  need  for  a  mathematical  way  of   -0.4
+describing  arbitrary  shapes.  These  shapes  can  also  be   0.0
+three-dimensional; in fact,  a~lot  of  the  mathematics  in   -0.285714285714
+this  chapter  was  developed  by  a  car  manufacturer  for   0.0
+modeling   car   body  shapes.  But  let  us  for  now  only   0.222222222222
+look   in  two  dimensions,  which  means  that  the  curves   0.125
+are  lines,  rather  than  planes.
+\end{verbatim}
+\end{footnotesize}
+}
+
+\end{document}

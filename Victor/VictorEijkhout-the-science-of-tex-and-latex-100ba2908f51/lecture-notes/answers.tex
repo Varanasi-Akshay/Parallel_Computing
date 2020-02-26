@@ -1,0 +1,23 @@
+\documentclass{artikel3}
+
+\usepackage{comment,verbatim,fleqn}
+\usepackage[pdftex]{hyperref}
+\usepackage{graphicx}
+\input repeat
+
+\newcounter{chapter}
+\setcounter{chapter}{3}
+
+\input tutmacs
+\input exmacs
+
+{\endlinechar=-1 \global\read 16 to \chaptername}
+
+\begin{document}
+
+\title{Answers to the exercises for chapter: \chaptershorttitle}
+\author{}\date{}\maketitle
+
+\TheAnswers
+
+\end{document}

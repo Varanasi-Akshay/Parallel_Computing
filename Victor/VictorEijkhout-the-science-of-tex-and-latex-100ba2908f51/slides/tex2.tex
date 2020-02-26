@@ -1,0 +1,350 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,rotating}
+
+\input{tutmacs}
+\input slidemacs
+\input idxmacs
+
+\begin{document}
+
+\title{\TeX\ -- visual matters}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Text handling}
+
+\subsectionframe{Paragraphs}
+
+\frame[containsverbatim]{
+  \frametitle{Paragraph start}
+\begin{itemize}
+\item Paragraph starts triggered by text, math, certain commands
+\item Vertical space added: \cs{parskip}; horizontal indentation:
+  \cs{parindent}
+\item Also inserted \cs{everypar} token list
+\tracingmacros=2 \tracingcommands=2
+\begin{examplewithcode}
+\everypar{\onebold} \def\onebold#1{\textbf{#1}}
+First paragraph\par Second one\par
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\tiny
+\begin{examplewithcode}
+\newcounter{vcount}
+\def\Header#1{\medskip
+  \hbox{\bfseries #1}
+  \setcounter{vcount}{1}
+  \everypar{\arabic{vcount}\stepcounter{vcount}\ }
+  }
+
+\Header{The Title}
+
+One line of text that is long enough to wrap as a paragraph
+that is long enough to wrap as a paragraph
+
+two lines of text that are long enough to wrap as a paragraph
+that is long enough to wrap as a paragraph
+
+more lines of text that are long enough to wrap as a paragraph
+that is long enough to wrap as a paragraph
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Paragraph end}
+\begin{itemize}
+\item Paragraph ends because of \cs{par} (empty line), display math,
+  other vertical commands
+\item End of paragraph: \verb+\unskip\penalty10000\hskip\parfillskip+
+\begin{examplewithcode}
+\parfillskip=0pt
+lots of lots of lots of lots of lots of lots
+of lots of text
+\end{examplewithcode}
+\item Normal \cs{parfillskip} is \n{0pt plus 1fil}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\begin{examplewithcode}
+\renewenvironment{proof}
+  {Proof.\ }
+  {\hfill$\bullet$\par}
+\begin{proof}
+This is a long long long long long long long 
+long long long proof
+\end{proof}
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Paragraph shape}
+\begin{examplewithcode}
+\begin{minipage}{2in}
+\parindent=0pt \hangindent=15pt \hangafter=-3 
+This paragraph has several lines of text 
+so that it can show off the `hanging indentation'
+of \TeX, which can be used for all sorts of purposes.
+\end{minipage}
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Margin parameters}
+\begin{itemize}
+\item \cs{leftskip}, \cs{rightskip} at the margins
+\item \cs{parindent} start of first line
+\item \cs{parfillskip} end of last
+\item \cs{hangindent} extra shift
+\item \cs{parshape}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Margin tricks}
+\begin{examplewithcode}
+\leftskip=0cm plus 0.5fil \rightskip=0cm plus -0.5fil
+\parfillskip=0cm plus 1fil
+This style of paragraph setting is rather old fashioned, 
+typically used for the last paragraph of a chapter.
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Line breaking}
+\begin{itemize}
+\item Global minimization of `badness' from glue setting and other
+  penalties
+\item Badness from glue setting: Line is `decent' is less than half
+  the stretch or shrink is used; `loose' and `tight' if more than
+  used; `very loose' if more than the stretch is used. Add
+  \cs{adjdemerits} if adjacent line not of same or adjacent
+  classification
+\item also \cs{doublehyphendemerits}, \cs{finalhyphendemerits}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\begin{itemize}
+\item First pass: without hyphenation; maximum badness
+  \cs{pretolerance}
+\item Second pass: with hyphenation; maximum allowed is \cs{tolerance}
+\item Third pass: add \cs{emergencystretch}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Line break problems}
+\small
+\begin{examplewithcode}
+\tolerance500 \emergencystretch=0pt
+Paragraphs with words such as the German `Weltschmerz'
+can be hard to set, even if 
+anti-disestablishmentarianism comes into play.
+Other topics can also give
+superduperhyperbig problems. As you can see.
+\end{examplewithcode}
+}
+
+\frame[containsverbatim]{
+\small
+\begin{examplewithcode}
+\tolerance500 \emergencystretch=20pt
+Paragraphs with words such as the German `Weltschmerz'
+can be hard to set, even if 
+anti-disestablishmentarianism comes into play.
+Other topics can also give
+superduperhyperbig problems. As you can see.
+\end{examplewithcode}
+}
+
+\section{More text handling}
+\subsectionframe{Boxes}
+
+\frame[containsverbatim]{
+  \frametitle{Horizontal Boxes}
+ Horizontal: \cs{hbox}
+\begin{examplewithcode}
+A \raise 2pt \hbox{B c d E} F
+\lower -7pt \hbox{G} H
+\end{examplewithcode}
+Tight fit: one line.
+}
+
+\frame[containsverbatim]{
+  \frametitle{Vertical boxes}
+ Vertical: \cs{vbox}, \cs{vtop}
+\begin{examplewithcode}
+A \vbox{\hsize=3cm Lots of text, organised in one paragraph.\par
+And one paragraph more, with lots of text text text}
+B C \vtop{\hsize=3cm Lots of text in one paragraph.}
+D E
+\end{examplewithcode}
+Acts like normal text, page width
+}
+
+\frame[containsverbatim]{
+  \frametitle{Boxes and skips}
+\begin{examplewithcode}
+A \hbox{B\hskip 1cm} C D \hbox{\hskip-5mm E F\hskip 3mm} G
+\end{examplewithcode}
+\begin{examplewithcode}
+A \hbox to 20pt{B\hfill} C D \hbox to 0pt{E F\hss}G H
+\end{examplewithcode}
+}
+
+\subsectionframe{Modes}
+
+\frame[containsverbatim]{
+  \frametitle{Horizontal mode}
+\begin{itemize}
+\item Starts with letter, math, commands like \cs{hskip}
+\item Material lines up horizontally
+\item Inner horizontal mode: inside \cs{hbox} -- one line, no
+  paragraph building.
+\item Example
+\begin{examplewithcode}
+A \hbox{b} \raise 2pt \vbox{\hsize=20pt c} d
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Vertical mode}
+\begin{itemize}
+\item After paragraph, display math, vertical commands like \cs{vskip}
+\item Material stacked vertically
+\item Inner vertical mode: inside \cs{vbox} -- this \emph{does} build
+  paragraphs
+\item Example
+\begin{examplewithcode}
+A b
+
+\hbox{b} c d
+\end{examplewithcode}
+\end{itemize}
+}
+
+\subsection{Rules}
+
+\frame[containsverbatim]{
+  \frametitle{Rules}
+\begin{itemize}
+\item \cs{hrule} is vertical command, \cs{vrule} horizontal
+\item rules extend to fill surrounding box
+\begin{examplewithcode}
+\par
+\hbox{\vrule\ ab\ \vrule}
+\vbox{\hsize=3cm \hrule 
+  Here is a paragraph that is completely
+  inside this vbox \hrule}
+\end{examplewithcode}
+\item Horizontal lines in horizontal mode are a bit more tricky
+\end{itemize}
+}
+
+\sectionframe{Math}
+
+\frame[containsverbatim]{
+  \frametitle{Math styles}
+\begin{itemize}
+\item Styles: display, text, script, scripscript
+\begin{examplewithcode}
+\[ {\displaystyle\sum_i^\infty 1/i},\qquad
+          {\textstyle\sum_i^\infty 1/i} \]
+\[ x^{x^x}, {\textstyle x},{\scriptstyle x},
+           {\scriptscriptstyle x} \]
+\end{examplewithcode}
+\item Display math starts in display style, inline math in text style
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Math character codes}
+\begin{itemize}
+\item $\mathop{\cs{mathcode}}n=\n{"xyzz}$: class, font position
+\item $\mathop{\cs{delcode}}n=\n{"uvvxyy}$: two font positions, small
+  and large
+\item $\mathop{\cs{mathaccent}}n\n{<expr>}$
+\item $\mathop{\cs{mathchardef}}\cs{sum}=\n{"1350}$
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Math spacing}
+\begin{itemize}
+\item Spaces are ignored, any spacing inserted automatically
+\item Three sizes of spaces: thick, med, thin
+\begin{examplewithcode}
+$a=b$ vs $a{=}b$\par % thick
+$a+b$ vs $a{+}b$\par % med
+$a,b$ vs $a{,}b$
+\end{examplewithcode}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Math object classes}
+\begin{itemize}
+\item Spacing depends on function of an object (`class')
+\item Binary operators: \verb+$x\mathrm{e}y$+ is~`$x\mathrm{e}y$'\\
+    \verb+$x\mathbin{\mathrm{e}}y$+ is~`$x\mathbin{\mathrm{e}}y$'
+\item Similar: \cs{mathop} for large operators, \cs{mathrel}~for
+  binary relations (equals~\&c); \cs{mathopen}, \cs{mathclose},
+  \cs{mathord}, \cs{mathpunct}
+\end{itemize}
+}
+
+\sectionframe{Output}
+
+\frame[containsverbatim]{
+  \frametitle{Vertical list}
+\begin{itemize}
+\item Objects are added to vertical list: lines from paragraph,
+  display math
+\item Various penalties: \cs{abovedisplaypenalty}, \cs{widowpenalty}
+\item Page breaking algorithm minimizes balance of penalties and
+  stretch/shrink
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Output routine}
+\begin{verbatim}
+\output={
+  \setbox255=\vbox
+     {\headline \box255 \footline}
+  \shipout\box255
+}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Marks}
+\begin{itemize}
+\item Remember \cs{markright} and \cs{markboth} in \LaTeX.
+\item Basic: \cs{mark} in \TeX
+\item During output: \cs{firstmark} is first mark on this page\\
+\cs{botmark} is last mark on this page\\
+\cs{topmark} is last mark of previous page
+\item If no marks on this page, all three equal to \cs{botmark} of
+  last page
+\end{itemize}
+}
+
+\end{document}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+

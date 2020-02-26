@@ -1,0 +1,10 @@
+\newcount\tcount
+\def\tees#1#2{\tcount=#2 \def#1{} \ttees#1}
+\def\ttees#1{
+    \ifnum\tcount=0 \else \advance\tcount by -1
+        \edef#1{T#1} \ttees#1
+    \fi}
+
+\tracingmacros=2 \tracingcommands=2 \tracingonline=1
+\tees\foo8
+\message{Foo is: \foo}

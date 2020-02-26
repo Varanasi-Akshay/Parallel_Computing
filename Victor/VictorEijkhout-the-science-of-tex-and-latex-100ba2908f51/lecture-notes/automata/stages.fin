@@ -1,0 +1,28 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Tue Aug 17 17:46:58 EDT 2004
+object state id 1 x 43.0 y 142.0 radius 20 label 0 tex {} accept 0 start 0
+object state id 2 x 120.0 y 73.0 radius 20 label 1 tex {} accept 0 start 0
+object state id 3 x 121.0 y 199.0 radius 20 label 2 tex {} accept 0 start 0
+object state id 4 x 224.0 y 18.0 radius 20 label 3 tex {} accept 0 start 0
+object state id 5 x 227.0 y 135.0 radius 20 label 4 tex {} accept 0 start 0
+object state id 6 x 229.0 y 254.0 radius 20 label 5 tex {} accept 0 start 0
+object state id 7 x 336.0 y 60.0 radius 20 label 6 tex {} accept 0 start 0
+object state id 8 x 337.0 y 194.0 radius 20 label 7 tex {} accept 0 start 0
+object state id 9 x 442.0 y 124.0 radius 20 label 8 tex {} accept 0 start 0
+object line cp1attached 1 cp1angle 43 cp2attached -1 cp2x 88.0 cp2y 104.0 cp3attached 2 cp3angle 225 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 321 cp2attached -1 cp2x 81.0 cp2y 171.0 cp3attached 3 cp3angle 142 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 2 cp1angle 51 cp2attached -1 cp2x 173.0 cp2y 37.0 cp3attached 4 cp3angle 192 cpnum 3 tex 1 texpos 0.5 anchor top
+object line cp1attached 2 cp1angle 0 cp2attached -1 cp2x 175.0 cp2y 94.0 cp3attached 5 cp3angle 137 cpnum 3 tex 3 texpos 0.38 anchor top
+object line cp1attached 2 cp1angle 303 cp2attached -1 cp2x 162.0 cp2y 139.0 cp3attached 6 cp3angle 118 cpnum 3 tex 4 texpos 0.21 anchor top
+object line cp1attached 3 cp1angle 54 cp2attached -1 cp2x 173.0 cp2y 119.0 cp3attached 4 cp3angle 237 cpnum 3 tex 4 texpos 0.23 anchor top
+object line cp1attached 3 cp1angle 14 cp2attached -1 cp2x 194.0 cp2y 167.0 cp3attached 5 cp3angle 234 cpnum 3 tex 2 texpos 0.7 anchor top
+object line cp1attached 3 cp1angle 338 cp2attached -1 cp2x 168.0 cp2y 227.0 cp3attached 6 cp3angle 171 cpnum 3 tex 2 texpos 0.5 anchor top
+object line cp1attached 4 cp1angle 319 cp2attached -1 cp2x 289.0 cp2y 87.0 cp3attached 8 cp3angle 121 cpnum 3 tex 1 texpos 0.21 anchor top
+object line cp1attached 4 cp1angle 350 cp2attached -1 cp2x 276.0 cp2y 31.0 cp3attached 7 cp3angle 150 cpnum 3 tex 5 texpos 0.5 anchor top
+object line cp1attached 5 cp1angle 31 cp2attached -1 cp2x 289.0 cp2y 99.0 cp3attached 7 cp3angle 214 cpnum 3 tex 2 texpos 0.27 anchor top
+object line cp1attached 5 cp1angle 348 cp2attached -1 cp2x 284.0 cp2y 158.0 cp3attached 8 cp3angle 160 cpnum 3 tex 4 texpos 0.33 anchor top
+object line cp1attached 6 cp1angle 52 cp2attached -1 cp2x 290.0 cp2y 202.0 cp3attached 7 cp3angle 243 cpnum 3 tex 4 texpos 0.26 anchor top
+object line cp1attached 6 cp1angle 15 cp2attached -1 cp2x 288.0 cp2y 232.0 cp3attached 8 cp3angle 216 cpnum 3 tex 3 texpos 0.39 anchor top
+object line cp1attached 7 cp1angle 327 cp2attached -1 cp2x 385.0 cp2y 85.0 cp3attached 9 cp3angle 151 cpnum 3 tex 5 texpos 0.5 anchor top
+object line cp1attached 8 cp1angle 34 cp2attached -1 cp2x 391.0 cp2y 162.0 cp3attached 9 cp3angle 214 cpnum 3 tex 2 texpos 0.5 anchor top
+object setting variable export_mp_file value /Users/victor/Projects/tex-course/lecture-notes/stages.mp

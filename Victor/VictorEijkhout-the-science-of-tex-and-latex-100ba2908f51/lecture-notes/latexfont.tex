@@ -1,0 +1,33 @@
+\Level 0 {The \protect\n{fontenc} package}
+
+Traditionally, in \TeX\ accented characters were handled with control
+characters, such as in~\verb+\'e+. However, many keyboards -- and this
+should be understood in a software sense -- are able to generate
+accented characters, and other non-latin characters,
+directly. Typically, this uses octets with the high bit set.
+
+As we have seen, the interpretation of these octets is not clear. In
+the absense of some Unicode encoding, the best we can say is that it
+depends on the code page that was used. This dependency could be
+solved by having the \TeX\ software know, on installation, what code
+page the system is using. While this may be feasible for one system,
+if the input files are moved to a different system, they are no longer
+interpreted correctly. For this purpose the \n{inputenc} package was
+developed.
+
+An input encoding can be stated at the load of the package:
+\begin{verbatim}
+\usepackage[cp1252]{inputenc}
+\end{verbatim}
+or input encodings can be set and switched later:
+\begin{verbatim}
+\inputencoding{latin1}
+\end{verbatim}
+With this, a (part of~a) file can be written on one machine, using
+some code page, and still be formatted correctly on another machine,
+which natively has a different code page.
+
+These code pages are all conventions for the interpretation of singly
+octets. The \n{inputenc} package also has limited support for
+\n{UTF-8}, which is a variable length (up to four octets) encoding of
+Unicode.

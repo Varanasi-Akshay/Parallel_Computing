@@ -1,0 +1,388 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Dynamic Programming}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Introduction}
+
+\frame[containsverbatim]{
+  \frametitle{What is dynamic programming?}
+\begin{itemize}
+\item Solution technique for minization problems
+\item Often lower complexity than naive techniques
+\item Sometimes equivalent to analytical techniques
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{What is it \emph{not}?}
+\begin{itemize}
+\item Black box that will solve your problem
+\item Way of finding lowest complexity
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{When dynamic programming?}
+\begin{itemize}
+\item Minimization problems
+\item constraints; especially integer
+\item sequence of decisions
+\end{itemize}
+}
+
+\section{Examples}
+\subsectionframe{Decision timing}
+
+\frame[containsverbatim]{
+  \frametitle{Description}
+\begin{itemize}
+\item Occasions for deciding yes/no
+\item items with attractiveness $\in[0,1]$
+\item Finite set
+\item no reconsidering
+\item Question: at any given step, do you choose or pass?
+\item Objective: maximize expectation
+\end{itemize}
+}
+
+\frame{
+  \frametitle{crucial idea}
+\begin{itemize}
+\item start from the end:
+\item step $N$: no choice left
+\item expected yield: $.5$
+\item<2-> in step $N-1$: pick if better than $.5$
+\end{itemize}
+}
+
+\frame{
+  \frametitle{yield from $N-1$}
+\begin{itemize}
+\item pick if $>.5$: done in $.5$ of the cases
+\item<2-> expected yield $.75$
+\item<3-> go on in $.5$ of the cases
+\item<4-> expected yield then $.5$
+\item<5-> total expected yield: $.5\times.75+.5\times.5=.625$
+\end{itemize}
+}
+
+\frame{
+  \frametitle{at $N-2$}
+\begin{itemize}
+\item pick if better than $.625$
+\item<2-> happens in $.375$ of the cases,
+\item<3-> yield in that case $1.625/2$
+\item<4-> otherwise, $.625$ yield from later choice
+\item<4-> et cetera
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Essential features}
+\begin{itemize}
+\item Stages: more or less independent decisions
+\item Global minimization; solving by subproblems
+\item Principle of optimality: sub part of total solution is optimal
+  solution of sub problem
+\end{itemize}
+}
+
+\subsectionframe{Manufacturing problem}
+\frame{
+  \frametitle{Statement}
+\begin{itemize}
+\item Total to be produced in given time, variable cost in each time
+  period
+\item wanted: scheduling
+\item
+\[ \min_{\sum p_k=S}\sum w_kp_k^2.\]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{define concepts}
+\begin{itemize}
+\item amount of work to produce~$s$ in $n$~steps:
+\[ v(s|n)=\min_{\sum_{k>N-n} p_k=s}\sum w_kp_k^2 \]
+\item optimal amount $p(s|n)$ at $n$~months from the end
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{principle of optimality}
+\begin{eqnarray*}
+    v(s|n)&=&\min_{p_n\leq s}\left\{w_np_n^2
+        +\sum_{{k>N-n+1\atop\sum p_k=s-p_n}}w_kp_k^2\right\} \\
+        &=&\min_{p_n\leq s}\left\{ w_np_n^2+v(s-p_n|n-1)\right\}
+\end{eqnarray*}
+}
+
+\frame{
+  \frametitle{start from the end}
+\begin{itemize}
+\item In the last period: $p(s|1)=s$, and $v(s|1)=w_1s^2$
+\item<2-> period before:
+\[ v(s|2)=\min_{p_2}\{w_2p_2^2+v(s-p_2|1)\}=\min_{p_2}c(s,p_2) \]
+where $c(s,p_2)=w_2p_2^2+w_1(s-p_2)^2$.
+\item<3-> Minimize: $\delta c(s,p_2)/\delta p_2=0$,
+\item<3-> then
+$p(s|2)=w_1s/(w_1+w_2)$ and $v(s|2)=w_1w_2s^2/(w_1+w_2)$.
+\end{itemize}
+}
+
+\frame{
+  \frametitle{general form}
+\begin{itemize}
+\item Inductively
+ \[ p(s|n)={1/w_n\over \sum_{i=1}^n 1/w_i}s,\qquad
+    v(s|n)=s^2\sum_{i=1}^n1/w_i.\]
+\item<2-> Variational approach:
+\[ \sum_kw_kp_k^2+\lambda(\sum_kp_k-S) \]
+Constrained minimization
+\item<3-> Solve by setting derivatives to $p_n$ and~$\lambda$ to zero.
+\end{itemize}
+}
+
+\frame{
+  \frametitle{characteristics}
+\begin{itemize}
+\item Stages: time periods
+\item State: amount of good left to be produced
+\item Principle of optimality
+\item<2-> Can be solved analytically
+\item<3-> Analytical approach can not deal with integer constraints
+\end{itemize}
+}
+
+\subsectionframe{Stagecoach problem}
+
+\frame[containsverbatim]{
+  \frametitle{Statement}
+Several routes from beginning to end\\
+Cost of travel insurance:
+
+\convertMPtoPDF{stages.1}{1}{1}
+
+Objective: minimize cost
+}
+
+\frame[containsverbatim]{
+  \frametitle{data in python}
+\begin{verbatim}
+table = [ [0, 5, 4, 0, 0, 0, 0, 0, 0], # first stage: 0
+          [0, 0, 0, 1, 3, 4, 0, 0, 0], # second: 1 & #2
+          [0, 0, 0, 4, 2, 2, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 5, 1, 0], # third: 3, #4, #5
+          [0, 0, 0, 0, 0, 0, 2, 4, 0],
+          [0, 0, 0, 0, 0, 0, 4, 3, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 5], # fourth: 6 & #7
+          [0, 0, 0, 0, 0, 0, 0, 0, 2]
+          ]
+final = len(table); 
+\end{verbatim}
+}
+
+\frame{
+  \frametitle{recursive formulation}
+\begin{itemize}
+\item In the final city, the cost is zero;
+\item Otherwise minimum over all cities reachable\\
+  of the cost of the next leg plus the minimum cost from that city.\\
+(principle of optimality)
+\item<2-> wrong to code it recursively
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{recursive solution in python}
+\footnotesize
+\hypertarget{rec-coach}{}
+\begin{verbatim}
+def cost_from(n):
+    # if you're at the end, it's free
+    if n==final: return 0
+    # otherwise range over cities you can reach
+    # and keep minimum value
+    val = 0
+    for m in range(n+1,final+1):
+        local_cost = table[n][m]
+        if local_cost>0:
+            # if there is a connection from here,
+            # compute the minimum cost
+            local_cost += cost_from(m)
+            if val==0 or local_cost<val:
+                val = local_cost
+    return val
+print "recursive minimum cost is",cost_from(0)
+\end{verbatim}
+\hyperlink{back-coach}{\beamerbutton{backward}}
+}
+
+\frame[containsverbatim]{
+  \frametitle{characteristic}
+\begin{itemize}
+\item Overlapping subproblems\\
+\convertMPtoPDF{123.1}{1}{1}
+\item \n{cost_from(1)} computed twice
+\item Cost: $N$~cities, $S$~stages of $L$~each: $O(L^S)$
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{dynamic programming}
+\begin{itemize}
+\item Compute minimum cost $f_n(x_n)$\\
+of traveling from step~$n$, starting in $x_n$ (state variable)
+\item 
+Formally, $f_k(s)$ minimum cost for traveling from stage~$k$\\
+starting in city~$s$. Then
+\[ f_{k-1}(s)=\min_t\{ c_{st}+f_k(t) \]
+where $c_{st}$ cost of traveling from city~$s$ to~$t$.
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{backward dynamic solution in python}
+\footnotesize
+\hypertarget{back-coach}{}
+\begin{verbatim}
+cost = (final+1)*[0] # initialization
+# compute cost backwards
+for t in range(final-1,-1,-1):
+    # computing cost from t
+    for i in range(final+1):
+        local_cost = table[t][i]
+        if local_cost==0: continue
+        local_cost += cost[i]
+        if cost[t]==0 or local_cost<cost[t]:
+            cost[t] = local_cost
+print "minimum cost:",cost[0]
+\end{verbatim}
+\hyperlink{rec-coach}{\beamerbutton{recursive}}
+\hyperlink{forw-coach}{\beamerbutton{forward}}
+}
+
+\frame[containsverbatim]{
+  \frametitle{analysis}
+\begin{itemize}
+\item Running time $O(N\cdot L)$ or~$O(L^2S)$
+\item compare $L^S$ for recursive
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Forward solution}
+\begin{itemize}
+\item Backward: $f_n(x)$ cost from $x$ in $n$ steps to the end
+\item Forward: $f_n(x)$ cost in $n$ steps to $x$
+\[ f_n(t) =\min_{s<t}\{c_{st}+f_{n-1}(s)\} \]
+\item sometimes more appropriate
+\item same complexity
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{forward dynamic solution in python}
+\footnotesize
+\hypertarget{forw-coach}{}
+\begin{verbatim}
+cost = (final+1)*[0]
+for t in range(final):
+    for i in range(final+1):
+        local_cost = table[t][i]
+        if local_cost == 0: continue
+        cost_to_here = cost[t]
+        newcost = cost_to_here+local_cost
+        if cost[i]==0 or newcost<cost[i]:
+            cost[i] = newcost
+print "cost",cost[final]
+\end{verbatim}
+\hyperlink{back-coach}{\beamerbutton{backward}}
+}
+
+\subsectionframe{Traveling salesman}
+
+\frame{
+  \frametitle{Problem statement}
+\begin{itemize}
+\item Cities as stages?
+\item<2-> No ordering
+\item<3-> Stage $n$ : having $n$ cities left
+\item<4-> State: combination of cities to visit plus current city
+\item<4-> Cost formula to~0 (both start/end)
+\begin{eqnarray*}
+C(\{\,\},f)&=&a_{f0}\quad\hbox{for $f=1,2,3,\ldots$}\\
+C(S,f)&=&\min_{m\in S}a_{fm}+\left[C(S-m,m)]\right]
+\end{eqnarray*}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{backward implementation}
+\footnotesize
+\begin{verbatim}
+def shortest_path(start,through,lev):
+    if len(through)==0:
+        return table[start][0]
+    l = 0
+    for dest in through:
+        left = through[:]; left.remove(dest)
+        ll = table[start][dest]+shortest_path(dest,left,lev+1)
+        if l==0 or ll<l:
+            l = ll
+    return l
+to_visit = range(1,ntowns);
+s = shortest_path(0,to_visit,0)
+\end{verbatim}
+(recursive; need to be improved)
+}
+
+\sectionframe{Discussion}
+
+\frame[containsverbatim]{
+  \frametitle{Characteristics}
+\begin{description}
+\item[Stages] sequence of choices
+\item[Stepwise solution] solution by successive subproblems
+\item[State] cost function has a state parameter,\\
+description of work left~\&c
+\item[Overlapping subproblems]
+\item[Principle of optimality] This is the property that the
+  restriction of a global solution to a subset of the stages is also
+  an optimal solution for that subproblem.
+\end{description}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Principle of optimality}
+\begin{quote}
+An optimal policy has the property that whatever the initial state and
+initial decision are, the remaining decisions must be an optimal
+policy with regard to the state resulting from the first decision.
+\end{quote}
+}
+
+\frame[containsverbatim]{
+  \frametitle{derivation}
+Maximize~$\sum^N_ig_i(x_i)$ under~$\sum_ix_i=\nobreak X$, $x_i\geq0$\\
+Call this~$f_N(X)$, then
+\begin{eqnarray*}
+f_N(X)&=&\max_{\sum_i^Nx_i=X}\sum_i^Ng_i(x_i)\\
+&=&\max_{x_N<X}\left\{g_N(x_N)+\max_{\sum_i^{N-1}x_i=X-x_N}\sum_i^{N-1}g_i(x_i)\right\}\\
+&=&\max_{x_N<X}\left\{g_N(x_N)+f_{N-1}(X-x_N)\right\}
+\end{eqnarray*}
+}
+
+\end{document}

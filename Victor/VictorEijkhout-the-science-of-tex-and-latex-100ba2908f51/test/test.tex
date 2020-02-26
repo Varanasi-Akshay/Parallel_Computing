@@ -1,0 +1,28 @@
+\documentclass{article}
+\begin{document}
+\leftskip=1pt
+\tracingoutput=2 \showboxbreadth=10000 \showboxdepth=10000
+Text text text text text text text text text text text text text
+poompah poompah poompah poompah poompah poompah poompah poompah 
+bloomers bloomers bloomers bloomers bloomers bloomers bloomers bloomers 
+ text text text text text text text text text text text text
+\end{document}
+paragraph
+\[ display \]
+more text
+
+\bye
+
+\documentclass{artikel3}
+
+\begin{document}
+
+\ifx\foo\baz \message{yes}\else \message{no}\fi
+%\begingroup
+\expandafter\ifx\csname foo\endcsname\baz \message{yes}\else
+\message{no}\fi
+%\endgroup
+\ifx\foo\baz \message{yes}\else \message{no}\fi
+
+\end{document}
+

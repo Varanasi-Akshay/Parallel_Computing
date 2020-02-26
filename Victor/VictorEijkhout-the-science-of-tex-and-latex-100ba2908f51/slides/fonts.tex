@@ -1,0 +1,286 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Fonts}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Introduction}
+
+\frame{
+  \frametitle{Terminology}
+\begin{itemize}
+\item Typeface: collection of size, weight, shape
+\item Font: single instance
+\item<2-> Not much consistency these days
+\end{itemize}
+}
+
+\frame{
+\pgfimage[height=3in]{Times0}
+}
+
+\frame{
+\pgfimage[height=1.5in]{Plantin}
+}
+
+\frame{
+\pgfimage[height=2in]{Palatino}
+}
+
+\frame{
+\pgfimage[height=2.5in]{Johnston}
+}
+
+\frame{
+\pgfimage[height=2.5in]{Gill}
+}
+
+\frame{
+\pgfimage[height=2.2in]{Melior}
+}
+
+\frame{
+\pgfimage[height=2.2in]{Optima}
+}
+
+\frame{
+\pgfimage[height=2.2in]{Frutiger}
+}
+
+\sectionframe{Fonts do not contain characters}
+
+\subsection{Terminology}
+
+\frame{
+  \frametitle{Character versus glyph}
+\begin{itemize}
+\item Abstract character: `Roman lowercase~a'
+\item Glyphs: rendering
+\pgfimage[height=.75in]{a-glyphs}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Abstract character}
+\begin{itemize}
+\item Definition:
+\begin{quotation}
+abstract character: a unit of information used for the organization,
+control, or representation of textual data.
+\end{quotation}
+\item Consequence: no simple one-to-one mapping between character and
+  glyph
+\end{itemize}
+}
+
+\subsection{Tricky issues}
+
+\frame{
+  \frametitle{Ligatures}
+\begin{itemize}
+\item Ligature as `prettyfying' text: `\textrm{fi}'~instead
+  of~`\textrm{f{}i}' \pgfimage[height=.75in]{fi-ligature}
+\item One glyph for two characters
+\item<2-> In Danish, `\ae' is a single character
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Split characters}
+\begin{itemize}
+\item In Tamil:
+
+\pgfimage[height=.75in]{Tamil-split}
+
+to be placed around other characters
+\item<2-> Now allow for ligatures\dots
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Accents and diacritics}
+\begin{itemize}
+\item Is an accented letter one character? One glyph?
+\pgfimage[height=1in]{o-accents}
+\end{itemize}
+}
+
+\subsection{Design sizes}
+
+\frame{
+  \frametitle{Scaling vs design}
+\begin{itemize}
+\item With lead, scaling is not possible: different design at
+  different sizes
+\pgfimage[height=.25in]{design-size}
+\item Adobe Multiple Masters \& Optical Masters, Apple TrueType GX \&
+  Apple Advanced Typography
+\pgfimage[height=.75in]{optical-masters}
+\end{itemize}
+}
+
+\sectionframe{Font technologies}
+
+\subsection{Type 1}
+
+\frame{
+  \frametitle{Type 1 essentials}
+\begin{itemize}
+\item Developed by Adobe
+\item Adopted by Apple: Laserwriter
+\item Two files: outline and font information (hinting)
+\item (often three files: separate bitmaps for screen display)
+\item Hinting is patented
+\item Limit of 256 (active) characters 
+\end{itemize}
+}
+
+\subsection{TrueType}
+
+\frame{
+  \frametitle{TrueType essentials}
+\begin{itemize}
+\item Developed by Apple and Microsoft
+\item Quadratic splines instead of cubic
+\item Large number of characters (Chinese, Japanese)
+\item also patented hinting
+\end{itemize}
+}
+
+\subsection{FreeType}
+
+\frame{
+  \frametitle{FreeType}
+\begin{itemize}
+\item Open Source
+\item<2-> $\Rightarrow$ can not use hinting
+\item<3-> $\Rightarrow$ automatic hinting
+\end{itemize}
+}
+
+\subsection{OpenType}
+
+\frame{
+  \frametitle{OpenType}
+\begin{itemize}
+\item Adobe and Microsoft
+\item Single file, cross-platform
+\item Optical Masters
+\end{itemize}
+}
+
+\sectionframe{Fonts in \TeX\ / \LaTeX}
+\subsection{\TeX}
+
+\frame{
+  \frametitle{Tfm files}
+\begin{itemize}
+\item \TeX\ processor only needs metric information
+\item \n{tfm}: `\TeX\ font metrics'
+\item contains spacing information, character metrics, ligature and kerning
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Font dimensions}
+\begin{itemize}
+\item \verb+\fontdimen1\tenrm=5pt+ et cetera
+\item Natural space, stretch / shrink
+\item Quad (width of `M'), x-height
+\item Slant per point
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Character metrics}
+\begin{itemize}
+\item Height, depth, width of each character
+\item<2-> Italic correction
+\begin{quote}\begin{rmfamily}
+`\TeX\ \textup{has\dots}' versus `\TeX\/ \textup{has\dots}
+  \end{rmfamily}
+\end{quote}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Ligatures and kerning}
+\begin{itemize}
+\item Ligature:
+\begin{quote}\begin{rmfamily}
+`f{}i' or `f{}l' versus `fi' or~`fl'
+  \end{rmfamily}
+\end{quote}
+\item Kerning
+\begin{quote}\begin{rmfamily}`Von' versus `\hbox{V}\hbox{on}'
+  \end{rmfamily}
+\end{quote}
+\end{itemize}
+}
+
+\subsectionframe{\LaTeX\ font selection}
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item Load fonts with \verb+\usepackage[times]+
+\item can be combination of typefaces: Times, and Helvetica for sans serif
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Orthogonal combinations}
+\begin{itemize}
+\item Families: roman, sans serif, typewriter type
+\item Font series: medium weight, bold
+\item Shape: upright, slanted/italic, small caps
+\end{itemize}
+}
+
+\end{document}
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\end{document}
+

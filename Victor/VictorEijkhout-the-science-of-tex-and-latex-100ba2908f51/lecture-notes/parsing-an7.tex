@@ -1,0 +1,11 @@
+This question derives from
+\url{http://www.gnu.org/software/bison/manual/html_node/Shift-Reduce.html}
+Proof of shifting, which implies right associativity:
+\verbatiminput{sr-lex.l}
+\verbatiminput{sr.y}
+Ouput
+\begin{verbatim}
+%% sr
+1-2+5
+Result: -6
+\end{verbatim}

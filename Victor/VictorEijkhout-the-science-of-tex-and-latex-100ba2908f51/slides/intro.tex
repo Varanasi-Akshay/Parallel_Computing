@@ -1,0 +1,345 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor}
+
+\input tutmacs
+
+\begin{document}
+
+\title{Introduction}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{\TeX\ and \LaTeX}
+\subsection{Markup}
+
+\frame[containsverbatim]{
+\frametitle{Ancient typesetting systems}
+\begin{itemize}
+\item Input was compiled to printable form; not `wysiwyg'
+\item Sequential processing of text input file
+\item Commands for font choice and other layout
+\item Macros with replacement text
+\begin{verbatim}
+$ADAM$ --> From our correspondent in Amsterdam
+\end{verbatim}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Computer typesetting systems}
+\begin{itemize}
+\item Same idea: document compilation, macros for text replacement and
+  formatting
+\begin{verbatim}
+\TeX => T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX
+\end{verbatim}
+gives `\TeX'.
+\item Macro replacement language
+\item Turing equivalent
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Logical markup}
+\begin{itemize}
+\item Use macro names to indicate structure:
+\begin{verbatim}
+\begin{theorem}
+\TeX\ is pretty cool.
+\end{theorem}
+\begin{proof}
+See for yourself
+\end{proof}
+\end{verbatim}
+\begin{quote}
+\renewenvironment{proof}{\emph{Proof:}\enskip\rmfamily}{%
+    \unskip\nobreak\kern2em\nobreak\hfill$\bullet$\par\bigskip}
+\begin{theorem}
+\TeX\ is pretty cool.
+\end{theorem}
+\begin{proof}
+See for yourself
+\end{proof}
+\end{quote}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Logical markup (2)}
+\begin{itemize}
+\item Layout is determined by style declaration
+\begin{verbatim}
+\documentclass{article}
+\documentclass{IEEEproc}
+\documentclass[twoside,a4paper]{artikel1}
+\end{verbatim}
+\end{itemize}
+}
+
+\subsection{\LaTeX}
+
+\frame{
+\frametitle{The name of the games}
+\begin{itemize}
+\item `\TeX' is ``tek'', `\LaTeX' is ``lay-tek'' or ``lah-tek''
+\item \TeX\ is the basic system
+\item \LaTeX\ is a macro package on top of it
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Aims of \LaTeX}
+\begin{itemize}
+\item Foremost: scientific documents
+\item But also classes for letters, vitae, plays
+\item Excellent math typesetting
+\item Customizable, extendable
+\item Not all that great for fancy layouts
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{\LaTeX\ styles}
+\begin{itemize}
+\item Commands for document structuring
+\begin{verbatim}
+\section{Introduction}
+\subsection{Prior research}
+\end{verbatim}
+\item Tools for making new structure constructs
+\begin{verbatim}
+\newtheorem{corollary}
+\end{verbatim}
+\item Lower level tools
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Math typesetting}
+\begin{itemize}
+\item Sophisticated algorithms
+\item Math fonts with many parameters
+\[
+    \sqrt[3]{\frac{B}{1-A^2_{j_1,j_2}}}+\cdots+1=
+    \int_1^\infty\widehat{\sin t}\mathrm{d}t
+\]
+\item Large number of weird symbols
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item \LaTeX\ commands for everyday use
+\item Ways of customizing \LaTeX
+\end{itemize}
+}
+
+\subsection{\TeX}
+
+\frame[containsverbatim]{
+\frametitle{Short history of \TeX}
+\begin{itemize}
+\item Thought up by Donald Knuth in 1978
+\item as a summer project for his students
+\item First real implementation in 1981
+\item \TeX 2 in 1985, revision \TeX 3 in 1991, now frozen
+\item Omega, pdftex
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Features of the \TeX\ language}
+\begin{itemize}
+\item Macro language
+\begin{verbatim}
+\def\theorem{\newline \bold Theorem \theoremcounter}
+\theorem This is good
+\end{verbatim}
+\item Dynamically changable syntax
+\item Many low-level constructs
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item Boxes, glue, paragraph parameters
+\item Fancy macro programming
+\end{itemize}
+}
+
+\section{Languages and parsing}
+
+\frame[containsverbatim]{
+\frametitle{Lexical analysis}
+\begin{itemize}
+\item Recognize words, numbers and such
+\item Used as basic blocks for grammar
+\item Finite State Automaton usually sufficient
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Syntactical analysis}
+\begin{itemize}
+\item Recognize statements and constructs
+\item Translate `meaning' into internal representation
+\item Pushdown Automaton usually sufficient
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item Recap of automata theory (FSA, PDA)
+\item Applications of automata in programming language parsing
+\item \lex\ and \yacc\ unix tools
+\item Hashing
+\end{itemize}
+}
+
+\section{Dynamic programming}
+
+\frame[containsverbatim]{
+\frametitle{Paragraph breaking}
+\begin{itemize}
+\item For right-justified paragraph:
+\item Compress some lines, stretch others, use hyphenation
+\item Aim for even `colour', avoid consecutive hyphens, rivers, et cetera
+\item With $n$ words, $2^n$ breakpoints: efficient algorithm needed
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Naive `first fit' breaking}
+\pgfimage{firstfit-pic}
+}
+
+\frame[containsverbatim]{
+\frametitle{Sophisticated line breaking}
+\pgfimage{knuthfit-pic}
+}
+
+\frame[containsverbatim]{
+\frametitle{\TeX's paragraph algorithm}
+\begin{itemize}
+\item Dynamic programming
+\item Small number of possibilities considered
+\item Fast running time
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item Dynamic programming
+\item NP-completeness
+\item Python
+\end{itemize}
+}
+
+\section{Font and graphics matters}
+
+\frame[containsverbatim]{
+\frametitle{Metafont}
+\begin{itemize}
+\item Knuth also wrote a program to design fonts with: Metafont
+\item Based on splines
+\end{itemize}
+}
+
+\frame{
+\pgfimage{spline-pic}
+}
+
+\frame[containsverbatim]{
+\frametitle{Raster graphics}
+\pgfimage{discretization-pic}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item Interpolation theory
+\item Splines
+\item Issues in raster graphics
+\end{itemize}
+}
+
+\section{Lambda Calculus}
+
+\frame[containsverbatim]{
+\frametitle{\TeX's expansion mechanism}
+\begin{itemize}
+\item \TeX\ commands are of two kinds: expansion and execution
+\item The expansion mechanism is strong enough to implement lambda calculus
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item Some foundations of mathematics
+\end{itemize}
+}
+
+\section{Software engineering}
+\subsection{Character encoding}
+
+\frame[containsverbatim]{
+\frametitle{What's in an input file}
+\begin{itemize}
+\item Plain Ascii?
+\item The problem with funny languages
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item A history of character encodings
+\item Unicode
+\item Font organization
+\end{itemize}
+}
+
+\subsection{Literate programming}
+
+\frame[containsverbatim]{
+\frametitle{Yet another Knuth product}
+\begin{itemize}
+\item The \web\ system for literate programming
+\item Write code and documentation together
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\frametitle{Source pretty printing}
+\pgfimage[height=3in]{literate-pic}
+}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item Literate programming
+\item \web\ and \n{noweb}
+\end{itemize}
+}
+
+\subsection{Code development and testing}
+
+\frame[containsverbatim]{
+\frametitle{You will learn}
+\begin{itemize}
+\item History of \TeX
+\item Knuth's notions of development
+\item The `torture test' idea
+\item Competing notions
+\end{itemize}
+}
+
+\end{document}

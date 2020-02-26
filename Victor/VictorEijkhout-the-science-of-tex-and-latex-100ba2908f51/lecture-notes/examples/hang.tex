@@ -1,0 +1,25 @@
+\documentclass{artikel3}
+
+\begin{document}
+
+\newbox\pbox \newbox\cbox
+\setbox\pbox\hbox{.} \wd\pbox=0pt
+\setbox\cbox\hbox{,} \wd\cbox=0pt
+\newdimen\csize \csize=\wd\cbox
+\newdimen\psize \psize=\wd\pbox
+
+\catcode`,=13
+\catcode`.=13
+\def,{\copy\cbox \penalty0 \hskip\csize\relax}
+\def.{\copy\pbox \penalty0 \hskip\psize\relax}
+
+
+\begin{minipage}{4cm}
+Here is a bit of text in a minipage,
+with too much punctuation.
+Every sentence, long or short,
+is overly, yes, overly, punctuated. 
+This should show off `hanging punctuation'.
+\end{minipage}
+
+\end{document}

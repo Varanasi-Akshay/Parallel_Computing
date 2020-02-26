@@ -1,0 +1,8 @@
+Linearity is used in constructing partial badness, counting only the
+part of the reference arc to the boundary of the $(i,j)$ block.
+That would not work for non-linear badness functions.
+
+You can see the same use of linearity in the fact that badness gets
+updated by $W(t_i,f_j)$ when a new block is placed.  This
+means that each unit distance contributes the same amount, in other
+words that the badness is linear in the distance.

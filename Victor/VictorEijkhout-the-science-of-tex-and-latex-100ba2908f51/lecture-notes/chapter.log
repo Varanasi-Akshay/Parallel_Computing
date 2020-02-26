@@ -1,0 +1,765 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_0) (preloaded format=pdflatex 2017.7.6)  11 JUL 2017 07:44
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**chapter
+(./chapter.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 55 language(s) loaded.
+(/opt/local/share/texmf-texlive/tex/latex/ntgclass/artikel3.cls
+Document Class: artikel3 2004/06/07 v2.1a NTG LaTeX document class
+(/opt/local/share/texmf-texlive/tex/latex/ntgclass/ntg10.clo
+File: ntg10.clo 2004/06/07 v2.1a NTG LaTeX file (size option)
+)
+\unitindent=\dimen102
+\othermargin=\dimen103
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+LaTeX Info: Redefining \em on input line 745.
+\bibindent=\dimen104
+)
+(/opt/local/share/texmf-texlive/tex/latex/base/fleqn.sty
+
+LaTeX Warning: inputting `fleqn.clo' instead of obsolete `fleqn.sty'.
+
+(/opt/local/share/texmf-texlive/tex/latex/base/fleqn.clo
+File: fleqn.clo 2016/12/29 v1.2a Standard LaTeX option (flush left equations)
+\mathindent=\dimen105
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+))
+(/opt/local/share/texmf-texlive/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks14
+\verbatim@line=\toks15
+\verbatim@in@stream=\read1
+)
+(/Users/eijkhout/Software/TeX/macros/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment')
+(/Users/eijkhout/Software/TeX/macros/outliner.sty
+\c@leveldepth=\count87
+\c@baselevel=\count88
+\c@aimlevel=\count89
+\c@pagebreaklevel=\count90
+)
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/opt/local/share/texmf-texlive/tex/latex/tools/multicol.sty
+Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
+\c@tracingmulticols=\count91
+\mult@box=\box26
+\multicol@leftmargin=\dimen106
+\c@unbalance=\count92
+\c@collectmore=\count93
+\doublecol@number=\count94
+\multicoltolerance=\count95
+\multicolpretolerance=\count96
+\full@width=\dimen107
+\page@free=\dimen108
+\premulticols=\dimen109
+\postmulticols=\dimen110
+\multicolsep=\skip43
+\multicolbaselineskip=\skip44
+\partial@page=\box27
+\last@line=\box28
+\maxbalancingoverflow=\dimen111
+\mult@rightbox=\box29
+\mult@grightbox=\box30
+\mult@gfirstbox=\box31
+\mult@firstbox=\box32
+\@tempa=\box33
+\@tempa=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\c@columnbadness=\count97
+\c@finalcolumnbadness=\count98
+\last@try=\dimen112
+\multicolovershoot=\dimen113
+\multicolundershoot=\dimen114
+\mult@nat@firstbox=\box50
+\colbreak@box=\box51
+\mc@col@check@num=\count99
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count100
+))
+\Gin@req@height=\dimen115
+\Gin@req@width=\dimen116
+)
+(/opt/local/share/texmf-texlive/tex/latex/eepic/epic.sty
+Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
+\@@multicnt=\count101
+\d@lta=\count102
+\@delta=\dimen117
+\@@delta=\dimen118
+\@gridcnt=\count103
+\@joinkind=\count104
+\@dotgap=\dimen119
+\@ddotgap=\dimen120
+\@x@diff=\count105
+\@y@diff=\count106
+\x@diff=\dimen121
+\y@diff=\dimen122
+\@dotbox=\box52
+\num@segments=\count107
+\num@segmentsi=\count108
+\@datafile=\read2
+) (/opt/local/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/Users/eijkhout/Software/TeX/LaTeX/qtree.sty
+Package: 2002/11/05 v.2.21 Qtree: tree-drawing for linguistics
+Package: qtree 2002/11/05 v.2.21 Qtree: tree-drawing for linguistics
+\c@treecount=\count109
+\c@branchcount=\count110
+\parentbox=\box53
+\treebox=\box54
+\treeboxone=\box55
+\treeboxtwo=\box56
+\treeboxthree=\box57
+\treeboxfour=\box58
+\treeboxfive=\box59
+\treeboxsix=\box60
+\treeboxseven=\box61
+\treeboxeight=\box62
+\treeboxnine=\box63
+\treeboxten=\box64
+\treeboxeleven=\box65
+\treeboxtwelve=\box66
+\treeboxthirteen=\box67
+\treeboxfourteen=\box68
+\treeboxfifteen=\box69
+\treeboxsixteen=\box70
+\treeboxseventeen=\box71
+\treeboxeighteen=\box72
+\treeboxnineteen=\box73
+\treeboxtwenty=\box74
+\treeoffsetone=\skip45
+\treeoffsettwo=\skip46
+\treeoffsetthree=\skip47
+\treeoffsetfour=\skip48
+\treeoffsetfive=\skip49
+\treeoffsetsix=\skip50
+\treeoffsetseven=\skip51
+\treeoffseteight=\skip52
+\treeoffsetnine=\skip53
+\treeoffsetten=\skip54
+\treeoffseteleven=\skip55
+\treeoffsettwelve=\skip56
+\treeoffsetthirteen=\skip57
+\treeoffsetfourteen=\skip58
+\treeoffsetfifteen=\skip59
+\treeoffsetsixteen=\skip60
+\treeoffsetseventeen=\skip61
+\treeoffseteighteen=\skip62
+\treeoffsetnineteen=\skip63
+\treeoffsettwenty=\skip64
+\treeshiftone=\skip65
+\treeshifttwo=\skip66
+\treeshiftthree=\skip67
+\treeshiftfour=\skip68
+\treeshiftfive=\skip69
+\treeshiftsix=\skip70
+\treeshiftseven=\skip71
+\treeshifteight=\skip72
+\treeshiftnine=\skip73
+\treeshiftten=\skip74
+\treeshifteleven=\skip75
+\treeshifttwelve=\skip76
+\treeshiftthirteen=\skip77
+\treeshiftfourteen=\skip78
+\treeshiftfifteen=\skip79
+\treeshiftsixteen=\skip80
+\treeshiftseventeen=\skip81
+\treeshifteighteen=\skip82
+\treeshiftnineteen=\skip83
+\treeshifttwenty=\skip84
+\treewidthone=\skip85
+\treewidthtwo=\skip86
+\treewidththree=\skip87
+\treewidthfour=\skip88
+\treewidthfive=\skip89
+\treewidthsix=\skip90
+\treewidthseven=\skip91
+\treewidtheight=\skip92
+\treewidthnine=\skip93
+\treewidthten=\skip94
+\treewidtheleven=\skip95
+\treewidthtwelve=\skip96
+\treewidththirteen=\skip97
+\treewidthfourteen=\skip98
+\treewidthfifteen=\skip99
+\treewidthsixteen=\skip100
+\treewidthseventeen=\skip101
+\treewidtheighteen=\skip102
+\treewidthnineteen=\skip103
+\treewidthtwenty=\skip104
+\daughteroffsetone=\skip105
+\daughteroffsettwo=\skip106
+\daughteroffsetthree=\skip107
+\daughteroffsetfour=\skip108
+\branchwidthone=\skip109
+\branchwidthtwo=\skip110
+\branchwidththree=\skip111
+\branchwidthfour=\skip112
+\parentoffset=\skip113
+\treeoffset=\skip114
+\daughteroffset=\skip115
+\branchwidth=\skip116
+\parentwidth=\skip117
+\treewidth=\skip118
+\qbog=\dimen123
+\qta=\toks18
+\qtb=\toks19
+\nbranches=\count111
+\qroofx=\count112
+\qroofy=\count113
+\@qrscratchbox=\box75
+) (/opt/local/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/opt/local/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen124
+\Hy@linkcounter=\count114
+\Hy@pagecounter=\count115
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count116
+
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4498.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing OFF on input line 4518.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4751.
+\c@Hy@tempcnt=\count117
+
+(/Users/eijkhout/Software/TeX/LaTeX/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5104.
+\XeTeXLinkMargin=\dimen125
+\Fld@menulength=\count118
+\Field@Width=\dimen126
+\Fld@charsize=\dimen127
+Package hyperref Info: Hyper figures OFF on input line 6358.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing OFF on input line 6373.
+Package hyperref Info: Link coloring OFF on input line 6378.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count119
+\c@Item=\count120
+\c@Hfootnote=\count121
+)
+
+Package hyperref Message: Driver: hpdftex.
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+\Fld@listcount=\count122
+\c@bookmark@seq@number=\count123
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip119
+)
+Excluding comment 'instructor' (./idxmacs.tex
+(/opt/local/share/texmf-texlive/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+\@indexfile=\write4
+\openout4 = `chapter.idx'.
+
+
+Writing index file chapter.idx
+) (./exmacs.tex Excluding comment 'quiz'
+\c@excounter=\count124
+ General comment '594exercise'
+General comment 'answer'
+\nx=\read3
+) (./tutmacs.tex
+(/Users/eijkhout/Software/TeX/LaTeX/bnf.sty
+Style-Option: `bnf' v1.1a <92/01/30> (Hugh Osborne/br)
+) (./bnf.env) General comment 'inputwithcode'
+General comment 'examplewithcode' Special comment 'ttexamplewithcode'
+General comment 'mathexamplewithcode')
+\c@theorem=\count125
+\c@lemma=\count126
+ Excluding comment 'problem'
+\c@chapter=\count127
+
+\chaptername=encoding
+(./chapter.aux)
+\openout1 = `chapter.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 32.
+ (/opt/local/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+(/opt/local/share/texmf-texlive/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count128
+\scratchdimen=\dimen128
+\scratchbox=\box76
+\nofMPsegments=\count129
+\nofMParguments=\count130
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count131
+\MPscratchDim=\dimen129
+\MPnumerator=\count132
+\makeMPintoPDFobject=\count133
+\everyMPtoPDFconversion=\toks21
+) (/opt/local/share/texmf-texlive/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\AtBeginShipoutBox=\box77
+Package hyperref Info: Link coloring OFF on input line 32.
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count134
+)
+LaTeX Info: Redefining \ref on input line 32.
+LaTeX Info: Redefining \pageref on input line 32.
+LaTeX Info: Redefining \nameref on input line 32.
+
+(./chapter.out) (./chapter.out)
+\@outlinefile=\write5
+\openout5 = `chapter.out'.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 38.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 38.
+LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (./encoding.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 10.
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 19.
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/m/ui' in size <10> not available
+(Font)              Font shape `OT1/ptm/m/it' tried instead on input line 29.
+
+<ascii.pdf, id=29, 96.60089pt x 48.4209pt>
+File: ascii.pdf Graphic file (type pdf)
+ <use ascii.pdf>
+Package pdftex.def Info: ascii.pdf used on input line 32.
+(pdftex.def)             Requested size: 212.52109pt x 106.52551pt.
+ [1
+
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map} <./graphics/ascii.
+pdf>]
+<dos437.pdf, id=47, 96.60089pt x 96.60089pt>
+File: dos437.pdf Graphic file (type pdf)
+ <use dos437.pdf>
+Package pdftex.def Info: dos437.pdf used on input line 45.
+(pdftex.def)             Requested size: 212.52109pt x 212.52109pt.
+
+<macroman.pdf, id=48, 96.60089pt x 48.4209pt>
+File: macroman.pdf Graphic file (type pdf)
+ <use macroman.pdf>
+Package pdftex.def Info: macroman.pdf used on input line 48.
+(pdftex.def)             Requested size: 212.52109pt x 106.52551pt.
+
+<winlatin1.pdf, id=49, 96.60089pt x 48.4209pt>
+File: winlatin1.pdf Graphic file (type pdf)
+ <use winlatin1.pdf>
+Package pdftex.def Info: winlatin1.pdf used on input line 51.
+(pdftex.def)             Requested size: 212.52109pt x 106.52551pt.
+ [2 <./graphics/dos437.pdf> <./graphics/macroman.pdf> <./graphics/winlatin1.pdf
+>]
+<latin1.pdf, id=74, 96.60089pt x 36.3759pt>
+File: latin1.pdf Graphic file (type pdf)
+ <use latin1.pdf>
+Package pdftex.def Info: latin1.pdf used on input line 80.
+(pdftex.def)             Requested size: 212.52109pt x 80.02663pt.
+
+<8859-cyrillic.pdf, id=75, 96.60089pt x 36.3759pt>
+File: 8859-cyrillic.pdf Graphic file (type pdf)
+ <use 8859-cyrillic.pdf>
+Package pdftex.def Info: 8859-cyrillic.pdf used on input line 85.
+(pdftex.def)             Requested size: 212.52109pt x 80.02663pt.
+
+Overfull \hbox (45.05798pt too wide) in paragraph at lines 91--99
+\OT1/pcr/m/n/10 index . html$[]\OT1/ptm/m/n/10 . A his-tory, pay-ing at-ten-tio
+n to mul-ti-lin-gual use: []$\OT1/pcr/m/n/10 http : / / tronweb . super-[]nova 
+.
+ []
+
+
+Overfull \hbox (24.45819pt too wide) in paragraph at lines 100--104
+[]\OT1/ptm/m/n/10 A good in-ven-tory of ISO 8859, Latin-1: []$\OT1/pcr/m/n/10 h
+ttp : / / www . cs . tut . fi / []jkorpela / latin1 /
+ []
+
+
+Overfull \hbox (40.79857pt too wide) in paragraph at lines 100--104
+\OT1/pcr/m/n/10 index . html$[]\OT1/ptm/m/n/10 , with a dis-cus-sion by log-i-c
+al group-ing: []$\OT1/pcr/m/n/10 http : / / www . cs . tut . fi / []jkorpela /
+ []
+
+[3 <./graphics/latin1.pdf> <./graphics/8859-cyrillic.pdf>]
+Overfull \hbox (4.94601pt too wide) in paragraph at lines 128--135
+\OT1/ptm/m/n/10 Two in-ter-na-tional stan-dards or-ga-ni-za-tions, the Uni-code
+ Con-sor-tium and ISO/IEC JTC1/SC2,
+ []
+
+
+Overfull \hbox (14.49947pt too wide) in paragraph at lines 142--146
+\OT1/pcr/m/n/10 / / www . fileformat . info / info / unicode / index . htm$[]\O
+T1/ptm/m/n/10 , or down-load-able at []$\OT1/pcr/m/n/10 http :
+ []
+
+
+Overfull \hbox (0.84709pt too wide) in paragraph at lines 149--154
+\OT1/ptm/m/n/10 Characters in Uni-code are mostly de-noted hex-adec-i-mally as 
+\OT1/pcr/m/n/10 U+wxyz\OT1/ptm/m/n/10 , for in-stance \OT1/pcr/m/n/10 U+0041
+ []
+
+[4]
+Overfull \hbox (29.07333pt too wide) in paragraph at lines 223--240
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--240
+
+ []
+
+writing exercise to encoding-ex1.tex
+\openout3 = `encoding-ex1.tex'.
+
+ (./encoding-ex1.tex) [5]
+Overfull \hbox (10.99931pt too wide) in paragraph at lines 249--254
+[]\OT1/pcr/m/n/10 mgk25 / unicode . html$[]\OT1/ptm/m/n/10 . The his-tory of it
+: []$\OT1/pcr/m/n/10 http : / / www . cl . cam . ac . uk / []mgk25 /
+ []
+
+
+Overfull \hbox (3.57983pt too wide) in paragraph at lines 259--262
+\OT1/ptm/m/n/10 See []$\OT1/pcr/m/n/10 http : / / www . cs . tut . fi / []jkorp
+ela / unicode / linebr . html$[] \OT1/ptm/m/n/10 and []$\OT1/pcr/m/n/10 http :
+ []
+
+<arabic-date.pdf, id=129, 603.25375pt x 173.64874pt>
+File: arabic-date.pdf Graphic file (type pdf)
+ <use arabic-date.pdf>
+Package pdftex.def Info: arabic-date.pdf used on input line 273.
+(pdftex.def)             Requested size: 361.95503pt x 104.19005pt.
+
+Overfull \hbox (0.95503pt too wide) in paragraph at lines 273--274
+[][] 
+ []
+
+[6 <./graphics/arabic-date.pdf>]
+Overfull \hbox (0.67796pt too wide) in paragraph at lines 304--308
+\OT1/ptm/m/n/10 char-ac-ters. This idea is not un-con-tro-ver-sial; see []$\OT1
+/pcr/m/n/10 http : / / en . wikipedia . org / wiki /
+ []
+
+[7]
+
+LaTeX Warning: Reference `sec:mibenum' on page 8 undefined on input line 380.
+
+
+LaTeX Warning: Reference `sec:mime' on page 8 undefined on input line 392.
+
+
+Overfull \hbox (2.75949pt too wide) in paragraph at lines 407--410
+[]\OT1/pcr/m/n/10 iso-ir-6\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 ANSI_X3.4-1986\OT1/
+ptm/m/n/10 , \OT1/pcr/m/n/10 ISO_646.irv:1991\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 
+ASCII\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 ISO646-US\OT1/ptm/m/n/10 ,
+ []
+
+
+Overfull \hbox (15.48842pt too wide) in paragraph at lines 411--416
+\OT1/ptm/m/n/10 list of char-ac-ter sets is at []$\OT1/pcr/m/n/10 http : / / ww
+w . iana . org / assignments / character-[]sets$[]\OT1/ptm/m/n/10 ,
+ []
+
+[8]
+
+LaTeX Warning: Reference `sec:uni-encoding' on page 9 undefined on input line 4
+28.
+
+
+Overfull \hbox (60.55562pt too wide) in paragraph at lines 435--435
+ []\OT1/pcr/m/n/10 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=u
+tf-8">[] 
+ []
+
+<latin1-html.pdf, id=171, 591.20876pt x 137.51375pt>
+File: latin1-html.pdf Graphic file (type pdf)
+ <use latin1-html.pdf>
+Package pdftex.def Info: latin1-html.pdf used on input line 439.
+(pdftex.def)             Requested size: 354.72798pt x 82.50888pt.
+
+Overfull \hbox (8.24783pt too wide) in paragraph at lines 444--447
+[]\OT1/ptm/m/n/10 Open this link in your browser, and ad-di-tion-ally view the 
+source: []$\OT1/pcr/m/n/10 http : / / www . unicode .
+ []
+
+
+LaTeX Warning: Reference `sec:unicode-font' on page 9 undefined on input line 4
+48.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 468.
+[9 <./graphics/latin1-html.pdf>]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 486.
+ writing exercise to encoding-ex2.tex
+\openout3 = `encoding-ex2.tex'.
+
+
+(./encoding-ex2.tex) writing exercise to encoding-ex3.tex
+\openout3 = `encoding-ex3.tex'.
+
+ (./encoding-ex3.tex)
+[10] writing exercise to encoding-ex4.tex
+\openout3 = `encoding-ex4.tex'.
+
+ (./encoding-ex4.tex)
+writing exercise to encoding-ex5.tex
+\openout3 = `encoding-ex5.tex'.
+
+ (./encoding-ex5.tex))
+\nx=\write6
+ [11
+\openout6 = `encoding-nx.tex'.
+
+] (./chapter.toc)
+\tf@toc=\write7
+\openout7 = `chapter.toc'.
+
+No file chapter.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
+[12
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
+ (./chapter.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 55.
+
+
+Package rerunfilecheck Warning: File `chapter.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `chapter.out':
+(rerunfilecheck)             Before: 48C88B3312224731019223A03012C70C;361
+(rerunfilecheck)             After:  D98EDA9930B8A8CA5379620CC8CB4215;1730.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
+ ) 
+Here is how much of TeX's memory you used:
+ 6390 strings out of 493588
+ 92855 string characters out of 6147357
+ 183555 words of memory out of 5000000
+ 9593 multiletter control sequences out of 15000+600000
+ 29894 words of font info for 73 fonts, out of 8000000 for 9000
+ 846 hyphenation exceptions out of 8191
+ 28i,7n,28p,242b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{subsection.1.5} has been referenced but does not 
+exist, replaced by a fixed one
+
+{/opt/local/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</opt/local/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb></opt/local/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmtt10.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/
+courier/ucrr8a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmb8a
+.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></opt/loc
+al/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></opt/local/share/texmf
+-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on chapter.pdf (12 pages, 203035 bytes).
+PDF statistics:
+ 265 PDF objects out of 1000 (max. 8388607)
+ 214 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+

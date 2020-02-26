@@ -1,0 +1,46 @@
+\documentclass{artikel3}
+\usepackage{times}
+
+\advance\oddsidemargin -1in
+\advance\textwidth 1.5in
+\advance\topmargin -.5in
+\begin{document}
+\pagestyle{empty}
+\title{Quiz over the \TeX\ programming chapters}
+\author{}\date{}\maketitle
+
+\section*{Your name:}
+
+\vskip3mm
+
+Consider the macro
+\begin{verbatim}
+\def\protect{\noexpand\protect\noexpand}
+\end{verbatim}
+What is the effect of 
+\begin{verbatim}
+\edef\somemacro{\protect\othermacro{.....}}
+\end{verbatim}
+
+\vskip 0pt plus 1fill
+
+What if the effect of 
+\begin{verbatim}
+\def\hop#1\fi{\fi #1}
+\if<some test> \hop <more TeX code> \fi
+\end{verbatim}
+Compare this to 
+\begin{verbatim}
+\def\next{}
+\if<some test> \def\next{ <more TeX code> } \fi \next
+\end{verbatim}
+Can you give a reason for preferring one or the other?
+
+\vskip 0pt plus 1fill
+
+In macro definitions, it is wise to put comment signs at the end of
+certain lines. Why? Which lines do not need a comment sign? Can you
+think of a case where you do not need comment signs at all?
+
+\pagebreak
+\end{document}

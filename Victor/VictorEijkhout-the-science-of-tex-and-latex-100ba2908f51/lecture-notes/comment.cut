@@ -1,0 +1,3 @@
+%\def\FilteredList#1{\AllSatisfyIn{\NotDividesBy{\Head{#1}}}{\Tail{#1}}}
+\def\xFilteredList#1#2{\AllSatisfyIn{\NotDividesBy{#1}}{#2}}
+\def\FilteredList#1{\xFilteredList{\Head{#1}}{\Tail{#1}}}

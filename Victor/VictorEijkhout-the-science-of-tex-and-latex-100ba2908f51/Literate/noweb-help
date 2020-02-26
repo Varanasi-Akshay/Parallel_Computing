@@ -1,0 +1,52 @@
+noweb-mode is an interactive Lisp function in `noweb-mode'.
+(noweb-mode)
+
+Minor meta mode for editing noweb files.
+`Meta' refers to the fact that this minor mode is switching major
+modes depending on the location of point.
+
+The following special keystrokes are available in noweb mode:
+
+Movement:
+M-n C-n 	goto the next chunk
+M-n C-p 	goto the previous chunk
+M-n M-p 	goto the previous chunk of the same name
+M-n M-n 	goto the next chunk of the same name
+M-n g 	goto a chunk
+M-n c 	goto the next code chunk
+M-n C 	goto the previous code chunk
+M-n d 	goto the next documentation chunk
+M-n D 	goto the previous documentation chunk
+
+Copying/Killing/Marking/Narrowing:
+M-n w 	copy the chunk the point is in into the kill ring
+M-n W 	copy the pair of doc/code chunks the point is in
+M-n k 	kill the chunk the point is in
+M-n K 	kill the pair of doc/code chunks the point is in
+M-n m 	mark the chunk the point is in
+M-n M 	mark the pair of doc/code chunks the point is in
+M-n n 	narrow to the chunk the point is in
+M-n N 	narrow to the pair of doc/code chunks the point is in
+C-x n w 	widen
+M-n t 	toggle auto narrowing
+
+Filling:
+M-n q 	fill the chunk at point according to mode.
+M-q 	fill the paragraph at point, restricted to chunk.
+
+Insertion:
+M-n M-m 	insert a line to set this file's code mode
+M-n i 	insert a new chunk at point
+M-n TAB 	complete the chunk name before point.
+@ 	insert a `@' or start a new doc chunk.
+< 	insert a `<' or start a new code chunk.
+
+Modes:
+M-x noweb-set-doc-mode 	change the major mode for editing documentation chunks
+M-x noweb-set-code-mode 	change the major mode for editing code chunks
+
+Misc:
+M-n o 	find all occurrences of the current chunk
+M-n C-l 	update the markers for chunks
+M-n C-h 	describe noweb-mode
+M-n v 	show noweb-mode's version in the minibuffer

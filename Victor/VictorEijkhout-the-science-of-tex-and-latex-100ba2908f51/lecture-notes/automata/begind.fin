@@ -1,0 +1,31 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Wed Sep 08 18:54:13 EDT 2004
+object state id 1 x 47.0 y 135.0 radius 20 label 0 tex {} accept 0 start 1
+object state id 2 x 159.0 y 81.0 radius 20 label 1 tex {} accept 0 start 0
+object state id 3 x 154.0 y 194.0 radius 20 label 6 tex {} accept 1 start 0
+object state id 4 x 266.0 y 81.0 radius 20 label 2 tex {} accept 0 start 0
+object state id 5 x 265.0 y 195.0 radius 20 label 7 tex {} accept 1 start 0
+object state id 6 x 367.0 y 81.0 radius 20 label 3 tex {} accept 0 start 0
+object state id 7 x 363.0 y 194.0 radius 20 label 8 tex {} accept 1 start 0
+object line cp1attached 1 cp1angle 79 cp2attached -1 cp2x 83.0 cp2y 91.0 cp3attached 2 cp3angle 173 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 317 cp2attached -1 cp2x 79.0 cp2y 175.0 cp3attached 3 cp3angle 168 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 2 cp1angle 63 cp2attached -1 cp2x 210.0 cp2y 47.0 cp3attached 4 cp3angle 128 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 4 cp1angle 32 cp2attached -1 cp2x 313.0 cp2y 49.0 cp3attached 6 cp3angle 129 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 2 cp1angle 315 cp2attached -1 cp2x 212.0 cp2y 138.0 cp3attached 5 cp3angle 135 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 4 cp1angle 323 cp2attached -1 cp2x 325.0 cp2y 139.0 cp3attached 7 cp3angle 114 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 3 cp1angle 220 cp2attached -1 cp2x 160.0 cp2y 253.0 cp3attached 3 cp3angle 324 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 5 cp1angle 227 cp2attached -1 cp2x 270.0 cp2y 258.0 cp3attached 5 cp3angle 324 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 7 cp1angle 240 cp2attached -1 cp2x 363.0 cp2y 262.0 cp3attached 7 cp3angle 320 cpnum 3 tex {} texpos 0.5 anchor top
+object text x 59.0 y 78.0 label B tex {}
+object text x 89.0 y 154.0 label text tex {$\neg{}$B}
+object text x 192.0 y 28.0 label E tex {}
+object text x 221.0 y 119.0 label text tex {$\neg{}$E}
+object text x 300.0 y 37.0 label G tex {}
+object text x 336.0 y 119.0 label text tex {$\neg{}$G}
+object text x 124.0 y 239.0 label text tex A--Z
+object text x 237.0 y 237.0 label text tex A--Z
+object text x 340.0 y 234.0 label text tex A--Z
+object text x 428.0 y 75.0 label text tex {}
+object text x 428.0 y 75.0 label text tex {\dots}
+object text x 425.0 y 189.0 label text tex {\dots}
+object setting variable export_mp_file value /Users/victor/Projects/tex-course/lecture-notes/automata/begind.mp

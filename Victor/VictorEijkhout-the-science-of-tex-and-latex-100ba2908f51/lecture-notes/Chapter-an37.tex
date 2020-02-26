@@ -1,0 +1,11 @@
+If the decision problem can be solved, the optimization problem can be
+solved by asking about various values of the bound. This means the
+decision problem will be solved a logarithmic number of times.
+This only works if the bound takes on integer values; for rational or
+irrational values bisection search will not terminate.
+
+A second assumption is that lower and upper bounds are given. This is
+a reasonable assumption in many problems; for instance, in the
+traveling salesman problem a linear time algorithm gives the sum of
+all distances between cities, which is an upper bound. The lower bound
+is zero.

@@ -1,0 +1,109 @@
+\begin{thebibliography}{10}
+
+\bibitem{Bellman:AppliedDynamic}
+Richard~E. Bellman and Stuart~E. Dreyfus.
+\newblock {\em Applied Dynamic Programming}.
+\newblock Princeton University Press, 1962.
+
+\bibitem{deBoor:splines}
+Carl {de Boor}.
+\newblock {\em A Practical Guide to Splines, Revised Edition}.
+\newblock Springer-Verlag, New York, Berlin, Heidelberg, 2001.
+
+\bibitem{E3}
+V.~Eijkhout.
+\newblock An indentation scheme.
+\newblock {\em TUGboat}, 11:613--616.
+
+\bibitem{E4}
+V.~Eijkhout.
+\newblock A paragraph skip scheme.
+\newblock {\em TUGboat}, 11:616--619.
+
+\bibitem{EL}
+V.~Eijkhout and A.~Lenstra.
+\newblock The document style designer as a separate entity.
+\newblock {\em TUGboat}, 12:31--34, 1991.
+
+\bibitem{Brooks:mythical}
+jr~Frederick P.~Brooks.
+\newblock {\em The Mythical Man-Month, essays on software engineering}.
+\newblock Addison-Wesley, 1995.
+\newblock Aniversary edition; originally published in 1975.
+
+\bibitem{Garey:Intractibility}
+Michael~R. Garey and David~S. Johnson.
+\newblock {\em Computers and Intractibility, a guide to the theory of
+  {NP}-completeness}.
+\newblock W.H. Freeman and company, San Francisco, 1979.
+
+\bibitem{Jeffrey:lists}
+A.~Jeffrey.
+\newblock Lists in {\TeX}'s mouth.
+\newblock {\em TUGboat}, 11:237--245, 1990.
+
+\bibitem{Knuth:digitaltypography}
+D.E. Knuth.
+\newblock {\em Digital Typography}.
+
+\bibitem{Knuth:TeXerrors}
+D.E. Knuth.
+\newblock The errors of {\TeX}.
+\newblock {\em Software Practice and Experience}, 19:607--681.
+
+\bibitem{Knuth:TeXprogram}
+D.E. Knuth.
+\newblock {\em {\TeX}: the Program}.
+\newblock Addison-Wesley, 1986.
+
+\bibitem{Knuth:TeXbook}
+D.E. Knuth.
+\newblock {\em The {\TeX} book}.
+\newblock Addison-Wesley, reprinted with corrections~1989.
+
+\bibitem{K:break}
+D.E. Knuth and M.F. Plass.
+\newblock Breaking paragraphs into lines.
+\newblock {\em Software practice and experience}, 11:1119--1184, 1981.
+
+\bibitem{Knuth:aocp3}
+Donald~E. Knuth.
+\newblock {\em The Art of Computer Programming, Volume~3, Sorting and
+  Searching}.
+\newblock Addison Wesley Longman, 1998.
+\newblock Second edition.
+
+\bibitem{KopkaDaly}
+Helmut Kopka and Patrick~W. Daly.
+\newblock {\em A Guide to {\LaTeX}}.
+\newblock Addison-Wesley, first published 1992.
+
+\bibitem{Lamport:LaTeX}
+L.~Lamport.
+\newblock {\em {\LaTeX}, a Document Preparation System}.
+\newblock Addison-Wesley, 1986.
+
+\bibitem{LaTeXcompanion}
+Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
+  Rowley.
+\newblock {\em The {\LaTeX} Companion, 2nd edition}.
+\newblock Addison-Wesley, 2004.
+
+\bibitem{Plass:thesis}
+Michael~F. Plass.
+\newblock {\em Optimal Pagination Techniques for Automatic Typesetting
+  Systems}.
+\newblock PhD thesis, 1981.
+\newblock also Xerox technical report ISL-81-1.
+
+\bibitem{Rubinstein:digital-typography}
+Richard Rubinstein.
+\newblock {\em Digital Typography}.
+\newblock Addison-Wesley, 1988.
+
+\bibitem{wirth:refinement}
+Niklaus Wirth.
+\newblock Program development by stepwise refinement.
+\newblock {\em Comm. ACM}, 14:221--227, 1971.
+
+\end{thebibliography}

@@ -1,0 +1,9 @@
+\documentclass{article}
+
+\begin{document}
+
+This is a test
+
+\begin{flushleft}
+
+\end{document}

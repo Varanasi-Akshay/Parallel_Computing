@@ -1,0 +1,6 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Tue Sep 07 10:57:06 EDT 2004
+object state id 1 x 54.0 y 139.0 radius 20 label 0 tex {} accept 0 start 1
+object state id 2 x 205.0 y 136.0 radius 20 label 1 tex {} accept 1 start 0
+object line cp1attached 1 cp1angle 37 cp2attached -1 cp2x 129.0 cp2y 117.0 cp3attached 2 cp3angle 141 cpnum 3 tex {} texpos 0.5 anchor top
+object text x 125.0 y 98.0 label text tex {$\epsilon$}

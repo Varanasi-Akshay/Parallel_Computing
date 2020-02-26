@@ -1,0 +1,15 @@
+Assume that at the end of the first line there will be two
+breakpoints, one for a stretched and one for a shrunk line. At the end
+of the second line there will be four possibilities, of which two
+(stretch/shrink and shrink/stretch) are the same, giving three
+breakpoints. Four feasible breakpoints at the end of the third line,
+et cetera.
+
+For short paragraphs this means that the cost will be roughly
+quadratic in the number of lines of the paragraph.
+
+After a number of lines, the breakpoints will merge: a certain breakpoint
+will be feasible from $k$ stretched lines and from $k+1$ shrunk
+ones. From that point on, every word introduces a feasible breakpoint,
+so the cost is linear in the number of words to the end of the
+paragraph and the number of words per line.

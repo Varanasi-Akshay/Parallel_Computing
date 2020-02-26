@@ -1,0 +1,82 @@
+\documentclass{artikel3}
+\usepackage{times}
+
+\begin{document}
+\pagestyle{empty}
+\title{Quiz over the Dynamic Programming and NP-completeness chapters}
+\author{}\date{}\maketitle
+
+\section*{Your name:}
+
+\vskip1cm
+
+Consider the problem of assigning sales people to regions in such a
+way as to maximize yield. There are 6
+sales people and 3 regions, each region has to be covered by at least
+one salesperson, and the following are the expected yields of
+assigning more or less people to regions.
+
+\begin{tabular}{r|rrr}
+number of&\multicolumn{3}{c}{region}\\
+people&1&2&3\\
+\hline
+1&4&3&5\\
+2&6&6&7\\
+3&9&8&10\\
+4&11&10&12
+\end{tabular}
+
+Write out the principle of optimality as it applies to this problem,
+and solve the problem by dynamic programming.
+\vskip 1cm
+
+Which of the following can we infer from the fact that the traveling
+    salesperson problem is NP-complete, if we assume that P is not equal to NP?
+\begin{enumerate}
+\item There does not exist an algorithm that solves arbitrary instances of
+        the TSP problem.
+\item There does not exist an algorithm that efficiently solves arbitrary
+        instances of the TSP problem.
+\item There exists an algorithm that efficiently solves arbitrary instances
+        of the TSP problem, but no one has been able to find it.
+\item The TSP is not in P.
+\item All algorithms that are guaranteed to solve the TSP run in polynomial
+        time for some family of input points.
+\item All algorithms that are guaranteed to solve the TSP run in exponential
+        time for all families of input points.
+\end{enumerate}
+
+\end{document}
+
+ 2. Which of the following can we infer from the fact that PRIMALITY is in NP
+    but not known to be NP-complete, if we assume that P is not equal to NP?
+
+    (a) There exists an algorithm that solves arbitrary instances of PRIMALITY.
+    (b) There exists an algorithm that efficiently solves arbitrary instances
+        of PRIMALITY.
+    (c) If we found an efficient algorithm for PRIMALITY, we could 
+        immediately use it as a black box to solve TSP.
+\end{document}
+
+1.  We can infer (b) and (d) only.
+
+     (a)  The brute force TSP algorithm always works - it's just inefficient.
+     (b)  If P != NP, then there does not exist an efficient algorithm for
+          any NP-complete problem, including TSP.
+     (c)  We could infer this if P = NP.
+     (d)  If P != NP, then no NP-complete problem can be in P.
+     (e)  The brute force TSP algorithm always takes N! steps to solve a
+          problem with N points. This is not polynomial.
+     (f)  There may be easy instances. E.g., if all the TSP points lie on
+          a line (or the boundary of a circle).
+
+ 2.  We can infer only (a).
+
+     (a)  All problem in NP are solvable.
+     (b)  There are problems in NP that are neither in P or NP-complete
+          (assuming P != NP). PRIMALITY could be one of them.
+     (c)  This cannot be inferred since we don't know if PRIMALITY is
+          NP-complete. (Note that the discovery of an efficient algorithm
+          for TSP would immediately imply the discovery of an efficient
+          algorithm for PRIMALITY.)
+

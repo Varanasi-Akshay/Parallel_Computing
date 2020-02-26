@@ -1,0 +1,39 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Tue Sep 14 16:07:06 EDT 2004
+object state id 1 x 47.0 y 169.0 radius 20 label s tex {} accept 0 start 0
+object state id 2 x 160.0 y 40.0 radius 20 label s tex {} accept 0 start 0
+object state id 3 x 158.0 y 102.0 radius 20 label s tex {} accept 0 start 0
+object state id 4 x 158.0 y 167.0 radius 20 label s tex {} accept 0 start 0
+object state id 5 x 233.0 y 40.0 radius 20 label s tex {} accept 0 start 0
+object state id 6 x 235.0 y 101.0 radius 20 label s tex {} accept 0 start 0
+object state id 7 x 311.0 y 101.0 radius 20 label s tex {} accept 0 start 0
+object state id 8 x 373.0 y 100.0 radius 20 label s tex {} accept 0 start 0
+object state id 9 x 510.0 y 163.0 radius 20 label s tex {} accept 0 start 0
+object state id 10 x 156.0 y 242.0 radius 20 label s tex {} accept 0 start 0
+object state id 11 x 301.0 y 240.0 radius 20 label s tex {} accept 0 start 0
+object state id 12 x 373.0 y 35.0 radius 20 label s tex {} accept 0 start 0
+object line cp1attached 12 cp1angle 3 cp2attached -1 cp2x 483.0 cp2y 62.0 cp3attached 9 cp3angle 78 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 75 cp2attached -1 cp2x 82.0 cp2y 68.0 cp3attached 2 cp3angle 197 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 34 cp2attached -1 cp2x 95.0 cp2y 117.0 cp3attached 3 cp3angle 180 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 7 cp2attached -1 cp2x 103.0 cp2y 167.0 cp3attached 4 cp3angle 180 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 327 cp2attached -1 cp2x 97.0 cp2y 212.0 cp3attached 10 cp3angle 144 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 10 cp1angle 2 cp2attached -1 cp2x 227.0 cp2y 244.0 cp3attached 11 cp3angle 193 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 4 cp1angle 114 cp2attached 3 cp2angle 295 cp3attached 4 cp3angle 38 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 11 cp1angle 141 cp2attached -1 cp2x 296.183801629 cp2y 187.63254008 cp3attached 11 cp3angle 45 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 11 cp1angle 6 cp2attached -1 cp2x 398.0 cp2y 184.0 cp3attached 9 cp3angle 188 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 8 cp1angle 358 cp2attached -1 cp2x 455.0 cp2y 114.0 cp3attached 9 cp3angle 137 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 4 cp1angle 2 cp2attached -1 cp2x 283.0 cp2y 152.0 cp3attached 9 cp3angle 159 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 9 cp1angle 273 cp2attached -1 cp2x 155.0 cp2y 427.0 cp3attached 1 cp3angle 282 cpnum 3 tex {} texpos 0.5 anchor top
+object text x 195.0 y 92.0 label E tex {}
+object text x 271.0 y 90.0 label N tex {}
+object text x 341.0 y 90.0 label D tex {}
+object text x 195.0 y 22.0 label B tex {}
+object text x 297.0 y 26.0 label {E G I N} tex {}
+object text x 176.0 y 134.0 label num tex 0--9
+object text x 220.0 y 230.0 label a-z tex {}
+object text x 285.0 y 192.0 label {a-z, 0-9} tex {}
+object text x 459.0 y 49.0 label e tex {$\epsilon$}
+object text x 67.0 y 68.0 label e tex {$\epsilon$}
+object text x 305.0 y 39.0 label {. . . . . . . . . . . . } tex {}
+object text x 431.0 y 242.0 label text tex {$\epsilon$}
+object setting variable export_mp_file value /Users/victor/Projects/tex-course/lecture-notes/automata/compound.mp

@@ -1,0 +1,18 @@
+@
+This is a literate "hello world" program. The mind boggles.
+
+<<*>>=
+<<initialization>>
+<<main program>>
+
+<<initialization>>=
+#include <stdlib.h>
+
+<<main program>>=
+int main(void) {
+    <<say hello>>
+}
+
+<<say hello>>=
+printf("hello world\n");
+

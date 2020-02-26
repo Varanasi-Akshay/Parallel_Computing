@@ -1,0 +1,400 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+\usepackage[noeepic]{qtree}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Hashing}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Introduction}
+
+\frame{
+  \frametitle{The basic problem}
+Storing names and information about them:\\
+associative storage
+}
+
+\frame{
+\frametitle{Issues}
+\begin{itemize}
+\item<2-> Insertion
+\item<3-> Retrieval
+\item<4-> Deletion
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Simple strategies}
+\begin{itemize}
+\item List in order of creation
+\item<2-> $\Rightarrow$ Cheap to create, linear search time, linear deletion
+\item<3-> Sorted list
+\item<4-> $\Rightarrow$ Creation in linear time, search logarithmic,
+  deletion linear
+\item<5-> Linear list
+\item<6-> $\Rightarrow$ all linear time
+\end{itemize}
+}
+
+\frame{
+  \frametitle{one more strategy}
+\begin{quote}
+\Tree [.$\bullet$ [.B ART [.E GIN LL ] ] [.E LSE ND ] ]
+\end{quote}
+\begin{itemize}
+\item<2-> $\Rightarrow$ all linear in length of string
+\end{itemize}
+}
+
+\sectionframe{Hash functions}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item Mapping from space of words to space of indices
+\item Source: unbounded; in practice not extremely large
+\item Target: array (static/dynamic)
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Requirements}
+\begin{itemize}
+\item<2-> Function determined only by input data
+\item<3-> Determined by as much of the data as possible\\
+\n{key1}, \n{key2},\dots
+\item<4-> Uniform distribution (clustering bad, collisions really bad)
+\item<5-> Similar data, mapped far apart
+\end{itemize}
+}
+
+\subsection{Modulo operations}
+
+\frame[containsverbatim]{
+  \frametitle{Good idea: prime numbers}
+With $M$ size of the hash table:
+\begin{equation}
+    h(K) = K\mod M, \end{equation}
+or:
+\begin{equation}
+    h(K) = aK\mod M,\end{equation}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Bad examples:}
+\begin{itemize}
+\item $M$~is even, say~$M=2M'$,\\ $r=K\mod M$ say~$K=nM+r$
+then
+\begin{eqnarray*}
+K=2K'&\Rightarrow& r=2(nM'-K')\\
+K=2K'+1&\Rightarrow& r=2(nM'-K')+1
+\end{eqnarray*}
+so key even iff number $\Rightarrow$~dependence on last digit
+\item $M$ multiple of three: anagrams map to same key (sum of digits)
+\item $\Rightarrow$ $M$ prime, far away from powers of 2
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Multiplication instead of division}
+\begin{itemize}
+\item $r=K\mod M = M\big((K/M)\mod 1\big)$ 
+\item $A\approx w/M$, where $w$ maxint
+\item Then $1/M=A/w$, ($A$ with decimal point to its left).
+\item from %K\mod M=M(K/M\mod 1)$:
+\[ h(K)=\lfloor M\left(\left({A\over w}K\right)\mod
+1\right)\rfloor. \]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Example: Bible}
+\begin{itemize}
+\item 42,829 unique words,
+\item into a hash table with 30,241 elements (prime): 76.6\% used
+\item table of size: 30,240 (divisible by 2--9): 60.7\% used
+\item (collisions discussed later)
+\end{itemize}
+}
+
+\subsection{Character hashing}
+
+\frame[containsverbatim]{
+  \frametitle{Two-step hashing}
+\begin{itemize}
+\item Mix up characters of the key
+\item then modulo with table size
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Character based hashing}
+\begin{verbatim}
+  h = <some value>
+  for (i=0; i<len(var); i++)
+    h = h + <byte i of string>;
+\end{verbatim}
+prevent anagram problem:
+\begin{verbatim}
+  h = <some value>
+  for (i=0; i<len(var); i++)
+    h = Rand( h + <byte i of string> );
+\end{verbatim}
+with table of random numbers; also function possible
+}
+
+\frame[containsverbatim]{
+  \frametitle{ELF hash}
+\begin{verbatim}
+/* UNIX ELF hash
+ * Published hash algorithm used in the UNIX ELF format
+ * for object files
+ */
+unsigned long hash(char *name)
+{
+    unsigned long h = 0, g;
+
+    while ( *name ) {
+        h = ( h << 4 ) + *name++;
+        if ( g = h & 0xF0000000 )
+          h ^= g >> 24;
+        h &= ~g;
+    }
+}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Another hash function}
+\begin{verbatim}
+/* djb2
+ * This algorithm was first reported by Dan Bernstein
+ * many years ago in comp.lang.c
+ */
+unsigned long hash(unsigned char *str)
+{
+    unsigned long hash = 5381;
+    int c; 
+    while (c = *str++) hash = ((hash << 5) + hash) + c;
+    return hash;
+}
+\end{verbatim}
+}
+
+\sectionframe{Hash tables: collisions}
+
+\frame[containsverbatim]{
+  \frametitle{So far so good}
+\pgfimage[height=2in]{hash-direct}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Collisions}
+\begin{itemize}
+\item $k_1\not=k_2$, $h(k_1)=h(k_2)$
+\item several strategies; all analysis statistical in nature
+\item open hash table: solve conflict outside the table
+\item closed hash table: solve by moving around in the table
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Separate chaining}
+\pgfimage[height=2in]{hash-separate}
+}
+
+\subsection{Open hash table}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item Pro: no need for searching through hash table
+\item Con: dynamic storage
+\item Also: $M$ large to prevent collisions $\Rightarrow$~wasted space
+\end{itemize}
+}
+
+\subsection{Closed hash table}
+
+\frame[containsverbatim]{
+  \frametitle{Linear probing}
+\pgfimage[height=2in]{hash-linear}
+
+Location occupied: search linearly from first hash
+}
+
+\frame[containsverbatim]{
+\footnotesize
+\begin{verbatim}
+addr = Hash(K);
+if (IsEmpty(addr)) Insert(K,addr);
+else {
+    /* see if already stored */
+  test:
+    if (Table[addr].key == K) return;
+    else {
+      addr = Table[addr].link; goto test;}
+    /* find free cell */
+    Free = addr;
+    do { Free--; if (Free<0) Free=M-1; }
+    while (!IsEmpty(Free) && Free!=addr)
+    if (!IsEmpty(Free)) abort;
+    else {
+      Insert(K,Free); Table[addr].link = Free;}
+}
+\end{verbatim}
+}
+
+\frame{
+  \frametitle{Merging blocks in linear probing}
+\pgfimage[height=1in]{probing1}
+\pgfimage[height=1in]{probing2}
+\pgfimage[height=1in]{probing3}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Linear probing analysis}
+\begin{itemize}
+\item  Clusters forming
+\item Particularly bad: merging clusters
+\item Ratio occupied/total: $\alpha=N/M$\\
+expected search time
+\[ T\approx\begin{cases}
+    {1\over 2}\left(1+\left({1\over 1-\alpha}\right)^2\right)&
+        unsuccessful\\
+    {1\over 2}\left(1+{1\over 1-\alpha}\right)&
+        successful
+    \end{cases}
+\]
+\item $\Rightarrow$ increasing as table fills up
+\end{itemize}
+}
+
+\subsection{Chaining}
+
+\frame[containsverbatim]{
+\frametitle{Chaining}
+\pgfimage[height=1in]{hash-chain0}
+\pgfimage[height=1in]{hash-chain}
+\pgfimage[height=1in]{hash-hash2}
+
+If location occupied, search from top of table
+}
+
+\frame[containsverbatim]{
+\footnotesize
+\begin{verbatim}
+addr = Hash(K); Free = M-1;
+if (IsEmpty(addr)) Insert(K,addr);
+else {
+    /* see if already stored */
+  test:
+    if (Table[addr].key == K) return;
+    else {
+      addr = Table[addr].link; goto test;}
+    /* find free cell */
+    do { Free--; }
+    while (!IsEmpty(Free)
+    if (Free<0) abort;
+    else {
+      Insert(K,Free); Table[addr].link = Free;}
+}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Chaining analysis}
+\begin{itemize}
+\item No clusters merging
+\item Coalescing lists
+\item Search time ($\alpha$~occupied fraction)
+\[ T\approx\begin{cases}
+        1+(e^{2\alpha}-1-2\alpha)/4&unsuccessful\\
+        1+(e^{2\alpha}-1-2\alpha)/8\alpha+\alpha/4&successful
+           \end{cases}
+\]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Nonlinear rehashing}
+\begin{itemize}
+\item `Random probing': Try $(h(m)+p_i)\mod s$, where $p_i$~is a
+  sequence of random numbers (stored)\\
+  prevent secondary collisions
+\item `Add the hash': Try $(i\times h(m))\mod s$. ($s$~prime)
+\item Pro: scattered hash keys
+\item Con: more calculations, worse memory locality
+\end{itemize}
+}
+
+\section{Other}
+\subsection{Deletion}
+
+\frame[containsverbatim]{
+  \frametitle{Deleting keys}
+\begin{itemize}
+\item Simple in direct chaining
+\item Very hard in closed hash table methods: can only mark `unused'
+\end{itemize}
+}
+
+\subsection{Examples}
+
+\frame[containsverbatim]{
+  \frametitle{Search in chess programs}
+\begin{itemize}
+\item Problem: evaluation board positions
+\item if position arrived in two ways, no two calculations
+\item Solution: hash the board, use as key in table of evaluations
+\item Collisions?
+\end{itemize}
+}
+
+\frame{
+  \frametitle{String searching}
+\begin{itemize}
+\item Problem: does string (length~$M$) occur in document (length~$N$)
+\item naive: $N$ comparisons, giving $O(MN)$ complexity
+\item solution: hash the strings, compare hash values
+\item (hash function does not distinguish between anagrams)
+\[ h(k)=\left\{\sum_ik[i]\right\}\mathop{\mathrm{mod}} K\]
+\item<2-> cheap updating of the document hash key:
+\[ h(t[2\ldots n+1]) = h(t[1\ldots n])+t[n+1]-t[1] \]
+(with addition/subtraction modulo~$K$)
+\item string comparison in $O(1)$, $\Rightarrow$~total cost~$O(M+N)$
+\end{itemize}
+}
+
+\subsectionframe{Discussion}
+
+\frame{
+  \frametitle{Hash table vs trees}
+\begin{itemize}
+\item<2-> Best case search time can be equal: harder to implement in
+  trees
+\item<3-> Trees can become unbalanced: considerable time and effort to
+  balance
+\item<4-> Threes have dynamic storage: harder to code optimally; worse
+  memory locality
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Open vs closed hash tables}
+\begin{itemize}
+\item<2-> Approximately equal performance until the table fills up
+\item<3-> Open: much simpler storage management, especially deletion
+\end{itemize}
+}
+
+\end{document}

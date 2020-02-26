@@ -1,0 +1,544 @@
+\input logicmacs
+
+\Level 0 {Logic with \TeX}
+
+\Level 1 {Truth values, operators}
+
+We start by defining a couple of simple tools.
+\begin{inputwithcode}
+\def\Ignore#1{}
+\def\Identity#1{#1}
+\def\First#1#2{#1}
+\def\Second#1#2{#2}
+\end{inputwithcode}
+
+For example:
+\begin{logix}
+\gtest{Taking first argument}{\First{first}{second}}
+\gtest{Taking second argument}{\Second{first}{second}}
+\end{logix}
+
+We define truth values:
+\begin{inputwithcode}
+\let\True=\First
+\let\False=\Second
+\end{inputwithcode}
+and logical operators:
+\begin{inputwithcode}
+\def\And#1#2{#1{#2}\False}
+\def\Or#1#2{#1\True{#2}}
+\def\Twiddle#1#2#3{#1{#3}{#2}}
+\let\Not=\Twiddle
+\end{inputwithcode}
+Explanation: \n{And $x$ $y$} is $y$ if $x$~is true, false is $x$~is
+false. Since True and False are defined as taking the first and second
+component, that gives the definition of \n{And} as above. Likewise \n{Or}.
+
+To test logical expressions, we attach \n{TF} to them before
+evaluting; that was \verb+\True TF+ will print~\n{T}, and
+\verb+\False TF+ will print~\n{F}.
+
+Let us test the truth values and operators:
+\begin{logixx}
+\test{True takes first of TF}{\True}
+\test{False takes second of TF}{\False}
+\test{Not true is false}{\Not\True}
+
+\test{And truth table TrueTrue}{\And\True\True}
+\test{And truth table TrueFalse}{\And\True\False}
+\test{And truth table FalseTrue}{\And\False\True}
+\test{And truth table FalseFalse}{\And\False\False}
+
+\test{Or truth table TrueTrue}{\Or\True\True}
+\test{Or truth table TrueFalse}{\Or\True\False}
+\test{Or truth table FalseTrue}{\Or\False\True}
+\test{Or truth table FalseFalse}{\Or\False\False}
+\end{logixx}
+
+\Level 1 {Conditionals}
+
+Some more setup. We introduce conditionals
+\begin{inputwithcode}
+\def\gobblefalse\else\gobbletrue\fi#1#2{\fi#1}
+\def\gobbletrue\fi#1#2{\fi#2}
+\def\TeXIf#1#2{#1#2 \gobblefalse\else\gobbletrue\fi}
+\def\IfIsPositive{\TeXIf{\ifnum0<}}
+\end{inputwithcode}
+with the syntax
+\begin{verbatim}
+\TeXIf <test> <arg>
+\end{verbatim}
+We test this:
+\begin{logix}
+\test{Numerical test}{\IfIsPositive{3}}
+\test{Numerical test}{\IfIsPositive{-2}}
+\end{logix}
+
+\Level 1 {Lists}
+
+A list is defined as a construct with a head, which is an element, and
+a tail, which is another list. We will denote the empty list by~\n{Nil}.
+\begin{inputwithcode}
+\let\Nil=\False
+\end{inputwithcode}
+We implement a list as an operator with two arguments:
+\begin{itemize}
+\item If the list is not empty, the first argument is applied to the
+  head, and the tail is evaluated;
+\item If the list is empty, the second argument is evaluated.
+\end{itemize}
+In other words
+\[ L \, a_1 \, a_2 =
+      \left\{\begin{array}{rl}a_2&\mbox{if $L=()$}\\
+             a_1(x) \, Y&\mbox{if $L=(x,Y)$}
+      \end{array}\right. \]
+In the explanation so far, we only know the empty list \n{Nil}. Other
+lists are formed by taking an element as head, and another list as
+tail. This operator is called \n{Cons}, and its result is a
+list. Since a~list is a two argument operator, we have to make
+\n{Cons} itself a four argument operator:
+\begin{inputwithcode}
+% \Cons <head> <tail> <arg1> <arg2>
+\def\Cons#1#2#3#4{#3{#1}{#2}}
+\end{inputwithcode}
+Since \verb+Cons#1#2+ is a list, applied to \verb+#3#4+ it should
+expand to the second clause of the list definition, meaning it applies
+the first argument~(\verb+#3+) to the head~(\verb+#1+), and evaluates the
+tail~(\verb+#2+).
+
+The following definitions are typical for list operations: since a
+list is an operator, applying an operation to a list means applying
+the list to some other objects.
+\begin{inputwithcode}
+\def\Error{{ERROR}}
+\def\Head#1{#1\First\Error}
+\def\Tail#1{#1\Second\Error}
+\end{inputwithcode}
+
+Let us take some heads and tails of lists.
+As a convenient shorthand, a singleton is a list with an empty tail:
+\begin{inputwithcode}
+\def\Singleton#1{\Cons{#1}\Nil}
+\end{inputwithcode}
+\begin{logix}
+\test{Head of a singleton}{\Head{\Singleton\True}}
+\test{Head of a tail of a 2-elt list}%
+     {\Head{\Tail{\Cons\True{\Singleton\False}}}}
+\end{logix}
+
+We can also do arithmetic tests on list elements:
+\begin{logix}
+\test{Test list content}{\IfIsPositive{\Head{\Singleton{3}}}}
+\test{Test list content}{\IfIsPositive{\Head{\Tail{\Cons{3}{\Singleton{-4}}}}}}
+\end{logix}
+
+\begin{594exercise}
+\item Write a function \cs{IsNil} and test with
+\begin{verbatim}
+\test{Detect NIL}{\IsNil\Nil}
+\test{Detect non-NIL}{\IsNil{\Singleton\Nil}}
+\end{verbatim}
+\end{594exercise}
+\begin{answer}
+\begin{examplewithcode}
+\def\IsNil#1{#1{\expandafter\False\gobbletwo}{\True}}
+\test{Detect NIL}{\IsNil\Nil}
+\test{Detect non-NIL}{\IsNil{\Singleton\Nil}}
+\end{examplewithcode}
+\end{answer}
+
+\def\IsNil#1{#1{\expandafter\False\gobbletwo}{\True}}
+\let\IsZero\IsNil
+%\test{Zero (true result)}{\IsZero\Zero}
+%\test{Zero (true result)}{\IsZero\Two}
+
+\Level 2 {A list visualization tool}
+
+If we are going to be working with lists, it will be a good idea to
+have a way to visualize them. The following macros print a~`1' for
+each list element.
+\begin{inputwithcode}
+\def\Transcribe#1{#1\TranscribeHT\gobbletwo}
+\def\TranscribeHT#1#2{1\Transcribe{#2}}
+\end{inputwithcode}
+
+\Level 2 {List operations}
+
+Here are some functions for
+manipulating lists. We want a mechanism that takes a function~$f$, an
+initial argument~$e$, and a list~$X$, so that
+\[ \mathtt{Apply}\, f\, e\, X \Rightarrow
+     f\, x_1\,(f\, x_2\, (\ldots (f\, x_n\, e)\ldots)) \]
+\begin{inputwithcode}
+% #1=function #2=initial arg #3=list
+\def\ListApply#1#2#3{#3{\ListApplyp{#1}{#2}}{#2}}
+\def\ListApplyp#1#2#3#4{#1{#3}{\ListApply{#1}{#2}{#4}}}
+\end{inputwithcode}
+This can for instance be used to append two lists:
+\begin{inputwithcode}
+\def\Cat#1#2{\ListApply\Cons{#2}{#1}}
+\end{inputwithcode}
+For example:
+\begin{logix}
+\test{Cat two lists}%
+  {\Transcribe{\Cat{\Singleton\Nil}{\Cons\Nil{\Singleton\Nil}}}}
+\end{logix}
+From now on the \cs{Transcribe} macro will be implicitly assumed; it
+is no longer displayed in the examples.
+
+\Level 1 {Numbers}
+
+We can define integers in terms of lists: zero is the empty list, and
+to add one to a number is to \n{Cons} it with an empty list as head
+element. In other words, \[n+1\equiv(0,n).\]
+This defines the `successor' function on the integers.
+\begin{inputwithcode}
+\let\Zero\Nil
+\def\AddOne#1{\Cons\Nil{#1}}
+\end{inputwithcode}
+Examples:
+\begin{logix}
+\ttest{Transcribe zero}{\Zero}
+\ttest{Transcribe one}{\AddOne\Zero}
+\ttest{Transcribe three}{\AddOne{\AddOne{\AddOne\Zero}}}
+\end{logix}
+
+Writing this many \cs{AddOne}s get tiring after a while, so here is a
+useful macro:
+\begin{inputwithcode}
+\newtoks\dtoks\newcount\nn
+\def\ndef#1#2{\nn=#2 \dtoks={\Zero}\nndef#1}
+\def\nndef#1{
+  \ifnum\nn=0 \edef\tmp{\def\noexpand#1{\the\dtoks}}\tmp
+  \else \edef\tmp{\dtoks={\noexpand\AddOne{\the\dtoks}}}\tmp
+        \advance\nn by -1 \nndef#1
+  \fi}
+\end{inputwithcode}
+which allows us to write
+\begin{inputwithcode}
+\ndef\One1 \ndef\Two2 \ndef\Three3 \ndef\Four4 \ndef\Five5
+\ndef\Seven7\ndef\Six6
+\end{inputwithcode}
+et cetera.
+
+It is somewhat surprising that, even though the only thing we can do
+is compose lists, the predecessor function is just as computable as
+the successor:
+\begin{inputwithcode}
+\def\SubOne#1{#1\Second\Error}
+\end{inputwithcode}
+\begin{logix}
+\ttest{Predecessor of two}{\SubOne{\AddOne{\AddOne\Zero}}}
+\end{logix}
+(If we had used \cs{Ignore} instead of \cs{Second} a~subtle \TeX
+nicality would come into play: the list tail would be inserted
+as~\verb+{#2}+, rather than~\verb+#2+, and you would see an
+\verb+Unexpected }+ error message.)
+
+Some simple arithmetic: we test if a number is odd or even.
+\begin{inputwithcode}
+\def\IsEven#1{#1\IsOddp\True}
+\def\IsOddp#1#2{\IsOdd{#2}}
+\def\IsOdd#1{#1\IsEvenp\False}
+\def\IsEvenp#1#2{\IsEven{#2}}
+\end{inputwithcode}
+\begin{logixx}
+\test{Zero even?}{\IsEven\Zero}
+\test{Zero odd?}{\IsOdd\Zero}
+\test{Test even}{\IsEven{\AddOne{\AddOne{\AddOne\Zero}}}}
+\test{Test odd}{\IsOdd{\AddOne{\AddOne{\AddOne\Zero}}}}
+\test{Test even}{\IsEven{\AddOne{\AddOne{\AddOne{\AddOne{\Zero}}}}}}
+\test{Test odd}{\IsOdd{\AddOne{\AddOne{\AddOne{\AddOne{\Zero}}}}}}
+\end{logixx}
+\def\IsOne#1{#1\IsOnep\False}
+\def\IsOnep#1{\IsZero}
+
+\begin{594exercise}
+Write a test \cs{IsOne} that tests if a number is one.
+\begin{logix}
+\test{Zero}{\IsOne\Zero}
+\test{One}{\IsOne\One}
+\test{Two}{\IsOne\Two}
+\end{logix}
+\end{594exercise}
+\begin{answer}
+\begin{verbatim}
+\def\IsOne#1{#1{\IsZero{\Tail{#1}}}\False}
+\end{verbatim}
+\end{answer}
+
+\Level 2 {Arithmetic: add, multiply}
+
+Above, we introduced list concatenation with~\cs{Cat}.
+This is enough to do addition. To save typing we will make macros
+\cs{Three} and such that stand for the usual string of \cs{AddOne}
+compositions:
+\begin{inputwithcode}
+\let\Add=\Cat
+\end{inputwithcode}
+\begin{logix}
+\ttest{Adding numbers}{\Add{\Three}{\Five}}
+\end{logix}
+Instead of adding two numbers we can add a whole bunch
+\begin{inputwithcode}
+\def\AddTogether{\ListApply\Add\Zero}
+\end{inputwithcode}
+For example:
+\begin{logix}
+\ttest{Adding a list of numbers}%
+  {\AddTogether{\Cons\Two{\Singleton\Three}}}
+\ttest{Adding a list of numbers}%
+  {\AddTogether{\Cons\Two{\Cons\Three{\Singleton\Three}}}}
+\end{logix}
+This is one way to do multiplication: to evaluate~$3\times5$ we make
+a list of 3~copies of the number~5.
+\begin{inputwithcode}
+\def\Copies#1#2{#1{\ConsCopy{#2}}\Nil}
+\def\ConsCopy#1#2#3{\Cons{#1}{\Copies{#3}{#1}}}
+\def\Mult#1#2{\AddTogether{\Copies{#1}{#2}}}
+\end{inputwithcode}
+Explanation:
+\begin{itemize}
+\item If \verb+#1+ of \cs{Copies} is empty, then \n{Nil}.
+\item Else, \cs{ConsCopy} of \verb+#2+ and the head and tail
+  of~\verb+#1+.
+\item The tail is one less than the original number, so \cs{ConsCopy}
+  makes that many copies, and conses the list to it.
+\end{itemize}
+For example:
+\begin{logix}
+\ttest{Multiplication}{\Mult{\Three}{\Five}}
+\end{logix}
+However, it is more elegant to define multiplication recursively.
+\begin{inputwithcode}
+\def\MultiplyBy#1#2{%
+  \IsOne{#1}{#2}{\Add{#2}{\MultiplyBy{\SubOne{#1}}{#2}}}}
+\end{inputwithcode}
+\begin{logix}
+\ttest{Multiply by one}{\MultiplyBy\One\Five}
+\ttest{Multiply bigger}{\MultiplyBy\Three\Five}
+\end{logix}
+
+\Level 2 {More arithmetic: subtract, divide}
+
+\def\Sub#1#2{#1{\SubFrom{#2}}{#2}}
+\def\SubFrom#1#2#3{#1{\SubMinOne{#3}}\Error}
+\def\SubMinOne#1#2#3{\Sub{#1}{#3}}
+
+The recursive definition of subtraction is
+\[ m-n=\left\{\begin{array}{ll}m&\mbox{if $n=0$}\\
+    (m-1)-(n-1)&\mbox{otherwise}\end{array}\right. \]
+\begin{594exercise}
+Implement a function \cs{Sub} that can subtract two numbers.
+Example:
+\begin{logix}
+\ttest{Subtraction}{\Sub\Three\Five}
+\end{logix}
+\end{594exercise}
+\begin{answer}
+\begin{inputwithcode}
+\def\Sub#1#2{#1{\SubFrom{#2}}{#2}}
+\def\SubFrom#1#2#3{#1{\SubMinOne{#3}}\Error}
+\def\SubMinOne#1#2#3{\Sub{#1}{#3}}
+\end{inputwithcode}
+Explanation:
+\begin{quote}\begin{ttfamily}\begin{tabular}{r@{$\Rightarrow$}l}
+Sub <total> <term> & <term> SubFrom{<total>} Zero\\
+if <term> is empty & then <total>\\
+otherwise &SubFrom<total> <term-head> <term-tail>\\
+&<total> SubMinOne<term-tail> Error\\
+&SubMinOne<term-tail> <total-head> <total-tail>\\
+&Sub <total-tail> <term-tail>
+\end{tabular}\end{ttfamily}\end{quote}
+\end{answer}
+
+\Level 2 {Continuing the recursion}
+
+The same mechanism we used for defining multiplication from addition
+can be used to define taking powers:
+\begin{inputwithcode}
+\def\ToThePower#1#2{%
+  \IsOne{#1}{#2}{%
+    \MultiplyBy{#2}{\ToThePower{\SubOne{#1}}{#2}}}}
+\end{inputwithcode}
+\begin{logix}
+\ttest{Power taking}{\ToThePower{\Two}{\Three}}
+\end{logix}
+
+\Level 2 {Testing}
+
+Some arithmetic tests. Greater than: if
+\[ X = (x,X'), \quad Y = (y,Y') \]
+then $Y>X$ is false if $Y\equiv0$:
+\begin{inputwithcode}
+\def\GreaterThan#1#2{#2{\GreaterEqualp{#1}}\False}
+\end{inputwithcode}
+Otherwise, compare $X$ with $Y'=Y-1$: $Y>X\Leftrightarrow Y'\geq X$;
+this is true if $X\equiv0$:
+\begin{inputwithcode}
+\def\GreaterEqualp#1#2#3{\GreaterEqual{#1}{#3}}
+\def\GreaterEqual#1#2{#1{\LessThanp{#2}}\True}
+\end{inputwithcode}
+Otherwise, compare $X'=X-1$ with $Y'=Y-1$:
+\begin{inputwithcode}
+\def\LessThanp#1#2#3{\GreaterThan{#3}{#1}}
+\end{inputwithcode}
+\begin{logixx}
+\test{Greater (true result)}{\GreaterThan\Two\Five}
+\test{Greater (false result)}{\GreaterThan\Three\Two}
+\test{Greater (equal case)}{\GreaterThan\Two\Two}
+\test{Greater than zero}{\GreaterThan\Two\Zero}
+\test{Greater than zero}{\GreaterThan\Zero\Two}
+\end{logixx}
+Instead of just printing `true' or `false', we can use the test to
+select a number or action:
+\begin{logix}
+\ttest{Use true result}{\GreaterThan\Two\Five\Three\One}
+\ttest{Use false result}{\GreaterThan\Three\Two\Three\One}
+\end{logix}
+Let's check if the predicate can be used with arithmetic.
+\begin{logix}
+\test{$3<(5-1)$}{\GreaterThan\Three{\Sub\One\Five}}
+\test{$3<(5-4)$}{\GreaterThan\Three{\Sub\Four\Five}}
+\end{logix}
+
+Equality:
+\begin{inputwithcode}
+\def\Equal#1#2{#2{\Equalp{#1}}{\IsZero{#1}}}
+\def\Equalp#1#2#3{#1{\Equalx{#3}}{\IsOne{#2}}}
+\def\Equalx#1#2#3{\Equal{#1}{#3}}
+\end{inputwithcode}
+\begin{logixx}
+\test{Equality, true}{\Equal\Five\Five}
+\test{Equality, true}{\Equal\Four\Four}
+\test{Equality, false}{\Equal\Five\Four}
+\test{Equality, false}{\Equal\Four\Five}
+\test{$(1+3)\equiv5$: false}{\Equal{\Add\One\Three}\Five}
+\test{$(2+3)\equiv(7-2)$: true}{\Equal{\Add\Two\Three}{\Sub\Two\Seven}}
+\end{logixx}
+
+Fun application: \ndef\TwentySeven{27}
+\begin{inputwithcode}
+\def\Mod#1#2{%
+  \Equal{#1}{#2}\Zero
+    {\GreaterThan{#1}{#2}%
+       {\Mod{#1}{\Sub{#1}{#2}}}%
+       {#2}%
+    }}
+\end{inputwithcode}
+\begin{logix}
+\ttest{$\mathop{\mathrm{Mod}}(27,4)=3$}{\Mod\Four\TwentySeven}
+\ttest{$\mathop{\mathrm{Mod}}(6,3)=0$}{\Mod\Three\Six}
+\end{logix}
+
+With the modulo operation we can compute greatest common divisors:
+\begin{inputwithcode}
+\def\GCD#1#2{%
+   \Equal{#1}{#2}%
+      {#1}%
+      {\GreaterThan{#1}{#2}%             % #2>#1
+         {\IsOne{#1}\One
+            {\GCD{\Sub{#1}{#2}}{#1}}}%   % then take GCD(#2-#1,#1)
+         {\IsOne{#2}\One
+            {\GCD{\Sub{#2}{#1}}{#2}}}}}  % else GCD(#1-#2,#2)
+\end{inputwithcode}
+\begin{logix}
+\ttest{GCD(27,4)=1}{\GCD\TwentySeven\Four}
+\ttest{GCD(27,3)=3}{\GCD\TwentySeven\Three}
+\end{logix}
+and we can search for multiples:
+\begin{inputwithcode}
+\def\DividesBy#1#2{\IsZero{\Mod{#1}{#2}}}
+\def\NotDividesBy#1#2{\GreaterThan\Zero{\Mod{#1}{#2}}}
+\def\FirstDividesByStarting#1#2{%
+  \DividesBy{#1}{#2}{#2}{\FirstDividesByFrom{#1}{#2}}}
+\def\FirstDividesByFrom#1#2{\FirstDividesByStarting{#1}{\AddOne{#2}}}
+\end{inputwithcode}
+\ndef\TwentyFive{25}
+\begin{logix}
+\test{$5|25$}{\DividesBy\Five\TwentyFive}
+\test{$5\not|27$}{\DividesBy\Five\TwentySeven}
+\test{$5\not|27$}{\NotDividesBy\Five\TwentySeven}
+\ttest{$10=\min\{i:i\geq7\wedge 5|i\}$}{\FirstDividesByFrom\Five\Seven}
+\end{logix}
+
+\Level 1 {Infinite lists}
+
+So far, we have dealt with lists that are finite, built up from an
+empty list. However, we can use infinite lists too.
+\begin{inputwithcode}
+\def\Stream#1{\Cons{#1}{\Stream{#1}}}
+\end{inputwithcode}
+\begin{logix}
+\gtest{Infinite objects}{\Head{\Tail{\Stream3}}}
+\gtest{Infinite objects}{\Head{\Tail{\Tail{\Tail{\Tail{\Tail{\Stream3}}}}}}}
+\end{logix}
+Even though the list is infinite, we can easily handle it in finite
+time, because it is never constructed further than we ask for it. This
+is called \index{lazy evaluation}`lazy evaluation'.
+
+We can get more interesting infinite lists by applying successive
+powers of an operator to the list elements. Here is the definition of
+the integers by applying the \n{AddOne} operator a number of times to zero:
+\begin{inputwithcode}
+% \StreamOp <operator> <initial value>
+\def\StreamOp#1#2{\Cons{#2}{\StreamOp{#1}{#1{#2}}}}
+\def\Integers{\StreamOp\AddOne\Zero}
+\def\PositiveIntegers{\Tail\Integers}
+\def\TwoOrMore{\Tail\PositiveIntegers}
+\end{inputwithcode}
+Again, the \n{Integers} object is only formed as far as we need it:
+\begin{logix}
+\ttest{Integers}{\Head{\Tail{\Integers}}}
+\ttest{Integers}%
+  {\Head{\Tail{\Tail{\Tail{\Tail{\Tail{\Integers}}}}}}}
+\end{logix}
+
+Let us see if we can do interesting things with lists. We want to make
+a list out of everything that satisfies some condition.
+\ndef\TwentyOne{21}
+\begin{inputwithcode}
+\def\ConsIf#1#2#3{#1{#2}{\Cons{#2}{#3}}{#3}}
+\def\Doubles{\ListApply{\ConsIf{\DividesBy\Two}}\Nil\PositiveIntegers}
+\def\AllSatisfy#1{\ListApply{\ConsIf{#1}}\Nil\PositiveIntegers}
+\def\FirstSatisfy#1{\Head{\AllSatisfy{#1}}}
+\end{inputwithcode}
+\begin{logix}
+\ttest{third multiple of two}{\Head{\Tail{\Tail\Doubles}}}
+\ttest{old enough to drink}{\FirstSatisfy{\GreaterThan\TwentyOne}}
+\end{logix}
+We add the list in which we test as a parameter:
+\begin{inputwithcode}
+\def\AllSatisfyIn#1#2{\ListApply{\ConsIf{#1}}\Nil{#2}}
+\def\FirstSatisfyIn#1#2{\Head{\AllSatisfyIn{#1}{#2}}}
+\end{inputwithcode}
+\begin{logix}
+\ttest{}{\FirstSatisfyIn
+   {\NotDividesBy{\FirstSatisfyIn{\NotDividesBy\Two}\TwoOrMore}}
+   {\AllSatisfyIn{\NotDividesBy\Two}\TwoOrMore}
+   }
+\end{logix}
+And now we can repeat this:
+\begin{inputwithcode}
+\def\FilteredList#1{\AllSatisfyIn{\NotDividesBy{\Head{#1}}}{\Tail{#1}}}
+\def\NthPrime#1{\Head{\PrimesFromNth{#1}}}
+\def\PrimesFromNth#1{\IsOne{#1}\TwoOrMore
+  {\FilteredList{\PrimesFromNth{\SubOne{#1}}}}}
+\end{inputwithcode}
+\begin{logix}
+\ttest{Third prime; spelled out}{\Head{\FilteredList{\FilteredList\TwoOrMore}}}
+\ttest{Fifth prime}{\NthPrime\Four}
+\end{logix}
+However, this code is horrendously inefficient. To get the 7th prime
+you can go make a cup of coffee, one or two more and you can go pick
+the beans yourself.
+\begin{inputwithcode}
+%\def\FilteredList#1{\AllSatisfyIn{\NotDividesBy{\Head{#1}}}{\Tail{#1}}}
+\def\xFilteredList#1#2{\AllSatisfyIn{\NotDividesBy{#1}}{#2}}
+\def\FilteredList#1{\xFilteredList{\Head{#1}}{\Tail{#1}}}
+\end{inputwithcode}
+\begin{logix}
+%\tracingmacros=2
+\ttest{Fifth prime}{\NthPrime\Five}
+\end{logix}
+

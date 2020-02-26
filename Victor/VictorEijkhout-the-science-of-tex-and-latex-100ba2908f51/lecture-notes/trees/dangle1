@@ -1,0 +1,6 @@
+\tree (
+(S (if)(then) (S (if)(then)) (else))
+(S (if)(then) (S (if)(then)(else)) )
+)
+
+

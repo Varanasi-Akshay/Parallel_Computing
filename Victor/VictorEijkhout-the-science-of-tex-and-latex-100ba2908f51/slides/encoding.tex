@@ -1,0 +1,345 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Character encoding}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Introduction}
+\subsectionframe{Prehistory: Ascii}
+
+\frame{
+  \frametitle{Ascii vs Ebcdic}
+\begin{itemize}
+\item \ascii\ good, \ebcdic\ IBM\n{\char`^H\char`^H\char`^H}bad
+\item<2-> \ascii: alphabet contiguous; \ebcdic\ not
+\item<3-> \ascii\ has unprintable or `control codes'
+\item<4-> High bit always off
+\end{itemize}
+}
+
+\frame{
+\frametitle{ISO 646, \ascii}
+\pgfimage[height=2in]{ascii}
+}
+
+\subsection{Code pages}
+\frame{
+  \frametitle{`8-bit \ascii}
+\begin{itemize}
+\item Languages other than English need accents
+\item Some languages need completely differt alphabets
+\item<2-> Code page: way of using the characters over 128
+\item<2-> Standards ISO 646-DE et cetera.
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Dos: 437}
+\pgfimage[height=2in]{dos437}
+}
+
+\frame{
+  \frametitle{Microsoft Windows Latin 1}
+\pgfimage[height=2.3in]{winlatin1}
+}
+
+\subsectionframe{Recent history: ISO 8859}
+
+\frame{
+  \frametitle{ISO 8859}
+\begin{itemize}
+\item Set of standards: 1~for Latin, 2~east European, 5~Cyrillic
+\item first 32 positions over 128 left open for vendor extension
+\end{itemize}
+}
+
+\frame{
+  \frametitle{8859-1: Latin 1}
+\pgfimage[height=2in]{latin1}
+}
+
+\frame{
+  \frametitle{Still trouble}
+\begin{itemize}
+\item Asian alphabets can be really large
+\item DBCS: Double Byte Character Set
+\item<2-> fun to code: no longer \n{s++} and such
+\end{itemize}
+}
+
+\sectionframe{Unicode}
+\subsection{Character content}
+
+\frame{
+  \frametitle{ISO 10646}
+\begin{itemize}
+\item UCS: Universal Character Set (ISO 10646)
+\item Unicode adds lots of goodies
+\item Over a million positions
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Subsets}
+\begin{itemize}
+\item First 128: \ascii
+\item First 256: ISO 8859-1
+\item First 2-byte plane: BMP (Basic Multilingual Plane)
+\end{itemize}
+}
+
+\subsectionframe{Encodings}
+
+\frame{
+  \frametitle{The idea of encoding}
+\begin{itemize}
+\item Unicode is a list: how do you access elements?
+\item Six bytes is a waste for plain \ascii, incompatible
+\item Encodings of subsets, encodings for the whole caboodle
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Examples}
+\begin{itemize}
+\item UCS-2: two byte
+\item UTF-16: BMP
+\item UTF-8: one byte access to every character
+\item UTF-7: id, but based on 0--127 positions
+\end{itemize}
+}
+
+\frame{
+  \frametitle{UTF-8}
+\begin{itemize}
+\item 0--127 rendered `as such'
+\item higher positions take 2--6 bytes:
+\begin{itemize}
+\item first byte in the range 0xC0--0xFD (192--252)
+\item next up to~5 bytes in the range 0x80--0xBF (128--191)
+\item $\n{8}=\n{1000}$ and $\n{B}=\n{1011}$, so  bit pattern starting with~\n{10})
+\item $\Rightarrow$ six bits left for encoding
+\end{itemize}
+\item (UTF-8 is standardized as RFC~3629.)
+\end{itemize}
+}
+
+\frame{
+\begin{footnotesize}
+\begin{ttfamily}\begin{tabular}{|l|llll|}
+\hline
+U-00000000 - U-0000007F&\textrm{7 bits}&
+0xxxxxxx&&\\
+U-00000080 - U-000007FF&$11=5+6$&
+110xxxxx&10xxxxxx&\\
+U-00000800 - U-0000FFFF&$16=4+2\times6$&
+1110xxxx&10xxxxxx&10xxxxxx\\
+U-00010000 - U-001FFFFF&$21=3+3\times6$&
+11110xxx&\multicolumn{2}{l|}{10xxxxxx (3 times)}\\
+U-00200000 - U-03FFFFFF&$26=2+4\times6$&
+111110xx&\multicolumn{2}{l|}{10xxxxxx (4 times)}\\
+U-04000000 - U-7FFFFFFF&$31=1+5\times6$&
+1111110x&\multicolumn{2}{l|}{10xxxxxx (5 times)}\\\hline
+  \end{tabular}
+\end{ttfamily}
+\end{footnotesize}
+}
+
+\sectionframe{Remaining stuff}
+
+\subsection{Precise definitions}
+
+\frame{
+  \frametitle{Character sets}
+\begin{itemize}
+\item Mapping from sequences of bytes to characters
+\item (reverse may not be unique)
+\item ISO 2022 defines switching between character sets; escape sequences
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Character $\leftrightarrow$ encoding}
+\begin{itemize}
+\item Abstract Character Repertoire: list, unordered
+\item<2-> Coded Character Set (code page, code points): numbers
+  assigned
+\item<3-> Character Encoding Form: mapping number to sequences of code
+  units (UCS-2: one 16-bit unit, UTF-8: several 8-bit units)
+\item<4-> Character Encoding Scheme: mapping to sequence of bytes
+  (byte order, escape sequences)
+\end{itemize}
+}
+
+\subsection{Character sets in use}
+
+\frame[containsverbatim]{
+  \frametitle{Bootstrap problem}
+\begin{itemize}
+\item How do you tell the receiver what character set you are using?
+\item MIBenum (RFC 1759, RFC 3808): unique names and numbers (IANA)
+\item Example: ascii
+\begin{itemize}
+\item[name] \n{ANSI_X3.4-1968}
+\item[reference] RFC1345,KXS2
+\item[MIBenum] 3
+\item[source] ECMA registry
+\item[aliases] \n{iso-ir-6}, \n{ANSI_X3.4-1986}, \n{ISO_646.irv:1991},
+  \n{ASCII}, \n{ISO646-US}, \n{US-ASCII (preferred MIME name)},
+  \n{us}, \n{IBM367}, \n{cp367}, \n{csASCII}
+\end{itemize}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Charactersets in HTML}
+\begin{itemize}
+\item Decimal or hex numerical code: \verb+&#32;+
+\item Symbolic name:
+  \verb+&copy;+ is the copyright symbol.
+\item Use UTF-8 encoding; server states
+\begin{verbatim}
+Content-type: text/html;charset=utf-8
+\end{verbatim}
+or file starts with
+\begin{verbatim}
+<META HTTP-EQUIV="Content-Type"
+    CONTENT="text/html;charset=utf-8">
+\end{verbatim}
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{More places}
+\begin{itemize}
+\item Ftp: knows nothing, depends on client (line end, code page
+  translation)
+\item Email: mime encoding
+\item Editors: emacs supports UTF-8
+\item Programming languages: Windows NT/2000/XP, (inc Visual Basic),
+  uses UCS-2 natively:\\
+Strings are declared \n{wchar_t} instead of \n{char},\\
+use \n{wcslen} instead of \n{strlen}\\
+string is created as \verb+L"Hello world"+.
+\end{itemize}
+}
+
+\sectionframe{Character issues in \TeX\ / \LaTeX}
+
+\frame[containsverbatim]{
+  \frametitle{Diacritics / accents}
+\begin{itemize}
+\item original \TeX: accent placed over character; raised/lowered, shifted to
+  center, extra shift for italic\\
+$\Rightarrow$ because of shifts, no hyphenation possible
+\item 8-bit support in \TeX: possibility of fonts with accents,
+  directly addressed
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Old problems revisited}
+\begin{itemize}
+\item Input file allows 8-bit: dependence on code page
+\begin{verbatim}
+\usepackage[code]{applemac}
+\end{verbatim}
+\item (unprintable characters made active: definition adjusted
+  dynamically)
+\item Dependence on font organization left:
+\begin{verbatim}
+\usepackage[T1]{fontenc}
+\end{verbatim}
+\end{itemize}
+}
+
+\end{document}
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\end{document}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+

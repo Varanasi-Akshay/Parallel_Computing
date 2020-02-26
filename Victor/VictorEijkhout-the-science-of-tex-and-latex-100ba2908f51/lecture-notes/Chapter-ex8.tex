@@ -1,0 +1,39 @@
+Write macros for homework typesetting; make one master document
+  that will contain all your homework throughout this course.
+\begin{enumerate}
+\item Define an environment \n{exercise} so that
+\begin{verbatim}
+\begin{exercise}
+My answer is...
+\end{exercise}
+\end{verbatim}
+gives
+\begin{quote}
+\textbf{Problem 5.} My answer is\dots
+\end{quote}
+The counter should be incremented automatically. List your solution in
+your answer, and find a way that the listing is guaranteed to be the
+code you actually use.
+\item Write a macro \cs{Homework} that will go to a new page, and
+  output
+\begin{quote}
+\textbf{Answers to the exercises for chapter 3}
+\end{quote}
+at the top of the page. The \n{exercise} environment should now take
+the question as argument:
+\begin{verbatim}
+\begin{exercise}{Here you paraphrase the question that was asked}
+My answer is...
+\end{exercise}
+\end{verbatim}
+and this outputs
+\begin{quote}
+\begin{exerciseB}{Here you paraphrase the question that was asked}
+My answer is\dots
+\end{exerciseB}
+\end{quote}
+(Hint: read the section on text boxes. Also be sure to use \cs{par} to
+get \LaTeX\ to go to a new line.)
+Allow for the question to be more than one line long. Unfortunately
+you can not get verbatim text in the question. Find a way around that.
+\end{enumerate}

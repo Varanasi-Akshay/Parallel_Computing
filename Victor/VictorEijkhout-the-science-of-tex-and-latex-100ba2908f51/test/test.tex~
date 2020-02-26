@@ -1,0 +1,19 @@
+\tracingoutput=2
+paragraph
+$$ display $$
+more text
+\bye
+
+\documentclass{artikel3}
+
+\begin{document}
+
+\ifx\foo\baz \message{yes}\else \message{no}\fi
+%\begingroup
+\expandafter\ifx\csname foo\endcsname\baz \message{yes}\else
+\message{no}\fi
+%\endgroup
+\ifx\foo\baz \message{yes}\else \message{no}\fi
+
+\end{document}
+

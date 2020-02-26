@@ -1,0 +1,13 @@
+\begin{examplewithcode}
+\def\Header#1{\medskip
+  \hbox{\bfseries #1}
+  \setcounter{vcount}{1}
+  \everypar{\hbox to 0pt{\hskip-10pt $\bullet$\hss}%
+            \everypar{}}
+  }
+\Header{the title}
+
+Paragraph one
+
+and two
+\end{examplewithcode}

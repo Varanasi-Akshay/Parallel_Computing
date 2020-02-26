@@ -1,0 +1,2917 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_0) (preloaded format=pdflatex 2017.7.6)  11 JUL 2017 07:44
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**course
+(./course.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 55 language(s) loaded.
+(./boek3.cls
+Document Class: boek3 2004/06/07 v2.1a NTG LaTeX document class
+(/opt/local/share/texmf-texlive/tex/latex/ntgclass/ntg11.clo
+File: ntg11.clo 2004/06/07 v2.1a NTG LaTeX file (size option)
+)
+\unitindent=\dimen102
+\othermargin=\dimen103
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+LaTeX Info: Redefining \em on input line 797.
+\bibindent=\dimen104
+)
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/opt/local/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen105
+\Hy@linkcounter=\count88
+\Hy@pagecounter=\count89
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count90
+
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4498.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing OFF on input line 4518.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4751.
+\c@Hy@tempcnt=\count91
+
+(/Users/eijkhout/Software/TeX/LaTeX/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5104.
+\XeTeXLinkMargin=\dimen106
+\Fld@menulength=\count92
+\Field@Width=\dimen107
+\Fld@charsize=\dimen108
+Package hyperref Info: Hyper figures OFF on input line 6358.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing OFF on input line 6373.
+Package hyperref Info: Link coloring OFF on input line 6378.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count93
+\c@Item=\count94
+\c@Hfootnote=\count95
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+\Fld@listcount=\count96
+\c@bookmark@seq@number=\count97
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip43
+)
+(/opt/local/share/texmf-texlive/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks15
+\verbatim@line=\toks16
+\verbatim@in@stream=\read1
+)
+(/opt/local/share/texmf-texlive/tex/latex/base/fleqn.sty
+
+LaTeX Warning: inputting `fleqn.clo' instead of obsolete `fleqn.sty'.
+
+(/opt/local/share/texmf-texlive/tex/latex/base/fleqn.clo
+File: fleqn.clo 2016/12/29 v1.2a Standard LaTeX option (flush left equations)
+\mathindent=\dimen109
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+))
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/opt/local/share/texmf-texlive/tex/latex/tools/multicol.sty
+Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
+\c@tracingmulticols=\count98
+\mult@box=\box26
+\multicol@leftmargin=\dimen110
+\c@unbalance=\count99
+\c@collectmore=\count100
+\doublecol@number=\count101
+\multicoltolerance=\count102
+\multicolpretolerance=\count103
+\full@width=\dimen111
+\page@free=\dimen112
+\premulticols=\dimen113
+\postmulticols=\dimen114
+\multicolsep=\skip44
+\multicolbaselineskip=\skip45
+\partial@page=\box27
+\last@line=\box28
+\maxbalancingoverflow=\dimen115
+\mult@rightbox=\box29
+\mult@grightbox=\box30
+\mult@gfirstbox=\box31
+\mult@firstbox=\box32
+\@tempa=\box33
+\@tempa=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\c@columnbadness=\count104
+\c@finalcolumnbadness=\count105
+\last@try=\dimen116
+\multicolovershoot=\dimen117
+\multicolundershoot=\dimen118
+\mult@nat@firstbox=\box50
+\colbreak@box=\box51
+\mc@col@check@num=\count106
+)
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+\Gread@gobject=\count107
+))
+\Gin@req@height=\dimen119
+\Gin@req@width=\dimen120
+)
+(/Users/eijkhout/Software/TeX/LaTeX/qtree.sty
+Package: 2002/11/05 v.2.21 Qtree: tree-drawing for linguistics
+Package: qtree 2002/11/05 v.2.21 Qtree: tree-drawing for linguistics
+\c@treecount=\count108
+\c@branchcount=\count109
+\parentbox=\box52
+\treebox=\box53
+\treeboxone=\box54
+\treeboxtwo=\box55
+\treeboxthree=\box56
+\treeboxfour=\box57
+\treeboxfive=\box58
+\treeboxsix=\box59
+\treeboxseven=\box60
+\treeboxeight=\box61
+\treeboxnine=\box62
+\treeboxten=\box63
+\treeboxeleven=\box64
+\treeboxtwelve=\box65
+\treeboxthirteen=\box66
+\treeboxfourteen=\box67
+\treeboxfifteen=\box68
+\treeboxsixteen=\box69
+\treeboxseventeen=\box70
+\treeboxeighteen=\box71
+\treeboxnineteen=\box72
+\treeboxtwenty=\box73
+\treeoffsetone=\skip46
+\treeoffsettwo=\skip47
+\treeoffsetthree=\skip48
+\treeoffsetfour=\skip49
+\treeoffsetfive=\skip50
+\treeoffsetsix=\skip51
+\treeoffsetseven=\skip52
+\treeoffseteight=\skip53
+\treeoffsetnine=\skip54
+\treeoffsetten=\skip55
+\treeoffseteleven=\skip56
+\treeoffsettwelve=\skip57
+\treeoffsetthirteen=\skip58
+\treeoffsetfourteen=\skip59
+\treeoffsetfifteen=\skip60
+\treeoffsetsixteen=\skip61
+\treeoffsetseventeen=\skip62
+\treeoffseteighteen=\skip63
+\treeoffsetnineteen=\skip64
+\treeoffsettwenty=\skip65
+\treeshiftone=\skip66
+\treeshifttwo=\skip67
+\treeshiftthree=\skip68
+\treeshiftfour=\skip69
+\treeshiftfive=\skip70
+\treeshiftsix=\skip71
+\treeshiftseven=\skip72
+\treeshifteight=\skip73
+\treeshiftnine=\skip74
+\treeshiftten=\skip75
+\treeshifteleven=\skip76
+\treeshifttwelve=\skip77
+\treeshiftthirteen=\skip78
+\treeshiftfourteen=\skip79
+\treeshiftfifteen=\skip80
+\treeshiftsixteen=\skip81
+\treeshiftseventeen=\skip82
+\treeshifteighteen=\skip83
+\treeshiftnineteen=\skip84
+\treeshifttwenty=\skip85
+\treewidthone=\skip86
+\treewidthtwo=\skip87
+\treewidththree=\skip88
+\treewidthfour=\skip89
+\treewidthfive=\skip90
+\treewidthsix=\skip91
+\treewidthseven=\skip92
+\treewidtheight=\skip93
+\treewidthnine=\skip94
+\treewidthten=\skip95
+\treewidtheleven=\skip96
+\treewidthtwelve=\skip97
+\treewidththirteen=\skip98
+\treewidthfourteen=\skip99
+\treewidthfifteen=\skip100
+\treewidthsixteen=\skip101
+\treewidthseventeen=\skip102
+\treewidtheighteen=\skip103
+\treewidthnineteen=\skip104
+\treewidthtwenty=\skip105
+\daughteroffsetone=\skip106
+\daughteroffsettwo=\skip107
+\daughteroffsetthree=\skip108
+\daughteroffsetfour=\skip109
+\branchwidthone=\skip110
+\branchwidthtwo=\skip111
+\branchwidththree=\skip112
+\branchwidthfour=\skip113
+\parentoffset=\skip114
+\treeoffset=\skip115
+\daughteroffset=\skip116
+\branchwidth=\skip117
+\parentwidth=\skip118
+\treewidth=\skip119
+\qbog=\dimen121
+\qta=\toks18
+\qtb=\toks19
+\nbranches=\count110
+\qroofx=\count111
+\qroofy=\count112
+\@qrscratchbox=\box74
+) (/opt/local/share/texmf-texlive/tex/context/base/mkii/supp-pdf.tex
+(/opt/local/share/texmf-texlive/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count113
+\scratchdimen=\dimen122
+\scratchbox=\box75
+\nofMPsegments=\count114
+\nofMParguments=\count115
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count116
+\MPscratchDim=\dimen123
+\MPnumerator=\count117
+\makeMPintoPDFobject=\count118
+\everyMPtoPDFconversion=\toks21
+)) (/Users/eijkhout/Software/TeX/macros/comment.sty
+\CommentStream=\write3
+
+Excluding comment 'comment') (/Users/eijkhout/Software/TeX/macros/outliner.sty
+\c@leveldepth=\count119
+\c@baselevel=\count120
+\c@aimlevel=\count121
+\c@pagebreaklevel=\count122
+) (./idxmacs.tex (/opt/local/share/texmf-texlive/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+\@indexfile=\write4
+\openout4 = `course.idx'.
+
+
+Writing index file course.idx
+) Excluding 'comment' comment. (./tutmacs.tex
+(/Users/eijkhout/Software/TeX/LaTeX/bnf.sty
+Style-Option: `bnf' v1.1a <92/01/30> (Hugh Osborne/br)
+) (./bnf.env) General comment 'inputwithcode'
+General comment 'examplewithcode' Special comment 'ttexamplewithcode'
+General comment 'mathexamplewithcode') (./exmacs.tex Excluding comment 'quiz'
+\c@excounter=\count123
+
+General comment '594exercise' General comment 'answer'
+\nx=\read2
+)
+\c@projects=\count124
+
+Excluding comment 'ut-only' Include comment 'external'
+Excluding comment 'instructor' Include comment 'fullversion'
+Excluding comment 'problem' Excluding comment 'answers'
+Excluding comment 'quiz' Excluding 'instructor' comment.
+\c@sessions=\count125
+
+Including 'fullversion' comment.
+\openout3 = `comment.cut'.
+
+ Straight input of comment.cut. (./comment.cut) Excluding 'instructor' comment.
+\c@theorem=\count126
+\c@lemma=\count127
+
+(/opt/local/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
+\fancy@headwidth=\skip120
+\f@ncyO@elh=\skip121
+\f@ncyO@erh=\skip122
+\f@ncyO@olh=\skip123
+\f@ncyO@orh=\skip124
+\f@ncyO@elf=\skip125
+\f@ncyO@erf=\skip126
+\f@ncyO@olf=\skip127
+\f@ncyO@orf=\skip128
+) (./course.aux)
+\openout1 = `course.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 126.
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\AtBeginShipoutBox=\box76
+Package hyperref Info: Link coloring OFF on input line 126.
+
+(/opt/local/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count128
+)
+LaTeX Info: Redefining \ref on input line 126.
+LaTeX Info: Redefining \pageref on input line 126.
+LaTeX Info: Redefining \nameref on input line 126.
+
+(./course.out) (./course.out)
+\@outlinefile=\write5
+\openout5 = `course.out'.
+
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Excluding 'instructor' comment.
+LaTeX Font Info:    Try loading font information for U+msa on input line 138.
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 138.
+
+(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] Excluding 'ut-onl
+y' comment.
+Including 'external' comment.
+\openout3 = `comment.cut'.
+
+ Straight input of comment.cut. (./comment.cut
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
+) [3] [4
+
+] (./course.toc
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
+ [5]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 251.
+
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [6])
+\tf@toc=\write6
+\openout6 = `course.toc'.
+
+ [7] [8
+
+]
+Chapter 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 233.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 237.
+
+(/opt/local/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 237.
+ [9
+
+]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 258.
+
+(./latex.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+
+Overfull \hbox (5.05954pt too wide) in paragraph at lines 39--39
+[]\OT1/pcr/m/n/10.95 \LaTeX => L\kern -.36em {\sbox \z@ T\vbox to\ht \z@ {\hbox
+[] 
+ []
+
+
+Overfull \hbox (11.62953pt too wide) in paragraph at lines 40--40
+[]  \OT1/pcr/m/n/10.95 {\check@mathfonts \fontsize \sf@size \z@ \math@fontsfals
+e[] 
+ []
+
+[10] writing exercise to Chapter-ex1.tex
+\openout3 = `Chapter-ex1.tex'.
+
+ (./Chapter-ex1.tex)
+\openout3 = `Chapter-an1.tex'.
+
+
+Underfull \vbox (badness 3861) has occurred while \output is active []
+
+ [11]
+Overfull \hbox (3.64421pt too wide) in paragraph at lines 150--157
+[]\OT1/ptm/m/n/10.95 Spaces are also ig-nored af-ter con-trol se-quences, so wr
+it-ing [][]\OT1/pcr/m/n/10.95 \LaTeX is fun
+ []
+
+
+Overfull \hbox (4.58412pt too wide) in paragraph at lines 150--157
+[]\OT1/ptm/m/n/10.95 comes out as `L[]T[]Xis fun'. To force a space there, writ
+e [][]\OT1/pcr/m/n/10.95 \LaTeX{} is fun
+ []
+
+[12]
+Overfull \hbox (1.54185pt too wide) in paragraph at lines 166--170
+[]\OT1/ptm/m/n/10.95 Letters, dig-its, and most punc-tu-a-tion can be typed nor
+-mally. How-ever, a bunch
+ []
+
+writing exercise to Chapter-ex2.tex
+\openout3 = `Chapter-ex2.tex'.
+
+ (./Chapter-ex2.tex)
+\openout3 = `Chapter-an2.tex'.
+
+
+Overfull \vbox (5.04004pt too high) has occurred while \output is active []
+
+
+[13] [14] writing exercise to Chapter-ex3.tex
+\openout3 = `Chapter-ex3.tex'.
+
+ (./Chapter-ex3.tex) [15]
+Overfull \hbox (10.66228pt too wide) in paragraph at lines 344--346
+[]\OT1/ptm/m/n/10.95 On Unix in-stal-la-tions, in-put files can be in other di-
+rec-to-ries, spec-i-fied by the \OT1/pcr/m/n/10.95 TEXINPUTS
+ []
+
+
+Overfull \hbox (40.44673pt too wide) in paragraph at lines 380--390
+\OT1/ptm/m/n/10.95 a mech-a-nism for print-ing in-put com-pletely ver-ba-tim. F
+or in-line text, use [][][]\OT1/pcr/m/n/10.95 \verb+&###\text+
+ []
+
+[16]
+Overfull \hbox (44.95853pt too wide) in paragraph at lines 391--398
+\OT1/ptm/m/n/10.95 prints each space as a [][]\OT1/pcr/m/n/10.95   []\OT1/ptm/m
+/n/10.95 sym-bol. To in-put whole files ver-ba-tim, use [][][]\OT1/pcr/m/n/10.9
+5 \verbatiminput{file}[]\OT1/ptm/m/n/10.95 ,
+ []
+
+writing exercise to Chapter-ex4.tex
+\openout3 = `Chapter-ex4.tex'.
+
+ (./Chapter-ex4.tex)
+\openout3 = `Chapter-an4.tex'.
+
+
+Overfull \hbox (7.47627pt too wide) in paragraph at lines 419--423
+\OT1/ptm/m/n/10.95 The three main list types are un-num-bered lists, []\OT1/pcr
+/m/n/10.95 itemize\OT1/ptm/m/n/10.95 , num-bered lists, []\OT1/pcr/m/n/10.95 en
+umerate\OT1/ptm/m/n/10.95 ,
+ []
+
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+[17] (./example.tex)
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex)
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex) [18]
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex)
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+
+(./example.tex) [19]
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex)
+Overfull \hbox (12.31757pt too wide) in paragraph at lines 565--569
+\OT1/ptm/m/n/10.95 In such cases you can use []\OT1/pcr/m/n/10.95 \footnotemark
+ \OT1/ptm/m/n/10.95 to place the marker, and []\OT1/pcr/m/n/10.95 \footnotetext
+
+ []
+
+[20]
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+
+Overfull \hbox (18.19952pt too wide) in paragraph at lines 590--590
+[]\OT1/pcr/m/n/10.95 Chapter 1. \parbox[t]{2in}{\slshape Introduction. First ea
+sy[] 
+ []
+
+
+Overfull \hbox (24.76952pt too wide) in paragraph at lines 590--590
+[]  \OT1/pcr/m/n/10.95 lessons. Exercises. More about things to come. Conclusio
+ns}[] 
+ []
+
+(./example.tex)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/sl' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/sl' tried instead on input line 616.
+ [21] [22]
+Underfull \hbox (badness 10000) in paragraph at lines 723--731
+\OT1/ptm/m/n/10.95 ters. How-ever, should you re-ally need it,
+ []
+
+[23]
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex) [24]
+Overfull \hbox (51.45203pt too wide) in paragraph at lines 828--830
+\OT1/ptm/m/n/10.95 The list of ta-bles/figures is gen-er-ated by the com-mand [
+]\OT1/pcr/m/n/10.95 \listoftables \OT1/ptm/m/n/10.95 or []\OT1/pcr/m/n/10.95 \l
+istoffigures\OT1/ptm/m/n/10.95 . 
+ []
+
+[25]
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex)
+Overfull \hbox (21.72533pt too wide) in paragraph at lines 884--888
+\OT1/ptm/m/n/10.95 In math mode, the char-ac-ter [][]\OT1/pcr/m/n/10.95 ^ []\OT
+1/ptm/m/n/10.95 de-notes a su-per-script, and [][]\OT1/pcr/m/n/10.95 _ []\OT1/p
+tm/m/n/10.95 de-notes a sub-script: [][]\OT1/pcr/m/n/10.95 x_i^2 []\OT1/ptm/m/n
+/10.95 is $\OML/cmm/m/it/10.95 x[]$\OT1/ptm/m/n/10.95 .
+ []
+
+[26]
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ [27] (./comment.cut) writing exercise to Chapter-ex5.tex
+\openout3 = `Chapter-ex5.tex'.
+
+
+(./Chapter-ex5.tex) [28]
+\openout3 = `Chapter-an5.tex'.
+
+
+Overfull \hbox (5.1875pt too wide) in paragraph at lines 1001--1004
+[]\OT1/ptm/m/n/10.95 After run-ning L[]T[]X once, you need to in-voke \OT1/pcr/
+m/n/10.95 bibtex <yourfile>\OT1/ptm/m/n/10.95 , which
+ []
+
+
+Overfull \hbox (84.05032pt too wide) in paragraph at lines 1010--1016
+\OT1/ptm/m/n/10.95 Finally, a doc-u-ment can have an in-dex. For this you need 
+to have a state-ment [][]\OT1/pcr/m/n/10.95 \usepackage{makeidx}
+ []
+
+
+Overfull \hbox (90.80693pt too wide) in paragraph at lines 1010--1016
+[]\OT1/ptm/m/n/10.95 in the pream-ble, []\OT1/pcr/m/n/10.95 \printindex \OT1/pt
+m/m/n/10.95 wher-ever you want the in-dex, and com-mands []\OT1/pcr/m/n/10.95 \
+index[][]{<some term>}
+ []
+
+
+Overfull \hbox (73.69244pt too wide) in paragraph at lines 1017--1020
+[]\OT1/ptm/m/n/10.95 Further in-dex-ing com-mands: [][]\OT1/pcr/m/n/10.95 \inde
+x{name!sub} []\OT1/ptm/m/n/10.95 for suben-try; [][]\OT1/pcr/m/n/10.95 \index{f
+oo@\textit{foo})
+ []
+
+[29]
+Overfull \hbox (24.76952pt too wide) in paragraph at lines 1032--1032
+[]\OT1/pcr/m/n/10.95 \section{My first section \protect\footnote{and not my las
+t}}[] 
+ []
+
+
+Overfull \hbox (42.33115pt too wide) in paragraph at lines 1065--1069
+\OT1/ptm/m/n/10.95 Page lay-out is con-trolled by pa-ram-e-ters such as \OT1/pc
+r/m/n/10.95 \textheight\OT1/ptm/m/n/10.95 , \OT1/pcr/m/n/10.95 \textwidth\OT1/p
+tm/m/n/10.95 , \OT1/pcr/m/n/10.95 \topmargin
+ []
+
+
+Overfull \hbox (0.51288pt too wide) in paragraph at lines 1065--1069
+\OT1/ptm/m/n/10.95 (dis-tance to the run-ning head, not to the first text line)
+, and \OT1/pcr/m/n/10.95 \odd/evensidemargin
+ []
+
+[30] writing exercise to Chapter-ex6.tex
+\openout3 = `Chapter-ex6.tex'.
+
+ (./Chapter-ex6.tex)
+\openout3 = `Chapter-an6.tex'.
+
+
+Overfull \hbox (2.8888pt too wide) in paragraph at lines 1118--1123
+\OT1/ptm/m/n/10.95 The \OT1/pcr/m/n/10.95 headings \OT1/ptm/m/n/10.95 page styl
+e (sec-tion []1.9.1.2[]) uses run-ning heads that can change through
+ []
+
+[31]
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex)
+\c@majorfact=\count129
+ [32] writing exercise to Chapter-ex7.tex
+\openout3 = `Chapter-ex7.tex'.
+
+
+(./Chapter-ex7.tex
+Overfull \hbox (46.12195pt too wide) in paragraph at lines 4--4
+ [] \OT1/pcr/m/n/10.95 {\textbf{Example code.}\begin{verbatim}}{\end{verbatimm}
+}[] 
+ []
+
+)
+\openout3 = `Chapter-an7.tex'.
+
+ writing exercise to Chapter-ex8.tex
+\openout3 = `Chapter-ex8.tex'.
+
+ (./Chapter-ex8.tex
+Overfull \hbox (116.32367pt too wide) in paragraph at lines 25--25
+ []\OT1/pcr/m/n/10.95 \begin{exercise}{Here you paraphrase the question that wa
+s asked}[] 
+ []
+
+)
+\openout3 = `Chapter-an8.tex'.
+
+ [33]
+Overfull \hbox (23.63887pt too wide) in paragraph at lines 1316--1319
+\OT1/ptm/m/n/10.95 Have you no-ticed by now that the name you de-fine starts wi
+th a back-slash in \OT1/pcr/m/n/10.95 \newcommand
+ []
+
+[34]
+Overfull \hbox (21.49252pt too wide) in paragraph at lines 1337--1345
+\OT1/ptm/m/n/10.95 the log file where the file is loaded from. A typ-i-cal lo-c
+a-tion is [][]\OT1/pcr/m/n/10.95 /usr/share/texmf/...[]\OT1/ptm/m/n/10.95 .
+ []
+
+[35] [36]) [37] (./tex1.tex writing exercise to Chapter-ex9.tex
+\openout3 = `Chapter-ex9.tex'.
+
+
+(./Chapter-ex9.tex)
+Overfull \hbox (30.98834pt too wide) in paragraph at lines 8--8
+[][]\OT1/pcr/m/n/10.95 \intt{foo} []\OT1/ptm/m/n/10.95 and [][]\OT1/pcr/m/n/10.
+95 \intt{foo_bar} []\OT1/ptm/m/n/10.95 are out-put as \OT1/pcr/m/n/10.95 foo \O
+T1/ptm/m/n/10.95 and \OT1/pcr/m/n/10.95 foo_bar\OT1/ptm/m/n/10.95 ,
+ []
+
+\openout3 = `Chapter-an9.tex'.
+
+writing exercise to Chapter-ex10.tex
+\openout3 = `Chapter-ex10.tex'.
+
+ (./Chapter-ex10.tex)
+Overfull \hbox (46.80894pt too wide) in paragraph at lines 26--26
+[]\OT1/ptm/b/n/10.95 Exercise 10. \OT1/ptm/m/n/10.95 Write a macro that con-str
+ucts an-other macro: [][]\OT1/pcr/m/n/10.95 \tees\three3
+ []
+
+
+Overfull \hbox (12.99704pt too wide) in paragraph at lines 26--26
+[]\OT1/ptm/m/n/10.95 should be equiv-a-lent to [][]\OT1/pcr/m/n/10.95 \def\thre
+e{TTT}[]\OT1/ptm/m/n/10.95 , [][]\OT1/pcr/m/n/10.95 \tees\five5 []\OT1/ptm/m/n/
+10.95 equiv-
+ []
+
+\openout3 = `Chapter-an10.tex'.
+
+writing exercise to Chapter-ex11.tex
+\openout3 = `Chapter-ex11.tex'.
+
+ (./Chapter-ex11.tex)
+writing exercise to Chapter-ex12.tex
+\openout3 = `Chapter-ex12.tex'.
+
+ (./Chapter-ex12.tex
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex))
+\openout3 = `Chapter-an12.tex'.
+
+)
+[38] (./tex2.tex writing exercise to Chapter-ex13.tex
+\openout3 = `Chapter-ex13.tex'.
+
+ (./Chapter-ex13.tex)
+Overfull \hbox (0.6114pt too wide) in paragraph at lines 5--5
+[]\OT1/ptm/b/n/10.95 Exercise 13. \OT1/ptm/m/n/10.95 Use the \OT1/pcr/m/n/10.95
+ \everypar \OT1/ptm/m/n/10.95 com-mand so that the first para-
+ []
+
+\openout3 = `Chapter-an13.tex'.
+
+writing exercise to Chapter-ex14.tex
+\openout3 = `Chapter-ex14.tex'.
+
+ (./Chapter-ex14.tex
+File: hangmacro.tex  (verbatim)
+ (./hangmacro.tex)
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+
+(./example.tex)
+Overfull \hbox (46.12195pt too wide) in paragraph at lines 13--13
+ []\OT1/pcr/m/n/10.95 This is an old-fashioned mediaeval paragraph that has lot
+s[] 
+ []
+
+
+Overfull \hbox (32.98196pt too wide) in paragraph at lines 16--16
+ []\OT1/pcr/m/n/10.95 Also, the second paragraph is an old-fashioned mediaeval[
+] 
+ []
+
+)
+\openout3 = `Chapter-an14.tex'.
+
+) [39] (./tex-projects.tex) Excluding 'quiz' comment. [40]
+Chapter 2.
+[41
+
+
+]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 299.
+
+(./parsing.tex [42] [43] [44] [45] writing exercise to Chapter-ex15.tex
+\openout3 = `Chapter-ex15.tex'.
+
+
+(./Chapter-ex15.tex)
+\openout3 = `Chapter-an15.tex'.
+
+ [MP to PDF] (./automata/eps.1) [46] [MP to PDF]
+(./automata/a.1) [MP to PDF] (./automata/AB.1) [MP to PDF] (./automata/AvB.1)
+[47] [MP to PDF] (./automata/nfa1.1) [MP to PDF] (./automata/dfa1.1)
+[MP to PDF] (./automata/begin.1 [48]) [MP to PDF] (./automata/begind.1)
+[49] writing exercise to Chapter-ex16.tex
+\openout3 = `Chapter-ex16.tex'.
+
+ (./Chapter-ex16.tex)
+Excluding 'comment' comment. writing exercise to Chapter-ex17.tex
+\openout3 = `Chapter-ex17.tex'.
+
+
+(./Chapter-ex17.tex)
+Overfull \hbox (17.67088pt too wide) in paragraph at lines 440--440
+[]\OT1/ptm/b/n/10.95 Exercise 17. \OT1/ptm/m/n/10.95 One could also de-fine the
+ out-put with a map-ping $\OML/cmm/m/it/10.95 S \OMS/cmsy/m/n/10.95 ! \OML/cmm/
+m/it/10.95 O$\OT1/ptm/m/n/10.95 .
+ []
+
+\openout3 = `Chapter-an17.tex'.
+
+[50] [MP to PDF] (./automata/compound.1) writing exercise to Chapter-ex18.tex
+\openout3 = `Chapter-ex18.tex'.
+
+
+(./Chapter-ex18.tex)
+Overfull \hbox (19.00299pt too wide) in paragraph at lines 476--476
+\OT1/ptm/m/n/10.95 not al-lowed to have two op-er-a-tors in a row, so $\OT1/cmr
+/m/n/10.95 2 \OMS/cmsy/m/n/10.95 ^^B ^^@\OT1/cmr/m/n/10.95 3$ \OT1/ptm/m/n/10.9
+5 is no-tated \OT1/pcr/m/n/10.95 2*(-3)\OT1/ptm/m/n/10.95 . 
+ []
+
+[51]
+Underfull \hbox (badness 10000) in paragraph at lines 505--508
+
+ []
+
+[52] [53]
+Overfull \hbox (38.71748pt too wide) detected at line 642
+$ []$ 
+ []
+
+[54] [55] [56]
+Underfull \hbox (badness 10000) in paragraph at lines 818--821
+
+ []
+
+[57]
+Overfull \hbox (1.31097pt too wide) in paragraph at lines 848--855
+\OT1/ptm/m/n/10.95 this we mean that ex-pres-sions in the lan-guage look like e
+xpression-operator-expression.
+ []
+
+[58] [59] [60] [61]
+Overfull \hbox (2.09975pt too wide) in paragraph at lines 1038--1039
+\OT1/ptm/m/n/10.95 which con-sists of all strings of prop-erly matched left and
+ right paren-
+ []
+
+[62] writing exercise to Chapter-ex19.tex
+\openout3 = `Chapter-ex19.tex'.
+
+ (./Chapter-ex19.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+)
+Underfull \hbox (badness 10000) in paragraph at lines 1124--1125
+
+ []
+
+[63]
+Underfull \hbox (badness 10000) in paragraph at lines 1161--1164
+
+ []
+
+writing exercise to Chapter-ex20.tex
+\openout3 = `Chapter-ex20.tex'.
+
+ (./Chapter-ex20.tex)
+writing exercise to Chapter-ex21.tex
+\openout3 = `Chapter-ex21.tex'.
+
+ (./Chapter-ex21.tex) [64]
+\openout3 = `Chapter-an21.tex'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1210--1213
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1228--1232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1237--1239
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1242--1245
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1251--1256
+
+ []
+
+[65]) [66] (./lex.tex [67] [68] writing exercise to Chapter-ex22.tex
+\openout3 = `Chapter-ex22.tex'.
+
+
+(./Chapter-ex22.tex)
+\openout3 = `Chapter-an22.tex'.
+
+ [69]
+File: comm1.l  (verbatim)
+File: comm.l  (verbatim)
+ [70] writing exercise to Chapter-ex23.tex
+\openout3 = `Chapter-ex23.tex'.
+
+
+(./Chapter-ex23.tex) [71]
+\openout3 = `Chapter-an23.tex'.
+
+ writing exercise to Chapter-ex24.tex
+\openout3 = `Chapter-ex24.tex'.
+
+
+(./Chapter-ex24.tex)
+\openout3 = `Chapter-an24.tex'.
+
+ [72]
+File: sloppyp  (verbatim)
+ [73]
+File: pp2.l  (verbatim)
+
+Overfull \hbox (77.32945pt too wide) in paragraph at lines 363--363
+[]\OT1/pcr/m/n/10.95 {text}+" "+/")"       {while (yytext[yyleng-1]==' ') yylen
+g--; ECHO;}[] 
+ []
+
+
+Overfull \hbox (77.32945pt too wide) in paragraph at lines 363--363
+[]\OT1/pcr/m/n/10.95 "("" "+/{text}        {while (yytext[yyleng-1]==' ') yylen
+g--; ECHO;}[] 
+ []
+
+
+Overfull \hbox (77.32945pt too wide) in paragraph at lines 363--363
+[]\OT1/pcr/m/n/10.95 {text}+" "+/{punct}   {while (yytext[yyleng-1]==' ') yylen
+g--; ECHO;}[] 
+ []
+
+[74]
+File: pp.l  (verbatim)
+ writing exercise to Chapter-ex25.tex
+\openout3 = `Chapter-ex25.tex'.
+
+ (./Chapter-ex25.tex
+Overfull \hbox (24.30946pt too wide) in paragraph at lines 6--8
+[]\OT1/pcr/m/n/10.95 <cs: command> \OT1/ptm/m/n/10.95 for rec-og-niz-ing a con-
+trol se-quence \OT1/pcr/m/n/10.95 \command\OT1/ptm/m/n/10.95 ; 
+ []
+
+[75]
+File: texlexerinput  (verbatim)
+)
+\openout3 = `Chapter-an25.tex'.
+
+) [76] (./yacc.tex
+File: words-lex.l  (verbatim)
+ [77]
+File: words.y  (verbatim)
+ [78]
+Overfull \hbox (9.41322pt too wide) in paragraph at lines 67--69
+[]\OT1/ptm/m/n/10.95 These han-dle as-so-cia-tiv-ity and pri-or-ity of op-er-a-
+tors; see sec-tion []2.20[]. 
+ []
+
+[79]
+Overfull \hbox (4.41058pt too wide) in paragraph at lines 94--98
+[]\OT1/ptm/m/n/10.95 When the \OT1/ptm/m/it/10.95 yacc \OT1/ptm/m/n/10.95 file 
+is trans-lated with \OT1/pcr/m/n/10.95 yacc -d -o\OT1/ptm/m/n/10.95 , a header 
+file \OT1/pcr/m/n/10.95 <file>.h[][][]
+ []
+
+
+Overfull \hbox (2.78894pt too wide) in paragraph at lines 106--109
+[]\OT1/ptm/m/n/10.95 The re-turn codes that are de-fined from [][]\OT1/pcr/m/n/
+10.95 %TOKEN []\OT1/ptm/m/n/10.95 def-i-ni-tions typ-i-cally start at around 25
+8,
+ []
+
+[80] [81] [82] writing exercise to Chapter-ex26.tex
+\openout3 = `Chapter-ex26.tex'.
+
+ (./Chapter-ex26.tex)
+\openout3 = `Chapter-an26.tex'.
+
+
+[83] [84]
+Overfull \hbox (18.19952pt too wide) in paragraph at lines 405--405
+[]        \OT1/pcr/m/n/10.95 cc $(YACCFILE).o $(LEXFILE).o -o $(YACCFILE) -ly -
+ll[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--418
+
+ []
+
+[85] writing exercise to Chapter-ex27.tex
+\openout3 = `Chapter-ex27.tex'.
+
+ (./Chapter-ex27.tex
+Overfull \hbox (27.53911pt too wide) in paragraph at lines 7--9
+[]\OT1/ptm/m/n/10.95 Know about some com-mands with one ar-gu-ment, such as \OT
+1/pcr/m/n/10.95 \textbf\OT1/ptm/m/n/10.95 ,
+ []
+
+)
+\openout3 = `Chapter-an27.tex'.
+
+
+Overfull \hbox (0.58743pt too wide) in paragraph at lines 448--452
+\OT1/ptm/m/n/10.95 This cal-cu-la-tor eval-u-ates sim-ple arith-metic ex-pres-s
+ions. The \OT1/ptm/m/it/10.95 lex \OT1/ptm/m/n/10.95 pro-gram matches num-
+ []
+
+File: calc1-lex.l  (verbatim)
+[86]
+Overfull \hbox (31.33951pt too wide) in paragraph at lines 452--452
+[]            \OT1/pcr/m/n/10.95 sprintf(msg,"%s <%s>","invalid character",yyte
+xt);[] 
+ []
+
+File: calc1.y  (verbatim)
+[87]
+File: calc2.y  (verbatim)
+ [88]
+File: calc2-lex.l  (verbatim)
+
+Underfull \vbox (badness 8056) has occurred while \output is active []
+
+ [89]
+Overfull \hbox (31.33951pt too wide) in paragraph at lines 478--478
+[]            \OT1/pcr/m/n/10.95 sprintf(msg,"%s <%s>","invalid character",yyte
+xt);[] 
+ []
+
+File: calc3.y  (verbatim)
+[90] [91]
+File: calc3-lex.l  (verbatim)
+
+Overfull \hbox (31.33951pt too wide) in paragraph at lines 490--490
+[]            \OT1/pcr/m/n/10.95 sprintf(msg,"%s <%s>","invalid character",yyte
+xt);[] 
+ []
+
+) [92] (./hashing.tex [93]
+<hash-direct.jpg, id=1278, 272.01625pt x 241.90375pt>
+File: hash-direct.jpg Graphic file (type jpg)
+ <use hash-direct.jpg>
+Package pdftex.def Info: hash-direct.jpg used on input line 52.
+(pdftex.def)             Requested size: 190.41006pt x 169.33147pt.
+
+[94 <./graphics/hash-direct.jpg>] [95] writing exercise to Chapter-ex28.tex
+\openout3 = `Chapter-ex28.tex'.
+
+
+(./Chapter-ex28.tex)
+Overfull \hbox (2.03525pt too wide) in paragraph at lines 141--141
+[]\OT1/ptm/b/n/10.95 Exercise 28. \OT1/ptm/m/n/10.95 This al-go-rithm only give
+s a one-byte key. How would
+ []
+
+\openout3 = `Chapter-an28.tex'.
+
+
+Overfull \hbox (97.03943pt too wide) in paragraph at lines 153--153
+[] \OT1/pcr/m/n/10.95 * Published hash algorithm used in the UNIX ELF format fo
+r object files[] 
+ []
+
+[96]
+Overfull \hbox (11.62953pt too wide) in paragraph at lines 184--184
+[]        \OT1/pcr/m/n/10.95 while (c = *str++) hash = ((hash << 5) + hash) + c
+;[] 
+ []
+
+<hash-separate.jpg, id=1302, 392.46625pt x 241.90375pt>
+File: hash-separate.jpg Graphic file (type jpg)
+
+<use hash-separate.jpg>
+Package pdftex.def Info: hash-separate.jpg used on input line 216.
+(pdftex.def)             Requested size: 274.72449pt x 169.33147pt.
+ writing exercise to Chapter-ex29.tex
+\openout3 = `Chapter-ex29.tex'.
+
+ [97]
+(./Chapter-ex29.tex)
+\openout3 = `Chapter-an29.tex'.
+
+ <hash-linear.jpg, id=1310, 293.095pt x 241.90375pt>
+File: hash-linear.jpg Graphic file (type jpg)
+
+<use hash-linear.jpg>
+Package pdftex.def Info: hash-linear.jpg used on input line 262.
+(pdftex.def)             Requested size: 205.16508pt x 169.33147pt.
+ [98 <./graphics/hash-separate.jpg>]
+<probing1.pdf, id=1318, 256.96pt x 234.8775pt>
+File: probing1.pdf Graphic file (type pdf)
+ <use probing1.pdf>
+Package pdftex.def Info: probing1.pdf used on input line 298.
+(pdftex.def)             Requested size: 77.0886pt x 70.46379pt.
+
+<probing2.pdf, id=1319, 297.11pt x 234.8775pt>
+File: probing2.pdf Graphic file (type pdf)
+ <use probing2.pdf>
+Package pdftex.def Info: probing2.pdf used on input line 299.
+(pdftex.def)             Requested size: 89.13368pt x 70.46379pt.
+
+<probing3.pdf, id=1320, 306.14375pt x 234.8775pt>
+File: probing3.pdf Graphic file (type pdf)
+ <use probing3.pdf>
+Package pdftex.def Info: probing3.pdf used on input line 300.
+(pdftex.def)             Requested size: 91.84383pt x 70.46379pt.
+ [99 <./graphics/hash-linear.jpg> <./graphics/probing1.pdf> <./graphics/probing
+2.pdf> <./graphics/probing3.pdf>] <hash-chain0.jpg, id=1344, 272.01625pt x 241.
+90375pt>
+File: hash-chain0.jpg Graphic file (type jpg)
+
+<use hash-chain0.jpg>
+Package pdftex.def Info: hash-chain0.jpg used on input line 358.
+(pdftex.def)             Requested size: 81.6055pt x 72.57167pt.
+ <hash-chain.jpg, id=1345, 332.24126pt x 241.90375pt>
+File: hash-chain.jpg Graphic file (type jpg)
+
+<use hash-chain.jpg>
+Package pdftex.def Info: hash-chain.jpg used on input line 359.
+(pdftex.def)             Requested size: 99.67314pt x 72.57167pt.
+ <hash-hash2.jpg, id=1346, 332.24126pt x 249.93375pt>
+File: hash-hash2.jpg Graphic file (type jpg)
+
+<use hash-hash2.jpg>
+Package pdftex.def Info: hash-hash2.jpg used on input line 360.
+(pdftex.def)             Requested size: 99.67314pt x 74.9807pt.
+ [100] [101 <./graphics/hash-chain0.jpg> <./graphics/hash-chain.jpg> <./graphic
+s/hash-hash2.jpg>] [102]) [103] (./parsing-projects.tex
+Overfull \hbox (6.20987pt too wide) in paragraph at lines 10--15
+\OT1/pcr/m/n/10.95 de / users / heckmann / doc . html$[]\OT1/ptm/m/n/10.95 . Fo
+r soft-ware, see []$\OT1/pcr/m/n/10.95 ftp : / / ftp .
+ []
+
+
+Overfull \hbox (25.48648pt too wide) in paragraph at lines 16--18
+[]\OT1/ptm/m/n/10.95 Preview-LaTeX ([]$\OT1/pcr/m/n/10.95 http : / / preview-[]
+latex . sourceforge .
+ []
+
+
+Overfull \hbox (8.40924pt too wide) in paragraph at lines 18--19
+[]\OT1/ptm/m/n/10.95 see []$\OT1/pcr/m/n/10.95 http : / / www . forkosh . com /
+ mimetex . html$[]\OT1/ptm/m/n/10.95 . 
+ []
+
+
+Overfull \hbox (2.00015pt too wide) in paragraph at lines 20--22
+[][]$\OT1/pcr/m/n/10.95 http : / / www . lyx . org/$[] \OT1/ptm/m/n/10.95 Ages 
+ago there was `griff'.
+ []
+
+
+Overfull \hbox (1.12616pt too wide) in paragraph at lines 32--37
+[]\OT1/ptm/m/n/10.95 This au-toma-ton ba-si-cally parses the whole file, rather
+ than small chunks;
+ []
+
+) [104]
+Chapter 3.
+
+Overfull \hbox (35.73991pt too wide) in paragraph at lines 325--331
+\OT1/ptm/m/n/10.95 sub-ject on Wikipedia, for in-stance []$\OT1/pcr/m/n/10.95 h
+ttp : / / en . wikipedia . org / wiki / Complexity _
+ []
+
+[105
+
+
+]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 332.
+
+(./dynamic.tex [106] writing exercise to Chapter-ex30.tex
+\openout3 = `Chapter-ex30.tex'.
+
+ (./Chapter-ex30.tex)
+\openout3 = `Chapter-an30.tex'.
+
+
+[107] [MP to PDF] (./automata/stages.1) [108] [109]
+Overfull \hbox (3.59903pt too wide) in paragraph at lines 200--204
+[]\OT1/ptm/m/n/10.95 A straight-for-ward (re-cur-sive) so-lu-tion to the prob-l
+em would
+ []
+
+[110] [111] writing exercise to Chapter-ex31.tex
+\openout3 = `Chapter-ex31.tex'.
+
+ (./Chapter-ex31.tex)
+\openout3 = `Chapter-an31.tex'.
+
+
+Underfull \vbox (badness 2573) has occurred while \output is active []
+
+ [112]
+Overfull \hbox (31.33951pt too wide) in paragraph at lines 376--376
+[]        \OT1/pcr/m/n/10.95 ll = table[start][dest]+shortest_path(dest,left,le
+v+1)[] 
+ []
+
+[113]
+Overfull \hbox (116.7494pt too wide) in paragraph at lines 434--434
+[]\OT1/pcr/m/n/10.95 > Suppose C(m,dist[d]) is the optimal solution to travel d
+istance d using m[] 
+ []
+
+[114]
+Overfull \hbox (103.60942pt too wide) in paragraph at lines 442--442
+[]\OT1/pcr/m/n/10.95 >             cost = C(m-1,dist[m]) + price[m] * ( (dist[m
+] - dist[j] ) /[] 
+ []
+
+
+Overfull \hbox (110.17941pt too wide) in paragraph at lines 446--446
+[]\OT1/pcr/m/n/10.95 You can't do that.  The problem says you have to fill your
+ tank, and since[] 
+ []
+
+
+Overfull \hbox (90.46944pt too wide) in paragraph at lines 447--447
+[]\OT1/pcr/m/n/10.95 the parameters of the cost function don't capture how much
+ gas you have[] 
+ []
+
+
+Overfull \hbox (5.05954pt too wide) in paragraph at lines 448--448
+[]\OT1/pcr/m/n/10.95 left, you don't know how much filling your tank will cost.
+[] 
+ []
+
+
+Overfull \hbox (116.7494pt too wide) in paragraph at lines 450--450
+[]\OT1/pcr/m/n/10.95 In fact, the number of gas stations you've used at any poi
+nt is irrelevant.[] 
+ []
+
+
+Overfull \hbox (97.03943pt too wide) in paragraph at lines 451--451
+[]\OT1/pcr/m/n/10.95 If you could put in however much gas you liked, you wouldn
+'t need to use[] 
+ []
+
+
+Overfull \hbox (103.60942pt too wide) in paragraph at lines 454--454
+[]\OT1/pcr/m/n/10.95 Since your prof asked for complexity analysis in terms of 
+distance, I can[] 
+ []
+
+
+Overfull \hbox (103.60942pt too wide) in paragraph at lines 455--455
+[]\OT1/pcr/m/n/10.95 tell that he expects you to use something like C(n,i) = th
+e minimum price[] 
+ []
+
+
+Overfull \hbox (110.17941pt too wide) in paragraph at lines 456--456
+[]\OT1/pcr/m/n/10.95 paid to get to dist[i] with n gallons of gas left in the t
+ank, which works[] 
+ []
+
+
+Overfull \hbox (103.60942pt too wide) in paragraph at lines 459--459
+[]\OT1/pcr/m/n/10.95 You'll probably get extra marks if you expain how you can 
+use a different[] 
+ []
+
+
+Overfull \hbox (90.46944pt too wide) in paragraph at lines 460--460
+[]\OT1/pcr/m/n/10.95 cost function, or just a little finesse in the implementat
+ion, to get a[] 
+ []
+
+
+Overfull \hbox (44.47949pt too wide) in paragraph at lines 461--461
+[]\OT1/pcr/m/n/10.95 better complexity result in terms of the number of gas sta
+tions.[] 
+ []
+
+) [115] (./paragraph.tex [116] [117]
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ (./example.tex)
+\openout3 = `example.tex'.
+
+File: example.tex  (verbatim)
+ [118]
+Overfull \hbox (18.19952pt too wide) in paragraph at lines 150--150
+[]\OT1/pcr/m/n/10.95 the left and right of each line, but the amounts cancel ou
+t.[] 
+ []
+
+(./example.tex
+Underfull \hbox (badness 1831) in paragraph at lines 4--7
+ []\OT1/ptm/m/n/10.95 This para-graph puts in-finitely 
+ []
+
+
+Underfull \hbox (badness 6125) in paragraph at lines 4--7
+ \OT1/ptm/m/n/10.95 right of each line, but the 
+ []
+
+) <hang.pdf, id=1475, 130.32689pt x 106.4778pt>
+File: hang.pdf Graphic file (type pdf)
+ <use hang.pdf>
+Package pdftex.def Info: hang.pdf used on input line 170.
+(pdftex.def)             Requested size: 130.32655pt x 106.47752pt.
+
+Underfull \vbox (badness 1406) has occurred while \output is active []
+
+ [119 <./graphics/hang.pdf>] <mr.pdf, id=1487, 182.84311pt x 73.2336pt>
+File: mr.pdf Graphic file (type pdf)
+ <use mr.pdf>
+Package pdftex.def Info: mr.pdf used on input line 177.
+(pdftex.def)             Requested size: 182.84265pt x 73.2334pt.
+
+[120 <./graphics/mr.pdf>] [121] writing exercise to Chapter-ex32.tex
+\openout3 = `Chapter-ex32.tex'.
+
+
+(./Chapter-ex32.tex) [122]
+\openout3 = `Chapter-an32.tex'.
+
+ [123] writing exercise to Chapter-ex33.tex
+\openout3 = `Chapter-ex33.tex'.
+
+
+(./Chapter-ex33.tex)
+\openout3 = `Chapter-an33.tex'.
+
+
+Overfull \hbox (18.19952pt too wide) in paragraph at lines 434--434
+[]            \OT1/pcr/m/n/10.95 cost[w]['cost'] = to_here; cost[w]['from'] = a
+-1[] 
+ []
+
+[124]
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 457--457
+[]\OT1/pcr/m/n/9 You may  never  have  thought  of  it,  but  fonts  (better:  
+ -0.111111111111[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 458--458
+[]\OT1/pcr/m/n/9 typefaces) usually have a mathematical  definition  somehow.  
+ -0.666666666667[] 
+ []
+
+
+Overfull \hbox (39.79953pt too wide) in paragraph at lines 459--459
+[]\OT1/pcr/m/n/9 If   a   font   is   given   as   bitmap,   this   is  often  
+ 0.888888888889[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 461--461
+[]\OT1/pcr/m/n/9 Imagine the situation that you have bitmaps at  300dpi,  and  
+ -0.777777777778[] 
+ []
+
+
+Overfull \hbox (39.79953pt too wide) in paragraph at lines 463--463
+[]\OT1/pcr/m/n/9 There   is   then   a   need   for  a  mathematical  way  of  
+ 0.555555555556[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 465--465
+[]\OT1/pcr/m/n/9 three-dimensional; in fact,  a~lot  of  the  mathematics  in  
+ -0.285714285714[] 
+ []
+
+
+Overfull \hbox (39.79953pt too wide) in paragraph at lines 467--467
+[]\OT1/pcr/m/n/9 modeling   car   body  shapes.  But  let  us  for  now  only  
+ 0.222222222222[] 
+ []
+
+Excluding 'problem' comment. [125]
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 513--513
+[]\OT1/pcr/m/n/9 You may  never  have  thought  of  it,  but  fonts  (better:  
+ -0.111111111111[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 514--514
+[]\OT1/pcr/m/n/9 typefaces) usually have a mathematical  definition  somehow.  
+ -0.666666666667[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 517--517
+[]\OT1/pcr/m/n/9 Imagine the situation that you have bitmaps at  300dpi,  and  
+ -0.777777777778[] 
+ []
+
+
+Overfull \hbox (39.79953pt too wide) in paragraph at lines 519--519
+[]\OT1/pcr/m/n/9 There   is   then   a   need   for  a  mathematical  way  of  
+ 0.555555555556[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 521--521
+[]\OT1/pcr/m/n/9 three-dimensional; in fact,  a~lot  of  the  mathematics  in  
+ -0.285714285714[] 
+ []
+
+
+Overfull \hbox (39.79953pt too wide) in paragraph at lines 523--523
+[]\OT1/pcr/m/n/9 modeling   car   body  shapes.  But  let  us  for  now  only  
+ 0.222222222222[] 
+ []
+
+Excluding 'problem' comment. [126]
+Overfull \hbox (11.62953pt too wide) in paragraph at lines 570--570
+[]        \OT1/pcr/m/n/10.95 [from_there,from_type] = minimum_cost_and_type(a-1
+)[] 
+ []
+
+writing exercise to Chapter-ex34.tex
+\openout3 = `Chapter-ex34.tex'.
+
+ (./Chapter-ex34.tex)
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 586--586
+[]\OT1/pcr/m/n/9 You may  never  have  thought  of  it,  but  fonts  (better:  
+ -0.111111111111[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 588--588
+[]\OT1/pcr/m/n/9 somehow. If a font is given  as  bitmap,  this  is  often  a  
+ -0.454545454545[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 591--591
+[]\OT1/pcr/m/n/9 300dpi, and you buy  a  600dpi  printer.  It  wouldn't  look  
+ -0.333333333333[] 
+ []
+
+
+Overfull \hbox (45.19952pt too wide) in paragraph at lines 594--594
+[]\OT1/pcr/m/n/9 three-dimensional; in fact,  a~lot  of  the  mathematics  in  
+ -0.285714285714[] 
+ []
+
+
+Overfull \hbox (39.79953pt too wide) in paragraph at lines 596--596
+[]\OT1/pcr/m/n/9 modeling   car   body  shapes.  But  let  us  for  now  only  
+ 0.222222222222[] 
+ []
+
+[127] writing exercise to Chapter-ex35.tex
+\openout3 = `Chapter-ex35.tex'.
+
+ (./Chapter-ex35.tex)
+writing exercise to Chapter-ex36.tex
+\openout3 = `Chapter-ex36.tex'.
+
+ (./Chapter-ex36.tex) [128]
+Overfull \hbox (18.19952pt too wide) in paragraph at lines 663--663
+[]            \OT1/pcr/m/n/10.95 sys.stdout.write('   '); shortfall = shortfall
+-1[] 
+ []
+
+
+Overfull \hbox (5.05954pt too wide) in paragraph at lines 665--665
+[]            \OT1/pcr/m/n/10.95 sys.stdout.write(' '); shortfall = shortfall+1
+[] 
+ []
+
+) [129] (./completeness.tex <np-dumb.pdf, id=1558, 317.185pt x 190.7125pt>
+File: np-dumb.pdf Graphic file (type pdf)
+
+<use np-dumb.pdf>
+Package pdftex.def Info: np-dumb.pdf used on input line 10.
+(pdftex.def)             Requested size: 317.1842pt x 190.71202pt.
+ <np-prove.pdf, id=1559, 330.23375pt x 192.72pt>
+File: np-prove.pdf Graphic file (type pdf)
+
+<use np-prove.pdf>
+Package pdftex.def Info: np-prove.pdf used on input line 16.
+(pdftex.def)             Requested size: 330.23293pt x 192.71951pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [130 <./graphics/np-dumb.pdf>] <np-famous.pdf, id=1568, 349.305pt x 236.885pt>
+File: np-famous.pdf Graphic file (type pdf)
+
+<use np-famous.pdf>
+Package pdftex.def Info: np-famous.pdf used on input line 27.
+(pdftex.def)             Requested size: 349.30414pt x 236.88441pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [131 <./graphics/np-prove.pdf> <./graphics/np-famous.pdf>]
+writing exercise to Chapter-ex37.tex
+\openout3 = `Chapter-ex37.tex'.
+
+ (./Chapter-ex37.tex)
+\openout3 = `Chapter-an37.tex'.
+
+ [132] [133]
+writing exercise to Chapter-ex38.tex
+\openout3 = `Chapter-ex38.tex'.
+
+ (./Chapter-ex38.tex)
+writing exercise to Chapter-ex39.tex
+\openout3 = `Chapter-ex39.tex'.
+
+ (./Chapter-ex39.tex)
+\openout3 = `Chapter-an39.tex'.
+
+ [134]
+Overfull \hbox (5.20706pt too wide) in paragraph at lines 226--230
+\OT1/ptm/m/n/10.95 DTM that rec-og-nizes $\OML/cmm/m/it/10.95 L[]$\OT1/ptm/m/n/
+10.95 , and this com-po-si-tion still runs in poly-no-mial time $\OML/cmm/m/it/
+10.95 T[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) \OMS/cms
+y/m/n/10.95 ^^T
+ []
+
+
+LaTeX Warning: Command \L invalid in math mode on input line 244.
+
+[135] Excluding 'comment' comment. [136]
+
+LaTeX Warning: Reference `table:cook' on page 137 undefined on input line 348.
+
+
+Underfull \hbox (badness 2837) in paragraph at lines 363--363
+[]\OT1/ptm/m/n/10.95 Initial con-tents of the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--373
+[]\OT1/ptm/m/n/10.95 Initial po-si-tion of
+ []
+
+
+Underfull \hbox (badness 4454) in paragraph at lines 381--381
+[]\OT1/ptm/m/n/10.95 One sym-bol per tape
+ []
+
+
+Underfull \hbox (badness 5924) in paragraph at lines 403--403
+[]\OT1/ptm/m/n/10.95 The dis-junc-tion of the
+ []
+
+
+Overfull \hbox (0.61887pt too wide) in paragraph at lines 410--410
+[]$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q; ^^[; q[]; ^^[[]; d\OT1/cmr/m/n/10
+.95 ) \OMS/cmsy/m/n/10.95 2
+ []
+
+
+Underfull \hbox (badness 5924) in paragraph at lines 411--413
+[]\OT1/ptm/m/n/10.95 The dis-junc-tion of the
+ []
+
+
+Underfull \hbox (badness 6032) in paragraph at lines 414--414
+[]\OT1/ptm/m/n/10.95 Possible tran-si-tions at
+ []
+
+
+Overfull \hbox (18.8962pt too wide) in paragraph at lines 352--420
+[][] 
+ []
+
+) [137] (./page.tex [138] [139]
+Overfull \hbox (36.23059pt too wide) in paragraph at lines 75--77
+[]\OT1/ptm/m/n/10.95 A break af-ter the first line of a para-graph is pre-vente
+d by set-ting the \OT1/pcr/m/n/10.95 \clubpenalty\OT1/ptm/m/n/10.95 . 
+ []
+
+
+Overfull \hbox (48.87787pt too wide) in paragraph at lines 77--79
+[]\OT1/ptm/m/n/10.95 A break be-fore the last line of a para-graph is pre-vente
+d by set-ting the \OT1/pcr/m/n/10.95 \widowpenalty\OT1/ptm/m/n/10.95 . 
+ []
+
+[140] [141] <pagebreak1.pdf, id=1657, 420.37048pt x 161.403pt>
+File: pagebreak1.pdf Graphic file (type pdf)
+
+<use pagebreak1.pdf>
+Package pdftex.def Info: pagebreak1.pdf used on input line 182.
+(pdftex.def)             Requested size: 336.29684pt x 129.12257pt.
+ <pagebreak2.pdf, id=1658, 420.37048pt x 161.403pt>
+File: pagebreak2.pdf Graphic file (type pdf)
+
+<use pagebreak2.pdf>
+Package pdftex.def Info: pagebreak2.pdf used on input line 189.
+(pdftex.def)             Requested size: 336.29684pt x 129.12257pt.
+ [142 <./graphics/pagebreak1.pdf> <./graphics/pagebreak2.pdf>]
+Overfull \hbox (3.9166pt too wide) in paragraph at lines 216--224
+\OT1/ptm/m/n/10.95 We con-sider the MQ page break-ing prob-lem: Mul-ti-ply ref-
+er-enced fig-ures, and Quadratic
+ []
+
+
+Overfull \hbox (11.67972pt too wide) in paragraph at lines 248--255
+[]\OT1/ptm/m/n/10.95 We will now make a pag-i-na-tion prob-lem that `trans-late
+s' an in-stance of the 2-satisfyability
+ []
+
+[143]
+Overfull \hbox (4.28632pt too wide) in paragraph at lines 264--270
+\OML/cmm/m/it/10.95 P\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 f[]\OT1/cmr/m/n/10
+.95 )\OMS/cmsy/m/n/10.95 j \OT1/cmr/m/n/10.95 = 1$ \OT1/ptm/m/n/10.95 will sat-
+isfy the bound. (Re-call that the bad-ness is a sum of $\OML/cmm/m/it/10.95 W\O
+T1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t[]; f[]\OT1/cmr/m/n/10.95 )(\OML/cmm/m/i
+t/10.95 P\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t[]\OT1/cmr/m/n/10.95 ) \OMS/c
+msy/m/n/10.95 ^^@
+ []
+
+
+Overfull \hbox (26.51677pt too wide) in paragraph at lines 293--298
+\OT1/ptm/m/n/10.95 To en-sure that these are the only con-fig-u-ra-tion that wi
+ll sat-isfy the bound, set $\OML/cmm/m/it/10.95 W\OT1/cmr/m/n/10.95 (\OML/cmm/m
+/it/10.95 t[]; f[]\OT1/cmr/m/n/10.95 ) =
+ []
+
+[144]
+Overfull \hbox (2.82225pt too wide) in paragraph at lines 315--317
+\OT1/ptm/m/n/10.95 Further con-di-tions on $\OML/cmm/m/it/10.95 W$ \OT1/ptm/m/n
+/10.95 en-sure that the $\OML/cmm/m/it/10.95 u[]$ \OT1/ptm/m/n/10.95 vari-ables
+ in-deed cor-re-spond to the proper $\OML/cmm/m/it/10.95 x[]$\OT1/ptm/m/n/10.95
+ .
+ []
+
+[145] <linear-bad.pdf, id=1691, 246.9225pt x 178.6675pt>
+File: linear-bad.pdf Graphic file (type pdf)
+ <use linear-bad.pdf>
+Package pdftex.def Info: linear-bad.pdf used on input line 414.
+(pdftex.def)             Requested size: 246.92188pt x 178.66705pt.
+
+[146] <dangle1.pdf, id=1698, 342.27875pt x 71.26625pt>
+File: dangle1.pdf Graphic file (type pdf)
+ <use dangle1.pdf>
+Package pdftex.def Info: dangle1.pdf used on input line 431.
+(pdftex.def)             Requested size: 239.59348pt x 49.88602pt.
+
+[147 <./graphics/linear-bad.pdf> <./graphics/dangle1.pdf>]
+<dangle2.pdf, id=1718, 427.5975pt x 121.45375pt>
+File: dangle2.pdf Graphic file (type pdf)
+ <use dangle2.pdf>
+Package pdftex.def Info: dangle2.pdf used on input line 451.
+(pdftex.def)             Requested size: 256.56047pt x 72.87279pt.
+ [148 <./graphics/dangle2.pdf>] writing exercise to Chapter-ex40.tex
+\openout3 = `Chapter-ex40.tex'.
+
+ (./Chapter-ex40.tex)
+\openout3 = `Chapter-an40.tex'.
+
+
+writing exercise to Chapter-ex41.tex
+\openout3 = `Chapter-ex41.tex'.
+
+ (./Chapter-ex41.tex)
+\openout3 = `Chapter-an41.tex'.
+
+
+writing exercise to Chapter-ex42.tex
+\openout3 = `Chapter-ex42.tex'.
+
+ (./Chapter-ex42.tex)
+\openout3 = `Chapter-an42.tex'.
+
+) [149]
+(./dynamic-projects.tex
+Overfull \hbox (0.24905pt too wide) in paragraph at lines 10--15
+[]\OT1/ptm/m/n/10.95 Many page lay-out pa-ram-e-ters (Ru-bin-stein [[]] and the
+ ref-er-ences therein)
+ []
+
+) [150]
+Chapter 4.
+Missing character: There is no Ê in font ptmro7t!
+
+Overfull \hbox (19.3794pt too wide) in paragraph at lines 347--354
+\OT1/ptm/m/n/10.95 by Fo-ley and Van Dam (sec-tion 11.2 about Splines) has been
+ placed on re-serve, \OT1/ptm/m/sl/10.95 T385.C587[]\OT1/ptm/m/n/10.95 .
+ []
+
+Excluding 'comment' comment. [151
+
+
+]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 372.
+
+(./bezier.tex [152] <hat-function.pdf, id=1761, 133.49875pt x 116.435pt>
+File: hat-function.pdf Graphic file (type pdf)
+
+<use hat-function.pdf>
+Package pdftex.def Info: hat-function.pdf used on input line 117.
+(pdftex.def)             Requested size: 133.4984pt x 116.43471pt.
+ [153] <runge.pdf, id=1770, 270.7716pt x 239.21371pt>
+File: runge.pdf Graphic file (type pdf)
+
+<use runge.pdf>
+Package pdftex.def Info: runge.pdf used on input line 151.
+(pdftex.def)             Requested size: 189.53882pt x 167.44844pt.
+ [154 <./graphics/hat-function.pdf>]
+Overfull \hbox (29.49918pt too wide) in paragraph at lines 186--195
+[]\OT1/ptm/m/n/10.95 The $\OML/cmm/m/it/10.95 k$\OT1/ptm/m/n/10.95 -th `[]di-vi
+ded dif-fer-ence' of a func-tion $\OML/cmm/m/it/10.95 g$ \OT1/ptm/m/n/10.95 in 
+the points $\OML/cmm/m/it/10.95 ^^\[] [] ^^\[]$\OT1/ptm/m/n/10.95 , no-ta-tion 
+$\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 ^^\[]; [] ; ^^\[]\OT1/cmr/m/n/10.95 ]\
+OML/cmm/m/it/10.95 g$\OT1/ptm/m/n/10.95 ,
+ []
+
+[155 <./graphics/runge.pdf>]
+Overfull \hbox (14.33932pt too wide) detected at line 241
+$ []$ 
+ []
+
+
+Overfull \hbox (4.88615pt too wide) in paragraph at lines 242--244
+\OT1/ptm/m/n/10.95 where $\OML/cmm/m/it/10.95 c[] \OT1/cmr/m/n/10.95 = [\OML/cm
+m/m/it/10.95 ^^\[]; [] ; ^^\[]\OT1/cmr/m/n/10.95 ]\OML/cmm/m/it/10.95 g=\OT1/cm
+r/m/n/10.95 [\OML/cmm/m/it/10.95 ^^\[]; [] ; ^^\[]\OT1/cmr/m/n/10.95 ]\OML/cmm/
+m/it/10.95 g$\OT1/ptm/m/n/10.95 . This is a very ef-fi-cient eval-u-a-tion by H
+orner's
+ []
+
+[156]
+Overfull \hbox (35.27571pt too wide) detected at line 279
+$ []$ 
+ []
+
+[157] [158] [159]
+Overfull \hbox (50.09128pt too wide) detected at line 408
+$ []$ 
+ []
+
+<hermite.pdf, id=1826, 361.35pt x 216.81pt>
+File: hermite.pdf Graphic file (type pdf)
+ <use hermite.pdf>
+Package pdftex.def Info: hermite.pdf used on input line 410.
+(pdftex.def)             Requested size: 252.94327pt x 151.76596pt.
+File: hermite.gp  (verbatim)
+
+Overfull \hbox (32.99976pt too wide) in paragraph at lines 414--414
+[]\OT1/pcr/m/n/9 plot P1(x), P2(x), P3(x), P4(x) title ""[] 
+ []
+
+<herminp.pdf, id=1830, 361.35pt x 216.81pt>
+File: herminp.pdf Graphic file (type pdf)
+ <use herminp.pdf>
+Package pdftex.def Info: herminp.pdf used on input line 423.
+(pdftex.def)             Requested size: 252.94327pt x 151.76596pt.
+File: herminp.gp  (verbatim)
+
+Overfull \hbox (0.5998pt too wide) in paragraph at lines 427--427
+[]  \OT1/pcr/m/n/9 + P3(x) + p2slope*P4(x) title ""[] 
+ []
+
+<hermpara.pdf, id=1833, 361.35pt x 216.81pt>
+File: hermpara.pdf Graphic file (type pdf)
+ <use hermpara.pdf>
+Package pdftex.def Info: hermpara.pdf used on input line 434.
+(pdftex.def)             Requested size: 252.94327pt x 151.76596pt.
+File: hermpara.gp  (verbatim)
+
+Overfull \hbox (65.39972pt too wide) in paragraph at lines 438--438
+[]  \OT1/pcr/m/n/9 p1x*P1(t)+p1dx*P2(t)+p2x*P3(t)+p2dx*P4(t), \[] 
+ []
+
+
+Overfull \hbox (59.99973pt too wide) in paragraph at lines 438--438
+[]  \OT1/pcr/m/n/9 p1y*P1(t)+p1dy*P2(t)+p2y*P3(t)+p2dy*P4(t) \[] 
+ []
+
+
+Overfull \hbox (16.79977pt too wide) in paragraph at lines 438--438
+[]\OT1/pcr/m/n/9 plot [t=0:.2] p1x+t*p1dx,p1y+t*p1dy \[] 
+ []
+
+
+Overfull \hbox (16.79977pt too wide) in paragraph at lines 438--438
+[]\OT1/pcr/m/n/9 plot [t=0:.2] p2x-t*p2dx,p2y-t*p2dy \[] 
+ []
+
+
+Overfull \hbox (23.99995pt too wide) detected at line 442
+$ []$ 
+ []
+
+[160 <./graphics/hermite.pdf>] <hermpara2.pdf, id=1847, 361.35pt x 216.81pt>
+File: hermpara2.pdf Graphic file (type pdf)
+
+<use hermpara2.pdf>
+Package pdftex.def Info: hermpara2.pdf used on input line 453.
+(pdftex.def)             Requested size: 252.94327pt x 151.76596pt.
+File: hermpara2.gp  (verbatim)
+
+Overfull \hbox (65.39972pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1x*P1(t)+p1dx*P2(t)+p2x*P3(t)+p2dx*P4(t), \[] 
+ []
+
+
+Overfull \hbox (59.99973pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1y*P1(t)+p1dy*P2(t)+p2y*P3(t)+p2dy*P4(t) \[] 
+ []
+
+
+Overfull \hbox (65.39972pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1x*P1(t)+p1dx*P2(t)+p2x*P3(t)+p2dx*P4(t), \[] 
+ []
+
+
+Overfull \hbox (59.99973pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1y*P1(t)+p1dy*P2(t)+p2y*P3(t)+p2dy*P4(t) \[] 
+ []
+
+
+Overfull \hbox (65.39972pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1x*P1(t)+p1dx*P2(t)+p2x*P3(t)+p2dx*P4(t), \[] 
+ []
+
+
+Overfull \hbox (59.99973pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1y*P1(t)+p1dy*P2(t)+p2y*P3(t)+p2dy*P4(t) \[] 
+ []
+
+
+Overfull \hbox (65.39972pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1x*P1(t)+p1dx*P2(t)+p2x*P3(t)+p2dx*P4(t), \[] 
+ []
+
+
+Overfull \hbox (59.99973pt too wide) in paragraph at lines 457--457
+[]  \OT1/pcr/m/n/9 p1y*P1(t)+p1dy*P2(t)+p2y*P3(t)+p2dy*P4(t) \[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [161 <./graphics/herminp.pdf>] <bernshtein.pdf, id=1859, 361.35pt x 216.81pt>
+File: bernshtein.pdf Graphic file (type pdf)
+
+<use bernshtein.pdf>
+Package pdftex.def Info: bernshtein.pdf used on input line 478.
+(pdftex.def)             Requested size: 252.94327pt x 151.76596pt.
+
+Overfull \vbox (0.36996pt too high) has occurred while \output is active []
+
+
+[162 <./graphics/hermpara.pdf>] [163 <./graphics/hermpara2.pdf>]
+Excluding 'comment' comment. writing exercise to Chapter-ex43.tex
+\openout3 = `Chapter-ex43.tex'.
+
+
+(./Chapter-ex43.tex <bquad.pdf, id=1881, 361.35pt x 216.81pt>
+File: bquad.pdf Graphic file (type pdf)
+ <use bquad.pdf>
+Package pdftex.def Info: bquad.pdf used on input line 4.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Overfull \hbox (0.33736pt too wide) in paragraph at lines 556--8
+[]\OT1/ptm/b/n/10.95 Exercise 43. \OT1/ptm/m/n/10.95 One could also de-fine qua
+dratic Bezier curves. These
+ []
+
+
+Overfull \hbox (67.47394pt too wide) in paragraph at lines 556--8
+[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [164])
+Underfull \vbox (badness 1102) has occurred while \output is active []
+
+ [165 <./graphics/bernshtein.pdf> <./graphics/bquad.pdf>]
+\openout3 = `Chapter-an43.tex'.
+
+
+Overfull \hbox (23.26614pt too wide) detected at line 612
+$ []$ 
+ []
+
+<herm2.pdf, id=1899, 361.35pt x 216.81pt>
+File: herm2.pdf Graphic file (type pdf)
+ <use herm2.pdf>
+Package pdftex.def Info: herm2.pdf used on input line 633.
+(pdftex.def)             Requested size: 252.94327pt x 151.76596pt.
+File: herm2.gp  (verbatim)
+
+Overfull \hbox (54.59973pt too wide) in paragraph at lines 637--637
+[]  \OT1/pcr/m/n/9 p1x*P1(t)+p2x*P2(t)+p3x*P3(t)+p4x*P4(t), \[] 
+ []
+
+
+Overfull \hbox (49.19974pt too wide) in paragraph at lines 637--637
+[]  \OT1/pcr/m/n/9 p1y*P1(t)+p2y*P2(t)+p3y*P3(t)+p4y*P4(t) \[] 
+ []
+
+
+Overfull \hbox (70.79971pt too wide) in paragraph at lines 637--637
+[]  \OT1/pcr/m/n/9 p3x*P1(t)+.5*p4x*P2(t)+p5x*P3(t)+p6x*P4(t), \[] 
+ []
+
+
+Overfull \hbox (65.39972pt too wide) in paragraph at lines 637--637
+[]  \OT1/pcr/m/n/9 p3y*P1(t)+.5*p4y*P2(t)+p5y*P3(t)+p6y*P4(t) \[] 
+ []
+
+
+Overfull \hbox (65.39972pt too wide) in paragraph at lines 637--637
+[]  \OT1/pcr/m/n/9 p3x*P1(t)+2*p4x*P2(t)+p5x*P3(t)+p6x*P4(t), \[] 
+ []
+
+
+Overfull \hbox (59.99973pt too wide) in paragraph at lines 637--637
+[]  \OT1/pcr/m/n/9 p3y*P1(t)+2*p4y*P2(t)+p5y*P3(t)+p6y*P4(t) \[] 
+ []
+
+[166] [167 <./graphics/herm2.pdf>] <bezier2.pdf, id=1916, 361.35pt x 216.81pt>
+File: bezier2.pdf Graphic file (type pdf)
+
+<use bezier2.pdf>
+Package pdftex.def Info: bezier2.pdf used on input line 645.
+(pdftex.def)             Requested size: 252.94327pt x 151.76596pt.
+File: bezier2.gp  (verbatim)
+
+Overfull \hbox (54.59973pt too wide) in paragraph at lines 649--649
+[]  \OT1/pcr/m/n/9 P1x*B1(t)+P2x*B2(t)+P3x*B3(t)+P4x*B4(t), \[] 
+ []
+
+
+Overfull \hbox (49.19974pt too wide) in paragraph at lines 649--649
+[]  \OT1/pcr/m/n/9 P1y*B1(t)+P2y*B2(t)+P3y*B3(t)+P4y*B4(t) \[] 
+ []
+
+
+Overfull \hbox (54.59973pt too wide) in paragraph at lines 649--649
+[]  \OT1/pcr/m/n/9 P4x*B1(t)+P5x*B2(t)+P6x*B3(t)+P7x*B4(t), \[] 
+ []
+
+
+Overfull \hbox (49.19974pt too wide) in paragraph at lines 649--649
+[]  \OT1/pcr/m/n/9 P4y*B1(t)+P5y*B2(t)+P6y*B3(t)+P7y*B4(t) \[] 
+ []
+
+
+Overfull \hbox (5.99979pt too wide) in paragraph at lines 649--649
+[]  \OT1/pcr/m/n/9 P4x+t*(P5x-P4x),P4y+t*(P5y-P4y) \[] 
+ []
+
+
+Overfull \hbox (5.99979pt too wide) in paragraph at lines 649--649
+[]  \OT1/pcr/m/n/9 P1x+t*(P2x-P1x),P1y+t*(P2y-P1y) \[] 
+ []
+
+
+Overfull \hbox (5.99979pt too wide) in paragraph at lines 649--649
+[]  \OT1/pcr/m/n/9 P7x+t*(P6x-P7x),P7y+t*(P6y-P7y) \[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [168 <./graphics/bezier2.pdf>]) [169]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 373.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 373.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 373.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 373.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\<let>-command' on input line 373.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\next' on input line 373.
+
+
+Package hyperref Warning: Composite letter `\textasciicircum+='
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicircum' on input line 373.
+
+(./gnuplot.tex [170]) [171] (./raster.tex
+<one-per-column.pdf, id=1940, 228.855pt x 114.4275pt>
+File: one-per-column.pdf Graphic file (type pdf)
+ <use one-per-column.pdf>
+Package pdftex.def Info: one-per-column.pdf used on input line 39.
+(pdftex.def)             Requested size: 114.42722pt x 57.21361pt.
+
+[172] <line-midpoint.pdf, id=1947, 384.47641pt x 203.5605pt>
+File: line-midpoint.pdf Graphic file (type pdf)
+
+<use line-midpoint.pdf>
+Package pdftex.def Info: line-midpoint.pdf used on input line 66.
+(pdftex.def)             Requested size: 269.13164pt x 142.49136pt.
+ [173 <./graphics/one-per-column.pdf> <./graphics/line-midpoint.pdf>]
+Overfull \hbox (0.99435pt too wide) detected at line 104
+$ []$ 
+ []
+
+writing exercise to Chapter-ex44.tex
+\openout3 = `Chapter-ex44.tex'.
+
+ (./Chapter-ex44.tex)
+\openout3 = `Chapter-an44.tex'.
+
+ [174]
+<circle-midpoint.pdf, id=1966, 358.4592pt x 202.8378pt>
+File: circle-midpoint.pdf Graphic file (type pdf)
+
+<use circle-midpoint.pdf>
+Package pdftex.def Info: circle-midpoint.pdf used on input line 143.
+(pdftex.def)             Requested size: 250.91972pt x 141.98547pt.
+ writing exercise to Chapter-ex45.tex
+\openout3 = `Chapter-ex45.tex'.
+
+
+(./Chapter-ex45.tex)
+\openout3 = `Chapter-an45.tex'.
+
+ [175 <./graphics/circle-midpoint.pdf>]
+<raster-problems.pdf, id=1981, 279.0425pt x 123.46124pt>
+File: raster-problems.pdf Graphic file (type pdf)
+
+<use raster-problems.pdf>
+Package pdftex.def Info: raster-problems.pdf used on input line 217.
+(pdftex.def)             Requested size: 209.28136pt x 92.59569pt.
+ <illegible.pdf, id=1982, 197.73875pt x 162.6075pt>
+File: illegible.pdf Graphic file (type pdf)
+
+<use illegible.pdf>
+Package pdftex.def Info: illegible.pdf used on input line 218.
+(pdftex.def)             Requested size: 148.3037pt x 121.95532pt.
+ <e-bad.pdf, id=1983, 207.77625pt x 219.82124pt>
+File: e-bad.pdf Graphic file (type pdf)
+
+<use e-bad.pdf>
+Package pdftex.def Info: e-bad.pdf used on input line 225.
+(pdftex.def)             Requested size: 155.83179pt x 164.86551pt.
+ <e-good.pdf, id=1984, 213.79875pt x 224.84pt>
+File: e-good.pdf Graphic file (type pdf)
+ <use e-good.pdf>
+Package pdftex.def Info: e-good.pdf used on input line 226.
+(pdftex.def)             Requested size: 160.34866pt x 168.62958pt.
+
+[176] <fig2-1-1.pdf, id=1993, 130.4875pt x 140.525pt>
+File: fig2-1-1.pdf Graphic file (type pdf)
+ <use fig2-1-1.pdf>
+Package pdftex.def Info: fig2-1-1.pdf used on input line 256.
+(pdftex.def)             Requested size: 58.71883pt x 63.23566pt.
+
+<fig2-1-2.pdf, id=1994, 217.81375pt x 274.02374pt>
+File: fig2-1-2.pdf Graphic file (type pdf)
+ <use fig2-1-2.pdf>
+Package pdftex.def Info: fig2-1-2.pdf used on input line 257.
+(pdftex.def)             Requested size: 98.01527pt x 123.30954pt.
+
+<fig2-1-3.pdf, id=1995, 217.81375pt x 274.02374pt>
+File: fig2-1-3.pdf Graphic file (type pdf)
+ <use fig2-1-3.pdf>
+Package pdftex.def Info: fig2-1-3.pdf used on input line 258.
+(pdftex.def)             Requested size: 98.01527pt x 123.30954pt.
+
+<fig2-1-4.pdf, id=1996, 217.81375pt x 274.02374pt>
+File: fig2-1-4.pdf Graphic file (type pdf)
+ <use fig2-1-4.pdf>
+Package pdftex.def Info: fig2-1-4.pdf used on input line 259.
+(pdftex.def)             Requested size: 98.01527pt x 123.30954pt.
+ [177 <./graphics/raster-problems.pdf> <./graphics/illegible.pdf>]
+<overlapping-contours.pdf, id=2020, 201.75375pt x 243.91125pt>
+File: overlapping-contours.pdf Graphic file (type pdf)
+
+<use overlapping-contours.pdf>
+Package pdftex.def Info: overlapping-contours.pdf used on input line 292.
+(pdftex.def)             Requested size: 141.22665pt x 170.7367pt.
+
+<windingrules.pdf, id=2021, 358.33875pt x 123.46124pt>
+File: windingrules.pdf Graphic file (type pdf)
+ <use windingrules.pdf>
+Package pdftex.def Info: windingrules.pdf used on input line 302.
+(pdftex.def)             Requested size: 250.83542pt x 86.42226pt.
+
+<winding_ar4win_100.png, id=2023, 636.3775pt x 241.90375pt>
+File: winding_ar4win_100.png Graphic file (type png)
+
+<use winding_ar4win_100.png>
+Package pdftex.def Info: winding_ar4win_100.png used on input line 315.
+(pdftex.def)             Requested size: 361.34999pt x 137.35873pt.
+
+<winding_ar4win_150.png, id=2024, 1021.8175pt x 300.12125pt>
+File: winding_ar4win_150.png Graphic file (type png)
+
+<use winding_ar4win_150.png>
+Package pdftex.def Info: winding_ar4win_150.png used on input line 316.
+(pdftex.def)             Requested size: 361.34999pt x 106.12933pt.
+
+<o-horizontal.pdf, id=2025, 248.93pt x 257.96375pt>
+File: o-horizontal.pdf Graphic file (type pdf)
+ <use o-horizontal.pdf>
+Package pdftex.def Info: o-horizontal.pdf used on input line 325.
+(pdftex.def)             Requested size: 149.35915pt x 154.77943pt.
+
+<o-vertical.pdf, id=2026, 318.18875pt x 257.96375pt>
+File: o-vertical.pdf Graphic file (type pdf)
+ <use o-vertical.pdf>
+Package pdftex.def Info: o-vertical.pdf used on input line 326.
+(pdftex.def)             Requested size: 190.9147pt x 154.77943pt.
+
+[178 <./graphics/e-bad.pdf> <./graphics/e-good.pdf>]
+<dropout.pdf, id=2049, 338.26375pt x 361.35pt>
+File: dropout.pdf Graphic file (type pdf)
+ <use dropout.pdf>
+Package pdftex.def Info: dropout.pdf used on input line 358.
+(pdftex.def)             Requested size: 169.13145pt x 180.67456pt.
+ [179 <./graphics/fig2-1-1.pdf> <./graphics/fig2-1-2.pdf> <./graphics/fig2-1-3.
+pdf> <./graphics/fig2-1-4.pdf>] [180 <./graphics/overlapping-contours.pdf>] [18
+1 <./graphics/windingrules.pdf> <./graphics/winding_ar4win_100.png> <./graphics
+/winding_ar4win_150.png>]) [182 <./graphics/o-horizontal.pdf> <./graphics/o-ver
+tical.pdf>]
+(./bezier-projects.tex
+Overfull \hbox (0.132pt too wide) in paragraph at lines 10--16
+\OT1/pcr/m/n/10.95 devworld . apple . com / dev / techsupport / develop / issue
+25 /
+ []
+
+) [183 <./graphics/dropout.pdf>] [184
+
+]
+Chapter 5.
+[185
+
+]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 392.
+
+(./lambda.tex (./logicmacs.tex
+\testtoks=\toks22
+)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+Overfull \hbox (0.60971pt too wide) in paragraph at lines 37--40
+[]\OT1/ptm/m/n/10.95 To test log-i-cal ex-pres-sions, we at-tach \OT1/pcr/m/n/1
+0.95 TF \OT1/ptm/m/n/10.95 to them be-fore eva-lut-ing; that was [][]\OT1/pcr/m
+/n/10.95 \True TF
+ []
+
+[186]
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ [187] (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+(./comment.cut) [188] writing exercise to Chapter-ex46.tex
+\openout3 = `Chapter-ex46.tex'.
+
+ (./Chapter-ex46.tex)
+\openout3 = `Chapter-an46.tex'.
+
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+(./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ [189] (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+Overfull \hbox (18.19952pt too wide) in paragraph at lines 216--216
+[]  \OT1/pcr/m/n/10.95 \else \edef\tmp{\dtoks={\noexpand\AddOne{\the\dtoks}}}\t
+mp[] 
+ []
+
+(./comment.cut
+\dtoks=\toks23
+\nn=\count130
+)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+Overfull \hbox (5.05954pt too wide) in paragraph at lines 221--221
+[]\OT1/pcr/m/n/10.95 \ndef\One1 \ndef\Two2 \ndef\Three3 \ndef\Four4 \ndef\Five5
+[] 
+ []
+
+(./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ [190] (./comment.cut)
+writing exercise to Chapter-ex47.tex
+\openout3 = `Chapter-ex47.tex'.
+
+ (./Chapter-ex47.tex)
+\openout3 = `Chapter-an47.tex'.
+
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+
+[191]
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut) [192]
+writing exercise to Chapter-ex48.tex
+\openout3 = `Chapter-ex48.tex'.
+
+ (./Chapter-ex48.tex)
+\openout3 = `Chapter-an48.tex'.
+
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+(./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut) [193]
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+Overfull \vbox (1.38193pt too high) has occurred while \output is active []
+
+
+[194]
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+Overfull \hbox (57.61948pt too wide) in paragraph at lines 444--444
+[]            \OT1/pcr/m/n/10.95 {\GCD{\Sub{#1}{#2}}{#1}}}%   % then take GCD(#
+2-#1,#1)[] 
+ []
+
+
+Overfull \hbox (24.76952pt too wide) in paragraph at lines 444--444
+[]            \OT1/pcr/m/n/10.95 {\GCD{\Sub{#2}{#1}}{#2}}}}}  % else GCD(#1-#2,
+#2)[] 
+ []
+
+(./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+Overfull \hbox (77.32945pt too wide) in paragraph at lines 456--456
+[]\OT1/pcr/m/n/10.95 \def\FirstDividesByFrom#1#2{\FirstDividesByStarting{#1}{\A
+ddOne{#2}}}[] 
+ []
+
+(./comment.cut) [195]
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut) [196]
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+Overfull \hbox (83.89944pt too wide) in paragraph at lines 505--505
+[]\OT1/pcr/m/n/10.95 \def\Doubles{\ListApply{\ConsIf{\DividesBy\Two}}\Nil\Posit
+iveIntegers}[] 
+ []
+
+
+Overfull \hbox (37.9095pt too wide) in paragraph at lines 505--505
+[]\OT1/pcr/m/n/10.95 \def\AllSatisfy#1{\ListApply{\ConsIf{#1}}\Nil\PositiveInte
+gers}[] 
+ []
+
+(./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+ (./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+Overfull \hbox (90.46944pt too wide) in paragraph at lines 527--527
+[]\OT1/pcr/m/n/10.95 \def\FilteredList#1{\AllSatisfyIn{\NotDividesBy{\Head{#1}}
+}{\Tail{#1}}}[] 
+ []
+
+(./comment.cut)
+\openout3 = `comment.cut'.
+
+File: comment.cut  (verbatim)
+
+Overfull \hbox (97.03943pt too wide) in paragraph at lines 539--539
+[]\OT1/pcr/m/n/10.95 %\def\FilteredList#1{\AllSatisfyIn{\NotDividesBy{\Head{#1}
+}}{\Tail{#1}}}[] 
+ []
+
+
+Overfull \hbox (18.19952pt too wide) in paragraph at lines 539--539
+[]\OT1/pcr/m/n/10.95 \def\xFilteredList#1#2{\AllSatisfyIn{\NotDividesBy{#1}}{#2
+}}[] 
+ []
+
+(./comment.cut) [197]) [198]
+Chapter 6.
+
+Overfull \hbox (0.54735pt too wide) in paragraph at lines 412--416
+\OT1/ptm/m/n/10.95 tro-duc-tion to ISO 8859: []$\OT1/pcr/m/n/10.95 http : / / w
+ww . wordiq . com / definition / ISO _ 8859$[]\OT1/ptm/m/n/10.95 .
+ []
+
+[199
+
+
+]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 417.
+
+(./encoding.tex
+LaTeX Font Info:    Font shape `OT1/ptm/m/ui' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/m/it' tried instead on input line 29.
+ <ascii.pdf, id=2229, 96.60089pt x 48.4209pt>
+File: ascii.pdf Graphic file (type pdf)
+ <use ascii.pdf>
+Package pdftex.def Info: ascii.pdf used on input line 32.
+(pdftex.def)             Requested size: 212.52109pt x 106.52551pt.
+
+[200 <./graphics/ascii.pdf>] <dos437.pdf, id=2243, 96.60089pt x 96.60089pt>
+File: dos437.pdf Graphic file (type pdf)
+
+<use dos437.pdf>
+Package pdftex.def Info: dos437.pdf used on input line 45.
+(pdftex.def)             Requested size: 212.52109pt x 212.52109pt.
+ <macroman.pdf, id=2244, 96.60089pt x 48.4209pt>
+File: macroman.pdf Graphic file (type pdf)
+
+<use macroman.pdf>
+Package pdftex.def Info: macroman.pdf used on input line 48.
+(pdftex.def)             Requested size: 212.52109pt x 106.52551pt.
+ <winlatin1.pdf, id=2245, 96.60089pt x 48.4209pt>
+File: winlatin1.pdf Graphic file (type pdf)
+
+<use winlatin1.pdf>
+Package pdftex.def Info: winlatin1.pdf used on input line 51.
+(pdftex.def)             Requested size: 212.52109pt x 106.52551pt.
+
+Overfull \hbox (15.18704pt too wide) in paragraph at lines 53--57
+[]\OT1/ptm/m/n/10.95 More code pages are dis-played on []$\OT1/pcr/m/n/10.95 ht
+tp : / / aspell . net / charsets / codepages .
+ []
+
+[201 <./graphics/dos437.pdf> <./graphics/macroman.pdf> <./graphics/winlatin1.pd
+f>] <latin1.pdf, id=2270, 96.60089pt x 36.3759pt>
+File: latin1.pdf Graphic file (type pdf)
+ <use latin1.pdf>
+Package pdftex.def Info: latin1.pdf used on input line 80.
+(pdftex.def)             Requested size: 212.52109pt x 80.02663pt.
+
+<8859-cyrillic.pdf, id=2271, 96.60089pt x 36.3759pt>
+File: 8859-cyrillic.pdf Graphic file (type pdf)
+ <use 8859-cyrillic.pdf>
+Package pdftex.def Info: 8859-cyrillic.pdf used on input line 85.
+(pdftex.def)             Requested size: 212.52109pt x 80.02663pt.
+
+[202 <./graphics/latin1.pdf> <./graphics/8859-cyrillic.pdf>]
+Overfull \hbox (24.71033pt too wide) in paragraph at lines 128--135
+\OT1/ptm/m/n/10.95 Two in-ter-na-tional stan-dards or-ga-ni-za-tions, the Uni-c
+ode Con-sor-tium and ISO/IEC JTC1/SC2,
+ []
+
+[203] [204]
+Overfull \hbox (77.99367pt too wide) in paragraph at lines 223--240
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--240
+
+ []
+
+writing exercise to Chapter-ex49.tex
+\openout3 = `Chapter-ex49.tex'.
+
+ (./Chapter-ex49.tex)
+Overfull \hbox (5.05875pt too wide) in paragraph at lines 249--254
+\OT1/pcr/m/n/10.95 ac . uk / []mgk25 / unicode . html$[]\OT1/ptm/m/n/10.95 . Th
+e his-tory of it: []$\OT1/pcr/m/n/10.95 http : / / www . cl . cam . ac .
+ []
+
+
+Overfull \hbox (23.21436pt too wide) in paragraph at lines 259--262
+\OT1/ptm/m/n/10.95 See []$\OT1/pcr/m/n/10.95 http : / / www . cs . tut . fi / [
+]jkorpela / unicode / linebr . html$[] \OT1/ptm/m/n/10.95 and []$\OT1/pcr/m/n/1
+0.95 http :
+ []
+
+[205] <arabic-date.pdf, id=2335, 603.25375pt x 173.64874pt>
+File: arabic-date.pdf Graphic file (type pdf)
+
+<use arabic-date.pdf>
+Package pdftex.def Info: arabic-date.pdf used on input line 273.
+(pdftex.def)             Requested size: 361.95503pt x 104.19005pt.
+
+Overfull \hbox (2.43889pt too wide) in paragraph at lines 275--279
+[]\OT1/ptm/m/n/10.95 However, when dif-fer-ently di-rec-tional texts are em-bed
+-ded, some ex-plicit help is needed.
+ []
+
+[206 <./graphics/arabic-date.pdf>] [207]
+Overfull \hbox (28.71146pt too wide) in paragraph at lines 407--410
+[]\OT1/pcr/m/n/10.95 iso-ir-6\OT1/ptm/m/n/10.95 , \OT1/pcr/m/n/10.95 ANSI_X3.4-
+1986\OT1/ptm/m/n/10.95 , \OT1/pcr/m/n/10.95 ISO_646.irv:1991\OT1/ptm/m/n/10.95 
+, \OT1/pcr/m/n/10.95 ASCII\OT1/ptm/m/n/10.95 , \OT1/pcr/m/n/10.95 ISO646-US\OT1
+/ptm/m/n/10.95 ,
+ []
+
+
+Overfull \hbox (12.83398pt too wide) in paragraph at lines 407--410
+\OT1/pcr/m/n/10.95 US-ASCII (preferred MIME name)\OT1/ptm/m/n/10.95 , \OT1/pcr/
+m/n/10.95 us\OT1/ptm/m/n/10.95 , \OT1/pcr/m/n/10.95 IBM367\OT1/ptm/m/n/10.95 , 
+\OT1/pcr/m/n/10.95 cp367\OT1/ptm/m/n/10.95 , \OT1/pcr/m/n/10.95 csASCII 
+ []
+
+
+Overfull \hbox (53.49655pt too wide) in paragraph at lines 411--416
+\OT1/ptm/m/n/10.95 full list of char-ac-ter sets is at []$\OT1/pcr/m/n/10.95 ht
+tp : / / www . iana . org / assignments / character-[]sets$[]\OT1/ptm/m/n/10.95
+ ,
+ []
+
+[208]
+Overfull \hbox (1.1916pt too wide) in paragraph at lines 423--427
+[]\OT1/ptm/m/n/10.95 With a vaguely sym-bolic name: [][]\OT1/pcr/m/n/10.95 &cop
+y; []\OT1/ptm/m/n/10.95 is the copy-right sym-bol. See []$\OT1/pcr/m/n/10.95 ht
+tp :
+ []
+
+
+Overfull \hbox (98.68188pt too wide) in paragraph at lines 435--435
+ []\OT1/pcr/m/n/10.95 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charse
+t=utf-8">[] 
+ []
+
+<latin1-html.pdf, id=2372, 591.20876pt x 137.51375pt>
+File: latin1-html.pdf Graphic file (type pdf)
+ <use latin1-html.pdf>
+Package pdftex.def Info: latin1-html.pdf used on input line 439.
+(pdftex.def)             Requested size: 354.72798pt x 82.50888pt.
+
+[209 <./graphics/latin1-html.pdf>] [210] writing exercise to Chapter-ex50.tex
+\openout3 = `Chapter-ex50.tex'.
+
+
+(./Chapter-ex50.tex) writing exercise to Chapter-ex51.tex
+\openout3 = `Chapter-ex51.tex'.
+
+ (./Chapter-ex51.tex)
+writing exercise to Chapter-ex52.tex
+\openout3 = `Chapter-ex52.tex'.
+
+ (./Chapter-ex52.tex)
+writing exercise to Chapter-ex53.tex
+\openout3 = `Chapter-ex53.tex'.
+
+ (./Chapter-ex53.tex)
+Overfull \hbox (5.40683pt too wide) in paragraph at lines 558--558
+[]\OT1/ptm/b/n/10.95 Exercise 53. \OT1/ptm/m/n/10.95 ISO 8859 has the `non-brea
+king space' at po-si-tion \OT1/pcr/m/n/10.95 A0\OT1/ptm/m/n/10.95 .
+ []
+
+) [211] (./fonts.tex <a-glyphs.pdf, id=2407, 417.56pt x 92.345pt>
+File: a-glyphs.pdf Graphic file (type pdf)
+
+<use a-glyphs.pdf>
+Package pdftex.def Info: a-glyphs.pdf used on input line 25.
+(pdftex.def)             Requested size: 292.29pt x 64.64104pt.
+ <fi-ligature.pdf, id=2408, 284.06125pt x 88.33pt>
+File: fi-ligature.pdf Graphic file (type pdf)
+
+<use fi-ligature.pdf>
+Package pdftex.def Info: fi-ligature.pdf used on input line 42.
+(pdftex.def)             Requested size: 198.84149pt x 61.83057pt.
+ <Tamil-split.pdf, id=2409, 225.84375pt x 89.33376pt>
+File: Tamil-split.pdf Graphic file (type pdf)
+
+<use Tamil-split.pdf>
+Package pdftex.def Info: Tamil-split.pdf used on input line 50.
+(pdftex.def)             Requested size: 158.08954pt x 62.53319pt.
+ [212 <./graphics/a-glyphs.pdf>]
+<o-accents.pdf, id=2422, 476.78125pt x 138.5175pt>
+File: o-accents.pdf Graphic file (type pdf)
+ <use o-accents.pdf>
+Package pdftex.def Info: o-accents.pdf used on input line 60.
+(pdftex.def)             Requested size: 333.74458pt x 96.96158pt.
+
+Underfull \vbox (badness 5504) has occurred while \output is active []
+
+ [213 <./graphics/fi-ligature.pdf> <./graphics/Tamil-split.pdf> <./graphics/o-a
+ccents.pdf>] <design-size.pdf, id=2449, 307.1475pt x 18.0675pt>
+File: design-size.pdf Graphic file (type pdf)
+ <use design-size.pdf>
+Package pdftex.def Info: design-size.pdf used on input line 139.
+(pdftex.def)             Requested size: 307.14674pt x 18.06744pt.
+
+[214] <optical-masters.pdf, id=2457, 437.635pt x 164.615pt>
+File: optical-masters.pdf Graphic file (type pdf)
+
+<use optical-masters.pdf>
+Package pdftex.def Info: optical-masters.pdf used on input line 148.
+(pdftex.def)             Requested size: 262.58302pt x 98.76976pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [215 <./graphics/design-size.pdf> <./graphics/optical-masters.pdf>] [216]
+Overfull \hbox (2.52658pt too wide) in paragraph at lines 233--242
+\OT1/ptm/m/n/10.95 can-not be trans-formed into one, two or sev-en-teen second-
+order Beziers--approximations
+ []
+
+[217] <opentype.pdf, id=2491, 70.1019pt x 57.3342pt>
+File: opentype.pdf Graphic file (type pdf)
+ <use opentype.pdf>
+Package pdftex.def Info: opentype.pdf used on input line 317.
+(pdftex.def)             Requested size: 70.10172pt x 57.33405pt.
+
+[218 <./graphics/opentype.pdf>] [219]
+Overfull \hbox (11.93335pt too wide) in paragraph at lines 429--431
+[]\OT1/ptm/m/n/10.95 using the com-mand []\OT1/pcr/m/n/10.95 \textmd \OT1/ptm/m
+/n/10.95 and the dec-la-ra-tion []\OT1/pcr/m/n/10.95 \mdseries\OT1/ptm/m/n/10.9
+5 . 
+ []
+
+
+Overfull \hbox (8.40724pt too wide) in paragraph at lines 439--441
+[]\OT1/ptm/m/n/10.95 This is the de-fault shape, ex-plic-itly avail-able throug
+h []\OT1/pcr/m/n/10.95 \textup \OT1/ptm/m/n/10.95 or []\OT1/pcr/m/n/10.95 \upsh
+ape\OT1/ptm/m/n/10.95 . 
+ []
+
+) [220] (./latexfont.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\<let>-command' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\next' on input line 1.
+
+
+Package hyperref Warning: Composite letter `\textasciicircum+='
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicircum' on input line 1.
+
+)
+Overfull \hbox (18.34947pt too wide) in paragraph at lines 30--420
+[]\OT1/ptm/m/n/10.95 These code pages are all con-ven-tions for the in-ter-pre-
+ta-tion of singly octets. The \OT1/pcr/m/n/10.95 inputenc
+ []
+
+[221] (./encoding-projects.tex) Excluding 'quiz' comment. [222]
+Chapter 7.
+[223
+
+
+]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 457.
+
+(./web.tex) [224] (./software.tex [225] [226] [227]) [228] (./markup.tex
+[229]) [230] (./software-projects.tex
+Overfull \hbox (0.25047pt too wide) in paragraph at lines 4--6
+[]\OT1/ptm/m/n/10.95 Plain Old Doc-u-men-ta-tion; used for Perl. []$\OT1/pcr/m/
+n/10.95 http : / / www . perl . com /
+ []
+
+
+Overfull \hbox (3.5373pt too wide) in paragraph at lines 9--10
+[][]$\OT1/pcr/m/n/10.95 http : / / webpages . charter . net / edreamleo / front
+ . html$[] 
+ []
+
+Excluding 'comment' comment.
+Overfull \hbox (27.9812pt too wide) in paragraph at lines 31--40
+\OT1/pcr/m/n/10.95 www . pytex . org/$[]\OT1/ptm/m/n/10.95 , ant []$\OT1/pcr/m/
+n/10.95 http : / / www-[]mgi . informatik . rwth-[]aachen .
+ []
+
+
+Overfull \hbox (5.50462pt too wide) in paragraph at lines 52--59
+[]\OT1/ptm/m/n/10.95 Knuth has pretty lib-eral ideas about pub-lish-ing soft-wa
+re; some-what against
+ []
+
+
+Overfull \hbox (7.5206pt too wide) in paragraph at lines 52--59
+\OT1/ptm/m/n/10.95 patents and copy-right, the state of af-fairs in the world. 
+Read []$\OT1/pcr/m/n/10.95 http : / / swpat .
+ []
+
+) (./course.bbl [231] [232
+
+] [233]) (./course.ind)
+Excluding 'instructor' comment. Excluding 'instructor' comment.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 485.
+ [234]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 485.
+
+(./course.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 485.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 485.
+Package rerunfilecheck Info: File `course.out' has not changed.
+(rerunfilecheck)             Checksum: BCA20771EC4086ED8E9EA527CA094194;7289.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 485.
+ ) 
+Here is how much of TeX's memory you used:
+ 8429 strings out of 493588
+ 118383 string characters out of 6147357
+ 202589 words of memory out of 5000000
+ 10429 multiletter control sequences out of 15000+600000
+ 58865 words of font info for 135 fonts, out of 8000000 for 9000
+ 846 hyphenation exceptions out of 8191
+ 42i,13n,63p,231b,645s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/opt/local/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</opt/local/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texm
+f-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-tex
+live/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></opt/local/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></opt/local/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></opt/local/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmmi6.pfb></opt/local/share/texmf-texlive/fonts/typ
+e1/public/amsfonts/cm/cmmi8.pfb></opt/local/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmmi9.pfb></opt/local/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmr10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmr6.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
+8.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+/opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/
+local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/local/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/local/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></opt/local/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></opt/local/share/texmf-texli
+ve/fonts/type1/public/amsfonts/latxfont/line10.pfb></opt/local/share/texmf-texl
+ive/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/local/share/texmf-texl
+ive/fonts/type1/urw/courier/ucrr8a.pfb></opt/local/share/texmf-texlive/fonts/ty
+pe1/urw/times/utmb8a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/
+utmb8a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></o
+pt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></opt/local/share
+/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on course.pdf (234 pages, 4875418 bytes).
+PDF statistics:
+ 2858 PDF objects out of 2984 (max. 8388607)
+ 2429 compressed objects within 25 object streams
+ 756 named destinations out of 1000 (max. 500000)
+ 1183 words of extra memory for PDF output out of 10000 (max. 10000000)
+

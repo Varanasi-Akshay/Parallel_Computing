@@ -1,0 +1,290 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Lecture note macros}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\frame{
+  \frametitle{Basic problem}
+\begin{itemize}
+\item Disabling piece of input (under construction)
+\item Selectively inluding parts of input (teacher/student versions)
+\item Multiple processing of input (input and output)
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Structure of the solution}
+\begin{itemize}
+\item Use environment
+\item Read input, line by line, verbatim
+\item Output to file
+\item Maybe process file.
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{API}
+\begin{itemize}
+\item Define comment by 
+\begin{verbatim}
+\excludecomment{comment}
+\end{verbatim}
+or
+\begin{verbatim}
+\includecomment{comment}
+\end{verbatim}
+\item Then write
+\begin{verbatim}
+\begin{comment}
+maybe in, maybe out
+\end{comment}
+\end{verbatim}
+\item (file \n{comment.sty})
+\end{itemize}
+}
+
+\sectionframe{Tools}
+
+\frame[containsverbatim]{
+  \frametitle{File handling in \TeX}
+\begin{itemize}
+\item Define stream \verb+\newwrite\CommentStream+
+\item Open stream \verb+\openout\CommentStream=<file>+
+\item Write to stream \verb+\write\CommentStream{#1}+
+\item Close stream \verb+\closeout\CommentStream+
+\item (\TeX nical bit: use \verb+\immediate+ for open/close/write)
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Verbatim handling}
+\begin{verbatim}
+*\show\dospecials
+> \dospecials=macro:
+->\do \ \do \\\do \{\do \}\do \$\do \&\do \#\do \^\do \_\do \%\do \~.
+
+\def\makeinnocent#1{\catcode`#1=12 }
+
+<inside the verbatim macro:>
+    \let\do\makeinnocent \dospecials 
+    \makeinnocent\^^L% and whatever other special cases
+    \endlinechar`\^^M \catcode`\^^M=12
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{\LaTeX\ environments}
+Environment
+\begin{verbatim}
+\begin{foo}
+...
+\end{foo}
+\end{verbatim}
+is really nothing but
+\begin{verbatim}
+\begingroup
+  \foo
+  ...
+  \endfoo % if it exists
+\endgroup
+\end{verbatim}
+}
+
+\sectionframe{Putting the algorithm together}
+
+\frame[containsverbatim]{
+  \frametitle{Comment environment definition}
+Call \verb+\excludecomment{foo}+
+defines \verb+\foo+ as start of processing;
+end command is more tricky.
+}
+
+\frame[containsverbatim]{
+ \frametitle{Full implementation}
+\begin{verbatim}
+\def\excludecomment
+ #1{\csarg\def{#1}{\endgroup
+        \begingroup
+           \def\ProcessCutFile{}%
+           \def\ThisComment####1{}\ProcessComment{#1}}%
+    \csarg\def{After#1Comment}{\CloseAndInputCutFile \endgroup}
+    \CommentEndDef{#1}}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Recursive processing (simplified)}
+\begin{verbatim}
+\def\ProcessComment#1% start it all of
+   {\begingroup
+    <all that makeinnocent stuff goes here>
+    \xComment}
+{\escapechar=-1\relax
+ \global\edef\endcommenttest{\string\\end\string\{comment\}}
+}
+{\catcode`\^^M=12 \endlinechar=-1 %
+ \gdef\xComment#1^^M{\ProcessCommentLine}
+ \gdef\ProcessCommentLine#1^^M{\def\test{#1}
+      \ifx\endcommenttest\test
+          \edef\next{\endgroup\noexpand\EndOfComment}%
+      \else \immediate\write\CommentStream{#1}
+          \let\next\ProcessCommentLine
+      \fi \next}
+}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{The utility stuff}
+\begin{verbatim}
+\def\CommentCutFile{comment.cut}
+\def\SetUpCutFile
+   {\immediate\openout\CommentStream=\CommentCutFile
+    \let\ThisComment\WriteCommentLine}
+\def\WriteCommentLine#1{\immediate\write\CommentStream{#1}}
+\def\CloseAndInputCutFile
+   {\immediate\closeout\CommentStream
+    \ProcessCutFile
+    }%
+\def\ProcessCutFile
+   {\input{\CommentCutFile}\relax}
+\end{verbatim}
+}
+
+\sectionframe{Nifty extension}
+
+\frame[containsverbatim]{
+  \frametitle{More general macro}
+\begin{verbatim}
+\long\def\generalcomment
+ #1#2#3{\message{General comment '#1'}%
+    \csarg\def{#1}{\endgroup % counter the environment open of LaTeX
+          #2\relax \SetUpCutFile \ProcessComment{#1}}%
+    \csarg\def{After#1Comment}{\CloseAndInputCutFile#3}%
+    \CommentEndDef{#1}}
+% Use \#1
+\generalcomment{inputwithcode}
+  {\begingroup\def\ProcessCutFile{}}
+  {\verbatiminput{\CommentCutFile}
+   \endgroup
+   \input{\CommentCutFile}
+  }
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{more examples}
+\footnotesize
+\begin{verbatim}
+\generalcomment{mathexamplewithcode}
+  {\begingroup\def\ProcessCutFile{}}
+  {\verbatiminput{\CommentCutFile}
+   Output:
+   \begin{equation} \input{\CommentCutFile} \end{equation}
+   \endgroup
+  }
+\generalcomment{examplewithcode}
+  {\begingroup
+     \def\ProcessCutFile{}\def\CommentCutFile{example.tex}}
+  {\verbatiminput{\CommentCutFile}
+   Output:
+   \begin{quote}
+     \begin{minipage}[t]{3in}
+        \everypar{} \input{\CommentCutFile} 
+     \end{minipage}
+   \end{quote}
+   \endgroup
+  }
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Exercise and answer macros}
+Use:
+\begin{verbatim}
+\begin{594exercise}
+Show that ...
+\end{594exercise}
+\begin{answer}
+Given ....
+\end{answer}
+\end{verbatim}
+in the input file of the chapter.
+}
+
+\frame[containsverbatim]{
+  \frametitle{Implementation}
+\footnotesize
+\begin{verbatim}
+\generalcomment{594exercise}
+  {\refstepcounter{excounter}%
+   \begingroup\def\ProcessCutFile{}\par
+   \edef\tmp{\def\noexpand\CommentCutFile
+                 {\chaptername-ex\arabic{excounter}.tex}}\tmp
+   }
+  {\begin{quote}
+   \textbf{Exercise \arabic{excounter}.}\hspace{1em}\ignorespaces
+   \input{\CommentCutFile}
+   \end{quote}
+   \endgroup}
+\generalcomment{answer}
+  {\begingroup
+   \edef\tmp{\def\noexpand\CommentCutFile
+                 {\chaptername-an\noexpand\arabic{excounter}.tex}}\tmp
+   \def\ProcessCutFile{}}
+  {\endgroup}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{exercise sheet}
+\footnotesize
+Chapter file has:
+\begin{verbatim}
+\input{\chaptername}
+\newwrite\nx
+\openout\nx=\chaptername-nx.tex
+\write\nx{\arabic{excounter}}
+\closeout\nx
+\end{verbatim}
+Exercise file has
+\begin{verbatim}
+\newread\nx
+\openin\nx=\chaptername-nx.tex
+\read\nx to \nex
+\closein\nx
+
+\begin{enumerate}
+\repeat \for{nx} \to{\nex}
+  \do{\item \edef\tmp{\noexpand\input \chaptername-ex\number\nx.tex}\tmp}
+\end{enumerate}
+\end{verbatim}
+}
+
+\end{document}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+

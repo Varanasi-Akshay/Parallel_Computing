@@ -1,0 +1,20 @@
+\documentclass{article}
+
+\begin{document}
+
+\tracingonline=1
+\tracingmacros=2
+\tracingcommands=2
+
+\def\periodstop{.}
+\def\FakeSC#1#2 {\def\tmp{#1}%
+   \ifx\tmp\periodstop 
+     \def\next{.}
+   \else
+     \def\next{%
+         {\uppercase{#1}\footnotesize\uppercase{#2}\ }%
+         \FakeSC}%
+   \fi \next}
+\FakeSC This sentence is fake small-caps .
+
+\end{document}

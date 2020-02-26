@@ -1,0 +1,10 @@
+First part
+\begin{verbatim}
+\newcounter{answer}
+\newenvironment{answer}
+ {\refstepcounter{answer}
+  \par \textbf{Problem \arabic{answer}.}\ }
+ {\par}
+\end{verbatim}
+Put any code snippets in include files, which you include
+with \cs{input} and \cs{verbatiminput}.

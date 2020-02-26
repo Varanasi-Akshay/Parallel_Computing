@@ -1,0 +1,13 @@
+this is {a line} of text.
+handle \control sequences \andsuch
+with \arg{uments}.
+   Aha!  
+this line has %a comment
+
+
+x
+y%
+z
+
+\comm%
+and

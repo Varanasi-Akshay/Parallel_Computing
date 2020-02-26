@@ -1,0 +1,100 @@
+No separate handout for this chapter; see the book `\TeX\ by Topic'.
+
+\begin{594exercise}
+Write a macro \cs{intt} (`in typewriter type')
+such that \verb+\intt{foo}+ and
+\verb+\intt{foo_bar}+ are output as \n{foo} and \n{foo_bar},
+ in typewriter type. 
+\end{594exercise}
+\begin{answer}
+\begin{examplewithcode}
+\def\n{\bgroup\catcode`\#=12 \catcode`\_=12 \ttfamily
+  \let\next=}
+This is a \n{short} piece of \n{test_text}.
+\end{examplewithcode}
+\end{answer}
+
+\begin{594exercise}
+Write a macro that constructs another macro: \verb+\tees\three3+
+should be equivalent to \verb+\def\three{TTT}+, \verb+\tees\five5+
+equivalent to \verb+\def\five{TTTTT}+ et cetera. In other words, the
+first argument of \cs{tees} is the name of the macro you are defining,
+the second is the number of letters~`T' the defined macro expands to.
+To make sure that your solution really expands to that string of `T's,
+and not some code that generates it when the macro is called, 
+do \verb+\show\five+ and check the screen output.
+\end{594exercise}
+\begin{answer}
+\begin{examplewithcode}
+\newcount\ntees
+\def\tees#1#2{\ntees=#2 \def #1{}\ttees#1}
+\def\ttees#1{
+   \ifnum\ntees>0
+      \edef\tmp{\def\noexpand#1{#1T}}\tmp
+      \advance\ntees by -1 \ttees#1 \fi}
+\tees\sept7 \sept
+\end{examplewithcode}
+\end{answer}
+
+\begin{594exercise}
+\TeX\ natively has addition, multiplication, and division arithmetic. 
+Write a square root routine in \TeX. Hint: Use Newton's method.
+\end{594exercise}
+
+\begin{594exercise}
+\def\DefineWithDelims#1%
+   {\edef\tmp{\def\expandafter\noexpand\csname#1\endcsname
+                  \LeftDelim ####1\RightDelim}
+    \tmp}
+Make this work:
+\begin{examplewithcode}
+\def\LeftDelim{(}\def\RightDelim{)}
+\DefineWithDelims{foo}{My argument is `#1'.}
+\def\LeftDelim{<}\def\RightDelim{>}
+\DefineWithDelims{bar}{But my argument is `#1'.}
+\foo(one)\par
+\bar<two>
+\end{examplewithcode}
+In other words, \cs{DefineWithDelims} defines a macro --~in
+this case \cs{foo}~-- and this macro has one argument, delimited by
+custom delimiters. The delimiters can be specified for each macro separately.
+
+Hint: \cs{DefineWithDelims} is actually a macro with only one argument.
+Consider this code snippet:
+\begin{verbatim}
+\Define{foo}{ ... #1 ...}
+\def\Define#1{
+  \expandafter\def\csname #1\endcsname##1}
+\end{verbatim}
+\end{594exercise}
+\begin{answer}
+\begin{examplewithcode}
+\def\LeftDelim{(}\def\RightDelim{)}
+\def\DefineWithDelims#1%
+   {\edef\tmp{\def\expandafter\noexpand\csname#1\endcsname
+                  \LeftDelim ####1\RightDelim}
+    \tmp}
+\DefineWithDelims{foo}{The argument is `#1'.}
+\foo(bar) % note the parentheses!
+\end{examplewithcode}
+\end{answer}
+
+\endinput 
+
+\begin{594exercise}
+The `fake small caps' macro was inelegant, because it required the
+period at the end of the sentence to be separated with a space. Repair
+that macro so that it stops when there is a period at the end of a word.
+\end{594exercise}
+\begin{answer}
+\begin{verbatim}
+\def\periodstop{.}
+\def\FakeSC#1#2 {
+   {\uppercase{#1}\footnotesize\uppercase{#2}\ }%
+   \ifHasPeriod#2.; \def\next{}%
+   \else        \def\next{\FakeSC}%
+   \fi \next}
+\def\ifHasPeriod#1{\xTestPeriod#1.}
+\def\xTestPeriod#1#2.{}
+\end{verbatim}
+\end{answer}

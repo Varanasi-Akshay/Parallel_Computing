@@ -1,0 +1,190 @@
+\input lambda.sty
+
+\newif\iftrace\def\trace{\tracetrue}
+\def\display{\immediate\write0}
+\def\test#1{
+  \def\testapply##1{##1TF}
+  \display{#1:}\dotest}
+\def\gtest#1{
+  \def\testapply##1{##1}
+  \display{#1:}\dotest}
+\def\ttest#1{
+  \def\testapply##1{\noexpand\Transcribe{##1}TF}
+  \display{#1:}\dotest}
+\def\dotest#{\afterassignment\inandout\testtoks=}
+\newtoks\testtoks
+\def\inandout{
+  \display{input : \the\testtoks}
+  \edef\tmp{\display{output : \testapply{\the\testtoks}}}
+  \iftrace\tracingmacros=2 \tracingcommands=2 \tracingonline=1 \fi
+  \tmp
+  \iftrace\tracingmacros=0 \tracingcommands=0 \tracingonline=0 \fi
+  \display{}
+  }
+
+
+\def\PAUSE{
+    \read -1 to \pause
+    \uccode`\a=`\% \uppercase{\immediate\write15{aaaaaaaaaaaaaaaaaaaaaa}}
+    \immediate\write15{}
+    }
+
+\def\Skip#1{}
+\def\Error{\errmessage{ERROR}}
+\gtest{Identity}{\Identity{foo}}
+
+\gtest{Taking first argument}{\First{first}{second}}
+\gtest{Taking second argument}{\Second{first}{second}}
+
+%\PAUSE
+
+\gtest{Twiddling arguments of First}{\Twiddle\First{first}{second}}
+\gtest{Twiddling arguments of Second}{\Twiddle\Second{first}{second}}
+
+\test{True takes first of TF}{\True}
+\test{False takes second of TF}{\False}
+\test{Not true is false}{\Not\True}
+
+%\PAUSE
+
+\test{And truth table TrueTrue}{\And\True\True}
+\test{And truth table TrueFalse}{\And\True\False}
+\test{And truth table FalseTrue}{\And\False\True}
+\test{And truth table FalseFalse}{\And\False\False}
+
+%\PAUSE
+
+\test{Or truth table TrueTrue}{\Or\True\True}
+\test{Or truth table TrueFalse}{\Or\True\False}
+\test{Or truth table FalseTrue}{\Or\False\True}
+\test{Or truth table FalseFalse}{\Or\False\False}
+
+%\PAUSE
+
+% syntax: \TeXIf<#1=test><#2=arg><#3=true choice><#4=false choice>
+\def\TeXIf#1#2{#1#2 \gobblefalse\else\gobbletrue\fi}
+
+\def\ConditionalChoice#1#2#3#4{#1{#4}#2#3}
+\def\ConditionalApply#1#2#3#4{#1{#4}{#2}{#3}{#4}}
+\def\IfIsPositive{\TeXIf{\ifnum0<}}
+\test{Conditional positive}{\ConditionalChoice\IfIsPositive\True\False 3}
+\def\TestResult#1#2{\ConditionalChoice{#1}\True\False {#2}}
+
+\def\ConditionalChoice#1#2{#1{#2}}
+\def\TestResult#1#2{\ConditionalChoice{#1}{#2}}
+\test{Let's put it this way}{\TestResult\IfIsPositive{4}}
+\test{Let's put it this way}{\TestResult\IfIsPositive{-2}\True\False}
+\test{Let's put it this way}{\TestResult\IfIsPositive{-2}}
+\test{Let's put it this way}{\IfIsPositive{3}\True\False}
+\test{Let's put it this way}{\IfIsPositive{3}}
+\test{Let's put it this way}{\IfIsPositive{-2}}
+
+%\PAUSE
+
+\let\Nil=\Second
+\def\gobbletwo#1#2{}
+\def\IsNil#1{#1{\expandafter\False\gobbletwo}{\True}}
+\test{Detect NIL}{\IsNil\Nil}
+\test{Detect non-NIL}{\IsNil{\Singleton\Nil}}
+
+%\PAUSE
+
+\def\Head#1{#1\First\Error}
+\def\Tail#1{#1\Second\Error}
+\test{Head of a singleton}{\Head{\Singleton\True}}
+\test{Head of a tail of a 2-elt list}%
+     {\Head{\Tail{\Cons\True{\Singleton\False}}}}
+\test{Test list content}{\IfIsPositive{\Head{\Singleton{3}}}}
+\test{Test list content}{\IfIsPositive{\Head{\Tail{\Cons{3}{\Singleton{-4}}}}}}
+
+%\PAUSE
+
+\def\Stream#1{\Cons{#1}{\Stream{#1}}}
+\gtest{Infinite objects}{\Head{\Tail{\Stream3}}}
+\gtest{Infinite objects}{\Head{\Tail{\Tail{\Tail{\Tail{\Tail{\Stream3}}}}}}}
+
+%\PAUSE
+
+\let\Zero\Nil
+\def\AddOne#1{\Cons\Nil{#1}}
+\def\Transcribe#1{#1\TranscribeHT\gobbletwo}
+\def\TranscribeHT#1#2{1\Transcribe{#2}}
+\test{Increment}{\Transcribe{\AddOne{\AddOne{\AddOne\Zero}}}}
+
+\def\IsEven#1{#1\IsOddp\True}
+\def\IsOddp#1#2{\IsOdd{#2}}
+\def\IsOdd#1{#1\IsEvenp\False}
+\def\IsEvenp#1#2{\IsEven{#2}}
+\test{Test even}{\IsEven{\AddOne{\AddOne{\AddOne\Zero}}}}
+\test{Test odd}{\IsOdd{\AddOne{\AddOne{\AddOne\Zero}}}}
+\test{Test even}{\IsEven{\AddOne{\AddOne{\AddOne{\AddOne{\Zero}}}}}}
+\test{Test odd}{\IsOdd{\AddOne{\AddOne{\AddOne{\AddOne{\Zero}}}}}}
+
+\PAUSE
+
+% Alan: foldr
+% #1=function #2=zero arg #3=list
+\def\ListApply#1#2#3{#3{\ListApplyp{#1}{#2}}{#2}}
+\def\ListApplyp#1#2#3#4{#1{#3}{\ListApply{#1}{#2}{#4}}}
+%\def\Foldl#1#2#3{#3{\Foldlp{#1}{#2}}{#2}}
+%\def\Foldlp#1#2#3#4{\Foldl{#1}{#1{#2}{#3}}{#4}}
+\def\Cat#1#2{\ListApply\Cons{#2}{#1}}
+\test{Cat two lists}%
+  {\Transcribe{\Cat{\Singleton\Nil}{\Cons\Nil{\Singleton\Nil}}}}
+
+\newtoks\dtoks\newcount\n
+\def\ndef#1#2{\n=#2 \dtoks={\Zero}\nndef#1}
+\def\nndef#1{
+  \ifnum\n=0 \edef\tmp{\def\noexpand#1{\the\dtoks}}\tmp
+  \else \edef\tmp{\dtoks={\noexpand\AddOne{\the\dtoks}}}\tmp
+        \advance\n by -1 \nndef#1
+  \fi}
+\ndef\One1 \ndef\Two2 \ndef\Three3 \ndef\Five5 %\show\Three
+\let\Add=\Cat
+\test{Adding numbers}{\Transcribe{\Add{\Three}{\Five}}}
+\def\AddTogether{\ListApply\Add\Zero}
+\test{Adding a list}%
+  {\Transcribe{\AddTogether{\Cons\Two{\Singleton\Three}}}}
+\test{Adding a list}%
+  {\Transcribe{\AddTogether{\Cons\Two{\Cons\Three{\Singleton\Three}}}}}
+\def\Copies#1#2{#2{\ConsCopy{#1}}\Nil}
+\def\ConsCopy#1#2#3{\Cons{#1}{\Copies{#1}{#3}}}
+\def\Mult#1#2{\AddTogether{\Copies{#1}{#2}}}
+\test{Multiplication}{\Transcribe{\Mult{\Three}{\Two}}}
+\test{Multiplication}{\Transcribe{\Mult{\Three}{\Five}}}
+
+% #1=operator #2=zero arg
+\def\StreamOp#1#2{\Cons{#2}{\StreamOp{#1}{#1{#2}}}}
+\def\Integers{\StreamOp\AddOne\Zero}
+\test{Integers}{\Transcribe{\Head{\Tail{\Integers}}}}
+\test{Integers}%
+  {\Transcribe{\Head{\Tail{\Tail{\Tail{\Tail{\Tail{\Integers}}}}}}}}
+
+\PAUSE
+
+\def\MakeZero#1{\Zero}
+\def\KeepIf#1{\ConditionalApply{#1}\Identity\MakeZero}
+\ttest{Keep even}{\KeepIf\IsEven\One}
+\ttest{Keep even}{\KeepIf\IsEven\Two}
+\ttest{Keep odd}{\KeepIf\IsOdd\One}
+\ttest{Keep odd}{\KeepIf\IsOdd\Two}
+
+\def\NextEven#1{#1\NextEvenp\Zero}
+\def\NextEvenp#1#2{\ConditionalFirstOrSecond\IsEven\NextEven{#1}{#2}}
+\def\ConditionalFirstOrSecond#1#2#3#4{#1{#3}{#3}{#2{#4}}}
+\ttest{}{\NextEven{\Tail\Integers}}
+
+\def\NextSatisfies#1{#1\NextSatisfiesp\Zero}
+\def\NextSatisfiesp#1#2%
+  {\ConditionalFirstOrSecond\thetest\NextSatisfies{#1}{#2}}
+\def\ConditionalFirstOrSecond#1#2#3#4{#1{#3}{#3}{#2{#4}}}
+\let\thetest\IsEven
+\ttest{}{\NextSatisfies{\Tail\Integers}}
+
+\end
+\def\KeepHeadIf#1#2{\ConditionalApply{#1}\Identity{#2}}
+\def\HeadOrNext#1{#1\HeadOrNextp\Zero}
+\def\HeadOrNextp#1#2{\KeepHeadIf\IsEven\HeadOrNext}
+\trace\ttest{Even integers}{\HeadOrNext\Integers}
+
+\end

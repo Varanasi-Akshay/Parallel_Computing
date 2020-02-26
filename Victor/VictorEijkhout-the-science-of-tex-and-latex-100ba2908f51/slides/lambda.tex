@@ -1,0 +1,301 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,rotating}
+
+\input slidemacs
+\input{tutmacs}
+\input idxmacs
+\input logicmacs
+
+\begin{document}
+
+\title{Logic and lambda calculus in \TeX}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Introduction}
+\subsection{Markup}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item Expansion is very powerful
+\item Implement logic, numbers, lambda calculus
+\end{itemize}
+}
+
+\def\Ignore#1{}
+\def\Identity#1{#1}
+\def\First#1#2{#1}
+\def\Second#1#2{#2}
+
+\frame[containsverbatim]{
+  \frametitle{auxiliaries}
+\begin{inputwithcode}
+\def\Ignore#1{}
+\def\Identity#1{#1}
+\def\First#1#2{#1}
+\def\Second#1#2{#2}
+\end{inputwithcode}
+}
+
+\let\True=\First
+\let\False=\Second
+\def\And#1#2{#1{#2}\False}
+\def\Or#1#2{#1\True{#2}}
+\def\Twiddle#1#2#3{#1{#3}{#2}}
+\let\Not=\Twiddle
+
+\frame[containsverbatim]{
+  \frametitle{Truth}
+\begin{inputwithcode}
+\let\True=\First
+\let\False=\Second
+\end{inputwithcode}
+and logical operators:
+\begin{inputwithcode}
+\def\And#1#2{#1{#2}\False}
+\def\Or#1#2{#1\True{#2}}
+\def\Twiddle#1#2#3{#1{#3}{#2}}
+\let\Not=\Twiddle
+\end{inputwithcode}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Truth test}
+\begin{quote}
+\test{True takes first of TF}{\True}
+\test{False takes second of TF}{\False}
+\test{Not true is false}{\Not\True}
+
+\test{And truth table TrueTrue}{\And\True\True}
+\test{And truth table TrueFalse}{\And\True\False}
+\test{And truth table FalseTrue}{\And\False\True}
+\test{And truth table FalseFalse}{\And\False\False}
+
+\test{Or truth table TrueTrue}{\Or\True\True}
+\test{Or truth table TrueFalse}{\Or\True\False}
+\test{Or truth table FalseTrue}{\Or\False\True}
+\test{Or truth table FalseFalse}{\Or\False\False}
+\end{quote}
+}
+
+\sectionframe{Lists}
+
+\frame[containsverbatim]{
+  \frametitle{Definition}
+We implement a list as an operator with two arguments:
+\begin{itemize}
+\item If the list is not empty, the first argument is applied to the
+  head, and the tail is evaluated;
+\item If the list is empty, the second argument is evaluated.
+\end{itemize}
+In other words
+\[ L \, a_1 \, a_2 =
+      \left\{\begin{array}{rl}a_2&\mbox{if $L=()$}\\
+             a_1(x) \, Y&\mbox{if $L=(x,Y)$}
+      \end{array}\right. \]
+}
+
+\let\Nil=\Second
+% \Cons <head> <tail> <arg1> <arg2>
+\def\Cons#1#2#3#4{#3{#1}{#2}}
+\def\Error{{ERROR}}
+\def\Head#1{#1\First\Error}
+\def\Tail#1{#1\Second\Error}
+
+\frame[containsverbatim]{
+  \frametitle{Construction}
+\begin{inputwithcode}
+\let\Nil=\Second
+% \Cons <head> <tail> <arg1> <arg2>
+\def\Cons#1#2#3#4{#3{#1}{#2}}
+\def\Error{{ERROR}}
+\def\Head#1{#1\First\Error}
+\def\Tail#1{#1\Second\Error}
+\end{inputwithcode}
+}
+
+\def\Singleton#1{\Cons{#1}\Nil}
+
+\frame[containsverbatim]{
+  \frametitle{List examples}
+\begin{inputwithcode}
+\def\Singleton#1{\Cons{#1}\Nil}
+\end{inputwithcode}
+\begin{quote}
+\test{Head of a singleton}{\Head{\Singleton\True}}
+\test{Head of a tail of a 2-elt list}%
+     {\Head{\Tail{\Cons\True{\Singleton\False}}}}
+\end{quote}
+}
+
+\def\Transcribe#1{#1\TranscribeHT\gobbletwo}
+\def\TranscribeHT#1#2{1\Transcribe{#2}}
+
+\frame[containsverbatim]{
+  \frametitle{Visualization}
+\begin{inputwithcode}
+\def\gobbletwo#1#2{}
+\def\Transcribe#1{#1\TranscribeHT\gobbletwo}
+\def\TranscribeHT#1#2{1\Transcribe{#2}}
+\end{inputwithcode}
+}
+
+\def\ListApply#1#2#3{#3{\ListApplyp{#1}{#2}}{#2}}
+\def\ListApplyp#1#2#3#4{#1{#3}{\ListApply{#1}{#2}{#4}}}
+
+\frame[containsverbatim]{
+  \frametitle{Functions on lists}
+Given function~$f$, 
+initial argument~$e$, and list~$X$, then
+\[ \mathtt{Apply}\, f\, e\, X \Rightarrow
+     f\, x_1\,(f\, x_2\, (\ldots (f\, x_n\, e)\ldots)) \]
+\begin{inputwithcode}
+% #1=function #2=initial arg #3=list
+\def\ListApply#1#2#3{#3{\ListApplyp{#1}{#2}}{#2}}
+\def\ListApplyp#1#2#3#4{#1{#3}{\ListApply{#1}{#2}{#4}}}
+\end{inputwithcode}
+}
+
+\def\Cat#1#2{\ListApply\Cons{#2}{#1}}
+
+\frame[containsverbatim]{
+  \frametitle{Concatenate}
+\begin{inputwithcode}
+\def\Cat#1#2{\ListApply\Cons{#2}{#1}}
+\end{inputwithcode}
+For example:
+\begin{quote}
+\test{Cat two lists}%
+  {\Transcribe{\Cat{\Singleton\Nil}{\Cons\Nil{\Singleton\Nil}}}}
+\end{quote}
+}
+
+\sectionframe{Numbers}
+\subsection{Definition}
+
+\let\Zero\Nil
+\def\AddOne#1{\Cons\Nil{#1}}
+
+\frame[containsverbatim]{
+  \frametitle{Adding one}
+\begin{inputwithcode}
+\let\Zero\Nil
+\def\AddOne#1{\Cons\Nil{#1}}
+\end{inputwithcode}
+Examples:
+\begin{quote}
+\ttest{Transcribe zero}{\Zero}
+\ttest{Transcribe one}{\AddOne\Zero}
+\ttest{Transcribe three}{\AddOne{\AddOne{\AddOne\Zero}}}
+\end{quote}
+}
+
+\newtoks\dtoks\newcount\nn
+\def\ndef#1#2{\nn=#2 \dtoks={\Zero}\nndef#1}
+\def\nndef#1{
+  \ifnum\nn=0 \edef\tmp{\def\noexpand#1{\the\dtoks}}\tmp
+  \else \edef\tmp{\dtoks={\noexpand\AddOne{\the\dtoks}}}\tmp
+        \advance\nn by -1 \nndef#1
+  \fi}
+\ndef\One1 \ndef\Two2 \ndef\Three3 \ndef\Four4 \ndef\Five5
+%\show\Three
+\ndef\Seven7\ndef\Six6
+
+\def\Sub#1#2{#1{\SubFrom{#2}}{#2}}
+\def\SubFrom#1#2#3{#1{\SubMinOne{#3}}\Error}
+\def\SubMinOne#1#2#3{\Sub{#1}{#3}}
+\def\SubOne#1{#1\Second\Error}
+
+\frame[containsverbatim]{
+  \frametitle{Subtracting one}
+\begin{inputwithcode}
+\def\SubOne#1{#1\Second\Error}
+\end{inputwithcode}
+\begin{quote}
+\ttest{Predecessor of two}{\SubOne{\AddOne{\AddOne\Zero}}}
+\end{quote}
+}
+
+\subsectionframe{Arithmetic}
+
+\frame[containsverbatim]{
+  \frametitle{Addition}
+\begin{inputwithcode}
+\let\Add=\Cat
+\end{inputwithcode}
+\begin{quote}
+\ttest{Adding numbers}{\Add{\Three}{\Five}}
+\end{quote}
+}
+
+\def\GreaterThan#1#2{#2{\GreaterThanp{#1}}\False}
+\def\GreaterThanp#1#2#3{#1{\GreaterThanx{#3}}\True}
+\def\GreaterThanx#1#2#3{\GreaterThan{#1}{#3}}
+
+\frame[containsverbatim]{
+  \frametitle{Comparison}
+\begin{inputwithcode}
+\def\GreaterThan#1#2{#2{\GreaterThanp{#1}}\False}
+\def\GreaterThanp#1#2#3{#1{\GreaterThanx{#3}}\True}
+\def\GreaterThanx#1#2#3{\GreaterThan{#1}{#3}}
+\end{inputwithcode}
+\begin{quote}
+\test{Greater (true result)}{\GreaterThan\Two\Five}
+\test{Greater (false result)}{\GreaterThan\Three\Two}
+\test{Greater (equal case)}{\GreaterThan\Two\Two}
+\test{Greater than zero}{\GreaterThan\Two\Zero}
+\test{Greater than zero}{\GreaterThan\Zero\Two}
+\end{quote}
+}
+
+\frame[containsverbatim]{
+\begin{quote}
+\ttest{Use true result}{\GreaterThan\Two\Five\Three\One}
+\ttest{Use false result}{\GreaterThan\Three\Two\Three\One}
+\end{quote}
+\begin{quote}
+\test{$3<(5-1)$}{\GreaterThan\Three{\Sub\One\Five}}
+\test{$3<(5-4)$}{\GreaterThan\Three{\Sub\Four\Five}}
+\end{quote}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Integers}
+\begin{inputwithcode}
+% \StreamOp <operator> <initial value>
+\def\StreamOp#1#2{\Cons{#2}{\StreamOp{#1}{#1{#2}}}}
+\def\Integers{\StreamOp\AddOne\Zero}
+\end{inputwithcode}
+\begin{quote}
+\ttest{Integers}{\Head{\Tail{\Integers}}}
+\ttest{Integers}%
+  {\Head{\Tail{\Tail{\Tail{\Tail{\Tail{\Integers}}}}}}}
+\end{quote}
+}
+
+\end{document}
+\frame[containsverbatim]{
+  \frametitle{}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+}
+
+\end{document}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+

@@ -1,0 +1,7 @@
+Not every word should be added to the active list. For instance, for
+any realistic line length, the second word in the paragraph will not
+have a valid breakpoint after it, so we need not consider it.  Take
+the model implementation and add this modification. Measure the
+improvement in running time, for instance by counting the number of
+calls to some inner routine.  Give a theoretical argument for how this
+reduces the complexity of the algorithm.

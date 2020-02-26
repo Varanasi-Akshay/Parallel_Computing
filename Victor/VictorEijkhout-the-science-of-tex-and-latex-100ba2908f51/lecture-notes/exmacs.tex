@@ -1,0 +1,51 @@
+\newenvironment{exercises}{\begin{enumerate}}{\end{enumerate}}
+\newcommand{\project}{\item[Project]}
+\excludecomment{quiz}
+
+\newcounter{excounter}
+%\setcounter{excounter}{5}
+
+\generalcomment{594exercise}
+  {\refstepcounter{excounter}%
+   \begingroup\def\ProcessCutFile{}\par
+   \message{writing exercise to \chaptername-ex\arabic{excounter}.tex}%
+   \edef\tmp{\def\noexpand\CommentCutFile
+                 {\chaptername-ex\arabic{excounter}.tex}}\tmp
+   }
+  {\begin{quote}
+   \textbf{Exercise \arabic{excounter}.}\hspace{1em}\ignorespaces
+   \input{\CommentCutFile}
+   \end{quote}
+   \endgroup}
+
+\generalcomment{answer}
+  {\begingroup
+   \edef\tmp{\def\noexpand\CommentCutFile
+                 {\chaptername-an\noexpand\arabic{excounter}.tex}}\tmp
+   \def\ProcessCutFile{}}
+  {\endgroup}
+
+\newenvironment{exerciseB}[1]
+  {\par
+   {\bfseries Problem \arabic{chapter}.\arabic{excounter}}
+   \parbox[t]{2in}{\slshape #1}%
+   \par
+  }
+  {\par}
+
+\newread\nx
+\def\TheAnswers{
+   \openin\nx=\chaptername-nx.tex
+   \read\nx to \nex
+   \closein\nx
+   
+   \scrollmode
+   \begin{enumerate}
+   \repeat \for{nx} \to{\nex}
+     \do{ \item
+          \edef\tmp{
+              \noexpand\InputIfFileExists{\chaptername-an\number\nx.tex}}
+          \tmp{}{\textsl{no answer given}}
+        }
+   \end{enumerate}
+   }

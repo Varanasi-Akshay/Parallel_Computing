@@ -1,0 +1,177 @@
+\let\titlefont\relax
+\let\codefont\tiny
+\let\namefont\relax
+\let\bitfont\small
+\let\commentfont\relax
+
+%% counts and dimens
+\newdimen\thinlinewidth \thinlinewidth=.25mm
+\newdimen\fatlinewidth \fatlinewidth=.5mm
+\newdimen\rowheight \rowheight=.85cm %1cm
+\newdimen\colwidth  \colwidth=1.2cm %1.6cm
+\newdimen\Colwidth \Colwidth=2\colwidth
+  \advance\Colwidth by \thinlinewidth
+\newdimen\topwhite \topwhite=2pt
+\newdimen\botwhite \botwhite=3pt
+\newdimen\leftwhite \leftwhite=0pt %2pt
+\newdimen\rightwhite \rightwhite=1pt %1pt
+\newcount\rowcount 
+\newcount\colcount 
+\rowcount=-1 %% note!
+\colcount=0
+\newcount\thenumber
+
+%% tidbits
+\def\\{$\backslash$}\def\-{\_$\!$\_}\def\^{\char94}
+\def\hh#1{\char'136\char'136 {#1}\ignorespaces}
+\def\thinline{\vrule width \thinlinewidth}
+\def\fatline{\vrule width \fatlinewidth}
+\tolerance=10000
+\vbadness=10000
+
+%% code conversion
+\def\calcnumber{{\multiply\colcount by 16
+                 \advance\colcount by \rowcount
+                 \global\thenumber=\colcount}}
+\def\deccode{\number\thenumber}
+\def\octcode{{\ifnum\thenumber>63
+                            \advance\thenumber by -64
+                            \count0=\thenumber \divide\count0 by 8
+                            1\number\count0
+              \else         \count0=\thenumber \divide\count0 by 8
+                            \ifnum\count0>0 \number\count0 \fi\fi
+              \multiply\count0 by 8
+              \advance\thenumber by -\count0
+              \number\thenumber}}
+\def\hexdigit#1{\ifcase#1 0\or 1\or 2\or 3\or 4\or 5\or 6\or 7\or
+                          8\or 9\or A\or B\or C\or D\or E\or F\or
+                          \edef\tmp{\message{illegal hex digit 
+                                        \number#1}}\tmp
+                          \fi}
+\def\hexcode{{\count0=\thenumber \divide\count0 by 16
+              \ifnum\count0>0 \hexdigit{\count0}\fi
+              \multiply\count0 by 16
+              \advance\thenumber by -\count0 \count0=\thenumber
+              \hexdigit{\count0}}}
+
+%% the heading
+\def\threebit#1#2#3{\vbox to 1.2\rowheight{\bitfont
+                      \vskip\topwhite
+                      \hbox to \colwidth{\hskip\leftwhite#1\hfil}
+                      \vss %\vfill
+                      \hbox to \colwidth{\hfil#2\hfil}
+                      \vss %\vfill
+                      \hbox to \colwidth{\hfil#3\hskip\rightwhite}
+                      \vskip\botwhite}}
+\def\comment#1{\vbox to \colwidth{
+                      \vfil
+                      \hbox to \Colwidth{\commentfont\hfil#1\hfil}
+                      \vfil}}
+\def\dcomment#1#2{\vbox to \colwidth{
+                      \vfil
+                      \hbox to \Colwidth{\commentfont\hfil#1\hfil}
+                      \vskip \botwhite
+                      \hbox to \Colwidth{\commentfont\hfil#2\hfil}
+                      \vfil}}
+\def\bithead{\vbox to \colwidth{\hsize=1.5\colwidth
+                   \vskip\topwhite
+                   \hbox to \hsize{\commentfont\hfil BITS\hfil}
+                   \vfil
+                   \hbox to \hsize{\bitfont\ b4 b3 b2 b1 }
+                   \vskip\botwhite}}
+
+%% routines for single chars
+\def\fourbit#1\fb{\vbox to \rowheight{
+                     \vfil
+                     \hbox to 1.5\colwidth{\bitfont
+                         \spaceskip=3pt plus 30pt#1\ }%1.5\colwidth
+                     \vfil}%
+    \global\advance\rowcount by 1
+    \global\colcount=0\relax
+    }
+\def\thechar#1{\namefont\hfil#1\unskip\hfil}
+\def\asc#1\ii{\calcnumber
+              \vbox to \rowheight{\offinterlineskip
+                     \vskip\topwhite
+                     \hbox to \colwidth{\codefont
+                                        \hskip\leftwhite
+                                        \deccode\hfil}
+                     \vss %\vfil
+                     \hbox to \colwidth{\vrule width 0cm 
+                                              height 10pt depth 2pt
+                                        \thechar{#1}}
+                     \vss %\vfil
+                     \hbox to \colwidth{\codefont
+                                        \hskip\leftwhite
+                                        \hexcode\hfil\octcode
+                                        \hskip\rightwhite}
+                     \vskip\botwhite}%
+              \global\advance\colcount by 1}
+
+\def\complexhead{
+          \omit\hfil\threebit{b7}{b6}{b5}
+             &\omit\span\omit\fatline\threebit000&\omit\span\omit\thinline\threebit001%
+             &\omit\span\omit\fatline\threebit010&\omit\span\omit\thinline\threebit011%
+             &\omit\span\omit\fatline\threebit100&\omit\span\omit\thinline\threebit101%
+             &\omit\span\omit\fatline\threebit110&\omit\span\omit\thinline\threebit111&
+              \cr
+    \noalign{\nointerlineskip}
+        \omit&
+        \multispan{16}\leaders\hrule height\thinlinewidth\hfill\cr
+    \noalign{\vskip-.5mm} %brute force
+          \omit\bithead
+        &\omit\span\omit\fatline\comment{CONTROL}\span\omit\span\omit
+        &\omit\span\omit\fatline\dcomment{SYMBOLS}{NUMBERS}\span\omit\span\omit
+        &\omit\span\omit\fatline\comment{UPPERCASE}\span\omit\span\omit
+        &\omit\span\omit\fatline\comment{LOWERCASE}\span\omit\span\omit&
+            \cr
+}
+
+%%%%%%%%%%%%%%%%% and now the tables %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tabskip=0pt
+
+\halign to 30pc{\fourbit#\fb\tabskip=0ptplus1fil&
+                     \fatline#&\asc#\ii&\thinline#&\asc#\ii&
+                     \fatline#&\asc#\ii&\thinline#&\asc#\ii&
+                     \fatline#&\asc#\ii&\thinline#&\asc#\ii&
+                     \fatline#&\asc#\ii&\thinline#&\asc#\ii&
+                     \tabskip=0pt\fatline#\cr
+          \omit\span\omit&\multispan{12}\hskip\thinlinewidth
+                            \titlefont ASCII CONTROL CODES\hfil
+          &\multispan2\hskip\fatlinewidth
+            \hbox{\vrule
+             \vbox to \rowheight{
+                 \offinterlineskip
+                 \hrule\vskip \topwhite
+                 \hbox to \colwidth{\codefont\hskip\leftwhite
+                                       dec\hfil}
+                 \vfil
+                 \hbox to \colwidth{\namefont\hfil CHAR\hfil}
+                 \vfil
+                 \hbox to \colwidth{\codefont\hskip\leftwhite
+                                       hex\hfil oct
+                                       \hskip\rightwhite}
+                 \vskip\botwhite
+                 \hrule}\vrule}\cr
+    \noalign{\nointerlineskip\vskip3pt \hrule}
+    \complexhead
+	    \noalign{\hrule}
+      {} 0 0 0 0&&NUL&&DLE&&SP     &&0  &&@  &&P       &&` &&p  &\cr   \noalign{\hrule}
+      {} 0 0 0 1&&SOH&&DC1&&!      &&1  &&A  &&Q       &&a &&q  &\cr   \noalign{\hrule}
+      {} 0 0 1 0&&STX&&DC2&&"      &&2  &&B  &&R       &&b &&r  &\cr   \noalign{\hrule}
+      {} 0 0 1 1&&ETX&&DC3&&\#     &&3  &&C  &&S       &&c &&s  &\cr   \noalign{\hrule}
+      {} 0 1 0 0&&EOT&&DC4&&\$     &&4  &&D  &&T       &&d &&t  &\cr   \noalign{\hrule}
+      {} 0 1 0 1&&ENQ&&NAK&&\%     &&5  &&E  &&U       &&e &&u  &\cr   \noalign{\hrule}
+      {} 0 1 1 0&&ACK&&SYN&&\&     &&6  &&F  &&V       &&f &&v  &\cr   \noalign{\hrule}
+      {} 0 1 1 1&&BEL&&ETB&&'      &&7  &&G  &&W       &&g &&w  &\cr   \noalign{\hrule}
+      {} 1 0 0 0&&BS &&CAN&&(      &&8  &&H  &&X       &&h &&x  &\cr   \noalign{\hrule}
+      {} 1 0 0 1&&HT &&EM &&)      &&9  &&I  &&Y       &&i &&y  &\cr   \noalign{\hrule}
+      {} 1 0 1 0&&LF &&SUB&&*      &&:  &&J  &&Z       &&j &&z  &\cr   \noalign{\hrule}
+      {} 1 0 1 1&&VT &&ESC&&+      &&;  &&K  &&[       &&k &&$\{$&\cr  \noalign{\hrule}
+      {} 1 1 0 0&&FF &&FS &&,      &&$<$&&L  &&\\      &&l &&$|$ &\cr  \noalign{\hrule}
+      {} 1 1 0 1&&CR &&GS &&$-$    &&=  &&M  &&]       &&m &&$\}$&\cr  \noalign{\hrule}
+      {} 1 1 1 0&&SO &&RS &&.      &&$>$&&N  &&\char94 &&n &&\char126&\cr  \noalign{\hrule}
+      {} 1 1 1 1&&SI &&US &&/      &&?  &&O  &&\char95 &&o &&DEL&\cr   \noalign{\hrule}
+          }
+

@@ -1,0 +1,12 @@
+Write a \lex\ parser that analyzes text the way the \TeX\ input
+processor does with the normal category code values. It should print
+its output with
+\begin{itemize}
+\item \n{<space>} denoting any space that is not ignored or skipped, and
+\item \n{<cs: command>} for recognizing a control sequence
+  \cs{command};
+\item open and close braces should also be marked
+as~\verb+<{>+,~\verb+<}>+.
+\end{itemize}
+Here is some sample input:
+\verbatiminput{texlexerinput}

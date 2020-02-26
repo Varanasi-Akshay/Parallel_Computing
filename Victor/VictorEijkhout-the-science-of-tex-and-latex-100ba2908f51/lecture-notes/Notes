@@ -1,0 +1,16 @@
+TeX:
+discuss active characters
+
+Parsing:
+inhernet ambiguity
+The standard example of a language with inherent ambiguity is  L = L1 U L2, where  L1 = {a^m b^m c^n | m,n>0}  L2 = {a^m b^n c^n | m,n>0}This is clearly context free, e.g. by the grammar  S -> S1 | S2  S1 -> A1 C  S2 -> A B1  A1 -> a b | a A1 b  B1 -> b c | b B1 c  C -> c | c C  A -> a | a C
+any string in the intersection will have two different parse trees
+
+Hashing:
+Rabin-Karp string searching
+http://www.sparknotes.com/cs/searching/hashtables/section4.rhtml
+what is best/avg/worst case complexity?
+Supposedly superior hash function:
+http://burtleburtle.net/bob/hash/doobs.html
+Interesting article:
+http://www.ddj.com/documents/s=962/ddj9604b/9604b.htm

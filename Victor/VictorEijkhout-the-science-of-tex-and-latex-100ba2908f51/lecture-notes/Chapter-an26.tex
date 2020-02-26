@@ -1,0 +1,26 @@
+First we observe that through the inclusion of C~code, all these
+languages, whether regular, context-free, context-sensitive, can be
+parsed in \lex. This means that \lex\ and \yacc\ are theoretically not
+restricted to regular and context-free languages, even though their
+basic mechanism is a FSA and PDA respectively.
+
+Let us now look at solutions that use both \lex\ and \yacc.
+
+For these languages, the \lex\ program can be very simple:
+\verbatiminput{anbn-lex.l}
+The problem with the \yacc\ code is how to give error messages for
+ungrammatical strings. This program recognizes the language, and lets
+\yacc\ give its default error on ungrammatical strings:
+\verbatiminput{anbn1.y}
+Attempts to parse unbalanced strings of $a$s and $b$s such as
+\verbatiminput{anbn2.y}
+invariably lead to conflicts, because \yacc\ can not decide which rule
+to match on an $a$~input. An unbalanced amounts of $b$s can be
+handled:
+\verbatiminput{anbn3.y}
+but for a general solution we really need to recognize~$\{a^mb^n\}$
+and impose the restriction~$m\equiv\nobreak n$ through included
+C~code:
+\verbatiminput{anbn4.y}
+Without the error clauses, this recognizes $a^mb^n$, and it is easy to
+extend this program to~$a^nb^nc^n$.

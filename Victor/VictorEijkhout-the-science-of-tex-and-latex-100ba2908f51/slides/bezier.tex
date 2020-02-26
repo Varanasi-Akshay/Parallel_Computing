@@ -1,0 +1,572 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Bezier curves}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Introduction}
+\frame{
+  \frametitle{Fonts}
+\begin{itemize}
+\item Use of Bezier in fonts
+\item Bitmap vs outline (vector)
+\item Curve descriptions are scalable, smaller
+\item<2-> More processing
+\item<2-> More intelligence in the rasterizer
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Requirements}
+\begin{itemize}
+\item Description unique, simple to compute
+\item Easy to change shape (design)
+\item Well behaved: small change in parameter gives small change in
+  shape
+\item Smoothly composable
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Two basic problems:}
+\begin{itemize}
+\item Points known, smooth curve required
+\item Function known, approximation required
+\end{itemize}
+}
+
+\subsectionframe{Interpolation}
+
+\frame{
+  \frametitle{Lagrange interpolation}
+\begin{itemize}
+\item Given points $(x_1,f_1)\ldots(x_n,f_n)$, draw curve
+\item $n$ points: polynomial of degree~$n-1$ (actually, order)
+\[ p(x)=p_{n-1}x^{n-1}+\cdots+p_1x+p_0 \]
+\item equations $p(x_i)=f_i$ to solve
+\end{itemize}
+}
+
+\frame{
+\begin{itemize}
+\item System of equations
+\begin{eqnarray*}
+p_{n-1}x_1^{n-1}+\cdots+p_1x_1+p_0&=&f_1\\
+&\ldots\\
+p_{n-1}x_n^{n-1}+\cdots+p_1x_n+p_0&=&f_n
+\end{eqnarray*}
+written as $X\bar p=\bar f$, where
+\[ X=\bigl(x_i^j\bigr),\quad
+   \bar p=\begin{pmatrix}p_1\\ \vdots\\ p_{n-1}
+   \end{pmatrix}
+   ,\quad
+   \bar f=\begin{pmatrix}f_1-p_0\\ \vdots\\ f_n-p_0
+   \end{pmatrix}
+   \]
+\item not stable
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Lagrange polynomials}
+\begin{itemize}
+\item $p^{(k)}$:
+\[ p^{(k)}(x) = c_k
+    (x-x_1)\cdots(x-x_{k-1})\,(x-x_{k+1})\cdots(x-x_n) \]
+where $c_k$ is chosen so that~$p^{(k)}(x_k)=1$.
+\item<2-> $p^{(i)}(x_j)=\delta_{ij}$, so
+\begin{equation} p(x) = \sum_i f_ip^{(i)}(x),\qquad
+    p^{(i)}(x)=\prod_{j\not=i}{x-x_j\over x_i-x_j}
+    \label{eq:lagrange}\end{equation}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Hermite interpolation}
+\begin{itemize}
+\item Dictate function values and derivatives
+\item Hermite polynomials
+\[ q^{(k)} = c_k
+    (x-x_1)^2\cdots(x-x_{k-1})^2\cdot (x-x_k)\cdot
+    (x-x_{k+1})^2\cdots(x-x_n)^2 \]
+where $c_k$ is chosen so that $q^{(k)'}(x_k)=1$.
+\item<2-> Combination of $p^{(k)}$ and $q^{(k)}$ polynomials:\\
+match values and derivatives
+\end{itemize}
+}
+
+\subsectionframe{Approximation}
+
+\frame{
+  \frametitle{Distance, convergence}
+\begin{itemize}
+\item Approximate known curve
+\item cheaper computation, use uniform computations
+\item distance?
+\item<2-> Family of approximating curves $f_n$
+\item<2-> Does $|f-f_n|\rightarrow0$?
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Convergence}
+\begin{itemize}
+\item Pointwise convergence
+\[ \forall_{x\in I,\epsilon}\exists_N\forall_{n\geq N}:
+    \left|f_n(x)-f(x)\right|\leq\epsilon.
+\]
+\item<2-> Uniform convergence
+\[ \forall_\epsilon\exists_N\forall_{x\in I,n\geq N}:
+    \left|f_n(x)-f(x)\right|\leq\epsilon.
+\]
+\end{itemize}
+}
+
+\frame{
+  \frametitle{non-uniform convergence}
+\pgfimage{hat-function}
+}
+
+\frame{
+  \frametitle{Problems with high degree polynomials}
+\pgfimage[width=2.5in]{runge}
+\begin{itemize}
+\item Better location of points
+\item Better polynomials
+\item<2-> Not use high degree polynomial
+\end{itemize}
+}
+
+\subsectionframe{Computations}
+
+\frame{
+  \frametitle{Lagrange polynomials}
+\begin{itemize}
+\item $n$ terms of $n$ multiplications each: 
+\[ p(x) = \sum_i f_ip^{(i)}(x),\qquad
+    p^{(i)}(x)=\prod_{j\not=i}{x-x_j\over x_i-x_j}
+\]
+\item quadratic cost
+\item<2-> Down to linear:
+\[ p(x) = \prod_i(x-t_i)\cdot\sum_i{y_i\over x-t_i},
+    \qquad y_i=f_i/\prod_{j\not=i}(x_i-x_j),
+\]
+with $y_i$ precomputed
+\item<3-> complicated story with derivatives
+\end{itemize}
+}
+
+\subsectionframe{Divided differences}
+\newcommand\kdd[1]{\kddl{1}{#1}}
+\newcommand\kddl[2]{[\tau_{#1},\ldots,\tau_{#2}]}
+
+\frame{
+  \frametitle{Definition}
+\begin{itemize}
+\item $n$-th divided difference $\kdd{n+1}g$ is leading coefficient of
+  $n+1$-st order ($\Pi_{<n+1}$, degree~$n$ or lower) polynomial that
+  agrees with~$g$ in $\tau_1,\ldots,\tau_{n+1}$
+\item<2-> Zeroeth divided difference:
+constant polynomial, match $g(\tau_1)=g_1$:
+ $[\tau_1]g=g_1$
+\item<3-> First divided difference: linear function, leading
+  coefficient is slope
+\[ [\tau_1,\tau_2]g={g(\tau_2)-g(\tau_1)\over \tau_2-\tau_1}
+    ={[\tau_2]g-[\tau_1]g\over \tau_2-\tau_1}
+\]
+\item<3-> recurrence?
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Relation}
+\begin{itemize}
+\item Let $p_{k+1}\in\prod_{<k+1}$ agree with~$g$ in
+$\tau_1\ldots\tau_{k+1}$, and $p_k\in\prod_{<k}$ with~$g$ in
+$\tau_1\ldots\tau_k$, then
+\begin{equation}
+    p_{k+1}(x)-p_k(x)=\kdd{k+1}g\prod_{i=1}^k(x-\tau_i).
+    \label{eq:pk-diff}
+\end{equation}
+\item<2->
+Proof. $p_k$ is of a lower order, so
+\[ p_{k+1}-p_k=\kdd{k+1}gx^k+cx^{k-1}+\cdots.\]
+\item $p_{k+1}-p_k$ is zero in~$t_i$ for~$i\leq\nobreak k$:
+\[ p_{k+1}-p_k=C\prod_{i=1}^k(x-\tau_i). \]
+\item therefore $C=\kdd{k+1}g$.
+\end{itemize}
+}
+
+\frame{
+\begin{itemize}
+\item Repeat this:
+\begin{equation}
+    p_{k+1}(x)=\sum_{m=1}^{k+1}\kdd{m}g\prod_{i=1}^{m-1}(x-\tau_i),
+    \label{eq:p-sum-diffs}
+\end{equation}
+\item can be evaluated as
+\begin{footnotesize}
+\[
+\begin{array}{rcl}
+ p_{k+1}(x) &=&
+ \kdd{k+1}g\prod^k(x-\tau_i)+\kdd{k}g\prod^{k-1}(x-\tau_i)\\
+    &=&\kdd{k+1}g(x-\tau_k)\bigl(c_k
+                +\kdd{k}g(x-\tau_{k-1})\bigl(c_{k-1}+\cdots
+\end{array}
+\]
+\end{footnotesize}
+where $c_k=\kdd{k}g/\kdd{k+1}g$
+\item Horner's rule
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Construction of divided differences}
+\begin{itemize}
+\item Recursive:
+\[
+    \kdd{n+1}g=\left(\kdd{n}g-\kddl{2}{n+1}g\right)/(\tau_1-\tau_{n+1}).
+\]
+\item Proof. Three polynomials given:\\
+ $p^{(1)}_n\in\prod_{<n}$ agrees with~$g$ on
+  $\tau_1\ldots\tau_n$;\\
+ $p^{(2)}_n\in\prod_{<n}$ agrees with~$g$ on
+  $\tau_2\ldots\tau_{n+1}$;\\
+ $p_{n-1}\in\prod_{<n-1}$ agrees with~$g$ on
+  $\tau_2\ldots\tau_n$.
+\item then
+\[ \begin{array}{rcl}
+  p^{(1)}_n-p_{n-1}&=&\kdd{n}g\prod_{j=2}^n(x-\tau_j)\\
+  p^{(2)}_n-p_{n-1}&=&\kddl{2}{n+1}g\prod_{j=2}^n(x-\tau_j)
+\end{array}
+\]
+\end{itemize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item $p_{n+1}$ agrees with~$g$ on $\tau_1\ldots\tau_{n+1}$:
+\[ \begin{array}{rcl}
+  p_{n+1}-p^{(1)}&=&\kdd{n+1}g\prod_{j=1}^n(x-\tau_j)\\
+  p_{n+1}-p^{(2)}&=&\kdd{n+1}g\prod_{j=2}^{n+1}(x-\tau_j)
+\end{array} \]
+\item Subtracting gives for $p^{(1)}_n-p^{(2)}_n$:
+\begin{footnotesize}
+\[ \left(\kdd{n}g-\kddl{2}{n+1}g\right)\prod_{j=2}^n(x-\tau_j)
+  = \kdd{n+1}g\left(\prod_{j=2}^{n+1}-\prod_{j=1}^n\right)
+        (x-\tau_j)
+\] 
+\end{footnotesize}
+\item Fill in $\tau_2\ldots\tau_n$: zero\\
+With $x=\nobreak\tau_1$
+\begin{footnotesize}
+\[ \left(\kdd{n}g-\kddl{2}{n+1}g\right)\prod_{j=2}^n(\tau_1-\tau_j)
+  = \kdd{n+1}g\prod_{j=2}^{n+1}(\tau_1-\tau_j)
+\]
+\end{footnotesize}
+\end{itemize}
+}
+
+\sectionframe{Parametric curves}
+
+\frame{
+  \frametitle{Functions are not enough}
+\begin{itemize}
+\item no unique mapping $x\mapsto y$: circle
+\item implicit $f(x,y)=0$ trouble with half circle
+\item parametric: \[ P=P(t) = \begin{pmatrix}x(t)\\ y(t)
+    \end{pmatrix}.\]
+\item parametric interpolation: $P=tP_2+(1-t)P_1$:\\
+$P(0)=P_1$, $P(1)=P_2$;\\
+\[ P(t)=(\cos 2\pi t,\sin 2\pi t) \]
+\end{itemize}
+}
+
+\subsection{Cubics}
+
+\frame{
+  \frametitle{Cubics}
+\begin{itemize}
+\item Flexible enough: 4 degrees of freedom\\
+location and direction in two points\\
+(Hermite strategy)
+\item Higher degrees harder to control
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Formal description}
+\begin{itemize}
+\item Matrix/Vector description: $Q(t)=C\cdot T$
+\item coefficient matrix
+\begin{footnotesize}
+\[ C=\begin{pmatrix}c_{11}&c_{12}&c_{13}&c_{14}\\
+    c_{21}&c_{22}&c_{23}&c_{24}\\ c_{31}&c_{32}&c_{33}&c_{34}
+    \end{pmatrix}
+    ,\qquad 
+    T=\begin{pmatrix}1\\ t\\ t^2\\ t^3
+    \end{pmatrix}
+\]
+\end{footnotesize}
+\item  Direction:
+\begin{footnotesize}
+\[ {dQ(t)\over dt}=C\cdot {dT\over dt}=
+    C\cdot\begin{pmatrix}0\\ 1\\ 2t\\ 3t^2
+    \end{pmatrix}
+\]
+\end{footnotesize}
+\item Hermite example: $P_1=Q(0)$,
+$R_1=Q'(0)$, $P_2=Q(1)$, and~$R_2=\nobreak Q'(1)$ 
+\begin{footnotesize}
+\[ C\cdot \begin{pmatrix}1&0&1&0\\ 0&1&1&1\\ 0&0&1&2\\ 0&0&1&3
+    \end{pmatrix}
+    =[P_1,R_1,P_2,R_2],
+\]
+\end{footnotesize}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Blending functions}
+\begin{itemize}
+\item Description $C=G\cdot M$ 
+in terms of basis polynomials and geometry matrix:
+\begin{equation}
+  Q(t) = G\cdot M\cdot T = 
+    \begin{pmatrix}g_{11}&g_{12}&g_{13}&g_{14}\\
+        g_{21}&g_{22}&g_{23}&g_{24}\\ g_{31}&g_{32}&g_{33}&g_{34}
+    \end{pmatrix}
+    \cdot \begin{pmatrix}m_{11}&\ldots&m_{14}\\ \vdots&&\vdots\\
+        m_{41}&\ldots&m_{44}
+    \end{pmatrix}
+    \cdot T
+\label{eq:geom}
+\end{equation}
+If we introduce new basis polynomials $\pi_i(t)=M_{i*}\cdot T$, then we
+see that $Q_x=G_{11}\pi_1+G_{12}\pi_2+G_{13}\pi_3+G_{14}\pi_4$,
+$Q_y=G_{21}\pi_1+\cdots$, et cetera.
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Computing the basis matrix $M$}
+Hermite case: geometric constraints $[Q(0),Q'(0),Q(1),Q'(1)]$\\
+From $Q=G\cdot M\cdot T$:
+\[ Q(t)= G_H\cdot M_H\cdot T(t),\qquad
+   Q'(t) = G_H\cdot M_H\cdot T'(t). \]
+Applying to $t=0$ and $t=1$:
+\[ Q_H\equiv[Q(0),Q'(0),Q(1),Q'(1)] = G_H\cdot M_H\cdot T_H \]
+where
+\begin{footnotesize}
+\[ T_H=[T(0),T'(0),T(1),T'(1) ]
+     =\begin{pmatrix}1&0&1&0\cr 0&1&1&1\cr 0&0&1&2\cr 0&0&1&3
+     \end{pmatrix}
+\]
+\end{footnotesize}
+\begin{footnotesize}
+But now $G_H=Q_H$. It now follows that
+\[ M_H=T_H^{-1}
+    =\begin{pmatrix}1&0&-3&2\cr 0&1&-2&1\cr 0&0&3&-2\cr 0&0&-1&1
+    \end{pmatrix}
+\]
+\end{footnotesize}
+}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item $Q=G\cdot M\cdot T$ with
+\[ M_H=T_H^{-1}
+    =\begin{pmatrix}1&0&-3&2\\ 0&1&-2&1\\ 0&0&3&-2\\ 0&0&-1&1
+    \end{pmatrix}.
+\]
+\item Writing this out, we find the cubic Hermite polynomials
+\[ P_1(t)=2t^3-3t^2+1,\quad P_2(t)=t^3-2t^2+t,\quad
+    P_3(t)=-2t^3+3t^2,\quad P_1(t)=t^3-t^2
+\]
+
+\end{itemize}
+}
+
+\newcommand\picandsrc[2]
+{\leavevmode\pgfimage[height=1.3in]{#1}
+\begin{minipage}{2in}
+\begin{footnotesize}
+\verbatiminput{#2.gp}
+\end{footnotesize}
+\end{minipage}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Hermite basis functions}
+\picandsrc{hermite}{hermite}
+}
+
+\frame{
+  \frametitle{Example of Hermite interpolation}
+Curve $.3P_1-2P_2+P_3-2P4$:\\
+through $(0,.3)$ and~$(1,1)$, with slope~$-2$ in
+both~$x=0,1$.
+
+\pgfimage[height=1.5in]{herminp}
+}
+
+\frame{
+  \frametitle{Hermite parametric curves}
+Both coordinates parametric:
+\[ Q = \left({.1\atop .2}\right)P_1+\left({1\atop 0}\right)P_2
+    +\left({.9\atop .3}\right)P_3+\left({0\atop -1}\right)P_4.
+\]
+\picandsrc{hermpara}{hermpara}
+}
+
+\frame{
+  \frametitle{Smoothness}
+\picandsrc{hermpara2}{hermpara2}
+}
+
+\subsectionframe{Splines}
+
+\frame{
+  \frametitle{Bernstein polynomials}
+\begin{itemize}
+\item $z(t)=(1-t)^3z_1+3(1-t)^2tz_2+3(1-t)t^2z_3+t^3z_4$
+\pgfimage[height=2in]{bernshtein}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Derivation from Hermite basis}
+\begin{itemize}
+\item Hermite direction vectors~$R_1,R_2$,\\
+replace by control points~$P_1',P_2'$:
+\[ R_1=3(P_1'-P1), \quad R_2=3(P_2-P_2') \]
+\item Geometry matrix
+\[ G_B=[P_1,P_1',P_2',P_2]\quad
+   G_H=[P_1,R_1,P_2,R_2]
+    = [P_1,P_1',P_2',P_2] M_{BH} = G_B\cdot M_{BH}
+\]
+with 
+\[
+     M_{BH}=\begin{pmatrix}1&-3&0&0\\ 0&3&0&0\\ 0&0&0&-3\\ 0&0&1&3
+     \end{pmatrix}
+\]
+\end{itemize}
+}
+
+\frame{
+\begin{itemize}
+\item Define
+\[ M_B=M_{BH}\cdot M_H=
+   \begin{pmatrix}1&-3&3&-1\\ 0&3&-6&3\\ 0&0&3&-3\\ 0&0&0&1
+   \end{pmatrix}
+\]
+the Bezier curves:
+\[ Q(t)=G_H\cdot M_H\cdot T(t)=G_B\cdot M_{BH}\cdot M_H\cdot T(t)
+    =G_B\cdot M_B\cdot T(t)
+\]
+\item Per component: $Q_x(t)=g_{11}B_1(t)+g_{12}B_2(t)+\cdots$
+where
+\[ \begin{array}{rll}
+B_1(t) &= 1-3t+3t^2 -t^3&=(1-t)^3\\
+B_2(t) &= 3t-6t^2+3t^3&=3t(1-t)^2\\
+B_3(t) &= 3t^2-3t^3&=3t^2(1-t)\\
+B_4(t) &=          &=t^3
+\end{array}
+\]
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Enclosing hull}
+\begin{itemize}
+\item Bernshtein polynomials
+\[ z(t)=(1-t)^3z_1+3(1-t)^2tz_2+3(1-t)t^2z_3+t^3z_4 \]
+\item With all $z_i\equiv1$:
+\[ z(t)=(t+(1-t))^3\equiv1 \]
+\item $\Rightarrow$ Bezier curve components are weighted averages
+\item $\Rightarrow$ curve containes in convex hull of control points
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Calculation of Bezier curves}
+\begin{itemize}
+\item The simple way: $Q(t)=G\cdot M\cdot T(t)$
+\begin{itemize}
+\item 2 multiplications to form the terms $t^2$ and~$t^3$ in~$T$;
+\item 16 multiplications and 12 additions forming~$M\cdot T$;
+\item 12 multiplications and 9 additions forming $G\cdot(M\cdot T)$.
+\end{itemize}
+\item Improvement: store $\tilde M=G\cdot M$:
+\begin{itemize}
+\item two multiplications for~$T$;
+\item 12 multiplications and 9 additions for forming $\tilde M\cdot
+  T$.
+\end{itemize}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Calculation with divided differences}
+\begin{footnotesize}
+\begin{itemize}
+\item $Q(t)=G\cdot M\cdot T(t)$, $x$ component:
+\[ x(t) = \sum_kc_kt^{k-1}\qquad c_k=\sum_jG_{1j}M_{jk}. \]
+\item  recall
+\[  M_B=\begin{pmatrix}1&-3&3&-1\\ 0&3&-6&3\\ 0&0&3&-3\\ 0&0&0&1
+        \end{pmatrix}
+\]
+\item  writing $g_j\equiv G_{1j}$:
+\[ c_1=g_1,\quad c_2=3(g_2-g_1),\quad
+    c_3=3(g_3-2g_2+g_1),\quad c_4=g_4-3g_3+3g_2-g_1. \]
+\item These are divided differences:
+\[ \begin{array}{lcl}\relax [2,1]g&=&g_2-g_1,\\
+ \relax [3,2,1]g&=&[3,2]g-[2,1]g=(g_3-g_2)-(g_2-g_1)\\
+         &=&g_3-2g_2+g_1\\
+ \relax [4,3,2,1]&=&[4,3,2]g-[3,2,1]g=(g_4-2g_3+g_2)-(g_3-2g_2+g_1)\\
+         &=&g_4-3g_3+3g_2-g_1
+    \end{array}
+\]
+\end{itemize}
+\end{footnotesize}
+}
+
+\sectionframe{Practical use of splines}
+
+\frame{
+  \frametitle{Piecewise curves}
+\pgfimage[height=2in]{bezier2}
+}
+
+\frame{
+  \frametitle{Spline drawing}
+\begin{itemize}
+\item Divided difference algorithm is good for single points
+\item<2-> Whole curve: compute step by step $Q(n\delta)$, $n=0,1,\ldots$
+\item<3-> Other tricks: recursive bisection; use line drawing when curve
+  is flat enough
+\item<3-> (flatness test through control points for Bezier)
+\end{itemize}
+}
+
+\end{document}
+
+\frame{
+  \frametitle{}
+\begin{itemize}
+\item 
+\end{itemize}
+}
+

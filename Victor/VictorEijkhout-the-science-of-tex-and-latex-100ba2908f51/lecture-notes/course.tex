@@ -1,0 +1,485 @@
+\documentclass[twoside,letterpaper,11pt]{boek3}
+
+% general packages
+\usepackage{hyperref}
+\usepackage{verbatim,fleqn,times,multicol,amssymb}
+\usepackage[pdftex]{graphicx}
+\usepackage[noeepic]{qtree}
+\input supp-pdf.tex
+
+% my packages
+\usepackage{comment,outliner}
+
+\input idxmacs
+
+%\addtocounter{tocdepth}{-2}
+\setcounter{tocdepth}{1}
+
+%
+% pdf formatting for screen or paper
+%
+\begin{comment}
+\includecomment{print}
+% no edits below this line.
+\includecomment{screen}
+\begin{print}
+\excludecomment{screen}
+\end{print}
+\input paperscreen
+\end{comment}
+
+\input tutmacs
+\input exmacs
+
+%
+% Specific macros for this document
+%
+\newcommand\checkthis{{\bf CHECKTHIS}}
+\newcommand{\PageTitle}[1]{
+    \vfill \pagebreak
+    \bigskip {\bf \Large #1.}\nopagebreak\medskip
+    \addcontentsline{toc}{section}{\protect\numberline{}{#1}}
+    }
+\renewenvironment{exercises}%
+    {\PageTitle{Exercises and projects}
+     \begin{enumerate}}%
+    {\end{enumerate}}
+\newcounter{projects}[chapter]
+%\counterwithin{projects}{chapter}
+\renewcommand{\project}{%
+    \stepcounter{projects}
+    \item[{\bfseries Project \arabic{chapter}.\arabic{projects}.}]%
+    }
+\newcommand{\reserve}[3]{%
+    \textsl{#3}\addtocontents{rsv}{#1. #2 -- \textsl{#3}}}
+\newcommand{\projects}[1]{%
+    \PageTitle{Projects for this chapter}
+    \begin{projectslist}\input #1-projects.tex
+    \end{projectslist}
+    }
+\newenvironment{projectslist}{\begin{enumerate}}{\end{enumerate}}
+
+%
+% teacher's vs students' version
+%
+
+% UT use versus public
+\excludecomment{ut-only}
+\includecomment{external}
+
+% class room use
+\excludecomment{instructor}
+\includecomment{fullversion}
+\excludecomment{problem}
+\excludecomment{answers}
+% instructor version
+\excludecomment{quiz}
+\begin{instructor}
+\specialcomment{quiz}{\begin{description}\item[Quiz]}{\end{description}}
+\end{instructor}
+% full and short version
+\newcounter{sessions}
+\def\includechapter#1#2#3{\addtocounter{sessions}{#2}}
+\begin{fullversion}
+\def\includechapter#1#2#3{
+  \PageTitle{#1}
+  \addtocounter{sessions}{#2}
+  \SetBaseLevel{1}
+  \input #3.tex
+  \SetBaseLevel{0}
+  }
+\end{fullversion}
+\def\chapteranswers#1#2{}
+\begin{instructor}
+\def\chapteranswers#1#2{
+  \PageTitle{Answers for chapter #1}
+  \begingroup \def\chaptername{#2}
+    \TheAnswers
+  \endgroup}
+\end{instructor}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newenvironment{material}%
+    {\bigskip {\bf Handouts and further reading for this
+        chapter}\par}%
+    {\bigskip}
+
+\OutlineLevelStart0{\cleardoublepage\chapter{#1}}
+\OutlineLevelStart1{\section{#1}}
+\OutlineLevelStart2{\subsection{#1}}
+\setcounter{secnumdepth}{3}
+\OutlineLevelStart3{\subsubsection{#1}}
+\OutlineLevelStart4{\paragraph{#1}}
+
+%
+% page layout
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhead{}\fancyfoot{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\leftmark}
+\fancyfoot[RE]{\footnotesize\sl \TeX\ -- \LaTeX\ -- CS 594}
+\fancyfoot[LO]{\footnotesize\sl Victor Eijkhout}
+
+\begin{document}
+%\frontmatter
+
+\title{The Computer Science of \TeX\ and \LaTeX;\\
+based on CS 594, fall 2004, University of Tennessee}
+\author{Victor Eijkhout\\ Texas Advanced Computing Center\\
+ The University of Texas at Austin}
+\date{2012}
+\begin{instructor}
+\date{{\Large\bf Instructor's version}}
+\end{instructor}
+\maketitle
+
+\begin{ut-only}
+\emptypage
+\PageTitle{CS 594 -- Practical Matters}
+\begin{description}
+\item[aim of this course] This course will teach you the fundamentals
+  of \TeX\ and \LaTeX\ use. However, you will pick up more than just a
+  few practical skills. We will see all sorts of mathematical and
+  computer science topics that are (sometimes maybe only marginally)
+  related to \TeX\ and \LaTeX. So, \TeX/\LaTeX\ is here really just an
+  excuse for teaching cool CS subjects.
+\item[homework and exams] There will be regular homework and
+  occasional pop quizzes. Homework needs to be done in \LaTeX: mail
+  both source and pdf output to \n{cs594tex}.
+\item[final project] The final
+  exam will be in the form of a project that can be done
+  individually or with 2~or~3 people. You can find the project
+  descriptions at the end of each chapter. If you have an idea for a
+  project, feel free to talk to me about it.
+\item[course materials] The main handout can be bought from Graphic
+  Creations (1809 Lake Avenue, 865-522-6221). It is very much
+  recommended that you buy the {\slshape Guide To \LaTeX} (fourth
+  edition) by Kopka and
+  Daly. (Order from Amazon, Ecampus, Bookpool, et cetera; the
+  university bookstore has a small number of copies.) Certain
+  reference books have been put on reserve in the library (2nd floor).
+\item[lecture notes] Further material can be downloaded from
+  \url{http://www.cs.utk.edu/~eijkhout/594-LaTeX}. Files with
+  \n{tutorial} in the name are written out lecture notes; you can
+  download and print them. Files with
+  \n{slides} in the name are slides; there should be no need for
+  printing them.
+\item[classes] We meet every tuesday and thursday 2:10--3:25pm. No class on
+  sep~2, oct~14 (fall break), nov~25 (thanksgiving).
+\end{description}
+
+\bigskip
+Victor Eijkhout\\
+eijkhout@cs.utk.edu\\
+329 Claxton, daily 11--12 and by appointment
+
+\bigskip
+Lan Lin\\
+lin@cs.utk.edu\\
+110E Claxton, mon/tue/wed 3:30--5:30
+\end{ut-only}
+
+\begin{external}
+
+\hbox{}\vfill
+\pagebreak
+
+\PageTitle{About this book}
+
+These are the lecture notes of a course I taught in the fall of 2004.
+This was the first time I taught the course, and the first time this
+course was taught, period. It has also remained the \emph{only} time
+the course was taught. These lecture notes, therefore, are
+probably full of inaccuracies, mild fibs, and gross errors. Ok, make
+that: are \emph{definitely} full of at the least the first two
+categories,
+because I~know of several
+errors that time has prevented me from addressing.
+
+My lack of time being what it is, this unfinished book wil now remain
+as is. The reader is asked to enjoy it, but not to take it for gospel.
+
+\bigskip
+Victor Eijkhout\\
+eijkhout@tacc.utexas.edu\\
+Knoxville, TN, december 2004;\\
+Austin, TX, january 2012.
+
+\bigskip
+copyright 2012 Victor Eijkhout\\
+ISBN 978-1-105-41591-3\\
+distributed under a Creative Commons Attribution 3.0
+Unported (CC BY 3.0) license
+\end{external}
+
+\bigskip
+Enjoy!
+
+\clearpage
+\pagestyle{fancy}
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+
+%\mainmatter
+\begin{Outline}
+
+%%
+%% TeX and LaTeX
+%%
+\Level 0 {\TeX\ and \LaTeX}
+
+In this chapter we will learn 
+\begin{itemize}
+\item The use of \LaTeX\ for document preparation,
+\item \LaTeX\ style file programming,
+\item \TeX\ programming.
+\end{itemize}
+
+\begin{material}
+For \LaTeX\ use the `Not so short introduction to \LaTeX' by Oetiker
+{\it et al.} For further reading and future reference, it is highly
+recommended that you get `Guide to \LaTeX' by Kopka and
+Daly~\cite{KopkaDaly}. The original reference is the book by
+Lamport~\cite{Lamport:LaTeX}. While it is a fine book, it has not kept
+up with developments around \LaTeX, such as contributed graphics and
+other packages. A~book that does discuss extensions to \LaTeX\ in
+great detail is the `\LaTeX\ Companion' by Mittelbach {\it et
+  al.}~\cite{LaTeXcompanion}.
+
+For the \TeX\ system itself, consult `\TeX\ by Topic'. The original
+reference is the book by Knuth~\cite{Knuth:TeXbook}, and the ultimate
+reference is the published source~\cite{Knuth:TeXprogram}.
+\end{material}
+
+\includechapter{\LaTeX}{3}{latex}
+\includechapter{\TeX\ programming}{2}{tex1}
+\includechapter{\TeX\ visuals}{1}{tex2}
+%\chapteranswers{\LaTeX}{latex}
+\chapteranswers{\TeX\ programming}{tex1}
+\chapteranswers{\TeX\ visuals}{tex2}
+\projects{tex}
+
+\begin{quiz}
+\TeX\ is like assembly language, and \LaTeX\ is like a higher level
+programming language. Do you agree?
+\end{quiz}
+
+%%
+%% Parsing
+%%
+\Level 0 {Parsing}
+
+The programming language part of \TeX\ is rather unusual. In this
+chapter we will learn the basics of language theory and parsing, and
+apply this to parsing \TeX\ and \LaTeX. Although \TeX\ can not be
+treated like other programming languages, it is interesting to see how
+far we can get with existing tools.
+
+\begin{material}
+The theory of languages and automata is discussed in any number of
+books, such as the Hopcroft and Ulman one. For a discussion that is
+more specific to compilers, see the compilers book by Aho and Ulman or
+Aho, Seti, and Ulman.
+
+The tutorials on \lex\ and \yacc\ should suffice you for most
+applications.  The O'Reilly book by Levine, Mason, and Brown is
+probably the best reference on \lex\ and \yacc. A~copy of it is on
+reserve in the library, \reserve{Lex and Yacc}{Levine, Mason, and
+  Brown}{QA76.76.U84M37}.
+
+The definitive reference on hashing is Knuth's volume~3 of The Art of
+Computer Programming~\cite{Knuth:aocp3}, section~6.4. This is on
+reserve, \reserve{Sorting and searching}{Knuth}{QA76.5.K57}.
+\end{material}
+
+\includechapter{Parsing theory}{2}{parsing}
+\includechapter{Lex}{2}{lex}
+\includechapter{Yacc}{2}{yacc}
+\includechapter{Hashing}{2}{hashing}
+\projects{parsing}
+
+%%
+%% Line and page breaking
+%%
+\Level 0 {Breaking things into pieces}
+
+The line breaking algorithm of \TeX\ is interesting, in that it
+produces an aesthetically optimal solution in very little time.
+
+\begin{material}
+If you still have the book `Introduction to Algorithms' by Cormen
+\etal, you can find a discussion of Dynamic Programming and
+NP-completeness there.
+The books by Bellman are the standard works in this field. Bellman's
+`Applied Dynamic Programming'~\cite{Bellman:AppliedDynamic}
+has been put on reserve,
+\reserve{Applied Dynamic Programming}{Bellmand and
+  Stuarts}{QA264.B353}.
+The \TeX\ line breaking algorithm is described in an article by Knuth
+and Plass~\cite{K:break}, reprinted in~\cite{Knuth:digitaltypography}.
+
+The standard work on Complexity Theory, including NP-completeness, is
+Garey and Johnson `Computers and intractibility'~\cite{Garey:Intractibility}. 
+There is excellent online material about this subject on Wikipedia,
+for instance \url{http://en.wikipedia.org/wiki/Complexity_classes_P_and_NP}.
+Issues in page breaking are discussed in Plass' thesis~\cite{Plass:thesis}.
+\end{material}
+
+\includechapter{Dynamic Programming}{2}{dynamic}
+\includechapter{\TeX\ paragraph breaking}{1}{paragraph}
+\includechapter{NP completeness}{1}{completeness}
+\includechapter{Page breaking}{1}{page}
+\projects{dynamic}
+
+%%
+%% Fonts
+%%
+\Level 0 {Fonts}
+
+Knuth wrote a font program, Metafont, to go with \TeX. The font
+descriptions involve some interesting mathematics.
+
+\begin{material}
+Bezier curves and raster graphics are standard topics in computer
+graphics. The book by Foley and Van Dam (section~11.2 about Splines)
+has been placed on reserve,
+\reserve{Computer Graphics: principles and practice}{Foley
+  \etal}{T385Ê.C587}. More theoretical information can be found de
+Boor's Practical Guide to Splines~\cite{deBoor:splines}, which
+unfortunately limits itself to spline functions.
+
+Digital typography is a very wide area, spanning from perception
+psychology and physiology to the electronics and mathematics of
+display equipment. The book by
+Rubinstein~\cite{Rubinstein:digital-typography} is a good
+introduction. This book has been placed on reserve, \reserve{Digital
+  Typography}{Rubinstein}{Z253.3.R8}.
+
+The relation between Bezier curves and aesthetics is explicitly
+discussed in~\url{http://www.webreference.com/dlab/9902/examples-ii.html}.
+
+\begin{comment}
+The material on raster graphics is based on Knuth's `A~note on
+digitized angles'~\cite{Knuth:angles}, and chapter~24 of the Metafont
+book~\cite{Knuth:metafont}.
+\end{comment}
+\end{material}
+
+\includechapter{Bezier curves}{3}{bezier}
+\includechapter{Curve plotting with \protect\n{gnuplot}}{1}{gnuplot}
+\includechapter{Raster graphics}{1}{raster}
+\projects{bezier}
+
+%%
+%% Lambda calculus
+%%
+\Level 0 {\TeX's macro language -- unfinished chapter}
+
+The programming language of \TeX\ is rather idiosyncratic. One notable
+feature is the difference between expanded and executed commands. The
+expansion mechanism is very powerful: it is in fact possible to
+implement lambda calculus in it.
+
+\begin{material}
+The inspiration for this chapter was the article about lists by Alan
+Jeffrey~\cite{Jeffrey:lists}.
+\end{material}
+
+\includechapter{Lambda calculus in \TeX}{2}{lambda}
+
+
+%%
+%% Software engineering 4: character encoding
+%%
+\Level 0 {Character encoding}
+
+This chapter is about how to interpret the characters in an input file
+-- no there ain't such a thing as a plain text file -- and how the
+printed characters are encoded in a font.
+
+\begin{material}
+There is very little printed material on this topic. A~good
+introduction is
+\url{http://www.joelonsoftware.com/articles/Unicode.html}; after that,
+\url{http://www.cs.tut.fi/~jkorpela/chars.html} is a good
+tutorial for general issues, and
+\url{http://en.wikipedia.org/wiki/Unicode} for Unicode.
+
+For the technical details on Unicode consult
+\url{http://www.unicode.org/}. An introduction to ISO~8859:
+\url{http://www.wordiq.com/definition/ISO_8859}.
+\end{material}
+
+\includechapter{Input file encoding}{1}{encoding}
+\includechapter{Font encoding}{1}{fonts}
+\includechapter{Input and output encoding in \LaTeX}{1}{latexfont}
+\projects{encoding}
+
+\begin{quiz}
+I type a key~`A' into an \n{html} file. An~`A' appears on my
+screen. If you browse the file, you see an~`A'. What translation
+stages are happening here?
+\end{quiz}
+
+%%
+%% Software engineering 1: literate programming
+%%
+\Level 0 {Software engineering}
+
+In the course of writing \TeX\ and Metafont, Knuth developed some
+interesting ideas about software engineering. We will put those in the
+context of other writings on the subject. One of the by-products of \TeX\
+is the Web system for `literate programming'. We will take a
+look at that, as well as at the general idea of markup.
+
+\begin{material}
+Knuth wrote a history of the \TeX\ project in~\cite{Knuth:TeXerrors},
+reprinted in `Literate Programming', which is on reserve in the library,
+\reserve{Literate Programming}{D.E. Knuth}{QA76.6.K644 1992}.
+
+One of the classics of software engineering is Frederick Brooks' `The
+Mythical Man-Month'~\cite{Brooks:mythical}.
+
+For software engineering research, consult the following journals:
+\begin{itemize}
+\item Software practice and experience
+\item Journal of systems and software
+\item ACM Transactions on Software Engineering and Methodology
+\item IEEE Transactions on Reliability
+\end{itemize}
+Some of these the library has available online.
+\end{material}
+
+\includechapter{Literate programming}{1}{web}
+\includechapter{Software engineering}{1}{software}
+\includechapter{Markup}{1}{markup}
+\projects{software}
+
+\bibliographystyle{plain}
+\bibliography{math,cs,tex}
+
+\printindex
+
+\begin{instructor}
+%\backmatter
+\PageTitle{Course summary}
+
+Number of projects: \arabic{projects}
+
+Number of sessions: \arabic{sessions} (out of 29)
+\end{instructor}
+
+\end{Outline}
+
+\begin{instructor}
+\message{>>>>>>>> This version is for the instructor only <<<<<<<<<<<}
+\message{>>>>>>>> This version is for the instructor only <<<<<<<<<<<}
+\message{>>>>>>>> This version is for the instructor only <<<<<<<<<<<}
+\message{>>>>>>>> This version is for the instructor only <<<<<<<<<<<}
+\end{instructor}
+
+\end{document}

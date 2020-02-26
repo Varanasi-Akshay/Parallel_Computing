@@ -1,0 +1,22 @@
+Recall that macro:
+\verbatiminput{hangmacro.tex}
+\begin{examplewithcode}
+\input hangmacro
+\begin{minipage}[t]{3in}
+\def\biginitial#1{\hskip-20pt \Hang{\huge #1}\hskip 20pt}
+\parindent=0pt
+
+\everypar{\hangafter=-2 \hangindent=20pt \biginitial}
+This is an old-fashioned mediaeval paragraph that has lots of text and
+a very long first sentence. The second sentence is also long, and only
+serves the purpose to make this more than 2 or so lines long. For good
+measure we throw in a third line which should make this four lines
+long, if not five with a little luck.
+
+Also, the second paragraph is an old-fashioned mediaeval paragraph that
+has lots of text and a very long first sentence. The second sentence
+is also long, and only serves the purpose to make this more than 2 or
+so lines long. For good measure we throw in a third line which should
+make this four lines long, if not five with a little luck.
+\end{minipage}
+\end{examplewithcode}

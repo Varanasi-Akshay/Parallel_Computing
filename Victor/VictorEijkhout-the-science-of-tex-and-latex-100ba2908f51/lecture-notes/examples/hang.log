@@ -1,0 +1,95 @@
+This is pdfTeX, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2004.8.24)  5 OCT 2004 23:27
+**hang
+(./hang.tex{/sw/share/texmf/pdftex/config/pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+(/sw/share/texmf/tex/latex/ntgclass/artikel3.cls
+Document Class: artikel3 1999/03/03 v2.0y NTG LaTeX document class
+(/sw/share/texmf/tex/latex/ntgclass/ntg10.clo
+File: ntg10.clo 1999/03/03 v2.0y NTG LaTeX file (size option)
+)
+\unitindent=\dimen102
+\othermargin=\dimen103
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+LaTeX Info: Redefining \em on input line 723.
+\bibindent=\dimen104
+) (./hang.aux)
+\openout1 = `hang.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+\pbox=\box26
+\cbox=\box27
+\csize=\dimen105
+\psize=\dimen106
+
+Underfull \hbox (badness 3525) in paragraph at lines 18--23
+[]/cmr10/Here is a bit of text
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--23
+/cmr10/in a minipage[]  with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--23
+/cmr10/too much punctuation[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--23
+/cmr10/Ev-ery sentence[]  long
+ []
+
+
+Underfull \hbox (badness 4096) in paragraph at lines 18--23
+/cmr10/or short[]  is overly[]  yes[]
+ []
+
+
+Underfull \hbox (badness 4726) in paragraph at lines 18--23
+/cmr10/overly[]  punctuated[]  This
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 23.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 23.
+[1
+
+{/sw/share/texmf/dvips/config/pdftex.map}] (./hang.aux) ) 
+Here is how much of TeX's memory you used:
+ 257 strings out of 95437
+ 2699 string characters out of 1190295
+ 45931 words of memory out of 1000001
+ 3339 multiletter control sequences out of 10000+50000
+ 3640 words of font info for 14 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 1000
+ 23i,4n,18p,108b,154s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 7 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 0 words of extra memory for PDF output out of 65536
+{/sw/share/texmf/dvips
+/tetex/f7b6d320.enc}</sw/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb>
+Output written on hang.pdf (1 page, 10544 bytes).

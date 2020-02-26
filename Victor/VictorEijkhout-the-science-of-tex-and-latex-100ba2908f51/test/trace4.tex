@@ -1,0 +1,21 @@
+\documentclass{article}
+
+\begin{document}
+
+\tracingonline=1
+\tracingmacros=2
+\tracingcommands=2
+
+\def\HasPoint#1{\xHasPoint#1.;}
+\def\empty{}
+\def\xHasPoint#1.#2;{\def\tmp{#2}
+  \ifx\tmp\empty
+    \message{Did not have a period}
+  \else
+    \message{Had a period!}
+  \fi}
+
+\HasPoint{foo}
+\HasPoint{bar.}
+
+\end{document}

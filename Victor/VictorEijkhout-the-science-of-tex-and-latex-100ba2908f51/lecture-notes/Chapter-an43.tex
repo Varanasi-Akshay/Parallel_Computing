@@ -1,0 +1,22 @@
+Define $G_H=[q_0,q'_0,q_1]$. That gives
+\[ T_H=\pmatrix{1&0&1\cr 0&1&1\cr 0&0&1},\qquad M_H=T_H\inv
+    =\pmatrix{1&0&-1\cr 0&1&-1\cr 0&0&1}.
+\]
+The derivative in the other end point is
+\[ q_1'=Q_H'(1)=G_HM_H\pmatrix{0\cr 1\cr 2}=G_H\pmatrix{-2\cr -1\cr 2}
+    =2q_1-2q_0-q_0'. \]
+The control point satisfies
+\[ q_2=\cases{q'_0u+q_0\cr q'_1v+q_1}. \]
+Substituting $q'_1$, we get
+\[ Q_H\left[ \pmatrix{1\cr 0\cr-1}+\pmatrix{0&2\cr 1&1\cr 0&-2}
+                \pmatrix{u\cr v}\right] = 0 \]
+which is satisfied for $u=1/2$, $v=-1/2$. This gives for the Bezier
+geometry matrix
+\[ G_B=[q_0,q_2,q_1]=G_H\pmatrix{1&1&0\cr 0&1/2&0\cr 0&0&1},\qquad
+    G_H=G_B\pmatrix{1&-2&0\cr 0&2&0\cr 0&0&1}
+\]
+and for the generating equation
+\[ Q=G_HM_HT=G_B\pmatrix{1&-2&0\cr 0&2&0\cr 0&0&1}
+    \pmatrix{1&0&-1\cr 0&1&-1\cr 0&0&1}T
+    =G_B\pmatrix{1&-2&1\cr 0&2&-2\cr 0&0&1}
+\]

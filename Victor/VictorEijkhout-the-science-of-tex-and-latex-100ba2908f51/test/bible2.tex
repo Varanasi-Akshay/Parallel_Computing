@@ -1,0 +1,19 @@
+\newcounter{vcount}
+\def\Header#1{\medskip
+  \hbox{\bfseries #1}
+  \setcounter{vcount}{1}
+  \everypar{\hbox to 0pt{\hskip-10pt $\bullet$\hss}%
+            \everypar{}}
+  }
+
+\Header{First}
+
+One line of text that is long enough to wrap as a paragraph
+that is long enough to wrap as a paragraph
+
+two lines of text that are long enough to wrap as a paragraph
+that is long enough to wrap as a paragraph
+
+more lines of text that are long enough to wrap as a paragraph
+that is long enough to wrap as a paragraph
+

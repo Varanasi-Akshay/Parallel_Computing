@@ -1,0 +1,8 @@
+Write a macro that constructs another macro: \verb+\tees\three3+
+should be equivalent to \verb+\def\three{TTT}+, \verb+\tees\five5+
+equivalent to \verb+\def\five{TTTTT}+ et cetera. In other words, the
+first argument of \cs{tees} is the name of the macro you are defining,
+the second is the number of letters~`T' the defined macro expands to.
+To make sure that your solution really expands to that string of `T's,
+and not some code that generates it when the macro is called,
+do \verb+\show\five+ and check the screen output.

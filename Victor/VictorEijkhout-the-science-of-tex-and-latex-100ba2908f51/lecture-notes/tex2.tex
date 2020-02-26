@@ -1,0 +1,100 @@
+\begin{594exercise}
+Use the \cs{everypar} command so that the first paragraph after a
+heading (define your own heading command) will have a bullet
+(\verb+$\bullet$+) in the left margin.
+\end{594exercise}
+\begin{answer}
+\begin{examplewithcode}
+\def\Header#1{\medskip
+  \hbox{\bfseries #1}
+  \setcounter{vcount}{1}
+  \everypar{\hbox to 0pt{\hskip-10pt $\bullet$\hss}%
+            \everypar{}}
+  }
+\Header{the title}
+
+Paragraph one
+
+and two
+\end{examplewithcode}
+\end{answer}
+
+
+%\tracingmacros=2 \tracingonline=1
+\begin{594exercise}
+Set \TeX\ up so that every paragraph starts in mediaeval `initial'
+style: the first letter of the paragraph is set in a large type size,
+and takes the first two or three lines.
+Use the following auxiliary macro:
+\verbatiminput{hangmacro.tex}
+\input hangmacro
+\begin{examplewithcode}
+% small test:
+A \Hang{$\bullet$} B \Hang{\Huge B} C. \bigskip
+\end{examplewithcode}
+Also, set \verb+\parindent=0pt+. The result should look like this. Input:
+\begin{verbatim}
+This is an old-fashioned mediaeval paragraph that has lots 
+of text and...
+
+Also, the second paragraph is an old-fashioned mediaeval
+paragraph that...
+\end{verbatim}
+\smallskip with output:\par\medskip
+\begin{minipage}{3in}
+\def\biginitial#1{\hskip-20pt \Hang{\huge #1}\hskip 20pt}
+\parindent=0pt
+\everypar{\hangafter=-2 \hangindent=20pt \biginitial}
+This is an old-fashioned mediaeval paragraph that has lots of text and
+a very long first sentence. The second sentence is also long, and only
+serves the purpose to make this more than 2 or so lines long. For good
+measure we throw in a third line which should make this four lines
+long, if not five with a little luck.
+
+Also, the second paragraph is an old-fashioned mediaeval paragraph that
+has lots of text and a very long first sentence. The second sentence
+is also long, and only serves the purpose to make this more than 2 or
+so lines long. For good measure we throw in a third line which should
+make this four lines long, if not five with a little luck.
+\end{minipage}
+\end{594exercise}
+
+\begin{answer}
+Recall that macro:
+\verbatiminput{hangmacro.tex}
+\begin{examplewithcode}
+\input hangmacro
+\begin{minipage}[t]{3in}
+\def\biginitial#1{\hskip-20pt \Hang{\huge #1}\hskip 20pt}
+\parindent=0pt
+
+\everypar{\hangafter=-2 \hangindent=20pt \biginitial}
+This is an old-fashioned mediaeval paragraph that has lots of text and
+a very long first sentence. The second sentence is also long, and only
+serves the purpose to make this more than 2 or so lines long. For good
+measure we throw in a third line which should make this four lines
+long, if not five with a little luck.
+
+Also, the second paragraph is an old-fashioned mediaeval paragraph that
+has lots of text and a very long first sentence. The second sentence
+is also long, and only serves the purpose to make this more than 2 or
+so lines long. For good measure we throw in a third line which should
+make this four lines long, if not five with a little luck.
+\end{minipage}
+\end{examplewithcode}
+\end{answer}
+
+\endinput
+
+\begin{594exercise}
+\end{594exercise}
+
+\begin{594exercise}
+\end{594exercise}
+
+\begin{594exercise}
+\end{594exercise}
+
+\begin{594exercise}
+\end{594exercise}
+

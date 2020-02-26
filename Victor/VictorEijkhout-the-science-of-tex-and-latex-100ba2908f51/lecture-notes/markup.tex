@@ -1,0 +1,74 @@
+\Level 0 {History}
+
+The idea of markup has been invented several times. The ideas can be
+traced by to William
+Tunnicliffe, chairman of the Graphic Communications Association (GCA)
+Composition Committee, who presented a talk on the separation of
+information content of documents from their format in 1967.
+He called this `generic coding'.
+Simultaneously, a New York book designer named Stanley
+Rice was publishing articles about "Standardized Editorial
+Structures", parameterized style macros based on the structural
+elements of publications.
+
+\Level 1 {Development of markup systems}
+
+Probably the first software incorporating these ideas comes out of
+IBM. \index{Goldfarb, Charles}Charles Goldfarb recounts
+(\url{http://www.sgmlsource.com/history/roots.htm}) how in 1969 he
+invented \index{GML}GML with Ed Mosher and Ray Lorie. They were
+tackling the problem of having a document storage system, an editor,
+and a document printing system talk to each other, and found that each
+was using different `\index{Markup!procedural}procedural markup' for
+its own purposes. Gradually the idea grew to use markup for a logical
+description of the document. The project was called `Integrated Text
+Processing', and the first prototype `Integrated Textual Information
+Management Experiment': InTIME.
+
+GML was officially published in 1973, and by 1980 an extension,
+\index{SGML}SGML, was under development. This was published in 1986 as
+ISO 8879. Actually, SGML is a standard for defining markup languages,
+rather than a language itself. Markup languages are defined in SGML
+through `\index{DTD}Document Type Definitions' (DTDs). 
+
+The most famous application of SGML is \index{HTML}HTML. However, HTML
+quickly began violating the separation of function and presentation
+that was the core idea of markup languages. A~renewed attempt was made
+to introduce a system for markup languages that truly defined content,
+not form, and this led to the `\index{XML}eXtensible Markup
+Language'. \index{XHTML}XHTML is a realization of HTML as an XML
+`\index{schema}schema'. While SGML made some attempts at readability
+(and saving keystrokes for poor overworked typists), XML is aimed
+primarily at being generated and understood by software, not by
+humans.
+
+Another well-known application of SGML is
+`\index{DocBook}DocBook'. However, this has also been defined as an
+XML DTD\footnote{XML has both DTDs, which are SGML-like, and Schemas,
+  which themselves XML. Schemas are the more powerful mechanism, but
+  also newer, so there are established DTDs that may not be redefined
+  as Schemas. Furthermore, Schemas are more complicated to transmit
+  and parse.}, and this seems to be the current definition. DocBook is
+a good illustration of the separation of content and presentation:
+there are XSL style sheets that render DocBook files as Pdf, Rtf,
+HTML, or man pages.
+
+\Level 1 {Typesetting with markup}
+
+In the early 1970s, nroff/troff was written at Bell Labs, at first in
+PDP assembler and targetting a specific photo typesetter for producing
+Unix documentation. Later it was recoded in~C, with device independent
+output. Various tasks such as tables and equations were hard in
+nroff/troff, so preprocessors existed: eqn for formulas, tbl for
+tables, and refer for bibliographies.
+
+Brian Reid's thesis of 1980 descibed a markup system called
+Scribe. Scribe source files can be compiled to several target
+languages. For instance, recent versions Scribe can compile to \LaTeX,
+HTML, or man pages.
+
+\endinput
+\Level 0 {Document typesetting systems}
+
+Scribe, troff, Lout, \TeX.
+

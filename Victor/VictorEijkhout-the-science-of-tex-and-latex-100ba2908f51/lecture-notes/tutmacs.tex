@@ -1,0 +1,134 @@
+\newcommand{\TbT}{\TeX\ by Topic}
+\newcommand{\Metafont}{\textsc{Metafont}}
+\let\metafont\Metafont
+\newcommand\ascii{{\sc Ascii}}
+\newcommand\ebcdic{{\sc Ebcdic}}
+\newcommand\gnuplot{\protect\n{gnuplot}}
+\def\mod{\mathbin{\mathrm{mod}}}
+\def\eqref#1{equation~(\ref{#1})}
+\def\Eqref#1{Equation~(\ref{#1})}
+\def\inv{^{-1}}
+\def\endproof{\unskip\penalty10000 \hskip10pt plus 1fill$\bullet$\par}
+
+\def\etal{\textit{et al.}}
+\def\lex{{\it lex}}
+\def\yacc{{\it yacc}}
+\def\make{{\it make}}
+\def\web{{\textsc{Web}}}
+\def\n{\bgroup
+  \catcode`\#=12 \catcode`\_=12 \catcode`\^=12
+  \catcode`\&=12 
+  \tt \let\next=}
+\newcommand{\cs}[1]{{\tt\char`\\#1}}
+{\catcode`\.=13
+ \gdef.{${}_\bullet$}
+}
+\def\parserule#1{%
+    \ifmmode \n{#1}\,\rightarrow\relax
+    \else $\n{#1}\,\rightarrow{}$\nobreak
+    \fi
+    \hbox\bgroup\catcode`\.=13 \tt\let\next=}
+
+\newenvironment{remark}%
+    {\medskip\noindent{\bf Remark.}}{}
+\usepackage{bnf}
+\input bnf.env
+
+\generalcomment{inputwithcode}
+  {\begingroup\def\ProcessCutFile{}}
+  {\verbatiminput{\CommentCutFile}
+   \endgroup
+   \input{\CommentCutFile}
+  }
+\generalcomment{examplewithcode}
+  {\begingroup
+     \def\ProcessCutFile{}\def\CommentCutFile{example.tex}}
+  {\verbatiminput{\CommentCutFile}
+   Output:
+   \begin{quote}
+     \begin{minipage}[t]{3in}
+        \everypar{}
+        \input{\CommentCutFile} 
+     \end{minipage}
+   \end{quote}
+   \endgroup
+  }
+\specialcomment{ttexamplewithcode}
+  {\begingroup\def\ProcessCutFile{}}
+  {\verbatiminput{\CommentCutFile}
+   \endgroup
+   Output:
+   \begin{quote}\begin{ttfamily} \input{\CommentCutFile} 
+     \end{ttfamily}\end{quote}
+  }
+\generalcomment{mathexamplewithcode}
+  {\begingroup\def\ProcessCutFile{}}
+  {\verbatiminput{\CommentCutFile}
+   Output:
+   \begin{equation} \input{\CommentCutFile} \end{equation}
+   \endgroup
+  }
+
+\def\chaptertitle{\csname\chaptername title\endcsname}
+\def\chaptershorttitle{\csname\chaptername shorttitle\endcsname}
+
+\def\lambdatitle{Lambda calculus in \TeX}
+\def\lambdashorttitle{Lambda calculus}
+
+\def\latextitle{Yet another \LaTeX\ tutorial}
+\def\latexshorttitle{\LaTeX}
+
+\def\lextitle{A \lex\ tutorial}
+\def\lexshorttitle{\lex}
+
+\def\yacctitle{A \yacc\ tutorial}
+\def\yaccshorttitle{\yacc}
+
+\expandafter\def\csname tex1title\endcsname{\TeX\ -- macro programming}
+\expandafter\let\csname tex1shorttitle\expandafter\endcsname
+    \csname tex1title\endcsname
+\expandafter\def\csname tex2title\endcsname{\TeX\ -- visuals}
+\expandafter\let\csname tex2shorttitle\expandafter\endcsname
+    \csname tex2title\endcsname
+
+\def\parsingtitle{An introduction to parsing}
+\def\parsingshorttitle{Parsing}
+
+\def\hashingtitle{Hashing}
+\let\hashingshorttitle\hashingtitle
+
+\def\beziertitle{Curve approximation by splines}
+\def\beziershorttitle{Splines}
+
+\def\dynamictitle{Dynamic programming}
+\let\dynamicshorttitle\dynamictitle
+
+\def\paragraphtitle{Line breaking}
+\let\paragraphshorttitle\paragraphtitle
+
+\def\pagetitle{Page breaking in \TeX}
+\def\pageshorttitle{Page breaking}
+
+\def\completenesstitle{Introduction to NP-Completeness}
+\def\completenesshortstitle{NP-Completeness}
+
+\def\rastertitle{Introduction to Raster Graphics}
+\def\rastershortstitle{Raster Graphics}
+
+\def\pythontitle{Really quick Python tutorial}
+\def\pythonshortstitle{Python}
+
+\def\encodingtitle{Character encoding}
+\let\encodingshorttitle\encodingtitle
+
+\def\rastertitle{Raster Graphics}
+\let\rastershorttitle\rastertitle
+
+\def\gnuplottitle{Gnuplot}
+\let\gnuplotshorttitle\gnuplottitle
+
+\def\fontstitle{Fonts and font files}
+\def\fontsshorttitle{Fonts}
+
+\def\softwaretitle{\TeX\ and Software Engineering}
+\def\softwareshorttitle{Software Engineering}

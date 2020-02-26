@@ -1,0 +1,490 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{NP-completeness}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Introduction}
+
+\frame[containsverbatim]{
+  \frametitle{Complexity theory}
+\begin{itemize}
+\item What is the running time of an algorithm as function of its input?
+\item What is the memory need of an algorithm as function of its
+  input?
+\item Best, worst, average, expected.
+\item Notation: $f(n)=O(g(n))$, $f(n)=\Theta(g(n))$
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Tractable and intractable}
+\begin{itemize}
+\item Tractable: polymomial complexity
+\[ f(n)=O(n^k)\quad\hbox{some $k$} \]
+\item Intractable: exponential complexity
+\[ f(n)=O(2^n) \quad\hbox{or something like that} \]
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Intractable problems}
+\begin{itemize}
+\item They exist
+\item<2-> What do you tell your boss?
+\pgfimage[width=3.5in]{np-prove}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Bounds versus reality}
+\begin{itemize}
+\item Ideal: algorithm and bound are similar
+\item NP: all known algorithms are intractable, but not provably
+\item<2-> Wrong way to approach your boss:
+\pgfimage[width=3.5in]{np-dumb}
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Some consolation}
+\begin{itemize}
+\item Problems in NP are equivalent: solve one, solve them all
+\item You're not alone: no one knows an efficient algorithm
+\item<2-> What to tell your boss:
+\pgfimage[width=3.5in]{np-famous}
+\end{itemize}
+}
+
+\sectionframe{Decision problems}
+\subsection{Optimization}
+
+\frame[containsverbatim]{
+  \frametitle{Optimization vs decision}
+\begin{itemize}
+\item Many problems are optimization type:
+\item traveling salesman: what is the shortest route
+\item For complexity analysis more convenient decision problem
+\item translation needed: given a bound $B$, is there a route shorter
+  than~$B$
+\end{itemize}
+}
+
+\subsection{Language of a problem}
+
+\frame{
+  \frametitle{Language of a problem}
+\begin{itemize}
+\item For a problem, there are `instances'
+\item example: in traveling salesman problem, set of numbered cities
+  $\{(i,c_i)\}_i$
+\item<2-> `Yes set' of a problem: $Y_\Pi$ contains the instances that
+  give a `yes' decision
+\item<2-> Encoding~$e$ gives `language of a problem':
+\[ L[\Pi,e]=\{ \hbox{the instances in $Y_\Pi$ encoded under $e$} \} \]
+\item<3-> for traveling salesman: ordered list of cities $\langle
+  c_1,c_2,\ldots\rangle$
+\end{itemize}
+}
+
+\subsectionframe{Turing machines}
+
+\frame{
+  \frametitle{Accepting strings}
+\begin{itemize}
+\item A Turing machine can halt in `yes' state~$q_y$, `no'
+  state~$q_n$, or not halt.
+\item The TM \emph{accepts} a string if it halts in~$q_y$
+\item The \emph{language} is the set of all accepted strings
+\end{itemize}
+}
+
+\frame{
+  \frametitle{`Solving' a problem}
+ A Deterministic Turing Machine (DTM) $M$ \emph{solves} a problem~$\Pi$\\
+ (equivalently: recognizes $L[\Pi,e]$) iff
+\begin{itemize}
+\item The DTM for all strings over the input alphabet
+\item $L_M=L[\Pi,e]$
+\item<2-> Example: traveling salesman problem for network of cities
+  and bound~$B$,
+\item<2-> $M$ always returns yes or no
+\item<2-> input is list of cities
+\item<2-> $M$ returns yes if list satisfies bound
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Solution checking vs generating}
+\begin{itemize}
+\item In the traveling salesman problem, `solving' means checking a
+  solution
+\item<2-> Other example: primality testing
+\item<2-> Input is number, output is yes/no (this number is prime~/
+  not prime)
+\item<2-> $\Rightarrow$ more intuitive notion of solving
+\end{itemize}
+}
+
+\subsectionframe{Complexity classes}
+
+\frame{
+  \frametitle{Class $P$}
+\begin{itemize}
+\item Definition in terms of languages:
+\[ P=\{L:\hbox{there is DTM that recognizes $L$ in polynomial
+  time}\} \]
+\item<2-> in terms of problems:
+\begin{eqnarray*}
+ \Pi\in P&\equiv& L[\Pi,e]\in P\quad\hbox{for some encoding $e$}\\
+        &\equiv&\hbox{there is a polynomial time DTM
+                 that recognizes $L[\Pi,e]$}
+\end{eqnarray*}
+\item<3-> Interpretation:\\
+$\Pi\in P$ means is a polynomial time Turing machine~$M$\\
+that recognizes~$Y_\Pi$\\
+for strings not in~$Y_\Pi$: it halts in state~$q_N$
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Class $NP$}
+\begin{itemize}
+\item \emph{Certificate}: guessed solution\\
+(e.g.\ list of cities for traveling salesman)
+\item Non-Deterministic Turing Machine:\\
+first generate certificate by $\epsilon$-moves\\
+then check correctness
+\item<2-> Let NDTM $M$, then $L_M$ is the set of decision problems for
+  which $M$ can generate a certificate
+\item<2-> Certificate exists $\Leftrightarrow$ decision problem has
+  `true' answer
+\item<3-> $\Pi\in NP$ iff there is NDTM~$M$ that recognizes~$L[\Pi]$ in
+  polynomial time
+\item<4-> $\Pi$ is in~NP iff
+there is a polynomial time function~$A(\cdot,\cdot)$ such that
+\[ w\in Y_\Pi \Leftrightarrow \exists_C:A(w,C)=\mathrm{true}.\]
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Examples}
+\begin{itemize}
+\item Trivially in $P$: given $a,b,n$, check whether $a\times b=n$
+\item<2-> Non-trivially in $P$: given $n$, check whether $a,b$ exist
+\item<3-> Not in $P$: actually find $a,b$\\
+\[ \Theta(\exp((n\cdot 64/9)^{1/3})(\log n)^{2/3}) \]
+\item<4-> Provably exponential time: best move in chess
+\item<5-> Unclear: traveling salesman
+\end{itemize}
+}
+
+\sectionframe{NP-completeness}
+\subsection{Polynomial transformations}
+\frame[containsverbatim]{
+  \frametitle{Definition of Polynomial transformation}
+\begin{itemize}
+\item $L_1$~and~$L_2$ languages over alphabets $\sum_1^*$~and~$\sum_2^*$
+\item $f:\sum_1^*\mapsto\sum_2^*$ is called polynomial transformation
+  of problem~1 into problem~2 if
+\begin{itemize}
+\item There is DTM that computes~$f(x)$ in time~$T_f(x)\leq p_f(|x|)$ for
+  polynomial~$p_f$, and
+\item For all $x\in\sum_1^*$, $x\in L_1$ iff $f(x_1)\in L_2$.
+\end{itemize}
+\item `many-to-one polynomial transformation'
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Relations}
+\begin{itemize}
+\item Let $f$ polynomial transformation from $L_1$ to~$L_2$,
+\item then \[ L_2\in P\Rightarrow L_1\in P \]
+\item<2-> Proof: Let $M_2:L_2\rightarrow\{0,1\}$ DTM that
+  recognizes~$L_2$,\\ then $M_2\circ f$~is DTM that recognizes~$L_1$,
+\item<3-> composite recognizer runs in time 
+\[ T_{M_2\circ f}(x)\leq p_{T_2}(|p_f(|x|)|) \]
+which is polynomial
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Relations'}
+\begin{itemize}
+\item Notation: $L_1$ transforms to $L_2$ (in polynomial time):
+\[ L_1\leq L_2 \]
+\item (suggested reading: $L_1$ is easier than~$L_2$.)
+\item<2-> Transitivity:
+\[ L_1\leq L_2 \wedge L_2\leq L_3 \Rightarrow L_1\leq L_3, \]
+\end{itemize}
+}
+
+\subsectionframe{NP-complete}
+
+\frame{
+  \frametitle{Definition}
+\begin{itemize}
+\item $L$ is NP-complete if
+\begin{itemize}
+\item $L\in NP$, and
+\item for all $L'\in NP$: $L'\leq L$
+\end{itemize}
+\item<2-> First condition: NDTM has to halt.
+\item<2-> Without that: NP-hard
+\item<2-> Example: halting problem
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Relations''}
+\begin{itemize}
+\item If $L_1,L_2\in NP$, $L_1$ is NP-complete, and $L_1\leq
+  L_2$,\\ then $L_2$ is NP-complete.
+\item<2-> Proof: need to check $\forall_{L_2\in NP}:L'\leq L_2$
+\item<2-> $L_1$ is NP-complete, so $L'\leq L_1$.\\ Now use transitivity
+\end{itemize}
+}
+
+\subsectionframe{Proof of NP-completeness}
+
+\frame{
+  \frametitle{Bootstrap problem}
+\begin{itemize}
+\item Have one NP-complete problem, construct translation, have
+  another
+\item Where to begin? How to check that every other problem is easier?
+\item<2-> Strategy: for NP-complete problem, NDTM exists
+\item<2-> encode that NDTM in some specific problem
+\item<3-> First done for \textsc{Sat}, boolean satisfiability\\ Cook, 1971
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Satisfiability}
+\begin{itemize}
+\item Problem statement: given boolean variables $x_1\ldots x_n$ and a
+  logical formula $F(x_1,\ldots,x_n)$\\ is there is an assignment
+  $x_i\mapsto \{0,1\}$ such that $F(x_1,\ldots)=1$.
+\item<2-> Examples: $x_1\vee\neq x_1$ is always true;\\ $x_1\wedge\neq
+  x_1$ is always false\\ $x_1\wedge \neq x_2$ is only true for
+  $(x_1=T,x_2=F)$.
+\item<2-> second example not satisfiable
+\item<3-> \textsc{Sat} is in NP
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Transformations into \textsc{Sat}}
+\begin{itemize}
+\item Let $\Pi$ be NP-complete; $M$~an NDTM that solves it
+\item construct logical formula such that
+\[ \hbox{formula true}\Leftrightarrow\hbox{successful TM run} \]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{The Turing machine}
+\[ M = \langle Q, s, \Sigma, F, \delta\rangle
+\]
+where
+\begin{description}
+\item[$Q$] is the set of states, and $s\in Q$ the initial
+       state,
+\item[$\Sigma$] the alphabet of
+     tape symbols,
+\item[$F\subset Q$] the set of accepting states, and
+\item[$\delta\subset Q\times\Sigma\times Q\times\Sigma\times\{-1,+1\}$] the
+  set of transitions,
+\end{description}
+Assume $M$ accepts or rejects instances in time
+$p(n)$ where $n$~is the size of the instance and $p(\cdot)$ is a
+polynomial.
+}
+
+\frame[containsverbatim]{
+  \frametitle{Variables}
+For $q\in Q$, $-p(n)\leq i\leq p(n)$, $j\in\Sigma$, $0\leq k\leq p(n)$:
+\begin{tabular}{|lp{2in}l|}
+\hline
+Variables&
+Intended interpretation&
+How many\\
+\hline
+$T_{ijk}$&
+True iff tape cell $i$ contains symbol~$j$ at step~$k$ of the computation&
+$O(p(n)^2)$\\
+$H_{ik}$&
+True iff the $M$'s read/write head is at tape cell~$i$ at step~$k$ of the computation.&
+$O(p(n)^2)$\\
+$Q_{qk}$&
+True iff~$M$ is in state~$q$ at step~$k$ of the computation.&
+$O(p(n))$\\
+\hline
+\end{tabular}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Expression}
+Conjunction of whole bunch of clauses\\
+($-p(n) \leq i\leq p(n)$, $j\in\Sigma$, and~$0\leq k\leq p(n)$)
+
+\emph{Initial conditions}
+\begin{tabular}{|p{.8in}p{1.2in}p{1.3in}p{.7in}|}
+\hline
+For all:&
+Add the clauses&
+Interpretation&
+How many clauses?\\
+\hline
+Tape cell~$i$ of the input~$I$ contains symbol~$j$.&
+$T_{ij0}$&
+Initial contents of the tape.&
+$O(p(n))$
+\\
+&
+$Q_{s0}$&
+Initial  state of~$M$&
+$O(1)$
+\\
+&
+$H_{00}$&
+Initial position of read/write head.&
+$O(1)$
+\\
+\hline
+\end{tabular}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Constraint clauses}
+\begin{tabular}{|p{.8in}p{1.2in}p{1.3in}p{.7in}|}
+\hline
+For all:&
+Add the clauses&
+Interpretation&
+How many clauses?\\
+\hline
+symbols\newline $j \not=j'$&
+$T_{ijk} \rightarrow \neg T_{ij'k}$&
+One symbol per tape cell.&
+$O(p(n)^2)$
+\\
+states\newline $q \not=q'$&
+$Q_{qk} \rightarrow  \neg  Q_{q'k}$&
+Only one state at a time.&
+$O(p(n))$
+\\
+cells\newline $i \not=i'$&
+$H_{ik} \rightarrow  \neg  H_{i'k}$&
+Only one head position at a time.&
+$O(p(n))$
+\\
+\hline
+\end{tabular}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Turing machine clauses}
+\begin{tabular}{|p{.8in}p{1.2in}p{1.3in}p{.7in}|}
+\hline
+For all:&
+Add the clauses&
+Interpretation&
+How many clauses?\\
+\hline
+$i,j,k$&
+$T_{ijk} =T_{ij(k+1)} \vee H_{ik}$&
+Tape remains unchanged unless written.&
+$O(p(n)^2)$
+\\
+$f\in F$&
+The disjunction of the clauses $Q_{f,p(n)}$&
+Must finish in an accepting state.&
+$O(1)$\\
+\\
+\hline
+\end{tabular}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Transition table clauses}
+\begin{tabular}{|p{.8in}p{1.2in}p{1.3in}p{.7in}|}
+\hline
+For all:&
+Add the clauses&
+Interpretation&
+How many clauses?\\
+\hline
+$(q, \sigma ,q', \sigma', d)\allowbreak \in\delta$&
+The disjunction of the clauses\newline
+$(H_{ik} \wedge  Q_{qk} \wedge T_{i\sigma k})
+\rightarrow  (H_{(i+d)(k+1)} \wedge Q_{q'(k+1)} \wedge T_{i\sigma' (k+1)})$&
+Possible transitions at computation step~$k$ when head is at position~$i$.&
+$O(p(n)^2)$
+\\
+\hline
+\end{tabular}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Equivalence}
+If there is an accepting computation for~$M$ on input~$I$,\\
+then~$B$ is satisfiable, by assigning $T_{ijk}$, $H_{ik}$ and~$Q_{ik}$
+
+\medskip
+If~$B$ is satisfiable,\\
+then there is an accepting computation for~$M$ on input~$I$:\\
+follows the steps indicated by the assignments to the variables.
+}
+
+\frame[containsverbatim]{
+  \frametitle{Polynomial time}
+\begin{itemize}
+\item $O(p(n)^2)$ Boolean variables, each encodable in space $O(\log
+  p(n))$
+\item  Number of clauses $O(p(n)^2)$
+\item Total size of $B$ is $O((\log p(n))p(n)^2)$
+\end{itemize}
+}
+
+\end{document}
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+
+\end{document}

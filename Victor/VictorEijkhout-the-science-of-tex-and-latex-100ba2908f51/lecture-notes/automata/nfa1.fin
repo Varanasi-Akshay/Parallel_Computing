@@ -1,0 +1,13 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Mon Sep 06 19:53:15 EDT 2004
+object state id 1 x 31.0 y 138.0 radius 20 label 0 tex {} accept 0 start 1
+object state id 2 x 123.0 y 65.0 radius 20 label 1 tex {} accept 1 start 0
+object state id 3 x 123.0 y 206.0 radius 20 label 2 tex {} accept 1 start 0
+object line cp1attached 1 cp1angle 62 cp2attached -1 cp2x 63.0 cp2y 85.0 cp3attached 2 cp3angle 198 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 1 cp1angle 326 cp2attached -1 cp2x 68.0 cp2y 182.0 cp3attached 3 cp3angle 144 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 2 cp1angle 141 cp2attached -1 cp2x 119.0 cp2y 13.0 cp3attached 2 cp3angle 45 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 3 cp1angle 119 cp2attached -1 cp2x 121.0 cp2y 133.0 cp3attached 3 cp3angle 49 cpnum 3 tex {} texpos 0.5 anchor top
+object text x 38.0 y 83.0 label text tex {$\epsilon$}
+object text x 54.0 y 187.0 label text tex {$\epsilon$}
+object text x 136.0 y 152.0 label b tex {}
+object text x 141.0 y 29.0 label a tex {}

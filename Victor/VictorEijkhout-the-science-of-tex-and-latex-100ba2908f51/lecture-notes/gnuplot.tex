@@ -1,0 +1,63 @@
+The \n{gnuplot} utility can be used for plotting sets of
+points. However, here we will only discuss drawing curves.
+
+\Level 0 {Introduction}
+
+The two modes for running \n{gnuplot} are \emph{interactive} and
+\emph{from file}. In interactive mode, you call \n{gnuplot} from the
+command line, type commands, and watch output appear (see next
+paragraph); in the second case you call \n{gnuplot <your file>}.
+
+The output of \n{gnuplot} can be a picture on your screen, or drawing
+instructions in a file. Where the output goes depends on the setting
+of the \emph{terminal}. By default, \n{gnuplot} will try to draw a
+picture. This is equivalent to declaring
+\begin{verbatim}
+set terminal x11
+\end{verbatim}
+or \n{aqua}, \n{windows}, or any choice of graphics hardware.
+
+For output to file, declare
+\begin{verbatim}
+set terminal pdf
+\end{verbatim}
+or \n{fig}, \n{latex}, \n{pbm}, et cetera.
+
+\Level 0 {Plotting}
+
+The basic plot command is \n{plot}. By specifying
+\begin{verbatim}
+plot x**2
+\end{verbatim}
+you get a plot of $f(x)=x^2$; \n{gnuplot} will decide on the range
+for~$x$.
+With
+\begin{verbatim}
+set xrange [0:1]
+plot 1-x title "down", x**2 title "up"
+\end{verbatim}
+you get two graphs in one plot, with the $x$~range limited to~$[0,1]$,
+and the appropriate legends for the graphs. The variable~\n{x} is the
+default for plotting functions.
+
+Plotting one function against another --~or equivalently, plotting a
+parametric curve~-- goes like this:
+\begin{verbatim}
+set parametric
+plot [t=0:1.57] cos(t),sin(t)
+\end{verbatim}
+which gives a quarter circle.
+
+To get more than one graph in a plot, use the command \n{set multiplot}.
+
+\Level 1 {Styles}
+
+You can change the default drawing style with
+\begin{verbatim}
+set style function dots
+\end{verbatim}
+(\n{lines}, \n{dots}, \n{points}, et cetera), or
+change on a single plot with
+\begin{verbatim}
+plot f(x) with points
+\end{verbatim}

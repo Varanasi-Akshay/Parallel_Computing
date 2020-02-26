@@ -1,0 +1,109 @@
+\BOOKMARK [1][-]{Doc-Start}{About this book}{}% 1
+\BOOKMARK [0][-]{chapter.1}{ TeX and LaTeX}{}% 2
+\BOOKMARK [1][-]{section*.2}{LaTeX}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.1}{ Document markup}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{ The absolute basics of LaTeX}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.3}{ The TeX conceptual model of typesetting}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.4}{ Text elements}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.5}{ Tables and figures}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.6}{ Math}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.7}{ References}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.8}{ Some TeXnical issues}{chapter.1}% 11
+\BOOKMARK [1][-]{section.1.9}{ Customizing LaTeX}{chapter.1}% 12
+\BOOKMARK [1][-]{section.1.10}{ Extensions to LaTeX}{chapter.1}% 13
+\BOOKMARK [1][-]{subsection.1.10.5}{TeX programming}{chapter.1}% 14
+\BOOKMARK [1][-]{excounter.12}{TeX visuals}{chapter.1}% 15
+\BOOKMARK [1][-]{excounter.14}{Projects for this chapter}{chapter.1}% 16
+\BOOKMARK [0][-]{chapter.2}{ Parsing}{}% 17
+\BOOKMARK [1][-]{section*.3}{Parsing theory}{chapter.2}% 18
+\BOOKMARK [1][-]{section.2.1}{ Levels of parsing}{chapter.2}% 19
+\BOOKMARK [1][-]{section.2.2}{ Very short introduction}{chapter.2}% 20
+\BOOKMARK [1][-]{subsection.2.2.3}{Lexical analysis}{chapter.2}% 21
+\BOOKMARK [1][-]{section.2.3}{ Finite state automata and regular languages}{chapter.2}% 22
+\BOOKMARK [1][-]{section.2.4}{ Lexical analysis with FSAs}{chapter.2}% 23
+\BOOKMARK [1][-]{excounter.18}{Syntax parsing}{chapter.2}% 24
+\BOOKMARK [1][-]{section.2.5}{ Context-free languages}{chapter.2}% 25
+\BOOKMARK [1][-]{section.2.6}{ Parsing context-free languages}{chapter.2}% 26
+\BOOKMARK [1][-]{excounter.21}{Lex}{chapter.2}% 27
+\BOOKMARK [1][-]{section.2.7}{ Introduction}{chapter.2}% 28
+\BOOKMARK [1][-]{section.2.8}{ Structure of a lex file}{chapter.2}% 29
+\BOOKMARK [1][-]{section.2.9}{ Definitions section}{chapter.2}% 30
+\BOOKMARK [1][-]{section.2.10}{ Rules section}{chapter.2}% 31
+\BOOKMARK [1][-]{section.2.11}{ Regular expressions}{chapter.2}% 32
+\BOOKMARK [1][-]{section.2.12}{ Remarks}{chapter.2}% 33
+\BOOKMARK [1][-]{section.2.13}{ Examples}{chapter.2}% 34
+\BOOKMARK [1][-]{excounter.25}{Yacc}{chapter.2}% 35
+\BOOKMARK [1][-]{section.2.14}{ Introduction}{chapter.2}% 36
+\BOOKMARK [1][-]{section.2.15}{ Structure of a yacc file}{chapter.2}% 37
+\BOOKMARK [1][-]{section.2.16}{ Motivating example}{chapter.2}% 38
+\BOOKMARK [1][-]{section.2.17}{ Definitions section}{chapter.2}% 39
+\BOOKMARK [1][-]{section.2.18}{ Lex \040Yacc interaction}{chapter.2}% 40
+\BOOKMARK [1][-]{section.2.19}{ Rules section}{chapter.2}% 41
+\BOOKMARK [1][-]{section.2.20}{ Operators; precedence and associativity}{chapter.2}% 42
+\BOOKMARK [1][-]{section.2.21}{ Further remarks}{chapter.2}% 43
+\BOOKMARK [1][-]{section.2.22}{ Examples}{chapter.2}% 44
+\BOOKMARK [1][-]{subsection.2.22.3}{Hashing}{chapter.2}% 45
+\BOOKMARK [1][-]{section.2.23}{ Introduction}{chapter.2}% 46
+\BOOKMARK [1][-]{section.2.24}{ Hash functions}{chapter.2}% 47
+\BOOKMARK [1][-]{section.2.25}{ Collisions}{chapter.2}% 48
+\BOOKMARK [1][-]{section.2.26}{ Other applications of hashing}{chapter.2}% 49
+\BOOKMARK [1][-]{section.2.27}{ Discussion}{chapter.2}% 50
+\BOOKMARK [1][-]{section.2.27}{Projects for this chapter}{chapter.2}% 51
+\BOOKMARK [0][-]{chapter.3}{ Breaking things into pieces}{}% 52
+\BOOKMARK [1][-]{section*.4}{Dynamic Programming}{chapter.3}% 53
+\BOOKMARK [1][-]{section.3.1}{ Some examples}{chapter.3}% 54
+\BOOKMARK [1][-]{section.3.2}{ Discussion}{chapter.3}% 55
+\BOOKMARK [1][-]{section.3.2}{TeX paragraph breaking}{chapter.3}% 56
+\BOOKMARK [1][-]{section.3.3}{ The elements of a paragraph}{chapter.3}% 57
+\BOOKMARK [1][-]{section.3.4}{ TeX's line breaking algorithm}{chapter.3}% 58
+\BOOKMARK [1][-]{subsubsection.3.4.3.4}{NP completeness}{chapter.3}% 59
+\BOOKMARK [1][-]{section.3.5}{ Introduction}{chapter.3}% 60
+\BOOKMARK [1][-]{section.3.6}{ Basics}{chapter.3}% 61
+\BOOKMARK [1][-]{section.3.7}{ Complexity classes}{chapter.3}% 62
+\BOOKMARK [1][-]{section.3.8}{ NP-completeness}{chapter.3}% 63
+\BOOKMARK [1][-]{table.3.1}{Page breaking}{chapter.3}% 64
+\BOOKMARK [1][-]{section.3.9}{ Introduction}{chapter.3}% 65
+\BOOKMARK [1][-]{section.3.10}{ TeX's page breaking algorithm}{chapter.3}% 66
+\BOOKMARK [1][-]{section.3.11}{ Theory of page breaking}{chapter.3}% 67
+\BOOKMARK [1][-]{excounter.42}{Projects for this chapter}{chapter.3}% 68
+\BOOKMARK [0][-]{chapter.4}{ Fonts}{}% 69
+\BOOKMARK [1][-]{section*.5}{Bezier curves}{chapter.4}% 70
+\BOOKMARK [1][-]{section.4.1}{ Introduction to curve approximation}{chapter.4}% 71
+\BOOKMARK [1][-]{section.4.2}{ Parametric curves}{chapter.4}% 72
+\BOOKMARK [1][-]{section.4.3}{ Practical use}{chapter.4}% 73
+\BOOKMARK [1][-]{subsection.4.3.2}{Curve plotting with `\043=12 `\137=12 `=12 `\046=12 =gnuplot}{chapter.4}% 74
+\BOOKMARK [1][-]{section.4.4}{ Introduction}{chapter.4}% 75
+\BOOKMARK [1][-]{section.4.5}{ Plotting}{chapter.4}% 76
+\BOOKMARK [1][-]{subsection.4.5.1}{Raster graphics}{chapter.4}% 77
+\BOOKMARK [1][-]{section.4.6}{ Vector graphics and raster graphics}{chapter.4}% 78
+\BOOKMARK [1][-]{section.4.7}{ Basic raster graphics}{chapter.4}% 79
+\BOOKMARK [1][-]{section.4.8}{ Rasterizing type}{chapter.4}% 80
+\BOOKMARK [1][-]{section.4.9}{ Anti-aliasing}{chapter.4}% 81
+\BOOKMARK [1][-]{subsection.4.9.2}{Projects for this chapter}{chapter.4}% 82
+\BOOKMARK [0][-]{chapter.5}{ TeX's macro language \205 unfinished chapter}{}% 83
+\BOOKMARK [1][-]{section*.6}{Lambda calculus in TeX}{chapter.5}% 84
+\BOOKMARK [1][-]{section.5.1}{ Logic with TeX}{chapter.5}% 85
+\BOOKMARK [0][-]{chapter.6}{ Character encoding}{}% 86
+\BOOKMARK [1][-]{section*.7}{Input file encoding}{chapter.6}% 87
+\BOOKMARK [1][-]{section.6.1}{ History and context}{chapter.6}% 88
+\BOOKMARK [1][-]{section.6.2}{ Unicode}{chapter.6}% 89
+\BOOKMARK [1][-]{section.6.3}{ More about character sets and encodings}{chapter.6}% 90
+\BOOKMARK [1][-]{section.6.4}{ Character issues in TeX / LaTeX}{chapter.6}% 91
+\BOOKMARK [1][-]{excounter.53}{Font encoding}{chapter.6}% 92
+\BOOKMARK [1][-]{section.6.5}{ Basic terminology}{chapter.6}% 93
+\BOOKMARK [1][-]{section.6.6}{ \306sthetics}{chapter.6}% 94
+\BOOKMARK [1][-]{section.6.7}{ Font technologies}{chapter.6}% 95
+\BOOKMARK [1][-]{section.6.8}{ Font handling in TeX and LaTeX}{chapter.6}% 96
+\BOOKMARK [1][-]{subsubsection.6.8.2.3}{Input and output encoding in LaTeX}{chapter.6}% 97
+\BOOKMARK [1][-]{section.6.9}{ The `\043=12 `\137=12 `=12 `\046=12 =fontenc package}{chapter.6}% 98
+\BOOKMARK [1][-]{section.6.9}{Projects for this chapter}{chapter.6}% 99
+\BOOKMARK [0][-]{chapter.7}{ Software engineering}{}% 100
+\BOOKMARK [1][-]{section*.8}{Literate programming}{chapter.7}% 101
+\BOOKMARK [1][-]{section.7.1}{ The Web system}{chapter.7}% 102
+\BOOKMARK [1][-]{section.7.2}{ Knuth's philosophy of program development}{chapter.7}% 103
+\BOOKMARK [1][-]{subsection.7.2.1}{Software engineering}{chapter.7}% 104
+\BOOKMARK [1][-]{section.7.3}{ Extremely brief history of TeX}{chapter.7}% 105
+\BOOKMARK [1][-]{section.7.4}{ TeX's development}{chapter.7}% 106
+\BOOKMARK [1][-]{subsubsection.7.4.2.3}{Markup}{chapter.7}% 107
+\BOOKMARK [1][-]{section.7.5}{ History}{chapter.7}% 108
+\BOOKMARK [1][-]{subsection.7.5.2}{Projects for this chapter}{chapter.7}% 109

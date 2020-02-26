@@ -1,0 +1,357 @@
+\contentsline {section}{\numberline {}{About this book}}{3}{Doc-Start}
+\contentsline {chapter}{\numberline {1}\relax \bfseries T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ and \LaTeX }{9}{chapter.1}
+\contentsline {section}{\numberline {}{\LaTeX }}{10}{section*.2}
+\contentsline {section}{\numberline {1.1}\slshape Document markup}{10}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}\rmfamily A little bit of history}{10}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}\rmfamily Macro packages}{10}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}\rmfamily Logical markup}{12}{subsection.1.1.3}
+\contentsline {section}{\numberline {1.2}\slshape The absolute basics of \LaTeX }{12}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}\rmfamily Different kinds of characters}{12}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}\rmfamily \LaTeX \ document structure}{13}{subsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.2.1} Title}{14}{subsubsection.1.2.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2.2} Sectioning}{14}{subsubsection.1.2.2.2}
+\contentsline {subsubsection}{\numberline {1.2.2.3} Frontmatter, backmatter}{15}{subsubsection.1.2.2.3}
+\contentsline {subsection}{\numberline {1.2.3}\rmfamily Running \LaTeX }{15}{subsection.1.2.3}
+\contentsline {section}{\numberline {1.3}\slshape The T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ conceptual model of typesetting}{15}{section.1.3}
+\contentsline {section}{\numberline {1.4}\slshape Text elements}{15}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}\rmfamily Large scale text structure}{16}{subsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.1.1} Input files}{16}{subsubsection.1.4.1.1}
+\contentsline {subsubsection}{\numberline {1.4.1.2} Environments}{16}{subsubsection.1.4.1.2}
+\contentsline {subsubsection}{\numberline {1.4.1.3} Verbatim text}{17}{subsubsection.1.4.1.3}
+\contentsline {subsubsection}{\numberline {1.4.1.4} Lists}{17}{subsubsection.1.4.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1.5} Tabbing}{18}{subsubsection.1.4.1.5}
+\contentsline {subsubsection}{\numberline {1.4.1.6} Tabular material}{19}{subsubsection.1.4.1.6}
+\contentsline {subsubsection}{\numberline {1.4.1.7} Footnotes}{20}{subsubsection.1.4.1.7}
+\contentsline {subsubsection}{\numberline {1.4.1.8} Text boxes}{21}{subsubsection.1.4.1.8}
+\contentsline {subsection}{\numberline {1.4.2}\rmfamily Minor text issues}{21}{subsection.1.4.2}
+\contentsline {subsubsection}{\numberline {1.4.2.1} Text styles}{21}{subsubsection.1.4.2.1}
+\contentsline {subsubsection}{\numberline {1.4.2.2} Fonts and typefaces}{22}{subsubsection.1.4.2.2}
+\contentsline {subsubsection}{\numberline {1.4.2.3} Comments}{22}{subsubsection.1.4.2.3}
+\contentsline {subsubsection}{\numberline {1.4.2.4} Hyphenation}{22}{subsubsection.1.4.2.4}
+\contentsline {subsubsection}{\numberline {1.4.2.5} Tilde}{23}{subsubsection.1.4.2.5}
+\contentsline {subsubsection}{\numberline {1.4.2.6} Accents}{23}{subsubsection.1.4.2.6}
+\contentsline {subsubsection}{\numberline {1.4.2.7} Line/page breaking}{23}{subsubsection.1.4.2.7}
+\contentsline {subsubsection}{\numberline {1.4.2.8} Manual spacing}{24}{subsubsection.1.4.2.8}
+\contentsline {subsubsection}{\numberline {1.4.2.9} Drawing lines}{24}{subsubsection.1.4.2.9}
+\contentsline {subsubsection}{\numberline {1.4.2.10} Horizontal and vertical mode}{24}{subsubsection.1.4.2.10}
+\contentsline {section}{\numberline {1.5}\slshape Tables and figures}{25}{section.1.5}
+\contentsline {section}{\numberline {1.6}\slshape Math}{25}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}\rmfamily Math mode}{26}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}\rmfamily Super and subscripts}{27}{subsection.1.6.2}
+\contentsline {subsection}{\numberline {1.6.3}\rmfamily Grouping}{27}{subsection.1.6.3}
+\contentsline {subsection}{\numberline {1.6.4}\rmfamily Display math vs inline}{27}{subsection.1.6.4}
+\contentsline {subsection}{\numberline {1.6.5}\rmfamily Delimiters, matrices}{27}{subsection.1.6.5}
+\contentsline {subsection}{\numberline {1.6.6}\rmfamily There is more}{28}{subsection.1.6.6}
+\contentsline {section}{\numberline {1.7}\slshape References}{28}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}\rmfamily Referring to document parts}{28}{subsection.1.7.1}
+\contentsline {subsection}{\numberline {1.7.2}\rmfamily Table of contents}{29}{subsection.1.7.2}
+\contentsline {subsection}{\numberline {1.7.3}\rmfamily Bibliography references}{29}{subsection.1.7.3}
+\contentsline {subsection}{\numberline {1.7.4}\rmfamily Index}{29}{subsection.1.7.4}
+\contentsline {section}{\numberline {1.8}\slshape Some T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}{}nical issues}{30}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}\rmfamily Commands inside other commands}{30}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.8.2}\rmfamily Grouping}{30}{subsection.1.8.2}
+\contentsline {section}{\numberline {1.9}\slshape Customizing \LaTeX }{30}{section.1.9}
+\contentsline {subsection}{\numberline {1.9.1}\rmfamily Page layout}{30}{subsection.1.9.1}
+\contentsline {subsubsection}{\numberline {1.9.1.1} Layout parameters}{30}{subsubsection.1.9.1.1}
+\contentsline {subsubsection}{\numberline {1.9.1.2} Page styles}{31}{subsubsection.1.9.1.2}
+\contentsline {subsubsection}{\numberline {1.9.1.3} Running page headers}{31}{subsubsection.1.9.1.3}
+\contentsline {subsubsection}{\numberline {1.9.1.4} Multicolumn text}{31}{subsubsection.1.9.1.4}
+\contentsline {subsection}{\numberline {1.9.2}\rmfamily New commands}{32}{subsection.1.9.2}
+\contentsline {subsection}{\numberline {1.9.3}\rmfamily New environments}{32}{subsection.1.9.3}
+\contentsline {subsection}{\numberline {1.9.4}\rmfamily Counters}{34}{subsection.1.9.4}
+\contentsline {subsection}{\numberline {1.9.5}\rmfamily Lengths}{34}{subsection.1.9.5}
+\contentsline {subsection}{\numberline {1.9.6}\rmfamily The syntax of {\tt \char `\\new...} commands}{34}{subsection.1.9.6}
+\contentsline {section}{\numberline {1.10}\slshape Extensions to \LaTeX }{34}{section.1.10}
+\contentsline {subsection}{\numberline {1.10.1}\rmfamily How to find a package, how to use it}{35}{subsection.1.10.1}
+\contentsline {subsection}{\numberline {1.10.2}\rmfamily Fancy page headers and footers}{35}{subsection.1.10.2}
+\contentsline {subsection}{\numberline {1.10.3}\rmfamily Pdf file generation}{35}{subsection.1.10.3}
+\contentsline {subsection}{\numberline {1.10.4}\rmfamily Graphics}{36}{subsection.1.10.4}
+\contentsline {subsubsection}{\numberline {1.10.4.1} The \n {picture} environment}{36}{subsubsection.1.10.4.1}
+\contentsline {subsubsection}{\numberline {1.10.4.2} Including external graphics}{36}{subsubsection.1.10.4.2}
+\contentsline {subsection}{\numberline {1.10.5}\rmfamily Other languages than English}{37}{subsection.1.10.5}
+\contentsline {section}{\numberline {}{T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ programming}}{38}{subsection.1.10.5}
+\contentsline {section}{\numberline {}{T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ visuals}}{39}{excounter.12}
+\contentsline {section}{\numberline {}{Projects for this chapter}}{40}{excounter.14}
+\contentsline {chapter}{\numberline {2}\relax \bfseries Parsing}{41}{chapter.2}
+\contentsline {section}{\numberline {}{Parsing theory}}{42}{section*.3}
+\contentsline {section}{\numberline {2.1}\slshape Levels of parsing}{42}{section.2.1}
+\contentsline {section}{\numberline {2.2}\slshape Very short introduction}{42}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}\rmfamily Languages}{43}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}\rmfamily Automata}{43}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}\rmfamily Automata}{44}{subsection.2.2.3}
+\contentsline {section}{\numberline {}{Lexical analysis}}{45}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}\slshape Finite state automata and regular languages}{45}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}\rmfamily Definition of regular languages}{45}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}\rmfamily Non-deterministic automata}{46}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}\rmfamily The NFA of a given language}{46}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}\rmfamily Examples and characterization}{47}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}\rmfamily Deterministic automata}{48}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}\rmfamily Equivalences}{49}{subsection.2.3.6}
+\contentsline {section}{\numberline {2.4}\slshape Lexical analysis with FSAs}{50}{section.2.4}
+\contentsline {section}{\numberline {}{Syntax parsing}}{52}{excounter.18}
+\contentsline {section}{\numberline {2.5}\slshape Context-free languages}{52}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}\rmfamily Pumping lemma}{53}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}\rmfamily Deterministic and non-deterministic PDAs}{53}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}\rmfamily Normal form}{54}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}\slshape Parsing context-free languages}{55}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}\rmfamily Top-down parsing: $LL$}{55}{subsection.2.6.1}
+\contentsline {subsubsection}{\numberline {2.6.1.1} Problems with $LL$ parsing}{56}{subsubsection.2.6.1.1}
+\contentsline {subsubsection}{\numberline {2.6.1.2} $LL$ and recursive descent}{56}{subsubsection.2.6.1.2}
+\contentsline {subsection}{\numberline {2.6.2}\rmfamily Bottom-up parsing: shift-reduce}{57}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}\rmfamily Handles}{57}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}\rmfamily Operator-precedence grammars}{58}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}\rmfamily LR parsers}{59}{subsection.2.6.5}
+\contentsline {subsubsection}{\numberline {2.6.5.1} A simple example of LR parsing}{60}{subsubsection.2.6.5.1}
+\contentsline {subsubsection}{\numberline {2.6.5.2} States of an LR parser}{60}{subsubsection.2.6.5.2}
+\contentsline {subsubsection}{\numberline {2.6.5.3} States and transitions}{61}{subsubsection.2.6.5.3}
+\contentsline {subsection}{\numberline {2.6.6}\rmfamily Ambiguity and conflicts}{63}{subsection.2.6.6}
+\contentsline {section}{\numberline {}{Lex}}{67}{excounter.21}
+\contentsline {section}{\numberline {2.7}\slshape Introduction}{67}{section.2.7}
+\contentsline {section}{\numberline {2.8}\slshape Structure of a {\it lex}\ file}{67}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}\rmfamily Running {\it lex}}{68}{subsection.2.8.1}
+\contentsline {section}{\numberline {2.9}\slshape Definitions section}{68}{section.2.9}
+\contentsline {section}{\numberline {2.10}\slshape Rules section}{69}{section.2.10}
+\contentsline {subsection}{\numberline {2.10.1}\rmfamily Matched text}{69}{subsection.2.10.1}
+\contentsline {subsection}{\numberline {2.10.2}\rmfamily Context}{69}{subsection.2.10.2}
+\contentsline {subsubsection}{\numberline {2.10.2.1} Left context}{70}{subsubsection.2.10.2.1}
+\contentsline {subsubsection}{\numberline {2.10.2.2} Right context}{71}{subsubsection.2.10.2.2}
+\contentsline {section}{\numberline {2.11}\slshape Regular expressions}{71}{section.2.11}
+\contentsline {section}{\numberline {2.12}\slshape Remarks}{72}{section.2.12}
+\contentsline {subsection}{\numberline {2.12.1}\rmfamily User code section}{72}{subsection.2.12.1}
+\contentsline {subsection}{\numberline {2.12.2}\rmfamily Input and output to {\it lex}}{72}{subsection.2.12.2}
+\contentsline {subsection}{\numberline {2.12.3}\rmfamily Lex and Yacc}{72}{subsection.2.12.3}
+\contentsline {subsubsection}{\numberline {2.12.3.1} Definition section}{72}{subsubsection.2.12.3.1}
+\contentsline {subsubsection}{\numberline {2.12.3.2} Rules section}{73}{subsubsection.2.12.3.2}
+\contentsline {subsubsection}{\numberline {2.12.3.3} User code section}{73}{subsubsection.2.12.3.3}
+\contentsline {section}{\numberline {2.13}\slshape Examples}{73}{section.2.13}
+\contentsline {subsection}{\numberline {2.13.1}\rmfamily Text spacing cleanup}{73}{subsection.2.13.1}
+\contentsline {subsubsection}{\numberline {2.13.1.1} Right context solution}{74}{subsubsection.2.13.1.1}
+\contentsline {subsubsection}{\numberline {2.13.1.2} Left context solution}{74}{subsubsection.2.13.1.2}
+\contentsline {section}{\numberline {}{Yacc}}{77}{excounter.25}
+\contentsline {section}{\numberline {2.14}\slshape Introduction}{77}{section.2.14}
+\contentsline {section}{\numberline {2.15}\slshape Structure of a {\it yacc}\ file}{77}{section.2.15}
+\contentsline {section}{\numberline {2.16}\slshape Motivating example}{77}{section.2.16}
+\contentsline {section}{\numberline {2.17}\slshape Definitions section}{79}{section.2.17}
+\contentsline {section}{\numberline {2.18}\slshape Lex \ Yacc interaction}{79}{section.2.18}
+\contentsline {subsection}{\numberline {2.18.1}\rmfamily The shared header file of return codes}{80}{subsection.2.18.1}
+\contentsline {subsection}{\numberline {2.18.2}\rmfamily Return values}{80}{subsection.2.18.2}
+\contentsline {section}{\numberline {2.19}\slshape Rules section}{81}{section.2.19}
+\contentsline {subsection}{\numberline {2.19.1}\rmfamily Rule actions}{82}{subsection.2.19.1}
+\contentsline {section}{\numberline {2.20}\slshape Operators; precedence and associativity}{82}{section.2.20}
+\contentsline {section}{\numberline {2.21}\slshape Further remarks}{83}{section.2.21}
+\contentsline {subsection}{\numberline {2.21.1}\rmfamily User code section}{83}{subsection.2.21.1}
+\contentsline {subsection}{\numberline {2.21.2}\rmfamily Errors and tracing}{83}{subsection.2.21.2}
+\contentsline {subsubsection}{\numberline {2.21.2.1} Tracing}{83}{subsubsection.2.21.2.1}
+\contentsline {subsubsection}{\numberline {2.21.2.2} Syntax errors}{84}{subsubsection.2.21.2.2}
+\contentsline {subsubsection}{\numberline {2.21.2.3} Error recovery}{84}{subsubsection.2.21.2.3}
+\contentsline {subsubsection}{\numberline {2.21.2.4} Semantical errors}{84}{subsubsection.2.21.2.4}
+\contentsline {subsection}{\numberline {2.21.3}\rmfamily Makefile rules for {\it yacc}}{85}{subsection.2.21.3}
+\contentsline {subsection}{\numberline {2.21.4}\rmfamily The power of {\it yacc}}{85}{subsection.2.21.4}
+\contentsline {section}{\numberline {2.22}\slshape Examples}{86}{section.2.22}
+\contentsline {subsection}{\numberline {2.22.1}\rmfamily Simple calculator}{86}{subsection.2.22.1}
+\contentsline {subsection}{\numberline {2.22.2}\rmfamily Calculator with simple variables}{88}{subsection.2.22.2}
+\contentsline {subsection}{\numberline {2.22.3}\rmfamily Calculator with dynamic variables}{90}{subsection.2.22.3}
+\contentsline {section}{\numberline {}{Hashing}}{93}{subsection.2.22.3}
+\contentsline {section}{\numberline {2.23}\slshape Introduction}{93}{section.2.23}
+\contentsline {section}{\numberline {2.24}\slshape Hash functions}{94}{section.2.24}
+\contentsline {subsection}{\numberline {2.24.1}\rmfamily Multiplication and division strategies}{95}{subsection.2.24.1}
+\contentsline {subsection}{\numberline {2.24.2}\rmfamily String addition strategies}{95}{subsection.2.24.2}
+\contentsline {subsection}{\numberline {2.24.3}\rmfamily Examples}{96}{subsection.2.24.3}
+\contentsline {section}{\numberline {2.25}\slshape Collisions}{97}{section.2.25}
+\contentsline {subsection}{\numberline {2.25.1}\rmfamily Separate chaining}{97}{subsection.2.25.1}
+\contentsline {subsection}{\numberline {2.25.2}\rmfamily Linear probing}{98}{subsection.2.25.2}
+\contentsline {subsection}{\numberline {2.25.3}\rmfamily Chaining}{100}{subsection.2.25.3}
+\contentsline {subsection}{\numberline {2.25.4}\rmfamily Other solutions}{101}{subsection.2.25.4}
+\contentsline {subsection}{\numberline {2.25.5}\rmfamily Deletion}{101}{subsection.2.25.5}
+\contentsline {section}{\numberline {2.26}\slshape Other applications of hashing}{102}{section.2.26}
+\contentsline {subsection}{\numberline {2.26.1}\rmfamily Truncating searches}{102}{subsection.2.26.1}
+\contentsline {subsection}{\numberline {2.26.2}\rmfamily String searching}{102}{subsection.2.26.2}
+\contentsline {section}{\numberline {2.27}\slshape Discussion}{103}{section.2.27}
+\contentsline {section}{\numberline {}{Projects for this chapter}}{104}{section.2.27}
+\contentsline {chapter}{\numberline {3}\relax \bfseries Breaking things into pieces}{105}{chapter.3}
+\contentsline {section}{\numberline {}{Dynamic Programming}}{106}{section*.4}
+\contentsline {section}{\numberline {3.1}\slshape Some examples}{106}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}\rmfamily Decision timing}{106}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}\rmfamily A manufacturing problem}{107}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}\rmfamily The stagecoach problem}{108}{subsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.3.1} The wrong way to solve this}{109}{subsubsection.3.1.3.1}
+\contentsline {subsubsection}{\numberline {3.1.3.2} Dynamic programming solution}{110}{subsubsection.3.1.3.2}
+\contentsline {subsubsection}{\numberline {3.1.3.3} Forward dynamic programming solution}{111}{subsubsection.3.1.3.3}
+\contentsline {subsection}{\numberline {3.1.4}\rmfamily Traveling salesman}{113}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}\slshape Discussion}{114}{section.3.2}
+\contentsline {section}{\numberline {}{T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ paragraph breaking}}{116}{section.3.2}
+\contentsline {section}{\numberline {3.3}\slshape The elements of a paragraph}{116}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}\rmfamily Some details}{116}{subsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.1.1} Boxes}{116}{subsubsection.3.3.1.1}
+\contentsline {subsubsection}{\numberline {3.3.1.2} Penalties}{116}{subsubsection.3.3.1.2}
+\contentsline {subsubsection}{\numberline {3.3.1.3} Glue}{117}{subsubsection.3.3.1.3}
+\contentsline {subsubsection}{\numberline {3.3.1.4} Stretch and shrink}{117}{subsubsection.3.3.1.4}
+\contentsline {subsubsection}{\numberline {3.3.1.5} Line break locations}{118}{subsubsection.3.3.1.5}
+\contentsline {subsection}{\numberline {3.3.2}\rmfamily Examples}{118}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}\rmfamily Centered text}{118}{subsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.3.1} Hanging punctuation}{119}{subsubsection.3.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.3.2} Mathematical Reviews}{120}{subsubsection.3.3.3.2}
+\contentsline {section}{\numberline {3.4}\slshape T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}'s line breaking algorithm}{120}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}\rmfamily Elements}{120}{subsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.1.1} Glue setting and badness}{120}{subsubsection.3.4.1.1}
+\contentsline {subsubsection}{\numberline {3.4.1.2} Demerits}{121}{subsubsection.3.4.1.2}
+\contentsline {subsection}{\numberline {3.4.2}\rmfamily Breaking strategies}{121}{subsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.2.1} First fit}{122}{subsubsection.3.4.2.1}
+\contentsline {subsubsection}{\numberline {3.4.2.2} Best fit}{122}{subsubsection.3.4.2.2}
+\contentsline {subsubsection}{\numberline {3.4.2.3} Total fit}{122}{subsubsection.3.4.2.3}
+\contentsline {subsection}{\numberline {3.4.3}\rmfamily Model implementation}{123}{subsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.3.1} First fit implementation}{124}{subsubsection.3.4.3.1}
+\contentsline {subsubsection}{\numberline {3.4.3.2} Best fit}{126}{subsubsection.3.4.3.2}
+\contentsline {subsubsection}{\numberline {3.4.3.3} Total fit}{126}{subsubsection.3.4.3.3}
+\contentsline {subsubsection}{\numberline {3.4.3.4} Utility parts}{128}{subsubsection.3.4.3.4}
+\contentsline {section}{\numberline {}{NP completeness}}{130}{subsubsection.3.4.3.4}
+\contentsline {section}{\numberline {3.5}\slshape Introduction}{130}{section.3.5}
+\contentsline {section}{\numberline {3.6}\slshape Basics}{132}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}\rmfamily Optimization versus decision problems}{132}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}\rmfamily Language of a problem}{132}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}\rmfamily Turing machines}{132}{subsection.3.6.3}
+\contentsline {section}{\numberline {3.7}\slshape Complexity classes}{133}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}\rmfamily Class P}{133}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}\rmfamily Class NP}{133}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}\rmfamily Examples}{134}{subsection.3.7.3}
+\contentsline {section}{\numberline {3.8}\slshape NP-completeness}{135}{section.3.8}
+\contentsline {subsection}{\numberline {3.8.1}\rmfamily Transformations}{135}{subsection.3.8.1}
+\contentsline {subsection}{\numberline {3.8.2}\rmfamily NP-complete}{135}{subsection.3.8.2}
+\contentsline {subsection}{\numberline {3.8.3}\rmfamily Proving NP-completeness}{136}{subsection.3.8.3}
+\contentsline {section}{\numberline {}{Page breaking}}{138}{table.3.1}
+\contentsline {section}{\numberline {3.9}\slshape Introduction}{138}{section.3.9}
+\contentsline {section}{\numberline {3.10}\slshape T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}'s page breaking algorithm}{139}{section.3.10}
+\contentsline {subsection}{\numberline {3.10.1}\rmfamily Typographical constraints}{139}{subsection.3.10.1}
+\contentsline {subsection}{\numberline {3.10.2}\rmfamily Mechanisms}{139}{subsection.3.10.2}
+\contentsline {subsection}{\numberline {3.10.3}\rmfamily Breakpoints}{140}{subsection.3.10.3}
+\contentsline {subsection}{\numberline {3.10.4}\rmfamily Some output routines}{140}{subsection.3.10.4}
+\contentsline {subsection}{\numberline {3.10.5}\rmfamily Insertions}{141}{subsection.3.10.5}
+\contentsline {section}{\numberline {3.11}\slshape Theory of page breaking}{141}{section.3.11}
+\contentsline {subsection}{\numberline {3.11.1}\rmfamily The MQ problem is NP-complete}{143}{subsection.3.11.1}
+\contentsline {subsubsection}{\numberline {3.11.1.1} Construction of the translation}{144}{subsubsection.3.11.1.1}
+\contentsline {subsubsection}{\numberline {3.11.1.2} NP-completeness}{145}{subsubsection.3.11.1.2}
+\contentsline {subsection}{\numberline {3.11.2}\rmfamily The ML problem has a polynomial time solution}{146}{subsection.3.11.2}
+\contentsline {subsubsection}{\numberline {3.11.2.1} Dynamic programming solution}{146}{subsubsection.3.11.2.1}
+\contentsline {subsection}{\numberline {3.11.3}\rmfamily Discussion}{149}{subsection.3.11.3}
+\contentsline {section}{\numberline {}{Projects for this chapter}}{150}{excounter.42}
+\contentsline {chapter}{\numberline {4}\relax \bfseries Fonts}{151}{chapter.4}
+\contentsline {section}{\numberline {}{Bezier curves}}{152}{section*.5}
+\contentsline {section}{\numberline {4.1}\slshape Introduction to curve approximation}{152}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}\rmfamily Interpolation}{152}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}\rmfamily Approximation}{153}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}\rmfamily Computation with interpolation curves}{155}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}\slshape Parametric curves}{157}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}\rmfamily Parametrized basis functions}{158}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}\rmfamily Hermite basis functions}{159}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}\rmfamily Splines}{162}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}\rmfamily Calculation of Bezier curves}{166}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}\slshape Practical use}{167}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}\rmfamily Piecewise curves}{167}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}\rmfamily Drawing splines}{169}{subsection.4.3.2}
+\contentsline {section}{\numberline {}{Curve plotting with \n {gnuplot}}}{170}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}\slshape Introduction}{170}{section.4.4}
+\contentsline {section}{\numberline {4.5}\slshape Plotting}{170}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}\rmfamily Styles}{171}{subsection.4.5.1}
+\contentsline {section}{\numberline {}{Raster graphics}}{172}{subsection.4.5.1}
+\contentsline {section}{\numberline {4.6}\slshape Vector graphics and raster graphics}{172}{section.4.6}
+\contentsline {section}{\numberline {4.7}\slshape Basic raster graphics}{172}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}\rmfamily Line drawing}{172}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}\rmfamily Circle drawing}{175}{subsection.4.7.2}
+\contentsline {subsection}{\numberline {4.7.3}\rmfamily Cubics}{176}{subsection.4.7.3}
+\contentsline {section}{\numberline {4.8}\slshape Rasterizing type}{176}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}\rmfamily Scaled fonts}{177}{subsection.4.8.1}
+\contentsline {subsection}{\numberline {4.8.2}\rmfamily Pixelation}{177}{subsection.4.8.2}
+\contentsline {subsection}{\numberline {4.8.3}\rmfamily Font hinting / instructing}{178}{subsection.4.8.3}
+\contentsline {subsection}{\numberline {4.8.4}\rmfamily Dropouts}{179}{subsection.4.8.4}
+\contentsline {section}{\numberline {4.9}\slshape Anti-aliasing}{179}{section.4.9}
+\contentsline {subsection}{\numberline {4.9.1}\rmfamily Raster graphics with larger bitdepths}{180}{subsection.4.9.1}
+\contentsline {subsection}{\numberline {4.9.2}\rmfamily The general idea}{181}{subsection.4.9.2}
+\contentsline {section}{\numberline {}{Projects for this chapter}}{183}{subsection.4.9.2}
+\contentsline {chapter}{\numberline {5}\relax \bfseries T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}'s macro language -- unfinished chapter}{185}{chapter.5}
+\contentsline {section}{\numberline {}{Lambda calculus in T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}}}{186}{section*.6}
+\contentsline {section}{\numberline {5.1}\slshape Logic with T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}}{186}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}\rmfamily Truth values, operators}{186}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}\rmfamily Conditionals}{187}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}\rmfamily Lists}{187}{subsection.5.1.3}
+\contentsline {subsubsection}{\numberline {5.1.3.1} A list visualization tool}{189}{subsubsection.5.1.3.1}
+\contentsline {subsubsection}{\numberline {5.1.3.2} List operations}{189}{subsubsection.5.1.3.2}
+\contentsline {subsection}{\numberline {5.1.4}\rmfamily Numbers}{189}{subsection.5.1.4}
+\contentsline {subsubsection}{\numberline {5.1.4.1} Arithmetic: add, multiply}{191}{subsubsection.5.1.4.1}
+\contentsline {subsubsection}{\numberline {5.1.4.2} More arithmetic: subtract, divide}{193}{subsubsection.5.1.4.2}
+\contentsline {subsubsection}{\numberline {5.1.4.3} Continuing the recursion}{193}{subsubsection.5.1.4.3}
+\contentsline {subsubsection}{\numberline {5.1.4.4} Testing}{193}{subsubsection.5.1.4.4}
+\contentsline {subsection}{\numberline {5.1.5}\rmfamily Infinite lists}{196}{subsection.5.1.5}
+\contentsline {chapter}{\numberline {6}\relax \bfseries Character encoding}{199}{chapter.6}
+\contentsline {section}{\numberline {}{Input file encoding}}{200}{section*.7}
+\contentsline {section}{\numberline {6.1}\slshape History and context}{200}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}\rmfamily One-byte character sets; Ascii}{200}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}\rmfamily Code pages}{200}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}\rmfamily ISO 8859}{202}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}\rmfamily DBCS}{203}{subsection.6.1.4}
+\contentsline {section}{\numberline {6.2}\slshape Unicode}{203}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}\rmfamily ISO 10646 and Unicode}{203}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}\rmfamily BMP and earlier standards}{204}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}\rmfamily Unicode encodings}{204}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}\rmfamily UTF-8}{205}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}\rmfamily Unicode tidbits}{205}{subsection.6.2.5}
+\contentsline {subsubsection}{\numberline {6.2.5.1} Line breaking}{205}{subsubsection.6.2.5.1}
+\contentsline {subsubsection}{\numberline {6.2.5.2} Bi-directional writing}{206}{subsubsection.6.2.5.2}
+\contentsline {subsection}{\numberline {6.2.6}\rmfamily Unicode and oriental languages}{206}{subsection.6.2.6}
+\contentsline {section}{\numberline {6.3}\slshape More about character sets and encodings}{207}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}\rmfamily Character sets}{207}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}\rmfamily From character to encoding in four easy steps}{207}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}\rmfamily A bootstrapping problem}{208}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}\rmfamily Character codes in HTML}{209}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.5}\rmfamily Characters in email}{209}{subsection.6.3.5}
+\contentsline {subsection}{\numberline {6.3.6}\rmfamily FTP}{209}{subsection.6.3.6}
+\contentsline {subsection}{\numberline {6.3.7}\rmfamily Character encodings in editors and programming languages}{209}{subsection.6.3.7}
+\contentsline {section}{\numberline {6.4}\slshape Character issues in T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ / \LaTeX }{210}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}\rmfamily Diacritics}{210}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}\rmfamily \LaTeX \ input file access to fonts}{210}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}\rmfamily \LaTeX \ output encoding}{210}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}\rmfamily Virtual fonts}{211}{subsection.6.4.4}
+\contentsline {section}{\numberline {}{Font encoding}}{212}{excounter.53}
+\contentsline {section}{\numberline {6.5}\slshape Basic terminology}{212}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}\rmfamily The difference between glyphs and characters}{212}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}\rmfamily The identity of a character}{214}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}\rmfamily Diacritics}{214}{subsection.6.5.3}
+\contentsline {section}{\numberline {6.6}\slshape \AE sthetics}{215}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}\rmfamily Scaling versus Design sizes}{215}{subsection.6.6.1}
+\contentsline {section}{\numberline {6.7}\slshape Font technologies}{216}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}\rmfamily Unicode in fonts}{216}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}\rmfamily Type 1 and TrueType}{216}{subsection.6.7.2}
+\contentsline {subsubsection}{\numberline {6.7.2.1} Type1}{216}{subsubsection.6.7.2.1}
+\contentsline {subsubsection}{\numberline {6.7.2.2} TrueType $\Leftrightarrow $ Type1 conversion}{217}{subsubsection.6.7.2.2}
+\contentsline {subsubsection}{\numberline {6.7.2.3} Downsampling bitmaps}{218}{subsubsection.6.7.2.3}
+\contentsline {subsection}{\numberline {6.7.3}\rmfamily FreeType}{218}{subsection.6.7.3}
+\contentsline {subsection}{\numberline {6.7.4}\rmfamily OpenType}{218}{subsection.6.7.4}
+\contentsline {section}{\numberline {6.8}\slshape Font handling in T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ and \LaTeX }{218}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}\rmfamily T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ font handling}{219}{subsection.6.8.1}
+\contentsline {subsubsection}{\numberline {6.8.1.1} Font dimensions}{219}{subsubsection.6.8.1.1}
+\contentsline {subsubsection}{\numberline {6.8.1.2} Character dimensions}{219}{subsubsection.6.8.1.2}
+\contentsline {subsubsection}{\numberline {6.8.1.3} Ligatures and kerning}{219}{subsubsection.6.8.1.3}
+\contentsline {subsection}{\numberline {6.8.2}\rmfamily Font selection in \LaTeX }{220}{subsection.6.8.2}
+\contentsline {subsubsection}{\numberline {6.8.2.1} Font families}{220}{subsubsection.6.8.2.1}
+\contentsline {subsubsection}{\numberline {6.8.2.2} Font series: width and weight}{220}{subsubsection.6.8.2.2}
+\contentsline {subsubsection}{\numberline {6.8.2.3} Font shape}{220}{subsubsection.6.8.2.3}
+\contentsline {section}{\numberline {}{Input and output encoding in \LaTeX }}{221}{subsubsection.6.8.2.3}
+\contentsline {section}{\numberline {6.9}\slshape The \n {fontenc} package}{221}{section.6.9}
+\contentsline {section}{\numberline {}{Projects for this chapter}}{222}{section.6.9}
+\contentsline {chapter}{\numberline {7}\relax \bfseries Software engineering}{223}{chapter.7}
+\contentsline {section}{\numberline {}{Literate programming}}{224}{section*.8}
+\contentsline {section}{\numberline {7.1}\slshape The Web system}{224}{section.7.1}
+\contentsline {section}{\numberline {7.2}\slshape Knuth's philosophy of program development}{224}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}\rmfamily The Trip and Trap tests}{224}{subsection.7.2.1}
+\contentsline {section}{\numberline {}{Software engineering}}{225}{subsection.7.2.1}
+\contentsline {section}{\numberline {7.3}\slshape Extremely brief history of T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}}{225}{section.7.3}
+\contentsline {section}{\numberline {7.4}\slshape T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}'s development}{225}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}\rmfamily Knuth's ideas}{225}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}\rmfamily Context}{226}{subsection.7.4.2}
+\contentsline {subsubsection}{\numberline {7.4.2.1} Team work}{226}{subsubsection.7.4.2.1}
+\contentsline {subsubsection}{\numberline {7.4.2.2} Top-down and bottom-up}{227}{subsubsection.7.4.2.2}
+\contentsline {subsubsection}{\numberline {7.4.2.3} Program correctness}{228}{subsubsection.7.4.2.3}
+\contentsline {section}{\numberline {}{Markup}}{229}{subsubsection.7.4.2.3}
+\contentsline {section}{\numberline {7.5}\slshape History}{229}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}\rmfamily Development of markup systems}{229}{subsection.7.5.1}
+\contentsline {subsection}{\numberline {7.5.2}\rmfamily Typesetting with markup}{230}{subsection.7.5.2}
+\contentsline {section}{\numberline {}{Projects for this chapter}}{231}{subsection.7.5.2}

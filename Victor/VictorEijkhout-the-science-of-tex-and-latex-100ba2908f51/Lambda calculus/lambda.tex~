@@ -1,0 +1,13 @@
+\def\Identity#1{#1}
+\def\Error{\errmessage{ERROR}}
+\def\First#1#2{#1}
+\def\Second#1#2{#2}
+\def\Compose#1#2#3{#1{#2#3}}
+
+\def\test#1{\message{#1:}\dotest}
+\def\dotest#{\afterassignment\inandout\testtoks=}
+\newtoks\testtoks
+\def\inandout{\message{input: \the\testtoks}
+  \edef\tmp{\message{output: \the\testtoks}}
+  }
+\test{Taking first argument}{\First{1}{2}}

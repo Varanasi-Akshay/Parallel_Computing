@@ -1,0 +1,35 @@
+\documentclass{artikel3}
+
+\usepackage{comment,verbatim}
+\usepackage[pdftex]{hyperref}
+\usepackage{graphicx}
+\input repeat
+
+\newcounter{chapter}
+\setcounter{chapter}{3}
+
+\input tutmacs
+\input exmacs
+
+{\endlinechar=-1 \global\read 16 to \chaptername}
+
+\begin{document}
+\begin{raggedright}
+
+\title{Exercises for chapter: \chaptershorttitle}
+\author{}\date{}\maketitle
+
+\InputIfFileExists{\chaptername-hint.tex}{\textbf{Note.\ }}{}
+
+\newread\nx
+\openin\nx=\chaptername-nx.tex
+\read\nx to \nex
+\closein\nx
+
+\begin{enumerate}
+\repeat \for{nx} \to{\nex}
+  \do{\item \edef\tmp{\noexpand\input \chaptername-ex\number\nx.tex}\tmp}
+\end{enumerate}
+
+\end{raggedright}
+\end{document}

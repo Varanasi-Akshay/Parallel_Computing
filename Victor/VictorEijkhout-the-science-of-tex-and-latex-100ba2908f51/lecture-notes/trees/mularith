@@ -1,0 +1,7 @@
+\tree 
+(expr
+ (mulex (term (2)) )
+ (+)
+ (mulex (term (5)) (*) (term (3)) )
+)
+

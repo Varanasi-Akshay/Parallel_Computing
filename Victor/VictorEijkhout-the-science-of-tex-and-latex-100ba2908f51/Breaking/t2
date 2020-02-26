@@ -1,0 +1,2632 @@
+Recent word 1
+..line= ['You', 'may'] ; ratio= 52.0
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 52.0 = 52.0
+minimum cost breaking after 1 : 52.0 over -1
+
+Recent word 2
+..line= ['You', 'may', 'never'] ; ratio= 22.5
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 22.5 = 22.5
+..line= ['may', 'never'] ; ratio= 50.0
+so far best: 22.5 over -1
+minimum cost breaking after 2 : 22.5 over -1
+
+Recent word 3
+..line= ['You', 'may', 'never', 'have'] ; ratio= 13.0
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 13.0 = 13.0
+..line= ['may', 'never', 'have'] ; ratio= 22.0
+so far best: 13.0 over -1
+..line= ['never', 'have'] ; ratio= 49.0
+so far best: 13.0 over -1
+minimum cost breaking after 3 : 13.0 over -1
+
+Recent word 4
+..line= ['You', 'may', 'never', 'have', 'thought'] ; ratio= 7.5
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 7.5 = 7.5
+..line= ['may', 'never', 'have', 'thought'] ; ratio= 11.6666666667
+so far best: 7.5 over -1
+..line= ['never', 'have', 'thought'] ; ratio= 20.0
+so far best: 7.5 over -1
+..line= ['have', 'thought'] ; ratio= 47.0
+so far best: 7.5 over -1
+minimum cost breaking after 4 : 7.5 over -1
+
+Recent word 5
+..line= ['You', 'may', 'never', 'have', 'thought', 'of'] ; ratio= 5.2
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 5.2 = 5.2
+..line= ['may', 'never', 'have', 'thought', 'of'] ; ratio= 7.75
+so far best: 5.2 over -1
+..line= ['never', 'have', 'thought', 'of'] ; ratio= 12.0
+so far best: 5.2 over -1
+..line= ['have', 'thought', 'of'] ; ratio= 21.5
+so far best: 5.2 over -1
+..line= ['thought', 'of'] ; ratio= 49.0
+so far best: 5.2 over -1
+minimum cost breaking after 5 : 5.2 over -1
+
+Recent word 6
+..line= ['You', 'may', 'never', 'have', 'thought', 'of', 'it,'] ; ratio= 3.5
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 3.5 = 3.5
+..line= ['may', 'never', 'have', 'thought', 'of', 'it,'] ; ratio= 5.2
+so far best: 3.5 over -1
+..line= ['never', 'have', 'thought', 'of', 'it,'] ; ratio= 7.75
+so far best: 3.5 over -1
+..line= ['have', 'thought', 'of', 'it,'] ; ratio= 12.6666666667
+so far best: 3.5 over -1
+..line= ['thought', 'of', 'it,'] ; ratio= 22.0
+so far best: 3.5 over -1
+..line= ['of', 'it,'] ; ratio= 53.0
+so far best: 3.5 over -1
+minimum cost breaking after 6 : 3.5 over -1
+
+Recent word 7
+..line= ['You', 'may', 'never', 'have', 'thought', 'of', 'it,', 'but'] ; ratio= 2.28571428571
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 2.28571428571 = 2.28571428571
+..line= ['may', 'never', 'have', 'thought', 'of', 'it,', 'but'] ; ratio= 3.5
+so far best: 2.28571428571 over -1
+..line= ['never', 'have', 'thought', 'of', 'it,', 'but'] ; ratio= 5.2
+so far best: 2.28571428571 over -1
+..line= ['have', 'thought', 'of', 'it,', 'but'] ; ratio= 8.25
+so far best: 2.28571428571 over -1
+..line= ['thought', 'of', 'it,', 'but'] ; ratio= 13.0
+so far best: 2.28571428571 over -1
+..line= ['of', 'it,', 'but'] ; ratio= 24.0
+so far best: 2.28571428571 over -1
+..line= ['it,', 'but'] ; ratio= 52.0
+so far best: 2.28571428571 over -1
+minimum cost breaking after 7 : 2.28571428571 over -1
+
+Recent word 8
+..line= ['You', 'may', 'never', 'have', 'thought', 'of', 'it,', 'but', 'fonts'] ; ratio= 1.125
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 1.125 = 1.125
+..line= ['may', 'never', 'have', 'thought', 'of', 'it,', 'but', 'fonts'] ; ratio= 2.0
+so far best: 1.125 over -1
+..line= ['never', 'have', 'thought', 'of', 'it,', 'but', 'fonts'] ; ratio= 3.16666666667
+so far best: 1.125 over -1
+..line= ['have', 'thought', 'of', 'it,', 'but', 'fonts'] ; ratio= 5.2
+so far best: 1.125 over -1
+..line= ['thought', 'of', 'it,', 'but', 'fonts'] ; ratio= 8.0
+so far best: 1.125 over -1
+..line= ['of', 'it,', 'but', 'fonts'] ; ratio= 13.6666666667
+so far best: 1.125 over -1
+..line= ['it,', 'but', 'fonts'] ; ratio= 22.5
+so far best: 1.125 over -1
+..line= ['but', 'fonts'] ; ratio= 50.0
+so far best: 1.125 over -1
+minimum cost breaking after 8 : 1.125 over -1
+
+Recent word 9
+..line= ['You', 'may', 'never', 'have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,'] ; ratio= -0.333333333333
+so far best: 0 over 0
+better breakpoint over -1 : 0 + 0.333333333333 = 0.333333333333
+..line= ['may', 'never', 'have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,'] ; ratio= 0.25
+so far best: 0.333333333333 over -1
+..line= ['never', 'have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,'] ; ratio= 1.0
+so far best: 0.333333333333 over -1
+..line= ['have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,'] ; ratio= 2.33333333333
+so far best: 0.333333333333 over -1
+..line= ['thought', 'of', 'it,', 'but', 'fonts', '(actually,'] ; ratio= 4.0
+so far best: 0.333333333333 over -1
+..line= ['of', 'it,', 'but', 'fonts', '(actually,'] ; ratio= 7.25
+so far best: 0.333333333333 over -1
+..line= ['it,', 'but', 'fonts', '(actually,'] ; ratio= 11.0
+so far best: 0.333333333333 over -1
+..line= ['but', 'fonts', '(actually,'] ; ratio= 19.0
+so far best: 0.333333333333 over -1
+..line= ['fonts', '(actually,'] ; ratio= 43.0
+so far best: 0.333333333333 over -1
+minimum cost breaking after 9 : 0.333333333333 over -1
+
+Recent word 10
+..line= ['You', 'may', 'never', 'have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)'] ; ratio= -1.5
+active point 0 removed
+..line= ['never', 'have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)'] ; ratio= -0.625
+so far best: 0 over 0
+better breakpoint over 1 : 52.0 + 0.625 = 52.625
+..line= ['have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)'] ; ratio= 0.285714285714
+so far best: 52.625 over 1
+better breakpoint over 2 : 22.5 + 0.285714285714 = 22.7857142857
+..line= ['thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)'] ; ratio= 1.33333333333
+so far best: 22.7857142857 over 2
+better breakpoint over 3 : 13.0 + 1.33333333333 = 14.3333333333
+..line= ['of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)'] ; ratio= 3.4
+so far best: 14.3333333333 over 3
+better breakpoint over 4 : 7.5 + 3.4 = 10.9
+..line= ['it,', 'but', 'fonts', '(actually,', 'typefaces)'] ; ratio= 5.25
+so far best: 10.9 over 4
+better breakpoint over 5 : 5.2 + 5.25 = 10.45
+..line= ['but', 'fonts', '(actually,', 'typefaces)'] ; ratio= 8.66666666667
+so far best: 10.45 over 5
+..line= ['fonts', '(actually,', 'typefaces)'] ; ratio= 15.5
+so far best: 10.45 over 5
+..line= ['(actually,', 'typefaces)'] ; ratio= 38.0
+so far best: 10.45 over 5
+minimum cost breaking after 10 : 10.45 over 5
+
+Recent word 11
+..line= ['may', 'never', 'have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually'] ; ratio= -1.9
+active point 1 removed
+..line= ['have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually'] ; ratio= -0.875
+so far best: 0 over 0
+better breakpoint over 2 : 22.5 + 0.875 = 23.375
+..line= ['thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually'] ; ratio= -0.142857142857
+so far best: 23.375 over 2
+better breakpoint over 3 : 13.0 + 0.142857142857 = 13.1428571429
+..line= ['of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually'] ; ratio= 1.33333333333
+so far best: 13.1428571429 over 3
+better breakpoint over 4 : 7.5 + 1.33333333333 = 8.83333333333
+..line= ['it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually'] ; ratio= 2.4
+so far best: 8.83333333333 over 4
+better breakpoint over 5 : 5.2 + 2.4 = 7.6
+..line= ['but', 'fonts', '(actually,', 'typefaces)', 'usually'] ; ratio= 4.25
+so far best: 7.6 over 5
+..line= ['fonts', '(actually,', 'typefaces)', 'usually'] ; ratio= 7.33333333333
+so far best: 7.6 over 5
+..line= ['(actually,', 'typefaces)', 'usually'] ; ratio= 14.5
+so far best: 7.6 over 5
+..line= ['typefaces)', 'usually'] ; ratio= 41.0
+so far best: 7.6 over 5
+minimum cost breaking after 11 : 7.6 over 5
+
+Recent word 12
+..line= ['never', 'have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have'] ; ratio= -2.0
+active point 2 removed
+..line= ['thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have'] ; ratio= -0.875
+so far best: 0 over 0
+better breakpoint over 3 : 13.0 + 0.875 = 13.875
+..line= ['of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have'] ; ratio= 0.285714285714
+so far best: 13.875 over 3
+better breakpoint over 4 : 7.5 + 0.285714285714 = 7.78571428571
+..line= ['it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have'] ; ratio= 1.0
+so far best: 7.78571428571 over 4
+better breakpoint over 5 : 5.2 + 1.0 = 6.2
+..line= ['but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have'] ; ratio= 2.2
+so far best: 6.2 over 5
+better breakpoint over 6 : 3.5 + 2.2 = 5.7
+..line= ['fonts', '(actually,', 'typefaces)', 'usually', 'have'] ; ratio= 4.0
+so far best: 5.7 over 6
+..line= ['(actually,', 'typefaces)', 'usually', 'have'] ; ratio= 7.66666666667
+so far best: 5.7 over 6
+..line= ['typefaces)', 'usually', 'have'] ; ratio= 17.5
+so far best: 5.7 over 6
+..line= ['usually', 'have'] ; ratio= 47.0
+so far best: 5.7 over 6
+minimum cost breaking after 12 : 5.7 over 6
+
+Recent word 13
+..line= ['have', 'thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a'] ; ratio= -1.6
+active point 3 removed
+..line= ['of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a'] ; ratio= -0.125
+so far best: 0 over 0
+better breakpoint over 4 : 7.5 + 0.125 = 7.625
+..line= ['it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a'] ; ratio= 0.428571428571
+so far best: 7.625 over 4
+better breakpoint over 5 : 5.2 + 0.428571428571 = 5.62857142857
+..line= ['but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a'] ; ratio= 1.33333333333
+so far best: 5.62857142857 over 5
+better breakpoint over 6 : 3.5 + 1.33333333333 = 4.83333333333
+..line= ['fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a'] ; ratio= 2.6
+so far best: 4.83333333333 over 6
+..line= ['(actually,', 'typefaces)', 'usually', 'have', 'a'] ; ratio= 5.0
+so far best: 4.83333333333 over 6
+..line= ['typefaces)', 'usually', 'have', 'a'] ; ratio= 10.6666666667
+so far best: 4.83333333333 over 6
+..line= ['usually', 'have', 'a'] ; ratio= 22.0
+so far best: 4.83333333333 over 6
+..line= ['have', 'a'] ; ratio= 53.0
+so far best: 4.83333333333 over 6
+minimum cost breaking after 13 : 4.83333333333 over 6
+
+Recent word 14
+..line= ['thought', 'of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical'] ; ratio= -2.4
+active point 4 removed
+..line= ['it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical'] ; ratio= -1.375
+active point 6 removed
+..line= ['fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical'] ; ratio= -0.166666666667
+so far best: 0 over 0
+better breakpoint over 7 : 2.28571428571 + 0.166666666667 = 2.45238095238
+..line= ['(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical'] ; ratio= 1.2
+so far best: 2.45238095238 over 7
+better breakpoint over 8 : 1.125 + 1.2 = 2.325
+..line= ['typefaces)', 'usually', 'have', 'a', 'mathematical'] ; ratio= 4.5
+so far best: 2.325 over 8
+..line= ['usually', 'have', 'a', 'mathematical'] ; ratio= 10.0
+so far best: 2.325 over 8
+..line= ['have', 'a', 'mathematical'] ; ratio= 19.5
+so far best: 2.325 over 8
+..line= ['a', 'mathematical'] ; ratio= 45.0
+so far best: 2.325 over 8
+minimum cost breaking after 14 : 2.325 over 8
+
+Recent word 15
+..line= ['of', 'it,', 'but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical', 'definition'] ; ratio= -2.7
+active point 5 removed
+..line= ['fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical', 'definition'] ; ratio= -1.85714285714
+active point 8 removed
+..line= ['typefaces)', 'usually', 'have', 'a', 'mathematical', 'definition'] ; ratio= 1.2
+so far best: 0 over 0
+better breakpoint over 9 : 0.333333333333 + 1.2 = 1.53333333333
+..line= ['usually', 'have', 'a', 'mathematical', 'definition'] ; ratio= 4.5
+so far best: 1.53333333333 over 9
+..line= ['have', 'a', 'mathematical', 'definition'] ; ratio= 9.0
+so far best: 1.53333333333 over 9
+..line= ['a', 'mathematical', 'definition'] ; ratio= 16.5
+so far best: 1.53333333333 over 9
+..line= ['mathematical', 'definition'] ; ratio= 36.0
+so far best: 1.53333333333 over 9
+minimum cost breaking after 15 : 1.53333333333 over 9
+
+Recent word 16
+..line= ['but', 'fonts', '(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical', 'definition', 'somehow.'] ; ratio= -3.11111111111
+active point 7 removed
+..line= ['typefaces)', 'usually', 'have', 'a', 'mathematical', 'definition', 'somehow.'] ; ratio= -0.666666666667
+so far best: 0 over 0
+better breakpoint over 9 : 0.333333333333 + 0.666666666667 = 1.0
+..line= ['usually', 'have', 'a', 'mathematical', 'definition', 'somehow.'] ; ratio= 1.6
+so far best: 1.0 over 9
+..line= ['have', 'a', 'mathematical', 'definition', 'somehow.'] ; ratio= 4.25
+so far best: 1.0 over 9
+..line= ['a', 'mathematical', 'definition', 'somehow.'] ; ratio= 7.66666666667
+so far best: 1.0 over 9
+..line= ['mathematical', 'definition', 'somehow.'] ; ratio= 13.0
+so far best: 1.0 over 9
+..line= ['definition', 'somehow.'] ; ratio= 40.0
+so far best: 1.0 over 9
+minimum cost breaking after 16 : 1.0 over 9
+
+Recent word 17
+..line= ['(actually,', 'typefaces)', 'usually', 'have', 'a', 'mathematical', 'definition', 'somehow.', 'If'] ; ratio= -2.5
+active point 9 removed
+..line= ['usually', 'have', 'a', 'mathematical', 'definition', 'somehow.', 'If'] ; ratio= 0.666666666667
+so far best: 0 over 0
+better breakpoint over 10 : 10.45 + 0.666666666667 = 11.1166666667
+..line= ['have', 'a', 'mathematical', 'definition', 'somehow.', 'If'] ; ratio= 2.6
+so far best: 11.1166666667 over 10
+better breakpoint over 11 : 7.6 + 2.6 = 10.2
+..line= ['a', 'mathematical', 'definition', 'somehow.', 'If'] ; ratio= 4.75
+so far best: 10.2 over 11
+..line= ['mathematical', 'definition', 'somehow.', 'If'] ; ratio= 7.33333333333
+so far best: 10.2 over 11
+..line= ['definition', 'somehow.', 'If'] ; ratio= 18.0
+so far best: 10.2 over 11
+..line= ['somehow.', 'If'] ; ratio= 48.0
+so far best: 10.2 over 11
+minimum cost breaking after 17 : 10.2 over 11
+
+Recent word 18
+..line= ['typefaces)', 'usually', 'have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a'] ; ratio= -1.375
+active point 10 removed
+..line= ['have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a'] ; ratio= 1.66666666667
+so far best: 0 over 0
+better breakpoint over 11 : 7.6 + 1.66666666667 = 9.26666666667
+..line= ['a', 'mathematical', 'definition', 'somehow.', 'If', 'a'] ; ratio= 3.2
+so far best: 9.26666666667 over 11
+better breakpoint over 12 : 5.7 + 3.2 = 8.9
+..line= ['mathematical', 'definition', 'somehow.', 'If', 'a'] ; ratio= 4.75
+so far best: 8.9 over 12
+..line= ['definition', 'somehow.', 'If', 'a'] ; ratio= 11.0
+so far best: 8.9 over 12
+..line= ['somehow.', 'If', 'a'] ; ratio= 22.5
+so far best: 8.9 over 12
+..line= ['If', 'a'] ; ratio= 55.0
+so far best: 8.9 over 12
+minimum cost breaking after 18 : 8.9 over 12
+
+Recent word 19
+..line= ['usually', 'have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font'] ; ratio= -0.625
+so far best: 0 over 0
+better breakpoint over 10 : 10.45 + 0.625 = 11.075
+..line= ['have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font'] ; ratio= 0.571428571429
+so far best: 11.075 over 10
+better breakpoint over 11 : 7.6 + 0.571428571429 = 8.17142857143
+..line= ['a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font'] ; ratio= 1.66666666667
+so far best: 8.17142857143 over 11
+better breakpoint over 12 : 5.7 + 1.66666666667 = 7.36666666667
+..line= ['mathematical', 'definition', 'somehow.', 'If', 'a', 'font'] ; ratio= 2.6
+so far best: 7.36666666667 over 12
+..line= ['definition', 'somehow.', 'If', 'a', 'font'] ; ratio= 6.75
+so far best: 7.36666666667 over 12
+..line= ['somehow.', 'If', 'a', 'font'] ; ratio= 13.0
+so far best: 7.36666666667 over 12
+..line= ['If', 'a', 'font'] ; ratio= 24.5
+so far best: 7.36666666667 over 12
+..line= ['a', 'font'] ; ratio= 53.0
+so far best: 7.36666666667 over 12
+minimum cost breaking after 19 : 7.36666666667 over 12
+
+Recent word 20
+..line= ['usually', 'have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 10 : 10.45 + 1.0 = 11.45
+..line= ['have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is'] ; ratio= 0.0
+so far best: 11.45 over 10
+better breakpoint over 11 : 7.6 + 0.0 = 7.6
+..line= ['a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is'] ; ratio= 0.857142857143
+so far best: 7.6 over 11
+better breakpoint over 12 : 5.7 + 0.857142857143 = 6.55714285714
+..line= ['mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is'] ; ratio= 1.5
+so far best: 6.55714285714 over 12
+better breakpoint over 13 : 4.83333333333 + 1.5 = 6.33333333333
+..line= ['definition', 'somehow.', 'If', 'a', 'font', 'is'] ; ratio= 4.6
+so far best: 6.33333333333 over 13
+..line= ['somehow.', 'If', 'a', 'font', 'is'] ; ratio= 8.75
+so far best: 6.33333333333 over 13
+..line= ['If', 'a', 'font', 'is'] ; ratio= 15.0
+so far best: 6.33333333333 over 13
+..line= ['a', 'font', 'is'] ; ratio= 24.5
+so far best: 6.33333333333 over 13
+..line= ['font', 'is'] ; ratio= 52.0
+so far best: 6.33333333333 over 13
+minimum cost breaking after 20 : 6.33333333333 over 13
+
+Recent word 21
+..line= ['usually', 'have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given'] ; ratio= -1.6
+active point 11 removed
+..line= ['a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given'] ; ratio= -0.125
+so far best: 0 over 0
+better breakpoint over 12 : 5.7 + 0.125 = 5.825
+..line= ['mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given'] ; ratio= 0.285714285714
+so far best: 5.825 over 12
+better breakpoint over 13 : 4.83333333333 + 0.285714285714 = 5.11904761905
+..line= ['definition', 'somehow.', 'If', 'a', 'font', 'is', 'given'] ; ratio= 2.66666666667
+so far best: 5.11904761905 over 13
+better breakpoint over 14 : 2.325 + 2.66666666667 = 4.99166666667
+..line= ['somehow.', 'If', 'a', 'font', 'is', 'given'] ; ratio= 5.6
+so far best: 4.99166666667 over 14
+..line= ['If', 'a', 'font', 'is', 'given'] ; ratio= 9.5
+so far best: 4.99166666667 over 14
+..line= ['a', 'font', 'is', 'given'] ; ratio= 14.0
+so far best: 4.99166666667 over 14
+..line= ['font', 'is', 'given'] ; ratio= 22.5
+so far best: 4.99166666667 over 14
+..line= ['is', 'given'] ; ratio= 51.0
+so far best: 4.99166666667 over 14
+minimum cost breaking after 21 : 4.99166666667 over 14
+
+Recent word 22
+..line= ['have', 'a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as'] ; ratio= -1.1
+active point 12 removed
+..line= ['mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as'] ; ratio= -0.25
+so far best: 0 over 0
+better breakpoint over 13 : 4.83333333333 + 0.25 = 5.08333333333
+..line= ['definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as'] ; ratio= 1.71428571429
+so far best: 5.08333333333 over 13
+better breakpoint over 14 : 2.325 + 1.71428571429 = 4.03928571429
+..line= ['somehow.', 'If', 'a', 'font', 'is', 'given', 'as'] ; ratio= 4.0
+so far best: 4.03928571429 over 14
+..line= ['If', 'a', 'font', 'is', 'given', 'as'] ; ratio= 6.8
+so far best: 4.03928571429 over 14
+..line= ['a', 'font', 'is', 'given', 'as'] ; ratio= 9.5
+so far best: 4.03928571429 over 14
+..line= ['font', 'is', 'given', 'as'] ; ratio= 13.6666666667
+so far best: 4.03928571429 over 14
+..line= ['is', 'given', 'as'] ; ratio= 23.5
+so far best: 4.03928571429 over 14
+..line= ['given', 'as'] ; ratio= 51.0
+so far best: 4.03928571429 over 14
+minimum cost breaking after 22 : 4.03928571429 over 14
+
+Recent word 23
+..line= ['a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a'] ; ratio= -0.8
+so far best: 0 over 0
+better breakpoint over 12 : 5.7 + 0.8 = 6.5
+..line= ['mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a'] ; ratio= -0.555555555556
+so far best: 6.5 over 12
+better breakpoint over 13 : 4.83333333333 + 0.555555555556 = 5.38888888889
+..line= ['definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a'] ; ratio= 1.125
+so far best: 5.38888888889 over 13
+better breakpoint over 14 : 2.325 + 1.125 = 3.45
+..line= ['somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a'] ; ratio= 3.0
+so far best: 3.45 over 14
+..line= ['If', 'a', 'font', 'is', 'given', 'as', 'a'] ; ratio= 5.16666666667
+so far best: 3.45 over 14
+..line= ['a', 'font', 'is', 'given', 'as', 'a'] ; ratio= 7.0
+so far best: 3.45 over 14
+..line= ['font', 'is', 'given', 'as', 'a'] ; ratio= 9.5
+so far best: 3.45 over 14
+..line= ['is', 'given', 'as', 'a'] ; ratio= 14.6666666667
+so far best: 3.45 over 14
+..line= ['given', 'as', 'a'] ; ratio= 24.0
+so far best: 3.45 over 14
+..line= ['as', 'a'] ; ratio= 55.0
+so far best: 3.45 over 14
+minimum cost breaking after 23 : 3.45 over 14
+
+Recent word 24
+..line= ['a', 'mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,'] ; ratio= -1.54545454545
+active point 13 removed
+..line= ['definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,'] ; ratio= 0.0
+so far best: 0 over 0
+better breakpoint over 14 : 2.325 + 0.0 = 2.325
+..line= ['somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,'] ; ratio= 1.5
+so far best: 2.325 over 14
+..line= ['If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,'] ; ratio= 3.14285714286
+so far best: 2.325 over 14
+..line= ['a', 'font', 'is', 'given', 'as', 'a', 'bitmap,'] ; ratio= 4.33333333333
+so far best: 2.325 over 14
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,'] ; ratio= 5.8
+so far best: 2.325 over 14
+..line= ['is', 'given', 'as', 'a', 'bitmap,'] ; ratio= 8.75
+so far best: 2.325 over 14
+..line= ['given', 'as', 'a', 'bitmap,'] ; ratio= 13.0
+so far best: 2.325 over 14
+..line= ['as', 'a', 'bitmap,'] ; ratio= 23.0
+so far best: 2.325 over 14
+..line= ['a', 'bitmap,'] ; ratio= 50.0
+so far best: 2.325 over 14
+minimum cost breaking after 24 : 2.325 over 14
+
+Recent word 25
+..line= ['mathematical', 'definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this'] ; ratio= -1.81818181818
+active point 14 removed
+..line= ['somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this'] ; ratio= 0.666666666667
+so far best: 0 over 0
+better breakpoint over 15 : 1.53333333333 + 0.666666666667 = 2.2
+..line= ['If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this'] ; ratio= 2.0
+so far best: 2.2 over 15
+..line= ['a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this'] ; ratio= 2.85714285714
+so far best: 2.2 over 15
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,', 'this'] ; ratio= 3.83333333333
+so far best: 2.2 over 15
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this'] ; ratio= 5.8
+so far best: 2.2 over 15
+..line= ['given', 'as', 'a', 'bitmap,', 'this'] ; ratio= 8.25
+so far best: 2.2 over 15
+..line= ['as', 'a', 'bitmap,', 'this'] ; ratio= 13.3333333333
+so far best: 2.2 over 15
+..line= ['a', 'bitmap,', 'this'] ; ratio= 22.0
+so far best: 2.2 over 15
+..line= ['bitmap,', 'this'] ; ratio= 47.0
+so far best: 2.2 over 15
+minimum cost breaking after 25 : 2.2 over 15
+
+Recent word 26
+..line= ['definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is'] ; ratio= -0.909090909091
+so far best: 0 over 0
+better breakpoint over 14 : 2.325 + 0.909090909091 = 3.23409090909
+..line= ['somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is'] ; ratio= 0.2
+so far best: 3.23409090909 over 14
+better breakpoint over 15 : 1.53333333333 + 0.2 = 1.73333333333
+..line= ['If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is'] ; ratio= 1.33333333333
+so far best: 1.73333333333 over 15
+..line= ['a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is'] ; ratio= 2.0
+so far best: 1.73333333333 over 15
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is'] ; ratio= 2.71428571429
+so far best: 1.73333333333 over 15
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this', 'is'] ; ratio= 4.16666666667
+so far best: 1.73333333333 over 15
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is'] ; ratio= 5.8
+so far best: 1.73333333333 over 15
+..line= ['as', 'a', 'bitmap,', 'this', 'is'] ; ratio= 9.0
+so far best: 1.73333333333 over 15
+..line= ['a', 'bitmap,', 'this', 'is'] ; ratio= 13.3333333333
+so far best: 1.73333333333 over 15
+..line= ['bitmap,', 'this', 'is'] ; ratio= 21.5
+so far best: 1.73333333333 over 15
+..line= ['this', 'is'] ; ratio= 52.0
+so far best: 1.73333333333 over 15
+minimum cost breaking after 26 : 1.73333333333 over 15
+
+Recent word 27
+..line= ['definition', 'somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= -1.75
+active point 15 removed
+..line= ['If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= 0.1
+so far best: 0 over 0
+better breakpoint over 16 : 1.0 + 0.1 = 1.1
+..line= ['a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= 0.555555555556
+so far best: 1.1 over 16
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= 1.0
+so far best: 1.1 over 16
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= 2.0
+so far best: 1.1 over 16
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= 3.0
+so far best: 1.1 over 16
+..line= ['as', 'a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= 5.0
+so far best: 1.1 over 16
+..line= ['a', 'bitmap,', 'this', 'is', 'typically'] ; ratio= 7.25
+so far best: 1.1 over 16
+..line= ['bitmap,', 'this', 'is', 'typically'] ; ratio= 10.6666666667
+so far best: 1.1 over 16
+..line= ['this', 'is', 'typically'] ; ratio= 20.5
+so far best: 1.1 over 16
+..line= ['is', 'typically'] ; ratio= 47.0
+so far best: 1.1 over 16
+minimum cost breaking after 27 : 1.1 over 16
+
+Recent word 28
+..line= ['somehow.', 'If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= -1.16666666667
+active point 16 removed
+..line= ['a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= 0.0
+so far best: 0 over 0
+better breakpoint over 17 : 10.2 + 0.0 = 10.2
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= 0.333333333333
+so far best: 10.2 over 17
+better breakpoint over 18 : 8.9 + 0.333333333333 = 9.23333333333
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= 1.125
+so far best: 9.23333333333 over 18
+better breakpoint over 19 : 7.36666666667 + 1.125 = 8.49166666667
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= 1.85714285714
+so far best: 8.49166666667 over 19
+better breakpoint over 20 : 6.33333333333 + 1.85714285714 = 8.19047619048
+..line= ['as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= 3.33333333333
+so far best: 8.19047619048 over 20
+..line= ['a', 'bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= 4.8
+so far best: 8.19047619048 over 20
+..line= ['bitmap,', 'this', 'is', 'typically', 'the'] ; ratio= 6.75
+so far best: 8.19047619048 over 20
+..line= ['this', 'is', 'typically', 'the'] ; ratio= 12.0
+so far best: 8.19047619048 over 20
+..line= ['is', 'typically', 'the'] ; ratio= 21.0
+so far best: 8.19047619048 over 20
+..line= ['typically', 'the'] ; ratio= 46.0
+so far best: 8.19047619048 over 20
+minimum cost breaking after 28 : 8.19047619048 over 20
+
+Recent word 29
+..line= ['If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 16 : 1.0 + 1.0 = 2.0
+..line= ['a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= -0.727272727273
+so far best: 2.0 over 16
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= -0.5
+so far best: 2.0 over 16
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= 0.111111111111
+so far best: 2.0 over 16
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= 0.625
+so far best: 2.0 over 16
+..line= ['as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= 1.71428571429
+so far best: 2.0 over 16
+..line= ['a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= 2.66666666667
+so far best: 2.0 over 16
+..line= ['bitmap,', 'this', 'is', 'typically', 'the', 'result'] ; ratio= 3.8
+so far best: 2.0 over 16
+..line= ['this', 'is', 'typically', 'the', 'result'] ; ratio= 7.0
+so far best: 2.0 over 16
+..line= ['is', 'typically', 'the', 'result'] ; ratio= 11.3333333333
+so far best: 2.0 over 16
+..line= ['typically', 'the', 'result'] ; ratio= 19.0
+so far best: 2.0 over 16
+..line= ['the', 'result'] ; ratio= 49.0
+so far best: 2.0 over 16
+minimum cost breaking after 29 : 2.0 over 16
+
+Recent word 30
+..line= ['If', 'a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= -1.38461538462
+active point 17 removed
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 18 : 8.9 + 1.0 = 9.9
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= -0.5
+so far best: 9.9 over 18
+better breakpoint over 19 : 7.36666666667 + 0.5 = 7.86666666667
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= -0.111111111111
+so far best: 7.86666666667 over 19
+better breakpoint over 20 : 6.33333333333 + 0.111111111111 = 6.44444444444
+..line= ['as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= 0.75
+so far best: 6.44444444444 over 20
+better breakpoint over 21 : 4.99166666667 + 0.75 = 5.74166666667
+..line= ['a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= 1.42857142857
+so far best: 5.74166666667 over 21
+better breakpoint over 22 : 4.03928571429 + 1.42857142857 = 5.46785714286
+..line= ['bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= 2.16666666667
+so far best: 5.46785714286 over 22
+..line= ['this', 'is', 'typically', 'the', 'result', 'from'] ; ratio= 4.4
+so far best: 5.46785714286 over 22
+..line= ['is', 'typically', 'the', 'result', 'from'] ; ratio= 7.0
+so far best: 5.46785714286 over 22
+..line= ['typically', 'the', 'result', 'from'] ; ratio= 10.6666666667
+so far best: 5.46785714286 over 22
+..line= ['the', 'result', 'from'] ; ratio= 21.5
+so far best: 5.46785714286 over 22
+..line= ['result', 'from'] ; ratio= 48.0
+so far best: 5.46785714286 over 22
+minimum cost breaking after 30 : 5.46785714286 over 22
+
+Recent word 31
+..line= ['a', 'font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= -1.30769230769
+active point 18 removed
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= -0.727272727273
+so far best: 0 over 0
+better breakpoint over 19 : 7.36666666667 + 0.727272727273 = 8.09393939394
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= -0.4
+so far best: 8.09393939394 over 19
+better breakpoint over 20 : 6.33333333333 + 0.4 = 6.73333333333
+..line= ['as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= 0.333333333333
+so far best: 6.73333333333 over 20
+better breakpoint over 21 : 4.99166666667 + 0.333333333333 = 5.325
+..line= ['a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= 0.875
+so far best: 5.325 over 21
+better breakpoint over 22 : 4.03928571429 + 0.875 = 4.91428571429
+..line= ['bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= 1.42857142857
+so far best: 4.91428571429 over 22
+better breakpoint over 23 : 3.45 + 1.42857142857 = 4.87857142857
+..line= ['this', 'is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= 3.16666666667
+so far best: 4.87857142857 over 23
+..line= ['is', 'typically', 'the', 'result', 'from', 'a'] ; ratio= 5.0
+so far best: 4.87857142857 over 23
+..line= ['typically', 'the', 'result', 'from', 'a'] ; ratio= 7.25
+so far best: 4.87857142857 over 23
+..line= ['the', 'result', 'from', 'a'] ; ratio= 13.3333333333
+so far best: 4.87857142857 over 23
+..line= ['result', 'from', 'a'] ; ratio= 22.5
+so far best: 4.87857142857 over 23
+..line= ['from', 'a'] ; ratio= 53.0
+so far best: 4.87857142857 over 23
+minimum cost breaking after 31 : 4.87857142857 over 23
+
+Recent word 32
+..line= ['font', 'is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= -1.53846153846
+active point 19 removed
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= -0.909090909091
+so far best: 0 over 0
+better breakpoint over 20 : 6.33333333333 + 0.909090909091 = 7.24242424242
+..line= ['as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= -0.3
+so far best: 7.24242424242 over 20
+better breakpoint over 21 : 4.99166666667 + 0.3 = 5.29166666667
+..line= ['a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= 0.111111111111
+so far best: 5.29166666667 over 21
+better breakpoint over 22 : 4.03928571429 + 0.111111111111 = 4.1503968254
+..line= ['bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= 0.5
+so far best: 4.1503968254 over 22
+better breakpoint over 23 : 3.45 + 0.5 = 3.95
+..line= ['this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= 1.85714285714
+so far best: 3.95 over 23
+..line= ['is', 'typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= 3.16666666667
+so far best: 3.95 over 23
+..line= ['typically', 'the', 'result', 'from', 'a', 'more'] ; ratio= 4.6
+so far best: 3.95 over 23
+..line= ['the', 'result', 'from', 'a', 'more'] ; ratio= 8.5
+so far best: 3.95 over 23
+..line= ['result', 'from', 'a', 'more'] ; ratio= 13.0
+so far best: 3.95 over 23
+..line= ['from', 'a', 'more'] ; ratio= 23.5
+so far best: 3.95 over 23
+..line= ['a', 'more'] ; ratio= 53.0
+so far best: 3.95 over 23
+minimum cost breaking after 32 : 3.95 over 23
+
+Recent word 33
+..line= ['is', 'given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact'] ; ratio= -1.76923076923
+active point 20 removed
+..line= ['as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact'] ; ratio= -1.09090909091
+active point 22 removed
+..line= ['bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact'] ; ratio= -0.555555555556
+so far best: 0 over 0
+better breakpoint over 23 : 3.45 + 0.555555555556 = 4.00555555556
+..line= ['this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact'] ; ratio= 0.5
+so far best: 4.00555555556 over 23
+better breakpoint over 24 : 2.325 + 0.5 = 2.825
+..line= ['is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact'] ; ratio= 1.42857142857
+so far best: 2.825 over 24
+..line= ['typically', 'the', 'result', 'from', 'a', 'more', 'compact'] ; ratio= 2.33333333333
+so far best: 2.825 over 24
+..line= ['the', 'result', 'from', 'a', 'more', 'compact'] ; ratio= 5.0
+so far best: 2.825 over 24
+..line= ['result', 'from', 'a', 'more', 'compact'] ; ratio= 7.5
+so far best: 2.825 over 24
+..line= ['from', 'a', 'more', 'compact'] ; ratio= 12.6666666667
+so far best: 2.825 over 24
+..line= ['a', 'more', 'compact'] ; ratio= 22.0
+so far best: 2.825 over 24
+..line= ['more', 'compact'] ; ratio= 47.0
+so far best: 2.825 over 24
+minimum cost breaking after 33 : 2.825 over 24
+
+Recent word 34
+..line= ['given', 'as', 'a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.'] ; ratio= -2.53846153846
+active point 21 removed
+..line= ['bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.'] ; ratio= -1.9
+active point 24 removed
+..line= ['is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.'] ; ratio= -0.5
+so far best: 0 over 0
+better breakpoint over 25 : 2.2 + 0.5 = 2.7
+..line= ['typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.'] ; ratio= 0.0
+so far best: 2.7 over 25
+better breakpoint over 26 : 1.73333333333 + 0.0 = 1.73333333333
+..line= ['the', 'result', 'from', 'a', 'more', 'compact', 'description.'] ; ratio= 1.83333333333
+so far best: 1.73333333333 over 26
+..line= ['result', 'from', 'a', 'more', 'compact', 'description.'] ; ratio= 3.2
+so far best: 1.73333333333 over 26
+..line= ['from', 'a', 'more', 'compact', 'description.'] ; ratio= 6.0
+so far best: 1.73333333333 over 26
+..line= ['a', 'more', 'compact', 'description.'] ; ratio= 10.0
+so far best: 1.73333333333 over 26
+..line= ['more', 'compact', 'description.'] ; ratio= 16.5
+so far best: 1.73333333333 over 26
+..line= ['compact', 'description.'] ; ratio= 39.0
+so far best: 1.73333333333 over 26
+minimum cost breaking after 34 : 1.73333333333 over 26
+
+Recent word 35
+..line= ['a', 'bitmap,', 'this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine'] ; ratio= -2.58333333333
+active point 23 removed
+..line= ['is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine'] ; ratio= -1.44444444444
+active point 26 removed
+..line= ['the', 'result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine'] ; ratio= 0.285714285714
+so far best: 0 over 0
+better breakpoint over 27 : 1.1 + 0.285714285714 = 1.38571428571
+..line= ['result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine'] ; ratio= 1.16666666667
+so far best: 1.38571428571 over 27
+..line= ['from', 'a', 'more', 'compact', 'description.', 'Imagine'] ; ratio= 3.0
+so far best: 1.38571428571 over 27
+..line= ['a', 'more', 'compact', 'description.', 'Imagine'] ; ratio= 5.25
+so far best: 1.38571428571 over 27
+..line= ['more', 'compact', 'description.', 'Imagine'] ; ratio= 8.0
+so far best: 1.38571428571 over 27
+..line= ['compact', 'description.', 'Imagine'] ; ratio= 15.0
+so far best: 1.38571428571 over 27
+..line= ['description.', 'Imagine'] ; ratio= 39.0
+so far best: 1.38571428571 over 27
+minimum cost breaking after 35 : 1.38571428571 over 27
+
+Recent word 36
+..line= ['this', 'is', 'typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the'] ; ratio= -2.18181818182
+active point 25 removed
+..line= ['the', 'result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the'] ; ratio= -0.375
+so far best: 0 over 0
+better breakpoint over 27 : 1.1 + 0.375 = 1.475
+..line= ['result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the'] ; ratio= 0.285714285714
+so far best: 1.475 over 27
+..line= ['from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the'] ; ratio= 1.66666666667
+so far best: 1.475 over 27
+..line= ['a', 'more', 'compact', 'description.', 'Imagine', 'the'] ; ratio= 3.2
+so far best: 1.475 over 27
+..line= ['more', 'compact', 'description.', 'Imagine', 'the'] ; ratio= 4.75
+so far best: 1.475 over 27
+..line= ['compact', 'description.', 'Imagine', 'the'] ; ratio= 8.33333333333
+so far best: 1.475 over 27
+..line= ['description.', 'Imagine', 'the'] ; ratio= 17.0
+so far best: 1.475 over 27
+..line= ['Imagine', 'the'] ; ratio= 48.0
+so far best: 1.475 over 27
+minimum cost breaking after 36 : 1.475 over 27
+
+Recent word 37
+..line= ['typically', 'the', 'result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the', 'situation'] ; ratio= -2.5
+active point 27 removed
+..line= ['result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the', 'situation'] ; ratio= -1.125
+active point 29 removed
+..line= ['a', 'more', 'compact', 'description.', 'Imagine', 'the', 'situation'] ; ratio= 0.833333333333
+so far best: 0 over 0
+better breakpoint over 30 : 5.46785714286 + 0.833333333333 = 6.30119047619
+..line= ['more', 'compact', 'description.', 'Imagine', 'the', 'situation'] ; ratio= 1.6
+so far best: 6.30119047619 over 30
+..line= ['compact', 'description.', 'Imagine', 'the', 'situation'] ; ratio= 3.5
+so far best: 6.30119047619 over 30
+..line= ['description.', 'Imagine', 'the', 'situation'] ; ratio= 7.66666666667
+so far best: 6.30119047619 over 30
+..line= ['Imagine', 'the', 'situation'] ; ratio= 18.5
+so far best: 6.30119047619 over 30
+..line= ['the', 'situation'] ; ratio= 46.0
+so far best: 6.30119047619 over 30
+minimum cost breaking after 37 : 6.30119047619 over 30
+
+Recent word 38
+..line= ['the', 'result', 'from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the', 'situation', 'that'] ; ratio= -2.0
+active point 28 removed
+..line= ['a', 'more', 'compact', 'description.', 'Imagine', 'the', 'situation', 'that'] ; ratio= -0.142857142857
+so far best: 0 over 0
+better breakpoint over 30 : 5.46785714286 + 0.142857142857 = 5.61071428571
+..line= ['more', 'compact', 'description.', 'Imagine', 'the', 'situation', 'that'] ; ratio= 0.333333333333
+so far best: 5.61071428571 over 30
+better breakpoint over 31 : 4.87857142857 + 0.333333333333 = 5.2119047619
+..line= ['compact', 'description.', 'Imagine', 'the', 'situation', 'that'] ; ratio= 1.6
+so far best: 5.2119047619 over 31
+..line= ['description.', 'Imagine', 'the', 'situation', 'that'] ; ratio= 4.25
+so far best: 5.2119047619 over 31
+..line= ['Imagine', 'the', 'situation', 'that'] ; ratio= 10.3333333333
+so far best: 5.2119047619 over 31
+..line= ['the', 'situation', 'that'] ; ratio= 20.0
+so far best: 5.2119047619 over 31
+..line= ['situation', 'that'] ; ratio= 45.0
+so far best: 5.2119047619 over 31
+minimum cost breaking after 38 : 5.2119047619 over 31
+
+Recent word 39
+..line= ['from', 'a', 'more', 'compact', 'description.', 'Imagine', 'the', 'situation', 'that', 'you'] ; ratio= -1.33333333333
+active point 30 removed
+..line= ['more', 'compact', 'description.', 'Imagine', 'the', 'situation', 'that', 'you'] ; ratio= -0.428571428571
+so far best: 0 over 0
+better breakpoint over 31 : 4.87857142857 + 0.428571428571 = 5.30714285714
+..line= ['compact', 'description.', 'Imagine', 'the', 'situation', 'that', 'you'] ; ratio= 0.5
+so far best: 5.30714285714 over 31
+better breakpoint over 32 : 3.95 + 0.5 = 4.45
+..line= ['description.', 'Imagine', 'the', 'situation', 'that', 'you'] ; ratio= 2.4
+so far best: 4.45 over 32
+..line= ['Imagine', 'the', 'situation', 'that', 'you'] ; ratio= 6.5
+so far best: 4.45 over 32
+..line= ['the', 'situation', 'that', 'you'] ; ratio= 11.6666666667
+so far best: 4.45 over 32
+..line= ['situation', 'that', 'you'] ; ratio= 20.0
+so far best: 4.45 over 32
+..line= ['that', 'you'] ; ratio= 51.0
+so far best: 4.45 over 32
+minimum cost breaking after 39 : 4.45 over 32
+
+Recent word 40
+..line= ['a', 'more', 'compact', 'description.', 'Imagine', 'the', 'situation', 'that', 'you', 'have'] ; ratio= -1.33333333333
+active point 31 removed
+..line= ['compact', 'description.', 'Imagine', 'the', 'situation', 'that', 'you', 'have'] ; ratio= -0.428571428571
+so far best: 0 over 0
+better breakpoint over 32 : 3.95 + 0.428571428571 = 4.37857142857
+..line= ['description.', 'Imagine', 'the', 'situation', 'that', 'you', 'have'] ; ratio= 1.0
+so far best: 4.37857142857 over 32
+better breakpoint over 33 : 2.825 + 1.0 = 3.825
+..line= ['Imagine', 'the', 'situation', 'that', 'you', 'have'] ; ratio= 4.0
+so far best: 3.825 over 33
+..line= ['the', 'situation', 'that', 'you', 'have'] ; ratio= 7.25
+so far best: 3.825 over 33
+..line= ['situation', 'that', 'you', 'have'] ; ratio= 11.3333333333
+so far best: 3.825 over 33
+..line= ['that', 'you', 'have'] ; ratio= 22.5
+so far best: 3.825 over 33
+..line= ['you', 'have'] ; ratio= 51.0
+so far best: 3.825 over 33
+minimum cost breaking after 40 : 3.825 over 33
+
+Recent word 41
+..line= ['more', 'compact', 'description.', 'Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps'] ; ratio= -2.0
+active point 32 removed
+..line= ['description.', 'Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps'] ; ratio= -0.428571428571
+so far best: 0 over 0
+better breakpoint over 33 : 2.825 + 0.428571428571 = 3.25357142857
+..line= ['Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps'] ; ratio= 1.83333333333
+so far best: 3.25357142857 over 33
+..line= ['the', 'situation', 'that', 'you', 'have', 'bitmaps'] ; ratio= 4.0
+so far best: 3.25357142857 over 33
+..line= ['situation', 'that', 'you', 'have', 'bitmaps'] ; ratio= 6.25
+so far best: 3.25357142857 over 33
+..line= ['that', 'you', 'have', 'bitmaps'] ; ratio= 12.0
+so far best: 3.25357142857 over 33
+..line= ['you', 'have', 'bitmaps'] ; ratio= 21.0
+so far best: 3.25357142857 over 33
+..line= ['have', 'bitmaps'] ; ratio= 47.0
+so far best: 3.25357142857 over 33
+minimum cost breaking after 41 : 3.25357142857 over 33
+
+Recent word 42
+..line= ['compact', 'description.', 'Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at'] ; ratio= -1.77777777778
+active point 33 removed
+..line= ['Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at'] ; ratio= 1.0
+so far best: 0 over 0
+better breakpoint over 34 : 1.73333333333 + 1.0 = 2.73333333333
+..line= ['the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at'] ; ratio= 2.66666666667
+so far best: 2.73333333333 over 34
+..line= ['situation', 'that', 'you', 'have', 'bitmaps', 'at'] ; ratio= 4.2
+so far best: 2.73333333333 over 34
+..line= ['that', 'you', 'have', 'bitmaps', 'at'] ; ratio= 8.0
+so far best: 2.73333333333 over 34
+..line= ['you', 'have', 'bitmaps', 'at'] ; ratio= 12.6666666667
+so far best: 2.73333333333 over 34
+..line= ['have', 'bitmaps', 'at'] ; ratio= 21.5
+so far best: 2.73333333333 over 34
+..line= ['bitmaps', 'at'] ; ratio= 49.0
+so far best: 2.73333333333 over 34
+minimum cost breaking after 42 : 2.73333333333 over 34
+
+Recent word 43
+..line= ['description.', 'Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,'] ; ratio= -1.77777777778
+active point 34 removed
+..line= ['the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,'] ; ratio= 1.0
+so far best: 0 over 0
+better breakpoint over 35 : 1.38571428571 + 1.0 = 2.38571428571
+..line= ['situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,'] ; ratio= 2.0
+so far best: 2.38571428571 over 35
+..line= ['that', 'you', 'have', 'bitmaps', 'at', '300dpi,'] ; ratio= 4.6
+so far best: 2.38571428571 over 35
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,'] ; ratio= 7.25
+so far best: 2.38571428571 over 35
+..line= ['have', 'bitmaps', 'at', '300dpi,'] ; ratio= 11.3333333333
+so far best: 2.38571428571 over 35
+..line= ['bitmaps', 'at', '300dpi,'] ; ratio= 20.0
+so far best: 2.38571428571 over 35
+..line= ['at', '300dpi,'] ; ratio= 49.0
+so far best: 2.38571428571 over 35
+minimum cost breaking after 43 : 2.38571428571 over 35
+
+Recent word 44
+..line= ['Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and'] ; ratio= -0.777777777778
+so far best: 0 over 0
+better breakpoint over 34 : 1.73333333333 + 0.777777777778 = 2.51111111111
+..line= ['the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and'] ; ratio= 0.25
+so far best: 2.51111111111 over 34
+better breakpoint over 35 : 1.38571428571 + 0.25 = 1.63571428571
+..line= ['situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and'] ; ratio= 1.0
+so far best: 1.63571428571 over 35
+..line= ['that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and'] ; ratio= 3.0
+so far best: 1.63571428571 over 35
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,', 'and'] ; ratio= 4.8
+so far best: 1.63571428571 over 35
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and'] ; ratio= 7.25
+so far best: 1.63571428571 over 35
+..line= ['bitmaps', 'at', '300dpi,', 'and'] ; ratio= 11.6666666667
+so far best: 1.63571428571 over 35
+..line= ['at', '300dpi,', 'and'] ; ratio= 22.0
+so far best: 1.63571428571 over 35
+..line= ['300dpi,', 'and'] ; ratio= 48.0
+so far best: 1.63571428571 over 35
+minimum cost breaking after 44 : 1.63571428571 over 35
+
+Recent word 45
+..line= ['Imagine', 'the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you'] ; ratio= -1.2
+active point 35 removed
+..line= ['situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you'] ; ratio= 0.25
+so far best: 0 over 0
+better breakpoint over 36 : 1.475 + 0.25 = 1.725
+..line= ['that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you'] ; ratio= 1.85714285714
+so far best: 1.725 over 36
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you'] ; ratio= 3.16666666667
+so far best: 1.725 over 36
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and', 'you'] ; ratio= 4.8
+so far best: 1.725 over 36
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you'] ; ratio= 7.5
+so far best: 1.725 over 36
+..line= ['at', '300dpi,', 'and', 'you'] ; ratio= 13.0
+so far best: 1.725 over 36
+..line= ['300dpi,', 'and', 'you'] ; ratio= 21.5
+so far best: 1.725 over 36
+..line= ['and', 'you'] ; ratio= 52.0
+so far best: 1.725 over 36
+minimum cost breaking after 45 : 1.725 over 36
+
+Recent word 46
+..line= ['the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy'] ; ratio= -0.8
+so far best: 0 over 0
+better breakpoint over 35 : 1.38571428571 + 0.8 = 2.18571428571
+..line= ['situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy'] ; ratio= -0.333333333333
+so far best: 2.18571428571 over 35
+better breakpoint over 36 : 1.475 + 0.333333333333 = 1.80833333333
+..line= ['that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy'] ; ratio= 1.0
+so far best: 1.80833333333 over 36
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy'] ; ratio= 2.0
+so far best: 1.80833333333 over 36
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy'] ; ratio= 3.16666666667
+so far best: 1.80833333333 over 36
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you', 'buy'] ; ratio= 5.0
+so far best: 1.80833333333 over 36
+..line= ['at', '300dpi,', 'and', 'you', 'buy'] ; ratio= 8.5
+so far best: 1.80833333333 over 36
+..line= ['300dpi,', 'and', 'you', 'buy'] ; ratio= 12.6666666667
+so far best: 1.80833333333 over 36
+..line= ['and', 'you', 'buy'] ; ratio= 23.5
+so far best: 1.80833333333 over 36
+..line= ['you', 'buy'] ; ratio= 52.0
+so far best: 1.80833333333 over 36
+minimum cost breaking after 46 : 1.80833333333 over 36
+
+Recent word 47
+..line= ['the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 35 : 1.38571428571 + 1.0 = 2.38571428571
+..line= ['situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= -0.6
+so far best: 2.38571428571 over 35
+better breakpoint over 36 : 1.475 + 0.6 = 2.075
+..line= ['that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= 0.555555555556
+so far best: 2.075 over 36
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= 1.375
+so far best: 2.075 over 36
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= 2.28571428571
+so far best: 2.075 over 36
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= 3.66666666667
+so far best: 2.075 over 36
+..line= ['at', '300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= 6.2
+so far best: 2.075 over 36
+..line= ['300dpi,', 'and', 'you', 'buy', 'a'] ; ratio= 8.75
+so far best: 2.075 over 36
+..line= ['and', 'you', 'buy', 'a'] ; ratio= 14.6666666667
+so far best: 2.075 over 36
+..line= ['you', 'buy', 'a'] ; ratio= 24.5
+so far best: 2.075 over 36
+..line= ['buy', 'a'] ; ratio= 54.0
+so far best: 2.075 over 36
+minimum cost breaking after 47 : 2.075 over 36
+
+Recent word 48
+..line= ['the', 'situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi'] ; ratio= -1.58333333333
+active point 36 removed
+..line= ['that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi'] ; ratio= -0.3
+so far best: 0 over 0
+better breakpoint over 37 : 6.30119047619 + 0.3 = 6.60119047619
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi'] ; ratio= 0.333333333333
+so far best: 6.60119047619 over 37
+better breakpoint over 38 : 5.2119047619 + 0.333333333333 = 5.54523809524
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi'] ; ratio= 1.0
+so far best: 5.54523809524 over 38
+better breakpoint over 39 : 4.45 + 1.0 = 5.45
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi'] ; ratio= 2.0
+so far best: 5.45 over 39
+..line= ['at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi'] ; ratio= 3.83333333333
+so far best: 5.45 over 39
+..line= ['300dpi,', 'and', 'you', 'buy', 'a', '600dpi'] ; ratio= 5.4
+so far best: 5.45 over 39
+..line= ['and', 'you', 'buy', 'a', '600dpi'] ; ratio= 9.0
+so far best: 5.45 over 39
+..line= ['you', 'buy', 'a', '600dpi'] ; ratio= 13.6666666667
+so far best: 5.45 over 39
+..line= ['buy', 'a', '600dpi'] ; ratio= 23.0
+so far best: 5.45 over 39
+..line= ['a', '600dpi'] ; ratio= 51.0
+so far best: 5.45 over 39
+minimum cost breaking after 48 : 5.45 over 39
+
+Recent word 49
+..line= ['situation', 'that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= -2.0
+active point 37 removed
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= -0.7
+so far best: 0 over 0
+better breakpoint over 38 : 5.2119047619 + 0.7 = 5.9119047619
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= -0.222222222222
+so far best: 5.9119047619 over 38
+better breakpoint over 39 : 4.45 + 0.222222222222 = 4.67222222222
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= 0.5
+so far best: 4.67222222222 over 39
+better breakpoint over 40 : 3.825 + 0.5 = 4.325
+..line= ['at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= 1.85714285714
+so far best: 4.325 over 40
+..line= ['300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= 2.83333333333
+so far best: 4.325 over 40
+..line= ['and', 'you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= 5.2
+so far best: 4.325 over 40
+..line= ['you', 'buy', 'a', '600dpi', 'printer.'] ; ratio= 7.75
+so far best: 4.325 over 40
+..line= ['buy', 'a', '600dpi', 'printer.'] ; ratio= 12.0
+so far best: 4.325 over 40
+..line= ['a', '600dpi', 'printer.'] ; ratio= 20.5
+so far best: 4.325 over 40
+..line= ['600dpi', 'printer.'] ; ratio= 44.0
+so far best: 4.325 over 40
+minimum cost breaking after 49 : 4.325 over 40
+
+Recent word 50
+..line= ['that', 'you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= -1.41666666667
+active point 38 removed
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= -0.6
+so far best: 0 over 0
+better breakpoint over 39 : 4.45 + 0.6 = 5.05
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= 0.0
+so far best: 5.05 over 39
+better breakpoint over 40 : 3.825 + 0.0 = 3.825
+..line= ['at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= 1.125
+so far best: 3.825 over 40
+..line= ['300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= 1.85714285714
+so far best: 3.825 over 40
+..line= ['and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= 3.66666666667
+so far best: 3.825 over 40
+..line= ['you', 'buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= 5.4
+so far best: 3.825 over 40
+..line= ['buy', 'a', '600dpi', 'printer.', 'It'] ; ratio= 8.0
+so far best: 3.825 over 40
+..line= ['a', '600dpi', 'printer.', 'It'] ; ratio= 12.3333333333
+so far best: 3.825 over 40
+..line= ['600dpi', 'printer.', 'It'] ; ratio= 20.0
+so far best: 3.825 over 40
+..line= ['printer.', 'It'] ; ratio= 48.0
+so far best: 3.825 over 40
+minimum cost breaking after 50 : 3.825 over 40
+
+Recent word 51
+..line= ['you', 'have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= -1.75
+active point 39 removed
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 40 : 3.825 + 1.0 = 4.825
+..line= ['at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= -0.111111111111
+so far best: 4.825 over 40
+better breakpoint over 41 : 3.25357142857 + 0.111111111111 = 3.36468253968
+..line= ['300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= 0.375
+so far best: 3.36468253968 over 41
+better breakpoint over 42 : 2.73333333333 + 0.375 = 3.10833333333
+..line= ['and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= 1.71428571429
+so far best: 3.10833333333 over 42
+..line= ['you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= 2.83333333333
+so far best: 3.10833333333 over 42
+..line= ['buy', 'a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= 4.4
+so far best: 3.10833333333 over 42
+..line= ['a', '600dpi', 'printer.', 'It', "wouldn't"] ; ratio= 6.75
+so far best: 3.10833333333 over 42
+..line= ['600dpi', 'printer.', 'It', "wouldn't"] ; ratio= 10.0
+so far best: 3.10833333333 over 42
+..line= ['printer.', 'It', "wouldn't"] ; ratio= 19.0
+so far best: 3.10833333333 over 42
+..line= ['It', "wouldn't"] ; ratio= 48.0
+so far best: 3.10833333333 over 42
+minimum cost breaking after 51 : 3.10833333333 over 42
+
+Recent word 52
+..line= ['have', 'bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= -1.83333333333
+active point 40 removed
+..line= ['at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= -0.7
+so far best: 0 over 0
+better breakpoint over 41 : 3.25357142857 + 0.7 = 3.95357142857
+..line= ['300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= -0.333333333333
+so far best: 3.95357142857 over 41
+better breakpoint over 42 : 2.73333333333 + 0.333333333333 = 3.06666666667
+..line= ['and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= 0.75
+so far best: 3.06666666667 over 42
+..line= ['you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= 1.57142857143
+so far best: 3.06666666667 over 42
+..line= ['buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= 2.66666666667
+so far best: 3.06666666667 over 42
+..line= ['a', '600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= 4.2
+so far best: 3.06666666667 over 42
+..line= ['600dpi', 'printer.', 'It', "wouldn't", 'look'] ; ratio= 6.0
+so far best: 3.06666666667 over 42
+..line= ['printer.', 'It', "wouldn't", 'look'] ; ratio= 10.6666666667
+so far best: 3.06666666667 over 42
+..line= ['It', "wouldn't", 'look'] ; ratio= 21.0
+so far best: 3.06666666667 over 42
+..line= ["wouldn't", 'look'] ; ratio= 46.0
+so far best: 3.06666666667 over 42
+minimum cost breaking after 52 : 3.06666666667 over 42
+
+Recent word 53
+..line= ['bitmaps', 'at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.'] ; ratio= -2.08333333333
+active point 41 removed
+..line= ['300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.'] ; ratio= -1.2
+active point 43 removed
+..line= ['you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.'] ; ratio= 0.25
+so far best: 0 over 0
+better breakpoint over 44 : 1.63571428571 + 0.25 = 1.88571428571
+..line= ['buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.'] ; ratio= 1.0
+so far best: 1.88571428571 over 44
+..line= ['a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.'] ; ratio= 2.0
+so far best: 1.88571428571 over 44
+..line= ['600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.'] ; ratio= 3.0
+so far best: 1.88571428571 over 44
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.'] ; ratio= 5.75
+so far best: 1.88571428571 over 44
+..line= ['It', "wouldn't", 'look', 'pretty.'] ; ratio= 11.0
+so far best: 1.88571428571 over 44
+..line= ["wouldn't", 'look', 'pretty.'] ; ratio= 18.5
+so far best: 1.88571428571 over 44
+..line= ['look', 'pretty.'] ; ratio= 47.0
+so far best: 1.88571428571 over 44
+minimum cost breaking after 53 : 1.88571428571 over 44
+
+Recent word 54
+..line= ['at', '300dpi,', 'and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There'] ; ratio= -1.91666666667
+active point 42 removed
+..line= ['you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There'] ; ratio= -0.555555555556
+so far best: 0 over 0
+better breakpoint over 44 : 1.63571428571 + 0.555555555556 = 2.19126984127
+..line= ['buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There'] ; ratio= 0.0
+so far best: 2.19126984127 over 44
+better breakpoint over 45 : 1.725 + 0.0 = 1.725
+..line= ['a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There'] ; ratio= 0.714285714286
+so far best: 1.725 over 45
+..line= ['600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There'] ; ratio= 1.33333333333
+so far best: 1.725 over 45
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.', 'There'] ; ratio= 3.2
+so far best: 1.725 over 45
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There'] ; ratio= 6.5
+so far best: 1.725 over 45
+..line= ["wouldn't", 'look', 'pretty.', 'There'] ; ratio= 10.0
+so far best: 1.725 over 45
+..line= ['look', 'pretty.', 'There'] ; ratio= 20.0
+so far best: 1.725 over 45
+..line= ['pretty.', 'There'] ; ratio= 46.0
+so far best: 1.725 over 45
+minimum cost breaking after 54 : 1.725 over 45
+
+Recent word 55
+..line= ['and', 'you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is'] ; ratio= -1.27272727273
+active point 44 removed
+..line= ['buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is'] ; ratio= -0.444444444444
+so far best: 0 over 0
+better breakpoint over 45 : 1.725 + 0.444444444444 = 2.16944444444
+..line= ['a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is'] ; ratio= 0.125
+so far best: 2.16944444444 over 45
+better breakpoint over 46 : 1.80833333333 + 0.125 = 1.93333333333
+..line= ['600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is'] ; ratio= 0.571428571429
+so far best: 1.93333333333 over 46
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is'] ; ratio= 2.0
+so far best: 1.93333333333 over 46
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There', 'is'] ; ratio= 4.4
+so far best: 1.93333333333 over 46
+..line= ["wouldn't", 'look', 'pretty.', 'There', 'is'] ; ratio= 6.5
+so far best: 1.93333333333 over 46
+..line= ['look', 'pretty.', 'There', 'is'] ; ratio= 12.0
+so far best: 1.93333333333 over 46
+..line= ['pretty.', 'There', 'is'] ; ratio= 21.0
+so far best: 1.93333333333 over 46
+..line= ['There', 'is'] ; ratio= 51.0
+so far best: 1.93333333333 over 46
+minimum cost breaking after 55 : 1.93333333333 over 46
+
+Recent word 56
+..line= ['you', 'buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then'] ; ratio= -1.36363636364
+active point 45 removed
+..line= ['a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then'] ; ratio= -0.555555555556
+so far best: 0 over 0
+better breakpoint over 46 : 1.80833333333 + 0.555555555556 = 2.36388888889
+..line= ['600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then'] ; ratio= -0.25
+so far best: 2.36388888889 over 46
+better breakpoint over 47 : 2.075 + 0.25 = 2.325
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then'] ; ratio= 0.857142857143
+so far best: 2.325 over 47
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then'] ; ratio= 2.66666666667
+so far best: 2.325 over 47
+..line= ["wouldn't", 'look', 'pretty.', 'There', 'is', 'then'] ; ratio= 4.0
+so far best: 2.325 over 47
+..line= ['look', 'pretty.', 'There', 'is', 'then'] ; ratio= 7.5
+so far best: 2.325 over 47
+..line= ['pretty.', 'There', 'is', 'then'] ; ratio= 12.0
+so far best: 2.325 over 47
+..line= ['There', 'is', 'then'] ; ratio= 22.5
+so far best: 2.325 over 47
+..line= ['is', 'then'] ; ratio= 52.0
+so far best: 2.325 over 47
+minimum cost breaking after 56 : 2.325 over 47
+
+Recent word 57
+..line= ['buy', 'a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a'] ; ratio= -1.18181818182
+active point 46 removed
+..line= ['600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a'] ; ratio= -0.555555555556
+so far best: 0 over 0
+better breakpoint over 47 : 2.075 + 0.555555555556 = 2.63055555556
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a'] ; ratio= 0.375
+so far best: 2.63055555556 over 47
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a'] ; ratio= 1.85714285714
+so far best: 2.63055555556 over 47
+..line= ["wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a'] ; ratio= 2.83333333333
+so far best: 2.63055555556 over 47
+..line= ['look', 'pretty.', 'There', 'is', 'then', 'a'] ; ratio= 5.4
+so far best: 2.63055555556 over 47
+..line= ['pretty.', 'There', 'is', 'then', 'a'] ; ratio= 8.25
+so far best: 2.63055555556 over 47
+..line= ['There', 'is', 'then', 'a'] ; ratio= 14.0
+so far best: 2.63055555556 over 47
+..line= ['is', 'then', 'a'] ; ratio= 24.5
+so far best: 2.63055555556 over 47
+..line= ['then', 'a'] ; ratio= 53.0
+so far best: 2.63055555556 over 47
+minimum cost breaking after 57 : 2.63055555556 over 47
+
+Recent word 58
+..line= ['a', '600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need'] ; ratio= -1.27272727273
+active point 47 removed
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need'] ; ratio= -0.333333333333
+so far best: 0 over 0
+better breakpoint over 48 : 5.45 + 0.333333333333 = 5.78333333333
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need'] ; ratio= 0.875
+so far best: 5.78333333333 over 48
+better breakpoint over 49 : 4.325 + 0.875 = 5.2
+..line= ["wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need'] ; ratio= 1.57142857143
+so far best: 5.2 over 49
+..line= ['look', 'pretty.', 'There', 'is', 'then', 'a', 'need'] ; ratio= 3.5
+so far best: 5.2 over 49
+..line= ['pretty.', 'There', 'is', 'then', 'a', 'need'] ; ratio= 5.4
+so far best: 5.2 over 49
+..line= ['There', 'is', 'then', 'a', 'need'] ; ratio= 9.0
+so far best: 5.2 over 49
+..line= ['is', 'then', 'a', 'need'] ; ratio= 14.3333333333
+so far best: 5.2 over 49
+..line= ['then', 'a', 'need'] ; ratio= 23.5
+so far best: 5.2 over 49
+..line= ['a', 'need'] ; ratio= 53.0
+so far best: 5.2 over 49
+minimum cost breaking after 58 : 5.2 over 49
+
+Recent word 59
+..line= ['600dpi', 'printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for'] ; ratio= -1.45454545455
+active point 48 removed
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for'] ; ratio= 0.222222222222
+so far best: 0 over 0
+better breakpoint over 49 : 4.325 + 0.222222222222 = 4.54722222222
+..line= ["wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for'] ; ratio= 0.75
+so far best: 4.54722222222 over 49
+..line= ['look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for'] ; ratio= 2.28571428571
+so far best: 4.54722222222 over 49
+..line= ['pretty.', 'There', 'is', 'then', 'a', 'need', 'for'] ; ratio= 3.66666666667
+so far best: 4.54722222222 over 49
+..line= ['There', 'is', 'then', 'a', 'need', 'for'] ; ratio= 6.2
+so far best: 4.54722222222 over 49
+..line= ['is', 'then', 'a', 'need', 'for'] ; ratio= 9.5
+so far best: 4.54722222222 over 49
+..line= ['then', 'a', 'need', 'for'] ; ratio= 14.0
+so far best: 4.54722222222 over 49
+..line= ['a', 'need', 'for'] ; ratio= 24.0
+so far best: 4.54722222222 over 49
+..line= ['need', 'for'] ; ratio= 51.0
+so far best: 4.54722222222 over 49
+minimum cost breaking after 59 : 4.54722222222 over 49
+
+Recent word 60
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 48 : 5.45 + 1.0 = 6.45
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a'] ; ratio= -0.1
+so far best: 6.45 over 48
+better breakpoint over 49 : 4.325 + 0.1 = 4.425
+..line= ["wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a'] ; ratio= 0.333333333333
+so far best: 4.425 over 49
+better breakpoint over 50 : 3.825 + 0.333333333333 = 4.15833333333
+..line= ['look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a'] ; ratio= 1.625
+so far best: 4.15833333333 over 50
+..line= ['pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a'] ; ratio= 2.71428571429
+so far best: 4.15833333333 over 50
+..line= ['There', 'is', 'then', 'a', 'need', 'for', 'a'] ; ratio= 4.66666666667
+so far best: 4.15833333333 over 50
+..line= ['is', 'then', 'a', 'need', 'for', 'a'] ; ratio= 7.0
+so far best: 4.15833333333 over 50
+..line= ['then', 'a', 'need', 'for', 'a'] ; ratio= 9.75
+so far best: 4.15833333333 over 50
+..line= ['a', 'need', 'for', 'a'] ; ratio= 15.0
+so far best: 4.15833333333 over 50
+..line= ['need', 'for', 'a'] ; ratio= 24.0
+so far best: 4.15833333333 over 50
+..line= ['for', 'a'] ; ratio= 54.0
+so far best: 4.15833333333 over 50
+minimum cost breaking after 60 : 4.15833333333 over 50
+
+Recent word 61
+..line= ['printer.', 'It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical'] ; ratio= -2.08333333333
+active point 49 removed
+..line= ["wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical'] ; ratio= -1.1
+active point 51 removed
+..line= ['pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical'] ; ratio= 0.625
+so far best: 0 over 0
+better breakpoint over 52 : 3.06666666667 + 0.625 = 3.69166666667
+..line= ['There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical'] ; ratio= 2.0
+so far best: 3.69166666667 over 52
+..line= ['is', 'then', 'a', 'need', 'for', 'a', 'mathematical'] ; ratio= 3.5
+so far best: 3.69166666667 over 52
+..line= ['then', 'a', 'need', 'for', 'a', 'mathematical'] ; ratio= 5.0
+so far best: 3.69166666667 over 52
+..line= ['a', 'need', 'for', 'a', 'mathematical'] ; ratio= 7.75
+so far best: 3.69166666667 over 52
+..line= ['need', 'for', 'a', 'mathematical'] ; ratio= 11.3333333333
+so far best: 3.69166666667 over 52
+..line= ['for', 'a', 'mathematical'] ; ratio= 20.0
+so far best: 3.69166666667 over 52
+..line= ['a', 'mathematical'] ; ratio= 45.0
+so far best: 3.69166666667 over 52
+minimum cost breaking after 61 : 3.69166666667 over 52
+
+Recent word 62
+..line= ['It', "wouldn't", 'look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way'] ; ratio= -1.66666666667
+active point 50 removed
+..line= ['pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way'] ; ratio= 0.0
+so far best: 0 over 0
+better breakpoint over 52 : 3.06666666667 + 0.0 = 3.06666666667
+..line= ['There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way'] ; ratio= 1.125
+so far best: 3.06666666667 over 52
+better breakpoint over 53 : 1.88571428571 + 1.125 = 3.01071428571
+..line= ['is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way'] ; ratio= 2.28571428571
+so far best: 3.01071428571 over 53
+..line= ['then', 'a', 'need', 'for', 'a', 'mathematical', 'way'] ; ratio= 3.33333333333
+so far best: 3.01071428571 over 53
+..line= ['a', 'need', 'for', 'a', 'mathematical', 'way'] ; ratio= 5.2
+so far best: 3.01071428571 over 53
+..line= ['need', 'for', 'a', 'mathematical', 'way'] ; ratio= 7.25
+so far best: 3.01071428571 over 53
+..line= ['for', 'a', 'mathematical', 'way'] ; ratio= 11.6666666667
+so far best: 3.01071428571 over 53
+..line= ['a', 'mathematical', 'way'] ; ratio= 20.0
+so far best: 3.01071428571 over 53
+..line= ['mathematical', 'way'] ; ratio= 43.0
+so far best: 3.01071428571 over 53
+minimum cost breaking after 62 : 3.01071428571 over 53
+
+Recent word 63
+..line= ['look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of'] ; ratio= -0.909090909091
+so far best: 0 over 0
+better breakpoint over 51 : 3.10833333333 + 0.909090909091 = 4.01742424242
+..line= ['pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of'] ; ratio= -0.4
+so far best: 4.01742424242 over 51
+better breakpoint over 52 : 3.06666666667 + 0.4 = 3.46666666667
+..line= ['There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of'] ; ratio= 0.555555555556
+so far best: 3.46666666667 over 52
+better breakpoint over 53 : 1.88571428571 + 0.555555555556 = 2.44126984127
+..line= ['is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of'] ; ratio= 1.5
+so far best: 2.44126984127 over 53
+..line= ['then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of'] ; ratio= 2.28571428571
+so far best: 2.44126984127 over 53
+..line= ['a', 'need', 'for', 'a', 'mathematical', 'way', 'of'] ; ratio= 3.66666666667
+so far best: 2.44126984127 over 53
+..line= ['need', 'for', 'a', 'mathematical', 'way', 'of'] ; ratio= 5.0
+so far best: 2.44126984127 over 53
+..line= ['for', 'a', 'mathematical', 'way', 'of'] ; ratio= 7.75
+so far best: 2.44126984127 over 53
+..line= ['a', 'mathematical', 'way', 'of'] ; ratio= 12.0
+so far best: 2.44126984127 over 53
+..line= ['mathematical', 'way', 'of'] ; ratio= 19.5
+so far best: 2.44126984127 over 53
+..line= ['way', 'of'] ; ratio= 53.0
+so far best: 2.44126984127 over 53
+minimum cost breaking after 63 : 2.44126984127 over 53
+
+Recent word 64
+..line= ['look', 'pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing'] ; ratio= -1.83333333333
+active point 52 removed
+..line= ['There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing'] ; ratio= -0.7
+so far best: 0 over 0
+better breakpoint over 53 : 1.88571428571 + 0.7 = 2.58571428571
+..line= ['is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing'] ; ratio= 0.0
+so far best: 2.58571428571 over 53
+better breakpoint over 54 : 1.725 + 0.0 = 1.725
+..line= ['then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing'] ; ratio= 0.5
+so far best: 1.725 over 54
+..line= ['a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing'] ; ratio= 1.42857142857
+so far best: 1.725 over 54
+..line= ['need', 'for', 'a', 'mathematical', 'way', 'of', 'describing'] ; ratio= 2.16666666667
+so far best: 1.725 over 54
+..line= ['for', 'a', 'mathematical', 'way', 'of', 'describing'] ; ratio= 3.8
+so far best: 1.725 over 54
+..line= ['a', 'mathematical', 'way', 'of', 'describing'] ; ratio= 6.0
+so far best: 1.725 over 54
+..line= ['mathematical', 'way', 'of', 'describing'] ; ratio= 9.0
+so far best: 1.725 over 54
+..line= ['way', 'of', 'describing'] ; ratio= 20.5
+so far best: 1.725 over 54
+..line= ['of', 'describing'] ; ratio= 46.0
+so far best: 1.725 over 54
+minimum cost breaking after 64 : 1.725 over 54
+
+Recent word 65
+..line= ['pretty.', 'There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary'] ; ratio= -2.25
+active point 53 removed
+..line= ['is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary'] ; ratio= -1.1
+active point 55 removed
+..line= ['a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary'] ; ratio= -0.125
+so far best: 0 over 0
+better breakpoint over 56 : 2.325 + 0.125 = 2.45
+..line= ['need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary'] ; ratio= 0.285714285714
+so far best: 2.45 over 56
+..line= ['for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary'] ; ratio= 1.33333333333
+so far best: 2.45 over 56
+..line= ['a', 'mathematical', 'way', 'of', 'describing', 'arbitrary'] ; ratio= 2.6
+so far best: 2.45 over 56
+..line= ['mathematical', 'way', 'of', 'describing', 'arbitrary'] ; ratio= 4.0
+so far best: 2.45 over 56
+..line= ['way', 'of', 'describing', 'arbitrary'] ; ratio= 10.0
+so far best: 2.45 over 56
+..line= ['of', 'describing', 'arbitrary'] ; ratio= 17.5
+so far best: 2.45 over 56
+..line= ['describing', 'arbitrary'] ; ratio= 39.0
+so far best: 2.45 over 56
+minimum cost breaking after 65 : 2.45 over 56
+
+Recent word 66
+..line= ['There', 'is', 'then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.'] ; ratio= -2.25
+active point 54 removed
+..line= ['a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.'] ; ratio= -1.11111111111
+active point 57 removed
+..line= ['for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.'] ; ratio= -0.142857142857
+so far best: 0 over 0
+better breakpoint over 58 : 5.2 + 0.142857142857 = 5.34285714286
+..line= ['a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.'] ; ratio= 0.666666666667
+so far best: 5.34285714286 over 58
+better breakpoint over 59 : 4.54722222222 + 0.666666666667 = 5.21388888889
+..line= ['mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.'] ; ratio= 1.4
+so far best: 5.21388888889 over 59
+..line= ['way', 'of', 'describing', 'arbitrary', 'shapes.'] ; ratio= 5.25
+so far best: 5.21388888889 over 59
+..line= ['of', 'describing', 'arbitrary', 'shapes.'] ; ratio= 8.66666666667
+so far best: 5.21388888889 over 59
+..line= ['describing', 'arbitrary', 'shapes.'] ; ratio= 15.0
+so far best: 5.21388888889 over 59
+..line= ['arbitrary', 'shapes.'] ; ratio= 42.0
+so far best: 5.21388888889 over 59
+minimum cost breaking after 66 : 5.21388888889 over 59
+
+Recent word 67
+..line= ['then', 'a', 'need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These'] ; ratio= -2.09090909091
+active point 56 removed
+..line= ['for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 58 : 5.2 + 1.0 = 6.2
+..line= ['a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These'] ; ratio= -0.428571428571
+so far best: 6.2 over 58
+better breakpoint over 59 : 4.54722222222 + 0.428571428571 = 4.97579365079
+..line= ['mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These'] ; ratio= 0.0
+so far best: 4.97579365079 over 59
+better breakpoint over 60 : 4.15833333333 + 0.0 = 4.15833333333
+..line= ['way', 'of', 'describing', 'arbitrary', 'shapes.', 'These'] ; ratio= 2.8
+so far best: 4.15833333333 over 60
+..line= ['of', 'describing', 'arbitrary', 'shapes.', 'These'] ; ratio= 4.75
+so far best: 4.15833333333 over 60
+..line= ['describing', 'arbitrary', 'shapes.', 'These'] ; ratio= 7.66666666667
+so far best: 4.15833333333 over 60
+..line= ['arbitrary', 'shapes.', 'These'] ; ratio= 17.5
+so far best: 4.15833333333 over 60
+..line= ['shapes.', 'These'] ; ratio= 46.0
+so far best: 4.15833333333 over 60
+minimum cost breaking after 67 : 4.15833333333 over 60
+
+Recent word 68
+..line= ['need', 'for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes'] ; ratio= -2.2
+active point 58 removed
+..line= ['a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes'] ; ratio= -1.375
+active point 60 removed
+..line= ['way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes'] ; ratio= 1.0
+so far best: 0 over 0
+better breakpoint over 61 : 3.69166666667 + 1.0 = 4.69166666667
+..line= ['of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes'] ; ratio= 2.2
+so far best: 4.69166666667 over 61
+..line= ['describing', 'arbitrary', 'shapes.', 'These', 'shapes'] ; ratio= 3.75
+so far best: 4.69166666667 over 61
+..line= ['arbitrary', 'shapes.', 'These', 'shapes'] ; ratio= 9.0
+so far best: 4.69166666667 over 61
+..line= ['shapes.', 'These', 'shapes'] ; ratio= 19.0
+so far best: 4.69166666667 over 61
+..line= ['These', 'shapes'] ; ratio= 47.0
+so far best: 4.69166666667 over 61
+minimum cost breaking after 68 : 4.69166666667 over 61
+
+Recent word 69
+..line= ['for', 'a', 'mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can'] ; ratio= -2.1
+active point 59 removed
+..line= ['way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can'] ; ratio= 0.142857142857
+so far best: 0 over 0
+better breakpoint over 61 : 3.69166666667 + 0.142857142857 = 3.83452380952
+..line= ['of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can'] ; ratio= 1.0
+so far best: 3.83452380952 over 61
+..line= ['describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can'] ; ratio= 2.0
+so far best: 3.83452380952 over 61
+..line= ['arbitrary', 'shapes.', 'These', 'shapes', 'can'] ; ratio= 5.5
+so far best: 3.83452380952 over 61
+..line= ['shapes.', 'These', 'shapes', 'can'] ; ratio= 11.0
+so far best: 3.83452380952 over 61
+..line= ['These', 'shapes', 'can'] ; ratio= 21.0
+so far best: 3.83452380952 over 61
+..line= ['shapes', 'can'] ; ratio= 49.0
+so far best: 3.83452380952 over 61
+minimum cost breaking after 69 : 3.83452380952 over 61
+
+Recent word 70
+..line= ['mathematical', 'way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also'] ; ratio= -2.11111111111
+active point 61 removed
+..line= ['of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also'] ; ratio= 0.0
+so far best: 0 over 0
+better breakpoint over 62 : 3.01071428571 + 0.0 = 3.01071428571
+..line= ['describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also'] ; ratio= 0.666666666667
+so far best: 3.01071428571 over 62
+..line= ['arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also'] ; ratio= 3.2
+so far best: 3.01071428571 over 62
+..line= ['shapes.', 'These', 'shapes', 'can', 'also'] ; ratio= 6.75
+so far best: 3.01071428571 over 62
+..line= ['These', 'shapes', 'can', 'also'] ; ratio= 12.0
+so far best: 3.01071428571 over 62
+..line= ['shapes', 'can', 'also'] ; ratio= 21.5
+so far best: 3.01071428571 over 62
+..line= ['can', 'also'] ; ratio= 51.0
+so far best: 3.01071428571 over 62
+minimum cost breaking after 70 : 3.01071428571 over 62
+
+Recent word 71
+..line= ['way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 61 : 3.69166666667 + 1.0 = 4.69166666667
+..line= ['of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be'] ; ratio= -0.5
+so far best: 4.69166666667 over 61
+better breakpoint over 62 : 3.01071428571 + 0.5 = 3.51071428571
+..line= ['describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be'] ; ratio= 0.0
+so far best: 3.51071428571 over 62
+better breakpoint over 63 : 2.44126984127 + 0.0 = 2.44126984127
+..line= ['arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be'] ; ratio= 2.0
+so far best: 2.44126984127 over 63
+..line= ['shapes.', 'These', 'shapes', 'can', 'also', 'be'] ; ratio= 4.6
+so far best: 2.44126984127 over 63
+..line= ['These', 'shapes', 'can', 'also', 'be'] ; ratio= 8.0
+so far best: 2.44126984127 over 63
+..line= ['shapes', 'can', 'also', 'be'] ; ratio= 13.0
+so far best: 2.44126984127 over 63
+..line= ['can', 'also', 'be'] ; ratio= 23.5
+so far best: 2.44126984127 over 63
+..line= ['also', 'be'] ; ratio= 52.0
+so far best: 2.44126984127 over 63
+minimum cost breaking after 71 : 2.44126984127 over 63
+
+Recent word 72
+..line= ['way', 'of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be', 'three-dimensional;'] ; ratio= -2.9
+active point 62 removed
+..line= ['describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be', 'three-dimensional;'] ; ratio= -2.5
+active point 64 removed
+..line= ['shapes.', 'These', 'shapes', 'can', 'also', 'be', 'three-dimensional;'] ; ratio= 0.5
+so far best: 0 over 0
+better breakpoint over 65 : 2.45 + 0.5 = 2.95
+..line= ['These', 'shapes', 'can', 'also', 'be', 'three-dimensional;'] ; ratio= 2.4
+so far best: 2.95 over 65
+..line= ['shapes', 'can', 'also', 'be', 'three-dimensional;'] ; ratio= 4.75
+so far best: 2.95 over 65
+..line= ['can', 'also', 'be', 'three-dimensional;'] ; ratio= 9.0
+so far best: 2.95 over 65
+..line= ['also', 'be', 'three-dimensional;'] ; ratio= 16.0
+so far best: 2.95 over 65
+..line= ['be', 'three-dimensional;'] ; ratio= 38.0
+so far best: 2.95 over 65
+minimum cost breaking after 72 : 2.95 over 65
+
+Recent word 73
+..line= ['of', 'describing', 'arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be', 'three-dimensional;', 'in'] ; ratio= -2.8
+active point 63 removed
+..line= ['shapes.', 'These', 'shapes', 'can', 'also', 'be', 'three-dimensional;', 'in'] ; ratio= -0.142857142857
+so far best: 0 over 0
+better breakpoint over 65 : 2.45 + 0.142857142857 = 2.59285714286
+..line= ['These', 'shapes', 'can', 'also', 'be', 'three-dimensional;', 'in'] ; ratio= 1.33333333333
+so far best: 2.59285714286 over 65
+..line= ['shapes', 'can', 'also', 'be', 'three-dimensional;', 'in'] ; ratio= 3.0
+so far best: 2.59285714286 over 65
+..line= ['can', 'also', 'be', 'three-dimensional;', 'in'] ; ratio= 5.75
+so far best: 2.59285714286 over 65
+..line= ['also', 'be', 'three-dimensional;', 'in'] ; ratio= 9.33333333333
+so far best: 2.59285714286 over 65
+..line= ['be', 'three-dimensional;', 'in'] ; ratio= 17.0
+so far best: 2.59285714286 over 65
+..line= ['three-dimensional;', 'in'] ; ratio= 38.0
+so far best: 2.59285714286 over 65
+minimum cost breaking after 73 : 2.59285714286 over 65
+
+Recent word 74
+..line= ['arbitrary', 'shapes.', 'These', 'shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,'] ; ratio= -2.11111111111
+active point 65 removed
+..line= ['These', 'shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,'] ; ratio= 0.142857142857
+so far best: 0 over 0
+better breakpoint over 66 : 5.21388888889 + 0.142857142857 = 5.35674603175
+..line= ['shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,'] ; ratio= 1.33333333333
+so far best: 5.35674603175 over 66
+..line= ['can', 'also', 'be', 'three-dimensional;', 'in', 'fact,'] ; ratio= 3.2
+so far best: 5.35674603175 over 66
+..line= ['also', 'be', 'three-dimensional;', 'in', 'fact,'] ; ratio= 5.25
+so far best: 5.35674603175 over 66
+..line= ['be', 'three-dimensional;', 'in', 'fact,'] ; ratio= 9.0
+so far best: 5.35674603175 over 66
+..line= ['three-dimensional;', 'in', 'fact,'] ; ratio= 15.5
+so far best: 5.35674603175 over 66
+..line= ['in', 'fact,'] ; ratio= 51.0
+so far best: 5.35674603175 over 66
+minimum cost breaking after 74 : 5.35674603175 over 66
+
+Recent word 75
+..line= ['shapes.', 'These', 'shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot'] ; ratio= -1.66666666667
+active point 66 removed
+..line= ['shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot'] ; ratio= 0.142857142857
+so far best: 0 over 0
+better breakpoint over 67 : 4.15833333333 + 0.142857142857 = 4.30119047619
+..line= ['can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot'] ; ratio= 1.5
+so far best: 4.30119047619 over 67
+..line= ['also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot'] ; ratio= 2.8
+so far best: 4.30119047619 over 67
+..line= ['be', 'three-dimensional;', 'in', 'fact,', 'a~lot'] ; ratio= 5.0
+so far best: 4.30119047619 over 67
+..line= ['three-dimensional;', 'in', 'fact,', 'a~lot'] ; ratio= 8.0
+so far best: 4.30119047619 over 67
+..line= ['in', 'fact,', 'a~lot'] ; ratio= 22.0
+so far best: 4.30119047619 over 67
+..line= ['fact,', 'a~lot'] ; ratio= 48.0
+so far best: 4.30119047619 over 67
+minimum cost breaking after 75 : 4.30119047619 over 67
+
+Recent word 76
+..line= ['These', 'shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of'] ; ratio= -1.11111111111
+active point 67 removed
+..line= ['can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of'] ; ratio= 0.714285714286
+so far best: 0 over 0
+better breakpoint over 68 : 4.69166666667 + 0.714285714286 = 5.40595238095
+..line= ['also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of'] ; ratio= 1.66666666667
+so far best: 5.40595238095 over 68
+..line= ['be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of'] ; ratio= 3.2
+so far best: 5.40595238095 over 68
+..line= ['three-dimensional;', 'in', 'fact,', 'a~lot', 'of'] ; ratio= 5.0
+so far best: 5.40595238095 over 68
+..line= ['in', 'fact,', 'a~lot', 'of'] ; ratio= 13.3333333333
+so far best: 5.40595238095 over 68
+..line= ['fact,', 'a~lot', 'of'] ; ratio= 22.0
+so far best: 5.40595238095 over 68
+..line= ['a~lot', 'of'] ; ratio= 51.0
+so far best: 5.40595238095 over 68
+minimum cost breaking after 76 : 5.40595238095 over 68
+
+Recent word 77
+..line= ['shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the'] ; ratio= -0.888888888889
+so far best: 0 over 0
+better breakpoint over 67 : 4.15833333333 + 0.888888888889 = 5.04722222222
+..line= ['can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the'] ; ratio= 0.0
+so far best: 5.04722222222 over 67
+better breakpoint over 68 : 4.69166666667 + 0.0 = 4.69166666667
+..line= ['also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the'] ; ratio= 0.714285714286
+so far best: 4.69166666667 over 68
+better breakpoint over 69 : 3.83452380952 + 0.714285714286 = 4.54880952381
+..line= ['be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the'] ; ratio= 1.83333333333
+so far best: 4.54880952381 over 69
+..line= ['three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the'] ; ratio= 3.0
+so far best: 4.54880952381 over 69
+..line= ['in', 'fact,', 'a~lot', 'of', 'the'] ; ratio= 8.75
+so far best: 4.54880952381 over 69
+..line= ['fact,', 'a~lot', 'of', 'the'] ; ratio= 13.0
+so far best: 4.54880952381 over 69
+..line= ['a~lot', 'of', 'the'] ; ratio= 23.0
+so far best: 4.54880952381 over 69
+..line= ['of', 'the'] ; ratio= 53.0
+so far best: 4.54880952381 over 69
+minimum cost breaking after 77 : 4.54880952381 over 69
+
+Recent word 78
+..line= ['shapes', 'can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics'] ; ratio= -2.1
+active point 68 removed
+..line= ['also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 69 : 3.83452380952 + 1.0 = 4.83452380952
+..line= ['be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics'] ; ratio= -0.285714285714
+so far best: 4.83452380952 over 69
+better breakpoint over 70 : 3.01071428571 + 0.285714285714 = 3.29642857143
+..line= ['three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics'] ; ratio= 0.333333333333
+so far best: 3.29642857143 over 70
+better breakpoint over 71 : 2.44126984127 + 0.333333333333 = 2.7746031746
+..line= ['in', 'fact,', 'a~lot', 'of', 'the', 'mathematics'] ; ratio= 4.4
+so far best: 2.7746031746 over 71
+..line= ['fact,', 'a~lot', 'of', 'the', 'mathematics'] ; ratio= 6.5
+so far best: 2.7746031746 over 71
+..line= ['a~lot', 'of', 'the', 'mathematics'] ; ratio= 11.0
+so far best: 2.7746031746 over 71
+..line= ['of', 'the', 'mathematics'] ; ratio= 20.0
+so far best: 2.7746031746 over 71
+..line= ['the', 'mathematics'] ; ratio= 44.0
+so far best: 2.7746031746 over 71
+minimum cost breaking after 78 : 2.7746031746 over 71
+
+Recent word 79
+..line= ['can', 'also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in'] ; ratio= -1.7
+active point 69 removed
+..line= ['be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in'] ; ratio= -0.75
+so far best: 0 over 0
+better breakpoint over 70 : 3.01071428571 + 0.75 = 3.76071428571
+..line= ['three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in'] ; ratio= -0.285714285714
+so far best: 3.76071428571 over 70
+better breakpoint over 71 : 2.44126984127 + 0.285714285714 = 2.72698412698
+..line= ['in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in'] ; ratio= 3.0
+so far best: 2.72698412698 over 71
+..line= ['fact,', 'a~lot', 'of', 'the', 'mathematics', 'in'] ; ratio= 4.4
+so far best: 2.72698412698 over 71
+..line= ['a~lot', 'of', 'the', 'mathematics', 'in'] ; ratio= 7.25
+so far best: 2.72698412698 over 71
+..line= ['of', 'the', 'mathematics', 'in'] ; ratio= 12.0
+so far best: 2.72698412698 over 71
+..line= ['the', 'mathematics', 'in'] ; ratio= 20.0
+so far best: 2.72698412698 over 71
+..line= ['mathematics', 'in'] ; ratio= 45.0
+so far best: 2.72698412698 over 71
+minimum cost breaking after 79 : 2.72698412698 over 71
+
+Recent word 80
+..line= ['also', 'be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this'] ; ratio= -1.8
+active point 70 removed
+..line= ['three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 71 : 2.44126984127 + 1.0 = 3.44126984127
+..line= ['in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this'] ; ratio= 1.71428571429
+so far best: 3.44126984127 over 71
+..line= ['fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this'] ; ratio= 2.66666666667
+so far best: 3.44126984127 over 71
+..line= ['a~lot', 'of', 'the', 'mathematics', 'in', 'this'] ; ratio= 4.6
+so far best: 3.44126984127 over 71
+..line= ['of', 'the', 'mathematics', 'in', 'this'] ; ratio= 7.5
+so far best: 3.44126984127 over 71
+..line= ['the', 'mathematics', 'in', 'this'] ; ratio= 11.3333333333
+so far best: 3.44126984127 over 71
+..line= ['mathematics', 'in', 'this'] ; ratio= 19.5
+so far best: 3.44126984127 over 71
+..line= ['in', 'this'] ; ratio= 52.0
+so far best: 3.44126984127 over 71
+minimum cost breaking after 80 : 3.44126984127 over 71
+
+Recent word 81
+..line= ['be', 'three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter'] ; ratio= -2.1
+active point 71 removed
+..line= ['in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter'] ; ratio= 0.375
+so far best: 0 over 0
+better breakpoint over 72 : 2.95 + 0.375 = 3.325
+..line= ['fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter'] ; ratio= 1.0
+so far best: 3.325 over 72
+..line= ['a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter'] ; ratio= 2.33333333333
+so far best: 3.325 over 72
+..line= ['of', 'the', 'mathematics', 'in', 'this', 'chapter'] ; ratio= 4.2
+so far best: 3.325 over 72
+..line= ['the', 'mathematics', 'in', 'this', 'chapter'] ; ratio= 6.25
+so far best: 3.325 over 72
+..line= ['mathematics', 'in', 'this', 'chapter'] ; ratio= 10.0
+so far best: 3.325 over 72
+..line= ['in', 'this', 'chapter'] ; ratio= 21.5
+so far best: 3.325 over 72
+..line= ['this', 'chapter'] ; ratio= 47.0
+so far best: 3.325 over 72
+minimum cost breaking after 81 : 3.325 over 72
+
+Recent word 82
+..line= ['three-dimensional;', 'in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was'] ; ratio= -2.2
+active point 72 removed
+..line= ['fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was'] ; ratio= 0.25
+so far best: 0 over 0
+better breakpoint over 73 : 2.59285714286 + 0.25 = 2.84285714286
+..line= ['a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was'] ; ratio= 1.28571428571
+so far best: 2.84285714286 over 73
+..line= ['of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was'] ; ratio= 2.66666666667
+so far best: 2.84285714286 over 73
+..line= ['the', 'mathematics', 'in', 'this', 'chapter', 'was'] ; ratio= 4.0
+so far best: 2.84285714286 over 73
+..line= ['mathematics', 'in', 'this', 'chapter', 'was'] ; ratio= 6.25
+so far best: 2.84285714286 over 73
+..line= ['in', 'this', 'chapter', 'was'] ; ratio= 12.6666666667
+so far best: 2.84285714286 over 73
+..line= ['this', 'chapter', 'was'] ; ratio= 21.0
+so far best: 2.84285714286 over 73
+..line= ['chapter', 'was'] ; ratio= 48.0
+so far best: 2.84285714286 over 73
+minimum cost breaking after 82 : 2.84285714286 over 73
+
+Recent word 83
+..line= ['in', 'fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed'] ; ratio= -1.3
+active point 73 removed
+..line= ['a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed'] ; ratio= -0.25
+so far best: 0 over 0
+better breakpoint over 74 : 5.35674603175 + 0.25 = 5.60674603175
+..line= ['of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed'] ; ratio= 0.714285714286
+so far best: 5.60674603175 over 74
+better breakpoint over 75 : 4.30119047619 + 0.714285714286 = 5.01547619048
+..line= ['the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed'] ; ratio= 1.5
+so far best: 5.01547619048 over 75
+..line= ['mathematics', 'in', 'this', 'chapter', 'was', 'developed'] ; ratio= 2.8
+so far best: 5.01547619048 over 75
+..line= ['in', 'this', 'chapter', 'was', 'developed'] ; ratio= 6.75
+so far best: 5.01547619048 over 75
+..line= ['this', 'chapter', 'was', 'developed'] ; ratio= 10.3333333333
+so far best: 5.01547619048 over 75
+..line= ['chapter', 'was', 'developed'] ; ratio= 18.5
+so far best: 5.01547619048 over 75
+..line= ['was', 'developed'] ; ratio= 46.0
+so far best: 5.01547619048 over 75
+minimum cost breaking after 83 : 5.01547619048 over 75
+
+Recent word 84
+..line= ['fact,', 'a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by'] ; ratio= -1.3
+active point 74 removed
+..line= ['of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by'] ; ratio= 0.125
+so far best: 0 over 0
+better breakpoint over 75 : 4.30119047619 + 0.125 = 4.42619047619
+..line= ['the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by'] ; ratio= 0.714285714286
+so far best: 4.42619047619 over 75
+..line= ['mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by'] ; ratio= 1.66666666667
+so far best: 4.42619047619 over 75
+..line= ['in', 'this', 'chapter', 'was', 'developed', 'by'] ; ratio= 4.6
+so far best: 4.42619047619 over 75
+..line= ['this', 'chapter', 'was', 'developed', 'by'] ; ratio= 6.75
+so far best: 4.42619047619 over 75
+..line= ['chapter', 'was', 'developed', 'by'] ; ratio= 11.0
+so far best: 4.42619047619 over 75
+..line= ['was', 'developed', 'by'] ; ratio= 21.0
+so far best: 4.42619047619 over 75
+..line= ['developed', 'by'] ; ratio= 47.0
+so far best: 4.42619047619 over 75
+minimum cost breaking after 84 : 4.42619047619 over 75
+
+Recent word 85
+..line= ['a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a'] ; ratio= -0.9
+so far best: 0 over 0
+better breakpoint over 74 : 5.35674603175 + 0.9 = 6.25674603175
+..line= ['of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a'] ; ratio= -0.222222222222
+so far best: 6.25674603175 over 74
+better breakpoint over 75 : 4.30119047619 + 0.222222222222 = 4.52341269841
+..line= ['the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a'] ; ratio= 0.25
+so far best: 4.52341269841 over 75
+..line= ['mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a'] ; ratio= 1.0
+so far best: 4.52341269841 over 75
+..line= ['in', 'this', 'chapter', 'was', 'developed', 'by', 'a'] ; ratio= 3.33333333333
+so far best: 4.52341269841 over 75
+..line= ['this', 'chapter', 'was', 'developed', 'by', 'a'] ; ratio= 4.8
+so far best: 4.52341269841 over 75
+..line= ['chapter', 'was', 'developed', 'by', 'a'] ; ratio= 7.5
+so far best: 4.52341269841 over 75
+..line= ['was', 'developed', 'by', 'a'] ; ratio= 13.0
+so far best: 4.52341269841 over 75
+..line= ['developed', 'by', 'a'] ; ratio= 22.0
+so far best: 4.52341269841 over 75
+..line= ['by', 'a'] ; ratio= 55.0
+so far best: 4.52341269841 over 75
+minimum cost breaking after 85 : 4.52341269841 over 75
+
+Recent word 86
+..line= ['a~lot', 'of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car'] ; ratio= -1.27272727273
+active point 75 removed
+..line= ['the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car'] ; ratio= -0.333333333333
+so far best: 0 over 0
+better breakpoint over 76 : 5.40595238095 + 0.333333333333 = 5.73928571429
+..line= ['mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car'] ; ratio= 0.25
+so far best: 5.73928571429 over 76
+better breakpoint over 77 : 4.54880952381 + 0.25 = 4.79880952381
+..line= ['in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car'] ; ratio= 2.14285714286
+so far best: 4.79880952381 over 77
+..line= ['this', 'chapter', 'was', 'developed', 'by', 'a', 'car'] ; ratio= 3.16666666667
+so far best: 4.79880952381 over 77
+..line= ['chapter', 'was', 'developed', 'by', 'a', 'car'] ; ratio= 5.0
+so far best: 4.79880952381 over 77
+..line= ['was', 'developed', 'by', 'a', 'car'] ; ratio= 8.5
+so far best: 4.79880952381 over 77
+..line= ['developed', 'by', 'a', 'car'] ; ratio= 13.0
+so far best: 4.79880952381 over 77
+..line= ['by', 'a', 'car'] ; ratio= 25.0
+so far best: 4.79880952381 over 77
+..line= ['a', 'car'] ; ratio= 54.0
+so far best: 4.79880952381 over 77
+minimum cost breaking after 86 : 4.79880952381 over 77
+
+Recent word 87
+..line= ['of', 'the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer'] ; ratio= -1.90909090909
+active point 76 removed
+..line= ['mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer'] ; ratio= -1.33333333333
+active point 78 removed
+..line= ['this', 'chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer'] ; ratio= 0.714285714286
+so far best: 0 over 0
+better breakpoint over 79 : 2.72698412698 + 0.714285714286 = 3.44126984127
+..line= ['chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer'] ; ratio= 1.83333333333
+so far best: 3.44126984127 over 79
+..line= ['was', 'developed', 'by', 'a', 'car', 'manufacturer'] ; ratio= 4.0
+so far best: 3.44126984127 over 79
+..line= ['developed', 'by', 'a', 'car', 'manufacturer'] ; ratio= 6.25
+so far best: 3.44126984127 over 79
+..line= ['by', 'a', 'car', 'manufacturer'] ; ratio= 12.0
+so far best: 3.44126984127 over 79
+..line= ['a', 'car', 'manufacturer'] ; ratio= 20.0
+so far best: 3.44126984127 over 79
+..line= ['car', 'manufacturer'] ; ratio= 43.0
+so far best: 3.44126984127 over 79
+minimum cost breaking after 87 : 3.44126984127 over 79
+
+Recent word 88
+..line= ['the', 'mathematics', 'in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for'] ; ratio= -2.0
+active point 77 removed
+..line= ['this', 'chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for'] ; ratio= 0.0
+so far best: 0 over 0
+better breakpoint over 79 : 2.72698412698 + 0.0 = 2.72698412698
+..line= ['chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for'] ; ratio= 0.857142857143
+so far best: 2.72698412698 over 79
+..line= ['was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for'] ; ratio= 2.5
+so far best: 2.72698412698 over 79
+..line= ['developed', 'by', 'a', 'car', 'manufacturer', 'for'] ; ratio= 4.0
+so far best: 2.72698412698 over 79
+..line= ['by', 'a', 'car', 'manufacturer', 'for'] ; ratio= 7.75
+so far best: 2.72698412698 over 79
+..line= ['a', 'car', 'manufacturer', 'for'] ; ratio= 11.6666666667
+so far best: 2.72698412698 over 79
+..line= ['car', 'manufacturer', 'for'] ; ratio= 19.0
+so far best: 2.72698412698 over 79
+..line= ['manufacturer', 'for'] ; ratio= 43.0
+so far best: 2.72698412698 over 79
+minimum cost breaking after 88 : 2.72698412698 over 79
+
+Recent word 89
+..line= ['in', 'this', 'chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling'] ; ratio= -1.4
+active point 79 removed
+..line= ['chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling'] ; ratio= -0.5
+so far best: 0 over 0
+better breakpoint over 80 : 3.44126984127 + 0.5 = 3.94126984127
+..line= ['was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling'] ; ratio= 0.714285714286
+so far best: 3.94126984127 over 80
+..line= ['developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling'] ; ratio= 1.66666666667
+so far best: 3.94126984127 over 80
+..line= ['by', 'a', 'car', 'manufacturer', 'for', 'modeling'] ; ratio= 4.2
+so far best: 3.94126984127 over 80
+..line= ['a', 'car', 'manufacturer', 'for', 'modeling'] ; ratio= 6.25
+so far best: 3.94126984127 over 80
+..line= ['car', 'manufacturer', 'for', 'modeling'] ; ratio= 9.33333333333
+so far best: 3.94126984127 over 80
+..line= ['manufacturer', 'for', 'modeling'] ; ratio= 16.5
+so far best: 3.94126984127 over 80
+..line= ['for', 'modeling'] ; ratio= 47.0
+so far best: 3.94126984127 over 80
+minimum cost breaking after 89 : 3.94126984127 over 80
+
+Recent word 90
+..line= ['this', 'chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car'] ; ratio= -1.5
+active point 80 removed
+..line= ['was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car'] ; ratio= 0.0
+so far best: 0 over 0
+better breakpoint over 81 : 3.325 + 0.0 = 3.325
+..line= ['developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car'] ; ratio= 0.714285714286
+so far best: 3.325 over 81
+..line= ['by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car'] ; ratio= 2.66666666667
+so far best: 3.325 over 81
+..line= ['a', 'car', 'manufacturer', 'for', 'modeling', 'car'] ; ratio= 4.0
+so far best: 3.325 over 81
+..line= ['car', 'manufacturer', 'for', 'modeling', 'car'] ; ratio= 5.75
+so far best: 3.325 over 81
+..line= ['manufacturer', 'for', 'modeling', 'car'] ; ratio= 9.33333333333
+so far best: 3.325 over 81
+..line= ['for', 'modeling', 'car'] ; ratio= 21.0
+so far best: 3.325 over 81
+..line= ['modeling', 'car'] ; ratio= 47.0
+so far best: 3.325 over 81
+minimum cost breaking after 90 : 3.325 over 81
+
+Recent word 91
+..line= ['chapter', 'was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body'] ; ratio= -1.5
+active point 81 removed
+..line= ['developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body'] ; ratio= -0.125
+so far best: 0 over 0
+better breakpoint over 82 : 2.84285714286 + 0.125 = 2.96785714286
+..line= ['by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body'] ; ratio= 1.42857142857
+so far best: 2.96785714286 over 82
+..line= ['a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body'] ; ratio= 2.33333333333
+so far best: 2.96785714286 over 82
+..line= ['car', 'manufacturer', 'for', 'modeling', 'car', 'body'] ; ratio= 3.4
+so far best: 2.96785714286 over 82
+..line= ['manufacturer', 'for', 'modeling', 'car', 'body'] ; ratio= 5.5
+so far best: 2.96785714286 over 82
+..line= ['for', 'modeling', 'car', 'body'] ; ratio= 12.0
+so far best: 2.96785714286 over 82
+..line= ['modeling', 'car', 'body'] ; ratio= 20.5
+so far best: 2.96785714286 over 82
+..line= ['car', 'body'] ; ratio= 51.0
+so far best: 2.96785714286 over 82
+minimum cost breaking after 91 : 2.96785714286 over 82
+
+Recent word 92
+..line= ['was', 'developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.'] ; ratio= -1.5
+active point 82 removed
+..line= ['by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.'] ; ratio= 0.125
+so far best: 0 over 0
+better breakpoint over 83 : 5.01547619048 + 0.125 = 5.14047619048
+..line= ['a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.'] ; ratio= 0.714285714286
+so far best: 5.14047619048 over 83
+..line= ['car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.'] ; ratio= 1.33333333333
+so far best: 5.14047619048 over 83
+..line= ['manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.'] ; ratio= 2.6
+so far best: 5.14047619048 over 83
+..line= ['for', 'modeling', 'car', 'body', 'shapes.'] ; ratio= 6.75
+so far best: 5.14047619048 over 83
+..line= ['modeling', 'car', 'body', 'shapes.'] ; ratio= 10.6666666667
+so far best: 5.14047619048 over 83
+..line= ['car', 'body', 'shapes.'] ; ratio= 21.0
+so far best: 5.14047619048 over 83
+..line= ['body', 'shapes.'] ; ratio= 47.0
+so far best: 5.14047619048 over 83
+minimum cost breaking after 92 : 5.14047619048 over 83
+
+Recent word 93
+..line= ['developed', 'by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But'] ; ratio= -1.5
+active point 83 removed
+..line= ['a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But'] ; ratio= 0.0
+so far best: 0 over 0
+better breakpoint over 84 : 4.42619047619 + 0.0 = 4.42619047619
+..line= ['car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But'] ; ratio= 0.428571428571
+so far best: 4.42619047619 over 84
+..line= ['manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But'] ; ratio= 1.33333333333
+so far best: 4.42619047619 over 84
+..line= ['for', 'modeling', 'car', 'body', 'shapes.', 'But'] ; ratio= 4.4
+so far best: 4.42619047619 over 84
+..line= ['modeling', 'car', 'body', 'shapes.', 'But'] ; ratio= 6.75
+so far best: 4.42619047619 over 84
+..line= ['car', 'body', 'shapes.', 'But'] ; ratio= 12.3333333333
+so far best: 4.42619047619 over 84
+..line= ['body', 'shapes.', 'But'] ; ratio= 21.0
+so far best: 4.42619047619 over 84
+..line= ['shapes.', 'But'] ; ratio= 48.0
+so far best: 4.42619047619 over 84
+minimum cost breaking after 93 : 4.42619047619 over 84
+
+Recent word 94
+..line= ['by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let'] ; ratio= -0.9
+so far best: 0 over 0
+better breakpoint over 83 : 5.01547619048 + 0.9 = 5.91547619048
+..line= ['a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let'] ; ratio= -0.555555555556
+so far best: 5.91547619048 over 83
+better breakpoint over 84 : 4.42619047619 + 0.555555555556 = 4.98174603175
+..line= ['car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let'] ; ratio= -0.25
+so far best: 4.98174603175 over 84
+better breakpoint over 85 : 4.52341269841 + 0.25 = 4.77341269841
+..line= ['manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let'] ; ratio= 0.428571428571
+so far best: 4.77341269841 over 85
+..line= ['for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let'] ; ratio= 2.83333333333
+so far best: 4.77341269841 over 85
+..line= ['modeling', 'car', 'body', 'shapes.', 'But', 'let'] ; ratio= 4.4
+so far best: 4.77341269841 over 85
+..line= ['car', 'body', 'shapes.', 'But', 'let'] ; ratio= 8.0
+so far best: 4.77341269841 over 85
+..line= ['body', 'shapes.', 'But', 'let'] ; ratio= 12.3333333333
+so far best: 4.77341269841 over 85
+..line= ['shapes.', 'But', 'let'] ; ratio= 21.5
+so far best: 4.77341269841 over 85
+..line= ['But', 'let'] ; ratio= 52.0
+so far best: 4.77341269841 over 85
+minimum cost breaking after 94 : 4.77341269841 over 85
+
+Recent word 95
+..line= ['by', 'a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us'] ; ratio= -1.18181818182
+active point 84 removed
+..line= ['car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us'] ; ratio= -0.666666666667
+so far best: 0 over 0
+better breakpoint over 85 : 4.52341269841 + 0.666666666667 = 5.19007936508
+..line= ['manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us'] ; ratio= -0.125
+so far best: 5.19007936508 over 85
+better breakpoint over 86 : 4.79880952381 + 0.125 = 4.92380952381
+..line= ['for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us'] ; ratio= 1.85714285714
+so far best: 4.92380952381 over 86
+..line= ['modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us'] ; ratio= 3.0
+so far best: 4.92380952381 over 86
+..line= ['car', 'body', 'shapes.', 'But', 'let', 'us'] ; ratio= 5.6
+so far best: 4.92380952381 over 86
+..line= ['body', 'shapes.', 'But', 'let', 'us'] ; ratio= 8.25
+so far best: 4.92380952381 over 86
+..line= ['shapes.', 'But', 'let', 'us'] ; ratio= 13.0
+so far best: 4.92380952381 over 86
+..line= ['But', 'let', 'us'] ; ratio= 24.0
+so far best: 4.92380952381 over 86
+..line= ['let', 'us'] ; ratio= 53.0
+so far best: 4.92380952381 over 86
+minimum cost breaking after 95 : 4.92380952381 over 86
+
+Recent word 96
+..line= ['a', 'car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for'] ; ratio= -1.27272727273
+active point 85 removed
+..line= ['manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for'] ; ratio= -0.666666666667
+so far best: 0 over 0
+better breakpoint over 86 : 4.79880952381 + 0.666666666667 = 5.46547619048
+..line= ['for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for'] ; ratio= 1.0
+so far best: 5.46547619048 over 86
+better breakpoint over 87 : 3.44126984127 + 1.0 = 4.44126984127
+..line= ['modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for'] ; ratio= 1.85714285714
+so far best: 4.44126984127 over 87
+..line= ['car', 'body', 'shapes.', 'But', 'let', 'us', 'for'] ; ratio= 3.83333333333
+so far best: 4.44126984127 over 87
+..line= ['body', 'shapes.', 'But', 'let', 'us', 'for'] ; ratio= 5.6
+so far best: 4.44126984127 over 87
+..line= ['shapes.', 'But', 'let', 'us', 'for'] ; ratio= 8.5
+so far best: 4.44126984127 over 87
+..line= ['But', 'let', 'us', 'for'] ; ratio= 14.3333333333
+so far best: 4.44126984127 over 87
+..line= ['let', 'us', 'for'] ; ratio= 24.0
+so far best: 4.44126984127 over 87
+..line= ['us', 'for'] ; ratio= 53.0
+so far best: 4.44126984127 over 87
+minimum cost breaking after 96 : 4.44126984127 over 87
+
+Recent word 97
+..line= ['car', 'manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now'] ; ratio= -1.45454545455
+active point 86 removed
+..line= ['for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now'] ; ratio= 0.333333333333
+so far best: 0 over 0
+better breakpoint over 87 : 3.44126984127 + 0.333333333333 = 3.7746031746
+..line= ['modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now'] ; ratio= 1.0
+so far best: 3.7746031746 over 87
+better breakpoint over 88 : 2.72698412698 + 1.0 = 3.72698412698
+..line= ['car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now'] ; ratio= 2.57142857143
+so far best: 3.72698412698 over 88
+..line= ['body', 'shapes.', 'But', 'let', 'us', 'for', 'now'] ; ratio= 3.83333333333
+so far best: 3.72698412698 over 88
+..line= ['shapes.', 'But', 'let', 'us', 'for', 'now'] ; ratio= 5.8
+so far best: 3.72698412698 over 88
+..line= ['But', 'let', 'us', 'for', 'now'] ; ratio= 9.5
+so far best: 3.72698412698 over 88
+..line= ['let', 'us', 'for', 'now'] ; ratio= 14.3333333333
+so far best: 3.72698412698 over 88
+..line= ['us', 'for', 'now'] ; ratio= 24.0
+so far best: 3.72698412698 over 88
+..line= ['for', 'now'] ; ratio= 52.0
+so far best: 3.72698412698 over 88
+minimum cost breaking after 97 : 3.72698412698 over 88
+
+Recent word 98
+..line= ['manufacturer', 'for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only'] ; ratio= -1.54545454545
+active point 87 removed
+..line= ['modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only'] ; ratio= 0.222222222222
+so far best: 0 over 0
+better breakpoint over 88 : 2.72698412698 + 0.222222222222 = 2.94920634921
+..line= ['car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only'] ; ratio= 1.5
+so far best: 2.94920634921 over 88
+..line= ['body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only'] ; ratio= 2.42857142857
+so far best: 2.94920634921 over 88
+..line= ['shapes.', 'But', 'let', 'us', 'for', 'now', 'only'] ; ratio= 3.83333333333
+so far best: 2.94920634921 over 88
+..line= ['But', 'let', 'us', 'for', 'now', 'only'] ; ratio= 6.4
+so far best: 2.94920634921 over 88
+..line= ['let', 'us', 'for', 'now', 'only'] ; ratio= 9.25
+so far best: 2.94920634921 over 88
+..line= ['us', 'for', 'now', 'only'] ; ratio= 14.0
+so far best: 2.94920634921 over 88
+..line= ['for', 'now', 'only'] ; ratio= 23.0
+so far best: 2.94920634921 over 88
+..line= ['now', 'only'] ; ratio= 51.0
+so far best: 2.94920634921 over 88
+minimum cost breaking after 98 : 2.94920634921 over 88
+
+Recent word 99
+..line= ['for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look'] ; ratio= -0.818181818182
+so far best: 0 over 0
+better breakpoint over 87 : 3.44126984127 + 0.818181818182 = 4.25945165945
+..line= ['modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look'] ; ratio= -0.4
+so far best: 4.25945165945 over 87
+better breakpoint over 88 : 2.72698412698 + 0.4 = 3.12698412698
+..line= ['car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look'] ; ratio= 0.666666666667
+so far best: 3.12698412698 over 88
+..line= ['body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look'] ; ratio= 1.375
+so far best: 3.12698412698 over 88
+..line= ['shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look'] ; ratio= 2.42857142857
+so far best: 3.12698412698 over 88
+..line= ['But', 'let', 'us', 'for', 'now', 'only', 'look'] ; ratio= 4.33333333333
+so far best: 3.12698412698 over 88
+..line= ['let', 'us', 'for', 'now', 'only', 'look'] ; ratio= 6.2
+so far best: 3.12698412698 over 88
+..line= ['us', 'for', 'now', 'only', 'look'] ; ratio= 9.0
+so far best: 3.12698412698 over 88
+..line= ['for', 'now', 'only', 'look'] ; ratio= 13.3333333333
+so far best: 3.12698412698 over 88
+..line= ['now', 'only', 'look'] ; ratio= 22.5
+so far best: 3.12698412698 over 88
+..line= ['only', 'look'] ; ratio= 50.0
+so far best: 3.12698412698 over 88
+minimum cost breaking after 99 : 3.12698412698 over 88
+
+Recent word 100
+..line= ['for', 'modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in'] ; ratio= -1.08333333333
+active point 88 removed
+..line= ['car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in'] ; ratio= 0.2
+so far best: 0 over 0
+better breakpoint over 89 : 3.94126984127 + 0.2 = 4.14126984127
+..line= ['body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in'] ; ratio= 0.777777777778
+so far best: 4.14126984127 over 89
+better breakpoint over 90 : 3.325 + 0.777777777778 = 4.10277777778
+..line= ['shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in'] ; ratio= 1.625
+so far best: 4.10277777778 over 90
+..line= ['But', 'let', 'us', 'for', 'now', 'only', 'look', 'in'] ; ratio= 3.14285714286
+so far best: 4.10277777778 over 90
+..line= ['let', 'us', 'for', 'now', 'only', 'look', 'in'] ; ratio= 4.5
+so far best: 4.10277777778 over 90
+..line= ['us', 'for', 'now', 'only', 'look', 'in'] ; ratio= 6.4
+so far best: 4.10277777778 over 90
+..line= ['for', 'now', 'only', 'look', 'in'] ; ratio= 9.0
+so far best: 4.10277777778 over 90
+..line= ['now', 'only', 'look', 'in'] ; ratio= 13.6666666667
+so far best: 4.10277777778 over 90
+..line= ['only', 'look', 'in'] ; ratio= 23.0
+so far best: 4.10277777778 over 90
+..line= ['look', 'in'] ; ratio= 52.0
+so far best: 4.10277777778 over 90
+minimum cost breaking after 100 : 4.10277777778 over 90
+
+Recent word 101
+..line= ['modeling', 'car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two'] ; ratio= -1.08333333333
+active point 89 removed
+..line= ['body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two'] ; ratio= 0.2
+so far best: 0 over 0
+better breakpoint over 90 : 3.325 + 0.2 = 3.525
+..line= ['shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two'] ; ratio= 0.888888888889
+so far best: 3.525 over 90
+..line= ['But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two'] ; ratio= 2.125
+so far best: 3.525 over 90
+..line= ['let', 'us', 'for', 'now', 'only', 'look', 'in', 'two'] ; ratio= 3.14285714286
+so far best: 3.525 over 90
+..line= ['us', 'for', 'now', 'only', 'look', 'in', 'two'] ; ratio= 4.5
+so far best: 3.525 over 90
+..line= ['for', 'now', 'only', 'look', 'in', 'two'] ; ratio= 6.2
+so far best: 3.525 over 90
+..line= ['now', 'only', 'look', 'in', 'two'] ; ratio= 9.0
+so far best: 3.525 over 90
+..line= ['only', 'look', 'in', 'two'] ; ratio= 13.6666666667
+so far best: 3.525 over 90
+..line= ['look', 'in', 'two'] ; ratio= 23.5
+so far best: 3.525 over 90
+..line= ['in', 'two'] ; ratio= 53.0
+so far best: 3.525 over 90
+minimum cost breaking after 101 : 3.525 over 90
+
+Recent word 102
+..line= ['car', 'body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,'] ; ratio= -1.33333333333
+active point 90 removed
+..line= ['shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,'] ; ratio= -0.5
+so far best: 0 over 0
+better breakpoint over 91 : 2.96785714286 + 0.5 = 3.46785714286
+..line= ['But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,'] ; ratio= 0.444444444444
+so far best: 3.46785714286 over 91
+..line= ['let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,'] ; ratio= 1.125
+so far best: 3.46785714286 over 91
+..line= ['us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,'] ; ratio= 2.0
+so far best: 3.46785714286 over 91
+..line= ['for', 'now', 'only', 'look', 'in', 'two', 'dimensions,'] ; ratio= 3.0
+so far best: 3.46785714286 over 91
+..line= ['now', 'only', 'look', 'in', 'two', 'dimensions,'] ; ratio= 4.6
+so far best: 3.46785714286 over 91
+..line= ['only', 'look', 'in', 'two', 'dimensions,'] ; ratio= 7.0
+so far best: 3.46785714286 over 91
+..line= ['look', 'in', 'two', 'dimensions,'] ; ratio= 11.3333333333
+so far best: 3.46785714286 over 91
+..line= ['in', 'two', 'dimensions,'] ; ratio= 20.0
+so far best: 3.46785714286 over 91
+..line= ['two', 'dimensions,'] ; ratio= 44.0
+so far best: 3.46785714286 over 91
+minimum cost breaking after 102 : 3.46785714286 over 91
+
+Recent word 103
+..line= ['body', 'shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which'] ; ratio= -1.5
+active point 91 removed
+..line= ['But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which'] ; ratio= -0.3
+so far best: 0 over 0
+better breakpoint over 92 : 5.14047619048 + 0.3 = 5.44047619048
+..line= ['let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which'] ; ratio= 0.222222222222
+so far best: 5.44047619048 over 92
+better breakpoint over 93 : 4.42619047619 + 0.222222222222 = 4.64841269841
+..line= ['us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which'] ; ratio= 0.875
+so far best: 4.64841269841 over 93
+..line= ['for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which'] ; ratio= 1.57142857143
+so far best: 4.64841269841 over 93
+..line= ['now', 'only', 'look', 'in', 'two', 'dimensions,', 'which'] ; ratio= 2.66666666667
+so far best: 4.64841269841 over 93
+..line= ['only', 'look', 'in', 'two', 'dimensions,', 'which'] ; ratio= 4.2
+so far best: 4.64841269841 over 93
+..line= ['look', 'in', 'two', 'dimensions,', 'which'] ; ratio= 6.75
+so far best: 4.64841269841 over 93
+..line= ['in', 'two', 'dimensions,', 'which'] ; ratio= 11.0
+so far best: 4.64841269841 over 93
+..line= ['two', 'dimensions,', 'which'] ; ratio= 18.5
+so far best: 4.64841269841 over 93
+..line= ['dimensions,', 'which'] ; ratio= 42.0
+so far best: 4.64841269841 over 93
+minimum cost breaking after 103 : 4.64841269841 over 93
+
+Recent word 104
+..line= ['shapes.', 'But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means'] ; ratio= -1.58333333333
+active point 92 removed
+..line= ['let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means'] ; ratio= -0.5
+so far best: 0 over 0
+better breakpoint over 93 : 4.42619047619 + 0.5 = 4.92619047619
+..line= ['us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means'] ; ratio= 0.0
+so far best: 4.92619047619 over 93
+better breakpoint over 94 : 4.77341269841 + 0.0 = 4.77341269841
+..line= ['for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means'] ; ratio= 0.5
+so far best: 4.77341269841 over 94
+..line= ['now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means'] ; ratio= 1.28571428571
+so far best: 4.77341269841 over 94
+..line= ['only', 'look', 'in', 'two', 'dimensions,', 'which', 'means'] ; ratio= 2.33333333333
+so far best: 4.77341269841 over 94
+..line= ['look', 'in', 'two', 'dimensions,', 'which', 'means'] ; ratio= 4.0
+so far best: 4.77341269841 over 94
+..line= ['in', 'two', 'dimensions,', 'which', 'means'] ; ratio= 6.5
+so far best: 4.77341269841 over 94
+..line= ['two', 'dimensions,', 'which', 'means'] ; ratio= 10.0
+so far best: 4.77341269841 over 94
+..line= ['dimensions,', 'which', 'means'] ; ratio= 17.5
+so far best: 4.77341269841 over 94
+..line= ['which', 'means'] ; ratio= 48.0
+so far best: 4.77341269841 over 94
+minimum cost breaking after 104 : 4.77341269841 over 94
+
+Recent word 105
+..line= ['But', 'let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that'] ; ratio= -1.33333333333
+active point 93 removed
+..line= ['us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that'] ; ratio= -0.6
+so far best: 0 over 0
+better breakpoint over 94 : 4.77341269841 + 0.6 = 5.37341269841
+..line= ['for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that'] ; ratio= -0.222222222222
+so far best: 5.37341269841 over 94
+better breakpoint over 95 : 4.92380952381 + 0.222222222222 = 5.14603174603
+..line= ['now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that'] ; ratio= 0.375
+so far best: 5.14603174603 over 95
+better breakpoint over 96 : 4.44126984127 + 0.375 = 4.81626984127
+..line= ['only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that'] ; ratio= 1.14285714286
+so far best: 4.81626984127 over 96
+..line= ['look', 'in', 'two', 'dimensions,', 'which', 'means', 'that'] ; ratio= 2.33333333333
+so far best: 4.81626984127 over 96
+..line= ['in', 'two', 'dimensions,', 'which', 'means', 'that'] ; ratio= 4.0
+so far best: 4.81626984127 over 96
+..line= ['two', 'dimensions,', 'which', 'means', 'that'] ; ratio= 6.0
+so far best: 4.81626984127 over 96
+..line= ['dimensions,', 'which', 'means', 'that'] ; ratio= 9.66666666667
+so far best: 4.81626984127 over 96
+..line= ['which', 'means', 'that'] ; ratio= 21.0
+so far best: 4.81626984127 over 96
+..line= ['means', 'that'] ; ratio= 49.0
+so far best: 4.81626984127 over 96
+minimum cost breaking after 105 : 4.81626984127 over 96
+
+Recent word 106
+..line= ['let', 'us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the'] ; ratio= -1.33333333333
+active point 94 removed
+..line= ['for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the'] ; ratio= -0.7
+so far best: 0 over 0
+better breakpoint over 95 : 4.92380952381 + 0.7 = 5.62380952381
+..line= ['now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the'] ; ratio= -0.222222222222
+so far best: 5.62380952381 over 95
+better breakpoint over 96 : 4.44126984127 + 0.222222222222 = 4.66349206349
+..line= ['only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the'] ; ratio= 0.375
+so far best: 4.66349206349 over 96
+better breakpoint over 97 : 3.72698412698 + 0.375 = 4.10198412698
+..line= ['look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the'] ; ratio= 1.28571428571
+so far best: 4.10198412698 over 97
+..line= ['in', 'two', 'dimensions,', 'which', 'means', 'that', 'the'] ; ratio= 2.5
+so far best: 4.10198412698 over 97
+..line= ['two', 'dimensions,', 'which', 'means', 'that', 'the'] ; ratio= 3.8
+so far best: 4.10198412698 over 97
+..line= ['dimensions,', 'which', 'means', 'that', 'the'] ; ratio= 6.0
+so far best: 4.10198412698 over 97
+..line= ['which', 'means', 'that', 'the'] ; ratio= 12.3333333333
+so far best: 4.10198412698 over 97
+..line= ['means', 'that', 'the'] ; ratio= 22.0
+so far best: 4.10198412698 over 97
+..line= ['that', 'the'] ; ratio= 51.0
+so far best: 4.10198412698 over 97
+minimum cost breaking after 106 : 4.10198412698 over 97
+
+Recent word 107
+..line= ['us', 'for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves'] ; ratio= -1.58333333333
+active point 95 removed
+..line= ['now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 96 : 4.44126984127 + 1.0 = 5.44126984127
+..line= ['only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves'] ; ratio= -0.555555555556
+so far best: 5.44126984127 over 96
+better breakpoint over 97 : 3.72698412698 + 0.555555555556 = 4.28253968254
+..line= ['look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves'] ; ratio= 0.125
+so far best: 4.28253968254 over 97
+better breakpoint over 98 : 2.94920634921 + 0.125 = 3.07420634921
+..line= ['in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves'] ; ratio= 1.0
+so far best: 3.07420634921 over 98
+..line= ['two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves'] ; ratio= 1.83333333333
+so far best: 3.07420634921 over 98
+..line= ['dimensions,', 'which', 'means', 'that', 'the', 'curves'] ; ratio= 3.2
+so far best: 3.07420634921 over 98
+..line= ['which', 'means', 'that', 'the', 'curves'] ; ratio= 7.25
+so far best: 3.07420634921 over 98
+..line= ['means', 'that', 'the', 'curves'] ; ratio= 12.0
+so far best: 3.07420634921 over 98
+..line= ['that', 'the', 'curves'] ; ratio= 21.5
+so far best: 3.07420634921 over 98
+..line= ['the', 'curves'] ; ratio= 49.0
+so far best: 3.07420634921 over 98
+minimum cost breaking after 107 : 3.07420634921 over 98
+
+Recent word 108
+..line= ['for', 'now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are'] ; ratio= -1.66666666667
+active point 96 removed
+..line= ['only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are'] ; ratio= -1.0
+so far best: 0 over 0
+better breakpoint over 97 : 3.72698412698 + 1.0 = 4.72698412698
+..line= ['look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are'] ; ratio= -0.444444444444
+so far best: 4.72698412698 over 97
+better breakpoint over 98 : 2.94920634921 + 0.444444444444 = 3.39365079365
+..line= ['in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are'] ; ratio= 0.25
+so far best: 3.39365079365 over 98
+better breakpoint over 99 : 3.12698412698 + 0.25 = 3.37698412698
+..line= ['two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are'] ; ratio= 0.857142857143
+so far best: 3.37698412698 over 99
+..line= ['dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are'] ; ratio= 1.83333333333
+so far best: 3.37698412698 over 99
+..line= ['which', 'means', 'that', 'the', 'curves', 'are'] ; ratio= 4.8
+so far best: 3.37698412698 over 99
+..line= ['means', 'that', 'the', 'curves', 'are'] ; ratio= 7.75
+so far best: 3.37698412698 over 99
+..line= ['that', 'the', 'curves', 'are'] ; ratio= 12.6666666667
+so far best: 3.37698412698 over 99
+..line= ['the', 'curves', 'are'] ; ratio= 22.0
+so far best: 3.37698412698 over 99
+..line= ['curves', 'are'] ; ratio= 49.0
+so far best: 3.37698412698 over 99
+minimum cost breaking after 108 : 3.37698412698 over 99
+
+Recent word 109
+..line= ['now', 'only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,'] ; ratio= -1.91666666667
+active point 97 removed
+..line= ['look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,'] ; ratio= -1.2
+active point 99 removed
+..line= ['two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,'] ; ratio= -0.25
+so far best: 0 over 0
+better breakpoint over 100 : 4.10277777778 + 0.25 = 4.35277777778
+..line= ['dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,'] ; ratio= 0.428571428571
+so far best: 4.35277777778 over 100
+better breakpoint over 101 : 3.525 + 0.428571428571 = 3.95357142857
+..line= ['which', 'means', 'that', 'the', 'curves', 'are', 'lines,'] ; ratio= 2.66666666667
+so far best: 3.95357142857 over 101
+..line= ['means', 'that', 'the', 'curves', 'are', 'lines,'] ; ratio= 4.6
+so far best: 3.95357142857 over 101
+..line= ['that', 'the', 'curves', 'are', 'lines,'] ; ratio= 7.5
+so far best: 3.95357142857 over 101
+..line= ['the', 'curves', 'are', 'lines,'] ; ratio= 12.0
+so far best: 3.95357142857 over 101
+..line= ['curves', 'are', 'lines,'] ; ratio= 20.5
+so far best: 3.95357142857 over 101
+..line= ['are', 'lines,'] ; ratio= 49.0
+so far best: 3.95357142857 over 101
+minimum cost breaking after 109 : 3.95357142857 over 101
+
+Recent word 110
+..line= ['only', 'look', 'in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,', 'rather'] ; ratio= -2.16666666667
+active point 98 removed
+..line= ['two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,', 'rather'] ; ratio= -1.11111111111
+active point 101 removed
+..line= ['which', 'means', 'that', 'the', 'curves', 'are', 'lines,', 'rather'] ; ratio= 1.14285714286
+so far best: 0 over 0
+better breakpoint over 102 : 3.46785714286 + 1.14285714286 = 4.61071428571
+..line= ['means', 'that', 'the', 'curves', 'are', 'lines,', 'rather'] ; ratio= 2.5
+so far best: 4.61071428571 over 102
+..line= ['that', 'the', 'curves', 'are', 'lines,', 'rather'] ; ratio= 4.4
+so far best: 4.61071428571 over 102
+..line= ['the', 'curves', 'are', 'lines,', 'rather'] ; ratio= 7.0
+so far best: 4.61071428571 over 102
+..line= ['curves', 'are', 'lines,', 'rather'] ; ratio= 11.0
+so far best: 4.61071428571 over 102
+..line= ['are', 'lines,', 'rather'] ; ratio= 20.5
+so far best: 4.61071428571 over 102
+..line= ['lines,', 'rather'] ; ratio= 46.0
+so far best: 4.61071428571 over 102
+minimum cost breaking after 110 : 4.61071428571 over 102
+
+Recent word 111
+..line= ['in', 'two', 'dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,', 'rather', 'than'] ; ratio= -1.81818181818
+active point 100 removed
+..line= ['which', 'means', 'that', 'the', 'curves', 'are', 'lines,', 'rather', 'than'] ; ratio= 0.25
+so far best: 0 over 0
+better breakpoint over 102 : 3.46785714286 + 0.25 = 3.71785714286
+..line= ['means', 'that', 'the', 'curves', 'are', 'lines,', 'rather', 'than'] ; ratio= 1.28571428571
+so far best: 3.71785714286 over 102
+..line= ['that', 'the', 'curves', 'are', 'lines,', 'rather', 'than'] ; ratio= 2.66666666667
+so far best: 3.71785714286 over 102
+..line= ['the', 'curves', 'are', 'lines,', 'rather', 'than'] ; ratio= 4.4
+so far best: 3.71785714286 over 102
+..line= ['curves', 'are', 'lines,', 'rather', 'than'] ; ratio= 6.75
+so far best: 3.71785714286 over 102
+..line= ['are', 'lines,', 'rather', 'than'] ; ratio= 11.6666666667
+so far best: 3.71785714286 over 102
+..line= ['lines,', 'rather', 'than'] ; ratio= 20.0
+so far best: 3.71785714286 over 102
+..line= ['rather', 'than'] ; ratio= 48.0
+so far best: 3.71785714286 over 102
+minimum cost breaking after 111 : 3.71785714286 over 102
+
+Recent word 112
+..line= ['dimensions,', 'which', 'means', 'that', 'the', 'curves', 'are', 'lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 0 over 0
+better breakpoint over 101 : 3.525 + 0 = 3.525
+..line= ['which', 'means', 'that', 'the', 'curves', 'are', 'lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.525 over 101
+better breakpoint over 102 : 3.46785714286 + 0 = 3.46785714286
+..line= ['means', 'that', 'the', 'curves', 'are', 'lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.46785714286 over 102
+..line= ['that', 'the', 'curves', 'are', 'lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.46785714286 over 102
+..line= ['the', 'curves', 'are', 'lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.46785714286 over 102
+..line= ['curves', 'are', 'lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.46785714286 over 102
+..line= ['are', 'lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.46785714286 over 102
+better breakpoint over 107 : 3.07420634921 + 0 = 3.07420634921
+..line= ['lines,', 'rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.07420634921 over 107
+..line= ['rather', 'than', 'planes.'] ; ratio= 0
+so far best: 3.07420634921 over 107
+..line= ['than', 'planes.'] ; ratio= 0
+so far best: 3.07420634921 over 107
+minimum cost breaking after 112 : 3.07420634921 over 107
+
+Can break this paragraph at cost 3.07420634921
+112  cost: {'cost': 3.0742063492063494, 'from': 107} ; connect to 107
+107  cost: {'cost': 3.0742063492063494, 'from': 98} ; connect to 98
+98  cost: {'cost': 2.9492063492063494, 'from': 88} ; connect to 88
+88  cost: {'cost': 2.7269841269841271, 'from': 79} ; connect to 79
+79  cost: {'cost': 2.7269841269841271, 'from': 71} ; connect to 71
+71  cost: {'cost': 2.4412698412698415, 'from': 63} ; connect to 63
+63  cost: {'cost': 2.4412698412698415, 'from': 53} ; connect to 53
+53  cost: {'cost': 1.8857142857142857, 'from': 44} ; connect to 44
+44  cost: {'cost': 1.6357142857142857, 'from': 35} ; connect to 35
+35  cost: {'cost': 1.3857142857142857, 'from': 27} ; connect to 27
+27  cost: {'cost': 1.1000000000000001, 'from': 16} ; connect to 16
+16  cost: {'cost': 1.0, 'from': 9} ; connect to 9
+9  cost: {'cost': 0.33333333333333331, 'from': -1} ; connect to -1
+You may never have  thought  of  it,  but  fonts  (actually,   -0.333333333333
+typefaces) usually have a mathematical  definition  somehow.   -0.666666666667
+If   a  font  is  given  as  a  bitmap,  this  is  typically   0.1
+the   result   from  a  more  compact  description.  Imagine   0.285714285714
+the   situation   that  you  have  bitmaps  at  300dpi,  and   0.25
+you   buy   a  600dpi  printer.  It  wouldn't  look  pretty.   0.25
+There   is   then   a   need   for  a  mathematical  way  of   0.555555555556
+describing  arbitrary  shapes.  These  shapes  can  also  be   0.0
+three-dimensional; in fact,  a~lot  of  the  mathematics  in   -0.285714285714
+this  chapter  was  developed  by  a  car  manufacturer  for   0.0
+modeling   car   body  shapes.  But  let  us  for  now  only   0.222222222222
+look   in  two  dimensions,  which  means  that  the  curves   0.125
+are  lines,  rather  than  planes.

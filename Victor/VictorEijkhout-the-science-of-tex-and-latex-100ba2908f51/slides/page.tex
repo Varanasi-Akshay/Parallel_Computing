@@ -1,0 +1,622 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemevictor,comment,verbatim,graphicx,amssymb}
+
+\input{tutmacs}
+\input{slidemacs}
+\input idxmacs
+
+\begin{document}
+
+\title{Page breaking}
+\author{Victor Eijkhout}
+\date{Notes for CS 594 -- Fall 2004}
+
+\frame{\titlepage}
+
+\section{Basic problem}
+
+\frame[containsverbatim]{
+  \frametitle{Page breaking}
+\begin{itemize}
+\item Break vertical list into page-size chunks
+\item provide headers, footers
+\item complication: floating material
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Theory and practice}
+\begin{itemize}
+\item Can be solved with global optimization (dynamic programming?)
+\item \TeX\ uses `best fit' like strategy
+\end{itemize}
+}
+
+\sectionframe{\TeX's page breaking algorithm}
+
+\subsection{Parameters}
+\frame[containsverbatim]{
+  \frametitle{Typographical constraints}
+\begin{itemize}
+\item No page breaks after section heading
+\item no break after first~/ before last line of paragraph
+\item no break between paragraph and display math
+\item First and last line of page in same location on each page
+\end{itemize}
+}
+
+\frame{
+  \frametitle{No breaks after heading}
+\begin{itemize}
+\item Header is box
+\item follow with \cs{penalty10000}
+\item appropriate skip for white space and baseline distance
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+Input:
+\begin{verbatim}
+\section{Head}
+Text
+\end{verbatim}
+Output:
+\begin{verbatim}
+...\hbox(9.99998+0.0)x345.0, glue set 283.76672fil
+    % header
+...\write1{\@writefile{toc}{\protect \contentsline % ET CETERA
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\baselineskip) 5.16669
+...\hbox(6.83331+0.0)x345.0, glue set 324.99997fil
+    % the paragraph
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+\footnotesize
+\begin{verbatim}
+...\hbox(9.99998+0.0)x345.0, glue set 283.76672fil
+    % section Head
+...\write1{\@writefile{toc}{\protect % ET CETERA
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\baselineskip) 5.66669
+...\hbox(8.33331+0.0)x345.0, glue set 286.52779fil
+    % subsection head
+...\write1{\@writefile{toc}{\protect % ET CETERA
+...\penalty 10000
+...\penalty 10000
+...\glue 6.45831 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\baselineskip) 5.16669
+...\hbox(6.83331+0.0)x345.0, glue set 324.99997fil
+    % text
+\end{verbatim}
+}
+
+\frame{
+  \frametitle{Breaks around formula}
+\begin{itemize}
+\item No break before display formula:
+\item \cs{penalty10000} followed by skip
+\item Break possible after:
+\item \cs{penalty0} followed by skip
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\footnotesize
+Input:
+\begin{verbatim}
+paragraph
+\[ display \]
+more text
+\end{verbatim}
+Output:
+\begin{verbatim}
+...\hbox(6.94444+1.94444)x345.0, glue set 285.49988fil
+    % the first paragraph
+...\penalty 10000
+...\glue(\abovedisplayshortskip) 0.0 plus 3.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x32.0968, shifted 156.4516
+    % the display formula
+...\penalty 0
+...\glue(\belowdisplayshortskip) 6.0 plus 3.0 minus 3.0
+...\glue(\baselineskip) 3.90477
+...\hbox(6.15079+0.0)x345.0, glue set 302.47214fil
+    % the second paragraph
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Top line of page}
+\begin{itemize}
+\item Insert \cs{topskip} glue to put baseline in fixed space:
+glue is \cs{topskip} parameter minus height of first line
+\item topskip never negative
+\item $\Rightarrow$ very big first lines will drop
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\footnotesize
+Input:
+\begin{verbatim}
+\begin{document}
+Text
+\end{document}
+\end{verbatim}
+Output:
+\begin{verbatim}
+\vbox(633.0+0.0)x407.0
+ % page contents:
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+   % header
+..\glue 25.0
+..\glue(\lineskip) 0.0
+  % the text box :
+..\vbox(550.0+0.0)x345.0, glue set 539.94232fil
+...\glue(\topskip) 3.16669
+...\hbox(6.83331+0.0)x345.0, glue set 309.99997fil
+    % one line of text
+...\glue 0.0 plus 1.0fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+   % footer: page number
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{No break first/last line of paragraph}
+\begin{itemize}
+\item Insertion of appropriate penalties:
+\item \cs{clubpenalty}, \cs{widowpenalty}
+\item (entirely automatically)
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+\footnotesize
+\begin{verbatim}
+..\vbox(550.0+0.0)x345.0, glue set 503.94617fil
+...\write-{}
+...\glue(\topskip) 3.05556
+...\hbox(6.94444+1.94444)x345.0, glue set 0.74356
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmr/m/n/10 t
+    % rest of first line
+....\glue(\rightskip) 0.0
+...\penalty 150
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+1.94444)x345.0, glue set - 0.18942
+    % second line
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+0.0)x345.0, glue set 0.6437
+    % third line
+...\penalty 150
+...\glue(\baselineskip) 5.84921
+...\hbox(6.15079+0.0)x345.0, glue set 139.99959fil
+    % last line
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0 plus 1.0fil
+\end{verbatim}
+}
+
+\subsectionframe{Output routine}
+
+\frame[containsverbatim]{
+  \frametitle{Best fit strategy}
+\begin{itemize}
+\item Material goes onto the vertical list
+\item Mark when break badness $<10\,000$\\ (shrink/stretch or penalties) 
+\item Mark when badness becomes $>10\,000$ again
+\item Find best point in between
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Output routine}
+\begin{itemize}
+\item Vertical material is packed into \cs{box255}
+\item Code in \cs{output} is executed
+\item Final command: \cs{shipout}
+\item<2-> Typical output handling: attach header footer
+\item<2-> Further complication: floats
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Really simple output routines}
+\begin{verbatim}
+\output={\shipout\box255}
+\end{verbatim}
+or
+\begin{verbatim}
+\output={
+  \setbox255=\vbox{ <header>
+                    \box255
+                    <footer>
+                  }
+  \shipout\box255
+  }
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Prevent widow lines}
+Idea: if page ends with widow line, make bigger by one line\\
+Setup:
+\begin{verbatim}
+\newif\ifEnlargedPage \widowpenalty=147
+\newdimen\oldvsize \oldvsize=\vsize
+\end{verbatim}
+Output routine: test for widowpenalty,\\
+if so: enlarge and try again
+\begin{verbatim}
+\output={
+    \ifEnlargedPage <output the page, reset parms>
+    \else \ifnum \outputpenalty=\widowpenalty
+             \global\EnlargedPagetrue
+             \global\advance\vsize\baselineskip
+             \unvbox255 \penalty\outputpenalty
+          \else  \shipout\box255
+    \fi   \fi}
+\end{verbatim}
+}
+
+\frame[containsverbatim]{
+Missing bit
+\begin{verbatim}
+    \ifEnlargedPage \shipout\box255 
+          \global\LargePagefalse
+          \global\vsize=\oldvsize
+\end{verbatim}
+}
+
+\subsectionframe{Inserts}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item Floating material is called `insert'
+\item Different classes:
+\begin{verbatim}
+\insert<class number>{ <material> }
+\end{verbatim}
+\item example: top material, footnotes
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Inserts in the output routine}
+\begin{itemize}
+\item During output, material available in \cs{box}\n{<class number>}
+\item \cs{dimen}\n{<class number>} limits amount of material
+\end{itemize}
+}
+
+\sectionframe{Page breaking theory}
+
+\frame[containsverbatim]{
+  \frametitle{Page breaking vs line breaking}
+\begin{itemize}
+\item Similarities:\\ break list into chunks\\ visual badness criteria
+\item Difference: floating material
+\item $\Rightarrow$ minimize distance reference and referent
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Closeness of figure and reference}
+\pgfimage[width=4in]{pagebreak1}\\
+4 out of 5 references not on same page
+}
+
+\frame[containsverbatim]{
+  \frametitle{Closeness of figure and reference}
+\pgfimage[width=4in]{pagebreak2}\\
+only one off
+}
+
+\frame[containsverbatim]{
+  \frametitle{Strategies}
+\begin{itemize}
+\item Moving figures back and forth
+\item breaking page early or stretching~/ shrinking
+\end{itemize}
+}
+
+\subsectionframe{Model problem MQ}
+
+\frame[containsverbatim]{
+  \frametitle{Model pagination problem}
+\begin{itemize}
+\item Model case: text blocks and figures, each a whole page
+\[ T=\{t_1,\ldots,t_N\},\qquad F=\{f_1,\ldots,f_N\} \]
+\item Reference count function $W:T\times F$\\
+\[ W(t_i,f_j)\qquad\hbox{is number of reference to $f_j$ in block
+  $t_i$} \]
+\item Wanted: pagination function
+\[ P:(T\cup F)\rightarrow \{1,2,\ldots,2N\} \]
+such that
+\[ \begin{array}{cc}P(t_i)<P(t_j)\\ P(f_i)<P(f_j)
+    \end{array}\qquad\forall_{1\leq i<j\leq N}
+\]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Multiply reference, quadratic badness}
+\begin{itemize}
+\item Goal:
+\[ S=\sum_{i,j}W(t_i,f_j)(P(t_i)-P(f_j))^2\leq B \]
+minimize quadratic badness
+\item Assumption: polynomial bound $W(\cdot,\cdot)<q(N)$
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{NP-completeness}
+\begin{itemize}
+\item Polynomial transformation from `maximum 2-satisfiability'
+ (\textsc{max 2-sat}):
+\item $n$~binary variables~$x_1,\ldots,x_n$
+\item $m$~clauses~$\{u_1\vee v_1,\ldots, u_m\vee v_m\}$\\
+where $u_i=x_j$ or $u_i=\neg x_j$ for some~$j$
+\item Given bound~$K$, is there a way of setting the $x_i$~variables such that
+at least $K$~of the clauses are satisfied? This problem is known to be
+NP-complete.
+\item partial bounds: $B=B_1+B_2+B_3$
+\end{itemize}
+}
+
+\subsection{Translation between \textsc{Max 2-sat} and \textsc{MQ}}
+\frame[containsverbatim]{
+  \frametitle{Force adjacency}
+\begin{itemize}
+\item Recall $W(t_i,f_j)(P(t_i)-P(f_j))^2$
+\item $W(t_i,f_i)=b_1$ sufficiently large:\\
+enforce $|P(t_i)-P(f_i)|=1$
+\item to allow this, partial bound $B_1=Nb_1$
+\item Define
+\[ b_1 = \lceil (B_2+B_3)/3\rceil+1 \]
+then, if adjacency violated
+\[ S\geq (N-1)b_1+2^2b_1=(N+3)b_1>B \]
+\item blocks adjacent: only question which first
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Encode truth values}
+\begin{itemize}
+\item Number of variables $n$, clauses~$m$
+\item Make $N=2n+2m$ pages:\\
+first $4n$ pages encode values of~$x_i$\\
+4~pages per variable
+\[ \begin{array}{lllll}
+4i-3&4i-2&4i-1&4i\\
+t_{2i-1}&f_{2i-1}&f_{2i}&t_{2i}&\quad\hbox{if $x_i$ is true}\\
+f_{2i-1}&t_{2i-1}&t_{2i}&f_{2i}&\quad\hbox{if $x_i$ is false}
+\end{array}
+\]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{prohibit other configurations}
+\begin{itemize}
+\item Set $W(t_{2i-1},f_{2i})=W(f_{2i-1},t_{2i})=b_2$ large enough.
+\item recall \[ \begin{array}{lllll}
+4i-3&4i-2&4i-1&4i\\
+t_{2i-1}&f_{2i-1}&f_{2i}&t_{2i}&\quad\hbox{if $x_i$ is true}\\
+f_{2i-1}&t_{2i-1}&t_{2i}&f_{2i}&\quad\hbox{if $x_i$ is false}
+\end{array}
+\]
+\item These patterns contribute $2\cdot 2^2b_2=8b_2$,\\
+illegal possibilities ($t\,f\,t\,f$ and $f\,t\,f\,t$): $(1^2+3^2)b_2=10b_2$.
+\item Allow $B_2=4b_2\sum(i-j)^2$ where $i,j$~range over
+  $W(t_i,f_j)=b_2$
+\item $b2=\ldots$ % \[ b_2=8(m-k)+5 \]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Encode clauses}
+\begin{itemize}
+\item $4m$ remaining pages:
+\[ \begin{array}{lllll}
+4n+4j-3&4n+4j-2&4n+4j-1&4n+4j\\
+t_{2n+2j-1}&f_{2n+2j-1}&&&\quad\hbox{if $u_j$ is true}\\
+f_{2n+2j-1}&t_{2n+2j-1}&&&\quad\hbox{if $u_j$ is false}\\
+&&t_{2n+2j}&f_{2n+2j}&\quad\hbox{if $v_j$ is true}\\
+&&f_{2n+2j}&t_{2n+2j}&\quad\hbox{if $v_j$ is false}
+\end{array}
+\]
+\item Ensure correspondence $x_i$ and $u_j$:
+\[ W(t_{2n+2j-1},f_{2i}) = W(t_{2i}=f_{2n+2j-1})=b_3
+    \quad\hbox{if $u_j=x_i$}
+\]
+\item Let $d$ twice distance between subscripts;
+in this case $d=(2n+2j-2i)$
+\item correct terms contribute $2d^2b_2$
+\item mismatch: $t$~and~$f$ reversed, so
+contribution $\bigl((d-1)^2+(d+1)^2\bigr)=2(d^2+1)b_2$.
+\end{itemize}
+}
+
+\frame{
+  \frametitle{truth values}
+\begin{itemize}
+\item Recall
+\[ \begin{array}{lllll}
+4n+4j-3&4n+4j-2&4n+4j-1&4n+4j\\
+t_{2n+2j-1}&f_{2n+2j-1}&&&\quad\hbox{if $u_j$ is true}\\
+f_{2n+2j-1}&t_{2n+2j-1}&&&\quad\hbox{if $u_j$ is false}\\
+&&t_{2n+2j}&f_{2n+2j}&\quad\hbox{if $v_j$ is true}\\
+&&f_{2n+2j}&t_{2n+2j}&\quad\hbox{if $v_j$ is false}
+\end{array}
+\]
+\item Only false clause:
+\[ \begin{array}{llll}f_{2n+2j-1}&t_{2n+2j-1}&f_{2n+2j}&t_{2n+2j}
+    \end{array}
+\]
+\item<2-> Here $f_{2n+2j_1}$ and~$t_{2n+2j}$ furthest apart:
+define
+\[ W(t_{2n+2j},f_{2n+2j_1})=5, \qquad
+   W(t_{2n+2j-1},f_{2n+2j})=3.
+\]
+\item<2-> Badness 32 for true cases, and 48~for false.\\
+Allow $B_3=48(m-K)+32K$.
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{NP-completeness}
+\begin{itemize}
+\item Polynomial transformation
+\item $K$ Clauses satisfied iff pagination within bound~$B$
+\end{itemize}
+}
+
+\subsectionframe{Model problem ML}
+
+\newcommand\WPP[2]{\WPPf{#1}{#2}{#1}{#2}}
+\newcommand\WPPf[4]{W(t_#1,f_#2)\left|P(t_#3)-P(f_#4)\right|}
+\frame[containsverbatim]{
+  \frametitle{Linear badness}
+\begin{itemize}
+\item Text blocks and figures as before
+\[ T=\{t_1,\ldots,t_N\},\qquad F=\{f_1,\ldots,f_M\} \]
+\item Reference counter $W:T\times F$
+\item Asked: page mapping $P:(T\cup F)\rightarrow \{1,2,\ldots,M+N\}$
+\[ \begin{array}{cc}P(t_i)<P(t_j)\\ P(f_i)<P(f_j)
+    \end{array}\qquad\forall_{1\leq i\leq N,1\leq j\leq M}
+\]
+and so that
+\[ S=\sum_{i,j}\WPP ij \leq B \]
+\item Note linear badness
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Dynamic programming solution}
+\begin{itemize}
+\item Subproblem: $B_{ij}$ is badness of placing $i$~text blocks and
+  $j$~figures on $i+j$ pages
+\item Problem: `dangling' references $(t_r,f_s)$ with $r>i,s\leq j$ or
+$r\leq i,s>j$
+\item Define $R_{i,j}$ as the number of dangling references
+\end{itemize}
+}
+
+\newcommand\ElRS{\mathop\ell(i,j;r,s)}
+\frame[containsverbatim]{
+  \frametitle{Badness of a reference}
+\begin{itemize}
+\item No problem for references within the $i+j$ block
+\item Badness of dangling reference: only part to the boundary:
+\[ B_{ij} = B^{(1)}_{ij}+B^{(2)}_{ij} \]
+where
+\[ B^{(1)}_{ij} =
+     \sum_{{r\leq i\atop s\leq j}}\WPP rs
+\]
+and
+\[ B^{(2)}_{ij} =
+     \sum_{{r>i\atop s\leq j}} W(t_r,f_s)\ElRS
+   + \sum_{{r\leq i\atop s> j}} W(t_r,f_s)\ElRS
+\]
+where
+\[ \ElRS =
+     \begin{cases}i+j-P(f_s)&\hbox{if $r>i$}\\
+                  i+j-P(t_r)&\hbox{if $s>j$}
+     \end{cases}
+\]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{$i+j-1$ blocks placed}
+\pgfimage[width=4in]{dangle1}
+
+Resolved and dangling references of a block of pages
+}
+
+\frame[containsverbatim]{
+  \frametitle{Add block $t_i$}
+\pgfimage[width=4in]{dangle2}
+\begin{enumerate}
+\item[(1)] Unresolved references from~$t_i$:\\
+ contribution from $B^{(2)}$ to $B^{(1)}$
+\item[(2)] Stay unresolved: $B^{(2)}$ increased by ($\sum_{r\leq
+  i-1,s>j}+\sum_{r>i,s>j})W(t_r,f_s)$.
+\item[(3)] New unresolved: contribution
+ $\sum_{r=i,s>j}W(t_r,f_s)$ to $B^{(2)}$
+\end{enumerate}
+Conclusion: $B_{ij}=B_{i-1,j}+R_{ij}$
+}
+
+\frame[containsverbatim]{
+  \frametitle{$B_{ij}$ recurrence}
+\begin{itemize}
+\item Shown for $t_i$, (same for figure $f_j$)
+\[ B_{ij} = \min(B_{i-1,j},B_{i,j-1})+R_{ij}. \]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Dangling references from $i+j$}
+\begin{description}
+\item[Forward reference:]
+$ F_{ij}=\sum_{{1\leq r\leq i\atop j<s\leq M}} W(t_r,f_s) $
+\item[Backward reference:] 
+$ B_{ij} = \sum_{{i< r\leq N\atop 1\leq s\leq j}} W(t_r,f_s) $
+\end{description}
+which makes $R_{ij}=F_{ij}+B_{ij}$.
+
+\pgfimage[width=3in]{linear-bad}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Calculation}
+\begin{itemize}
+\item Tabulate
+\[ U_{ij} = \sum_{{1\leq r\leq i\atop 1\leq s\leq j}}W(t_r,f_s) \]
+in time~$O(NM)$
+\item Then 
+\[ R_{ij} = U_{iM}+U_{Nj}-2U_{ij} \]
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{Conclusion}
+\begin{itemize}
+\item Problems MQ and ML are structurally the same
+\item Only difference badness function
+\item $\Rightarrow$ difference between NP-complete and polynomial
+\end{itemize}
+}
+
+\end{document}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+
+\frame[containsverbatim]{
+  \frametitle{}
+\begin{itemize}
+\item
+\end{itemize}
+}
+

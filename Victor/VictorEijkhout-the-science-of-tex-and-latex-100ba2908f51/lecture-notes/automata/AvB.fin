@@ -1,0 +1,21 @@
+# Creator: Finomaton 0.8
+# Creation-Date: Tue Aug 24 21:35:01 EDT 2004
+object state id 1 x 141.0 y 72.0 radius 20 label 0 tex {} accept 0 start 1
+object state id 2 x 301.0 y 68.0 radius 20 label 1 tex {} accept 1 start 0
+object state id 3 x 143.0 y 156.0 radius 20 label 0 tex {} accept 0 start 1
+object state id 4 x 301.0 y 153.0 radius 20 label 1 tex {} accept 1 start 0
+object state id 5 x 20.0 y 109.0 radius 20 label s tex {} accept 0 start 0
+object state id 6 x 424.0 y 107.0 radius 20 label s tex {} accept 0 start 0
+object line cp1attached 1 cp1angle 13 cp2attached -1 cp2x 223.0 cp2y 49.0 cp3attached 2 cp3angle 172 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 3 cp1angle 5 cp2attached -1 cp2x 226.0 cp2y 132.0 cp3attached 4 cp3angle 177 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 5 cp1angle 29 cp2attached -1 cp2x 82.0 cp2y 76.0 cp3attached 1 cp3angle 184 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 5 cp1angle 335 cp2attached -1 cp2x 77.0 cp2y 148.0 cp3attached 3 cp3angle 175 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 2 cp1angle 348 cp2attached -1 cp2x 363.0 cp2y 72.0 cp3attached 6 cp3angle 148 cpnum 3 tex {} texpos 0.5 anchor top
+object line cp1attached 4 cp1angle 9 cp2attached -1 cp2x 358.0 cp2y 137.0 cp3attached 6 cp3angle 223 cpnum 3 tex {} texpos 0.5 anchor top
+object text x 222.0 y 39.0 label A tex {}
+object text x 224.0 y 159.0 label B tex {}
+object text x 65.0 y 61.0 label e tex {$\epsilon$}
+object text x 76.0 y 127.0 label e tex {$\epsilon$}
+object text x 375.0 y 65.0 label e tex {$\epsilon$}
+object text x 359.0 y 117.0 label e tex {$\epsilon$}
+object setting variable export_mp_file value /Users/victor/Projects/tex-course/lecture-notes/automata/AvB.mp
