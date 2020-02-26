@@ -1,0 +1,603 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% object.tex : we get down to OOP!
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {What is an object?}
+\label{sec:object}
+
+You learned about \n{struct}s (chapter~\ref{ch:struct}) as a way of
+abstracting from the elementary data types. The elements of a
+structure were called its members.
+
+You also saw that it is possible to write
+functions that work on structures. Since these functions are really
+tied to the definition of the \n{struct}, shouldn't there be a way to
+make that tie explicitly?
+
+That's what an object is:
+\begin{itemize}
+\item An object is like a structure in that it has data members.
+\item An object has \emph{methods}\index{methods (of an object)} which
+  are the functions that operate on that object.
+\end{itemize}
+C++ does not actually have a `object' keyword; instead you define a
+class with the \indextermttdef{class} which describes all the objects
+of that class.
+
+First of all, you can make an object look pretty much like a
+structure:
+%
+\snippetwithoutput{pointstruct}{geom}{pointstruct}
+
+\begin{itemize}
+\item There are data members. We will get to the \n{public} in a
+  minute.
+\item You make an object of that class by using the class name as the
+  datatype.
+\item The data members can be accessed with the period.
+\end{itemize}
+
+\begin{slide}{Classes look a bit like structures}
+  \label{sl:class-struct}
+  \snippetwithoutput{pointstruct}{geom}{pointstruct}
+
+  We'll get to that `\n{public}' in a minute.
+\end{slide}
+
+\Level 1 {Constructor}
+
+Next we'll look at a syntax for creating class objects that is new. If
+you create an object, you actually call a function that has the same
+name as the class: the \indexterm{constructor}. By default there is a
+constructor which has no arguments, and does nothing. A~constructor
+can for instance be used to initialize data members:
+%
+%\snippetwithoutput{pointconstruct}{geom}{pointconstruct}
+\verbatimsnippet{pointconstruct}
+\verbatimsnippet{pointconstructuse}
+
+\begin{slide}{Class initialization and use}
+  \label{sl:class-construct}
+  Use a \indexterm{constructor}: function with same name as the class.
+  \verbatimsnippet{pointprivate}
+  \verbatimsnippet{pointprivatedefine}
+\end{slide}
+
+\Level 1 {Interface versus implementation}
+
+In the example above, the data members of the \n{Vector} class were
+declared \n{public}, meaning that they are accessable from the calling
+(main) program. While this is initially convenient for coding, it is a bad idea
+in the long term. For a variety of reasons it is good practice to
+separate interface and implementation of a class.
+
+\begin{block}{Example of accessor functions}
+  \label{sl:pointaccess}
+  Getting and setting of members values is done through accessor functions:
+  \begin{multicols}{2}
+    \verbatimsnippet{pointprivate}
+    \verbatimsnippet{pointprivateset}
+    \verbatimsnippet{pointprivatedefine}
+    Usage:
+    \verbatimsnippet{pointprivatesetuse}
+  \end{multicols}
+\end{block}
+
+\begin{block}{Interface versus implementation}
+  \label{sl:interfaceimpl}
+  \begin{itemize}
+  \item Implementation: data members, keep \n{private},
+  \item Interface: \n{public} functions to get/set data.
+  \item Protect yourself against inadvertant changes of object data.
+  \item Possible to change implementation without rewriting calling code.
+  \end{itemize}
+\end{block}
+
+\begin{block}{Private access gone wrong}
+  \label{sl:privatenogood}
+  We make a class with two members that sum to one.\\
+  You don't want to be able to change just one of them!
+\begin{verbatim}
+class SumIsOne {
+public: 
+  float x,y;
+  SumIsOne( double xx ) { x = xx; y = 1-x; };
+}
+int main() {
+  SumIsOne pointfive(.5);
+  pointfive.y = .6;
+}
+\end{verbatim}
+In general: enforce predicates on the members.
+\end{block}
+
+\Level 1 {Initialization}
+
+\begin{block}{Member default values}
+  \label{sl:class-defval}
+  Class members can have default values, just like ordinary variables:
+\begin{verbatim}
+class Point {
+private:
+  float x=3., y=.14;
+private:
+  // et cetera
+}
+\end{verbatim}
+  Each object will have its members initialized to these values.
+\end{block}
+
+\begin{block}{Member initialization}
+  \label{sl:class-init}
+  Other syntax for initialization:
+  \verbatimsnippet{classpointinit}
+\end{block}
+
+\begin{block}{`this'}
+  \label{sl:class-this}
+  Inside an object, a \indexterm{pointer} to the object is available
+  as \indextermtt{this}:
+\begin{verbatim}
+class Myclass {
+private:
+  int myint;
+public:
+  Myclass(int myint) {
+    this->myint = myint;
+  };
+};
+\end{verbatim}
+(also for calling functions inside the object that need the object as argument)
+\end{block}
+
+If the data members follow a \indextermtt{public} directive, code
+outside the class can access the data members, both for getting and
+setting their values. This may be convenient for coding, but it's not
+a clean coding style. It's better to make data members
+\indextermtt{private}, and use \indexterm{accessor} functions to get
+and set values.
+
+\begin{block}{Private data}
+  \label{sl:class-private}
+  \verbatimsnippet{pointprivate}
+\end{block}
+
+\Level 1 {Accessor functions}
+
+Remember the lines:
+\begin{verbatim}
+private:
+  double vx,vy;
+\end{verbatim}
+This implies that \n{vx,vy} are not accessible from anything outside
+the object. In order to change them we need functions, which we call
+\index{accessor} functions:
+
+\begin{block}{Accessor for setting private data}
+  \label{sl:class-private-set}
+  Class methods:
+  \verbatimsnippet{pointprivateset}
+\end{block}
+
+\Level 1 {Methods}
+
+With the accessors, you have just seen a first example of a class
+\indextermdef{method}: a function that is only defined for objects of
+that class, and that have access to the private data of that object.
+Let's now look at more meaningful methods. For instance, for the
+\n{Vector} class you can define functions such as \n{length} and
+\n{angle}. 
+%
+\snippetwithoutput{pointfunc}{geom}{pointfunc}
+
+By making these functions public, and the data members
+private, you define an \acf{API} for the class:
+\begin{itemize}
+\item You are defining operations for that class; they are the only
+  way to access the data of the object.
+\item The methods can use the data of the object, or alter it. All
+  data members, even when declared \n{private}, or global to the methods.
+\item  Data members declared \n{private} are not accessible from outside the
+  object.
+\end{itemize}
+
+\begin{slide}{Functions on objects}
+  \label{sl:obj-func}
+  \snippetwithoutput{pointfunc}{geom}{pointfunc}
+  %\verbatimsnippet{pointfunc}
+  We call such internal functions `methods'.\\
+  Data members, even \n{private}, are global to the methods.
+\end{slide}
+
+So far you have seen methods that use the data members of an object to
+return some quantity. It is also possible to alter the members. 
+For instance, you may want to scale a vector by some amount:
+%
+  \snippetwithoutput{pointscaleby}{geom}{pointscaleby}
+
+\begin{slide}{Methods that alter the object}
+  \label{sl:obj-func-on}
+  \snippetwithoutput{pointscaleby}{geom}{pointscaleby}
+\end{slide}
+
+\begin{block}{Direct alteration of internals}
+  \label{sl:obj-return-ref}
+  Return a reference to a private member:
+\begin{verbatim}
+class Vector {
+private:
+  double vx,vy;
+public:
+  double &x() { return vx; };
+};
+int main() {
+  Vector v;
+  v.x() = 3.1;
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{Reference to internals}
+  \label{sl:obj-return-const-ref}
+  Returning a reference saves you on copying.\\
+  Prevent unwanted changes by using a `const reference'.
+\begin{verbatim}
+class Grid {
+private:
+  vector<Point> thepoints;
+public:
+  const vector<Point> &points() {
+    return thepoints; };
+};
+int main() {
+  Grid grid;
+  cout << grid.points()[0];
+  // grid.points()[0] = whatever ILLEGAL
+}
+\end{verbatim}
+\end{block}
+
+The methods you have seen so far only returned elementary
+datatypes. It is also possible to return an object, even from the same
+class. For instance, instead of scaling the members of a vector object, you
+could create a new object based on the scaled members:
+%
+\snippetwithoutput{pointscale}{geom}{pointscale}
+
+\begin{slide}{Methods that create a new object}
+  \label{sl:obj-return}
+  \snippetwithoutput{pointscale}{geom}{pointscale}
+\end{slide}
+
+\Level 1 {Default constructor}
+
+One of the more powerful ideas in C++ is that there can be more than
+one constructor. You will often be faced with this whether you want or
+not. The following code looks plausible:
+%
+\verbatimsnippet{pointdef2}
+%
+but it will give an error message during compilation. The reason is
+that 
+\begin{verbatim}
+Vector p;
+\end{verbatim}
+calls the default constructor. Now that you have defined your own
+constructor, the default constructor no longer exists. So you need to
+define it explicitly:
+%
+\verbatimsnippet{pointdef1}
+
+\begin{slide}{Default constructor}
+  \label{sl:obj-def-construct}
+\small
+  \verbatimsnippet{pointdef2}
+  gives (g++; different for intel):
+\begin{verbatim}
+pointdefault.cxx: In function 'int main()':
+pointdefault.cxx:32:21: error: no matching function for call to
+                'Vector::Vector()'
+   Vector p1(1.,2.), p2;
+\end{verbatim}
+The problem is with \n{p2}. How is it created? We need to define two constructors:
+\verbatimsnippet{pointdef1}
+\end{slide}
+
+\Level 1 {Accessors}
+
+It is a good idea to keep data members private, and use accessor
+functions.
+
+\begin{block}{Use accessor functions!}
+  \label{sl:repr-independent}
+\begin{verbatim}
+class PositiveNumber { /* ... */ }
+class Point {
+private:
+  // data members
+public:
+  Point( float x,float y ) { /* ... */ };
+  Point( PositiveNumber r,float theta ) { /* ... */ };
+  float get_x() { /* ... */ };
+  float get_y() { /* ... */ };
+  float get_r() { /* ... */ };
+  float get_theta() { /* ... */ };
+};
+\end{verbatim}
+  Functionality is independent of implementation.
+\end{block}
+
+\begin{comment}
+  \begin{exercise}
+    \label{ex:geom:twoconstruct}
+    Write a \n{Point} class that has two constructors:
+\begin{verbatim}
+class Point {
+private:
+  // data members
+public:
+  Point( float x,float y ) { /* ... */ };
+  Point( float r,float theta ) { /* ... */ };
+  float get_x() { /* ... */ };
+  float get_y() { /* ... */ };
+  float get_r() { /* ... */ };
+  float get_theta() { /* ... */ };
+};
+\end{verbatim}
+Use $r,\theta$ for the private variables, do not store $x,y$.
+  \end{exercise}
+\end{comment}
+
+\emph{The remainder of this section is advanced material. Make sure
+  you have studied section~\ref{sec:class-ref}.}
+
+It is a good idea to make the data in an object private,
+to control outside access to it.
+\begin{itemize}
+\item Sometimes this private data is auxiliary, and there is no reason
+  for outside access.
+\item Sometimes you do want outside access, but you want to precisely
+  control by whom.
+\end{itemize}
+
+Accessor functions:
+\begin{verbatim}
+class thing {
+private:
+ float x;
+public:
+ float get_x() { return x; };
+ void set_x(float v) { x = v; }
+};
+\end{verbatim}
+This has advantages:
+\begin{itemize}
+\item You can print out any time you get/set the value; great for
+  debugging
+\item You can catch specific values: if \n{x} is always supposed to be
+  positive, print an error (throw an exception) if nonpositive.
+\end{itemize}
+
+Better accessor:
+\begin{verbatim}
+class thing {
+private:
+ float x;
+public:
+ float &the_x() { return x; };
+};
+int main () {
+  thing t;
+  t.the_x() = 5;
+  cout << t.the_x();
+}
+\end{verbatim}
+The function \n{the_x} returns a reference to the internal
+variable~\n{x}.
+
+\begin{block}{Setting members through accessor}
+  \label{sl:setmember}
+  \snippetwithoutput{objaccessref}{object}{accessref}
+\end{block}
+
+If the internal variable is something indexable:
+\begin{verbatim}
+class thing {
+private:
+  vector<float> x;
+public:
+  operator[](int i) { return x[i]; };
+};
+\end{verbatim}
+You define the subscript operator~\n{[]} for the object, in terms of
+indexing of the private vector.
+
+\Level 1 {Accessability}
+
+\begin{slide}{Access levels}
+  \label{sl:private-etc}
+  Methods and data can be 
+  \begin{itemize}
+  \item private, because they are only used internally;
+  \item public, because they should be usable from outside a class
+    object, for instance in the main program;
+  \item protected, because they should be usable in derived classes (see
+    section~\ref{sec:derive-method}).
+  \end{itemize}
+\end{slide}
+
+You can have multiple methods with the same name, as long as they can
+be distinguished by their argument types. This is known as \indexterm{overloading}.
+
+\Level 1 {Operator overloading}
+\label{sec:operatordef}
+
+Instead of writing 
+\begin{verbatim}
+myobject.plus(anotherobject)
+\end{verbatim}
+you can actually redefine the \n{+} operator so that
+\begin{verbatim}
+myobject + anotherobject
+\end{verbatim}
+is legal.
+
+The syntax for this is
+\begin{block}{Operator overloading}
+  \label{sl:object-operator}
+\begin{verbatim}
+<returntype> operator<op>( <argument> ) { <definition> }
+\end{verbatim}
+For instance:
+\begin{verbatim}
+class Point {
+private:
+  float x,y;
+public:
+  Point operator*(float factor) {
+    return Point(factor*x,factor*y);
+  };
+};
+\end{verbatim}
+Can even redefine equals and parentheses.
+\end{block}
+
+See section~\ref{sec:overloadbracket} for redefining the parentheses
+and square brackets.
+
+\Level 1 {Copy constructor}
+
+Just like the default constructor which is defined if you don't define
+an explicit constructor, there is an implicitly defined
+\indextermsub{copy}{constructor}. This constructor is invoked whenever
+you do an obvious copy:
+\begin{verbatim}
+my_object x,y; // regular or default constructor
+x = y;         // copy constructor
+\end{verbatim}
+Usually the copy constructor that is implicitly defined does the right
+thing: it copies all data members. If you want to define your own copy
+constructor, you need to know its prototype. There are a couple of
+possibilities; see for instance:
+%
+\verbatimsnippet{classwithcopy}
+\snippetwithoutput{classwithcopyuse}{object}{copyscalar}
+
+\begin{slide}{Copy constructor}
+  \label{sl:class-copy}
+  \begin{multicols}{2}
+    \begin{itemize}
+    \item
+      Several default copy constructors are defined
+    \item They copy an object, recursively.
+    \item You can redefine them as needed.
+    \end{itemize}
+    \vfill\columnbreak
+    \verbatimsnippet{classwithcopy}
+  \end{multicols}
+  \snippetwithoutput{classwithcopyuse}{object}{copyscalar}
+\end{slide}
+
+\begin{block}{Copying is recursive}
+  \label{sl:class-copy-vector}
+  Class with a vector:
+  \verbatimsnippet{classwithcopyvector}
+  Copying is recursive, so the copy has its own vector:
+  \snippetwithoutput{classwithcopyvectoruse}{object}{copyvector}
+\end{block}
+
+\Level 1 {Destructor}
+
+Just there is a constructor routine to create an object, there is a
+\indextermdef{destructor} to destroy the object.
+As with the case of the default constructor, there is a default
+destructor, which you can replace with your own.
+
+A destructor can be useful if your object contains dynamically created
+data: you want to use the destructor to dispose of that dynamic data
+to prevent a \indextermbus{memory}{leak}.
+
+The destructor is typically called without you noticing it. For
+instance, any statically created object is destroyed when the control
+flow leaves its scope.
+
+Example:
+%
+\snippetwithoutput{destructor}{object}{destructor}
+%% %
+%% gives:
+%% \begin{verbatim}
+%% Before the nested scope
+%% calling the constructor
+%% Inside the nested scope
+%% calling the destructor
+%% After the nested scope
+%% \end{verbatim}
+
+\begin{slide}{Destructor}
+  \label{sl:class-destruct}
+  \begin{itemize}
+  \item Every class \n{myclass} has a \emph{destructor} \n{~myclass}
+    defined by default.
+  \item The default destructor does nothing:
+\begin{verbatim}
+~myclass() {};
+\end{verbatim}
+\item A destructor is called when the object goes out of scope.\\
+  Great way to prevent memory leaks: dynamic data can be released
+  in the destructor.
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Destructor example}
+  \label{sl:class-destruct-ex}
+  Destructor called implicitly:
+\snippetwithoutput{destructor}{object}{destructor}
+\end{slide}
+
+
+\begin{exercise}
+  \label{ex:destruct-trace}
+  Write a class
+\begin{verbatim}
+class HasInt {
+private:
+  int mydata;
+public:
+  HasInt(int v) { /* initialize */ };
+  ...
+}
+\end{verbatim}
+used as
+\begin{verbatim}
+{ HasInt v(5);
+  v.set(6);
+  v.set(-2);
+}
+\end{verbatim}
+which gives output
+\begin{verbatim}
+**** creating object with 5 ****
+**** setting object to 6 ****
+**** setting object to -2 ****
+**** object destroyed after 2 updates ****
+\end{verbatim}
+\end{exercise}
+
+\begin{block}{Destructors and exceptions}
+  \label{sl:exceptobj}
+  \snippetwithoutput{exceptobj}{object}{exceptobj}
+\end{block}
+
+% {Relations between classes}
+%\SetBaseLevel 1
+\input inheritance
+%\SetBaseLevel 0
+

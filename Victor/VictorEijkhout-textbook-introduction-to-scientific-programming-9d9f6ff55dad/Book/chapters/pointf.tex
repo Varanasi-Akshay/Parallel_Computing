@@ -1,0 +1,257 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% pointf.tex : arrays in Fortran
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Pointers in C++ were largely the same as memory addresses (until you
+got to smart pointers). Fortran pointers on the other hand, are more
+abstract.
+
+\Level 0 {Basic pointer operations}
+
+\begin{block}{Pointers are aliases}
+  \label{sl:fpoint}
+  \begin{itemize}
+  \item Pointer points at an object
+  \item Access object through pointer
+  \item You can change what object the pointer points at.
+  \end{itemize}
+\begin{verbatim}
+real,pointer :: point_at_real
+\end{verbatim}
+\end{block}
+
+Pointers could also be called `aliases': they act like an alias for an
+object of elementary or derived data type. You can access the object
+through the alias. The difference with actually using the object, is
+that you can decide what object the pointer points at.
+
+\begin{block}{C++ vs Fortran pointers}
+  \label{sl:cpoint-vs-fpoint}
+  Fortran pointers are automatically
+  \emph{dereferenced}\index{pointer!dereferencing}: if you print a
+  pointer you print the object it references, not some representation
+  of the pointer.
+\end{block}
+
+The \indextermtt{pointer} definition
+\begin{verbatim}
+real,pointer :: point_at_real
+\end{verbatim}
+defined a pointer that can point at a real variable.
+
+\begin{block}{Setting the pointer}
+  \label{sl:fpoint-set}
+  \begin{itemize}
+  \item You have to declare that a variable is pointable:
+\begin{verbatim}
+real,target :: x
+\end{verbatim}
+\item Set the pointer with \verb+=>+ notation:
+\begin{verbatim}
+point_at_real => x
+\end{verbatim}
+\item Now using \n{point_at_real} is the same as using~\n{x}.
+  \end{itemize}
+\end{block}
+
+Pointers can not just point at anything: the thing pointed at needs to
+be declared as \indextermtt{target}
+\begin{verbatim}
+real,target :: x
+\end{verbatim}
+and you use the \verb+=>+ operator to let a pointer point at a target:
+\begin{verbatim}
+point_at_real => x
+\end{verbatim}
+
+If you use a pointer, for instance to print it
+\begin{verbatim}
+print *,point_at_real
+\end{verbatim}
+it behaves as if you were using the value of what it points at.
+
+\begin{block}{Pointer example}
+  \label{sl:fpoint-ex}
+  \verbatimsnippet{pointatreal}
+  %
+  \begin{enumerate}
+  \item The pointer points at~\n{x}, so the value of \n{x} is printed.
+  \item The pointer is set to point at~\n{y}, so its value is printed.
+  \item The value of \n{y} is changed, and since the pointer still
+    points at~\n{y}, this changed value is printed.
+  \end{enumerate}
+\end{block}
+
+\begin{block}{Assign pointer from other pointer}
+  \label{sl:fpoint-copy}
+\begin{verbatim}
+real,pointer :: point_at_real,also_point
+point_at_real => x
+also_point => point_at_real  
+\end{verbatim}
+  Now you have two pointers that point at~\n{x}.
+
+  \textbf{Very important to use the \n{=>}, otherwise strange
+    memory errors}
+\end{block}
+
+If you have two pointers
+\begin{verbatim}
+real,pointer :: point_at_real,also_point
+\end{verbatim}
+you can make the target of the one to also be the target of the other:
+\begin{verbatim}
+also_point => point_at_real  
+\end{verbatim}
+This is not a pointer to a pointer: it assigns the target of the
+right-hand side to be the target of the left-hand side.
+
+\textbf{Using ordinary assignment does not work, and will give strange
+  memory errors.}
+
+\begin{exercise}
+  \label{ex:fpoint-fun}
+  Write a routine that accepts an array and a pointer, and on return
+  has that pointer pointing at the largest array element:
+  %
+  \verbatimsnippet{arraypointmain}
+\end{exercise}
+
+\begin{block}{Pointer status}
+  \label{sl:fpoint-stat}
+  \begin{itemize}
+  \item \indextermfort{Nullify}: zero a pointer
+  \item \indextermfort{Associated}: test whether assigned
+  \end{itemize}  
+\end{block}
+
+\begin{block}{Dynammic allocation}
+  \label{sl:fpoint-dynamic}
+  Associate unnamed memory:
+\begin{verbatim}
+Integer,Pointer,Dimension(:) :: array_point
+Allocate( array_point(100) )
+\end{verbatim}  
+\end{block}
+
+\Level 0 {Pointers and arrays}
+
+You can set a pointer to an array:
+\begin{verbatim}
+real(8),dimension(10),target :: array
+real(8),pointer,dimension(:) :: array_ptr
+
+array_ptr => array
+\end{verbatim}
+More surprising, you can set pointers to array slices:
+\begin{verbatim}
+array_ptr => array(2:)
+array_ptr => array(1:size(array):2)
+\end{verbatim}
+
+In case you're wondering, this does not create temporary arrays, but
+the compiler adds descriptions to the pointers, to translate code
+automatically to strided indexing.
+
+\Level 0 {Example: linked lists}
+
+\begin{block}{Linked list}
+  \label{sl:flink1}
+  \begin{itemize}
+  \item Linear data structure
+  \item more flexible for insertion~/ deletion
+  \item \ldots~but slower in access
+  \end{itemize}
+\end{block}
+
+One of the standard examples of using pointers is the
+\indexterm{linked list}. This is a dynamic one-dimensional structure
+that is more flexible than an array. Dynamically extending an array
+would require re-allocation, while in a list an element can be
+inserted.
+
+\begin{exercise}
+  Using a linked list may be more flexible than using an array.
+  On the other hand, accessing an element in a linked list is
+  more expensive, both absolutely and as order-of-magnitude in the size
+  of the list.
+
+  Make this argument precise.
+\end{exercise}
+
+\begin{block}{Linked list datatypes}
+  \label{sl:flink2}
+  \begin{itemize}
+  \item Node: value field, and pointer to next node.
+  \item List: pointer to head node.
+  \end{itemize}
+  \verbatimsnippet{linklistf}
+\end{block}
+
+A list is based on a simple data structure, a node, which contains a
+value field and a pointer to another node.
+
+By way of example, we create a dynamic list of integers, sorted by
+size. To maintain the sortedness, we need to append or insert nodes,
+as required.
+
+Here are the basic definitions of a node, and a list which is
+basically a repository for the head node:
+%
+\verbatimsnippet{linklistf}
+
+\begin{block}{List initialization}
+  \label{sl:flink3}
+  First element becomes the list head:
+
+\verbatimsnippet{listheadf}
+  
+\end{block}
+
+Initially, the list is empty, meaning that the `head' pointer is
+un-associated. The first time we add an element to the list, we create
+a node and assign it as the head of the list:
+%
+\verbatimsnippet{listheadf}
+
+\begin{block}{Attaching a node}
+  \label{sl:flink4}
+  Keep the list sorted: new largest element attached at the end.
+  
+  \verbatimsnippet{listattachf}
+\end{block}
+
+Adding a value to a list can be done two ways. If the new element is
+larger than all elements in the list, a new node needs to be appended
+to the last one. Let's assume we have managed
+to let \n{current} point at the last node of the list,
+then here is how to 
+attaching a new node from it:
+%
+\verbatimsnippet{listattachf}
+
+\begin{block}{Inserting 1}
+  \label{sl:flink5}
+  Find the insertion point:
+\verbatimsnippet{listfindf}
+\end{block}
+
+Inserting an element in the list is harder.
+First of all, you need to find the two nodes,
+\n{previous} and \n{current}, between which to insert the new node:
+%
+\verbatimsnippet{listfindf}
+
+\begin{block}{Inserting 2}
+  \label{sl:flink6}
+  The actual insertion requires rerouting some pointers:
+  %
+  \verbatimsnippet{listinsertf}
+\end{block}

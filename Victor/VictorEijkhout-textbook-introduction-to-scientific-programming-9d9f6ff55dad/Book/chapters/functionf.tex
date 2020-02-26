@@ -1,0 +1,454 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% functionf.tex : functions and such in Fortran
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Procedures}
+
+Programs can have subprograms: parts of code that for some reason you
+want to separate from the main program. If you structure your code in a single
+file, this is the recommended structure:
+
+\begin{block}{Subprograms in contains clause}
+  \label{sl:contains}
+\begin{verbatim}
+Program foo
+  < declarations>
+  < executable statements >
+  Contains
+    < subprogram definitions >
+End Program foo
+\end{verbatim}
+\end{block}
+
+That is, subprograms are placed after the main program statements,
+separated by a \indextermfort{contains} clause.
+
+In general, these are the  placements of subprograms:
+\begin{itemize}
+\item Internal: after the \n{Contains} clause of a program
+\item In a \indextermfort{Module}; see section~\ref{sec:modulef}.
+\item Externally: the subprogram is not internal to a \n{Program} or
+  \n{Module}. In this case it's safest to declare it through an
+  \indextermfort{Interface} specification; section~\ref{sec:finterface}.
+\end{itemize}
+\Level 1 {Subroutines and functions}
+
+Fortran has two types of subprograms:
+\begin{itemize}
+\item Subroutines, which are somewhat like \n{void} functions in C++:
+  they can be used to structure the code, and they can only return
+  information to the calling environment through their parameters.
+\item Functions, which are like C++ functions with a return type.
+\end{itemize}
+
+Both types have the same structure, which is roughly the same as of
+the main program:
+\begin{verbatim}
+subroutine foo( <parameters> )
+<variable declarations>
+<executable statements>
+end subroutine foo
+\end{verbatim}
+
+Exit from a procedure can happen two ways:
+\begin{enumerate}
+\item the flow of control reaches the end of the procedure body, or
+\item execution is finished by an explicit \indextermtt{return}
+  statement.
+\begin{verbatim}
+subroutine foo()
+  print *,"foo"
+  if (something) return
+  print *,"bar"
+end subroutine foo
+\end{verbatim}
+\end{enumerate}
+The \n{return} statement is optional in the first case.
+
+A subroutine is invoked with a \indextermtt{call} statement:
+\begin{verbatim}
+call foo()
+\end{verbatim}
+
+\begin{slide}{Subroutines}
+  \label{sl:subroutine}
+\begin{verbatim}
+subroutine foo()
+  implicit none
+  print *,"foo"
+  if (something) return
+  print *,"bar"
+end subroutine foo
+\end{verbatim}
+\begin{itemize}
+\item Looks much like a main program
+\item Ends at the end, or when \n{return} is reached
+\item Activated with 
+\begin{verbatim}
+  call foo()
+\end{verbatim}
+\end{itemize}
+\end{slide}
+
+\begin{block}{Recursion}
+  \label{sl:funcf:recursion}
+  Declare function as \indextermfort{Recursive}~\n{Function}
+\begin{verbatim}
+Recursive Function factorial(n) Result(fact)
+  if (n==0) then
+    fact = 1
+  else
+    fact = n * factorial(n-1)
+  end if
+End Function Factorial
+\end{verbatim}
+\end{block}
+
+\Level 1 {Return results}
+
+While a \n{subroutine} can only return information through its parameters,
+a~\indexterm{function} procedure returns an explicit result:
+\begin{verbatim}
+logical function test(x)
+  implicit none
+  real :: x
+
+  test = some_test_on(x)
+  return ! optional, see above
+end function test
+\end{verbatim}
+You see that the result is not returned in the \n{return} statement,
+but rather through assignment to the function name. The \n{return}
+statement, as before, is optional and only indicates where the flow of
+control ends.
+
+A \indextermdef{function} in Fortran is a subprogram that return a
+result to its calling program, much like a non-void function in~C++
+
+\begin{block}{Function definition and usage}
+  \label{sl:ffunction-def}
+  \begin{itemize}
+  \item Return type, keyword \n{function}, name, parameters
+  \item Function body has statements
+  \item Result is returned by assigning to the function name
+  \item Use: \n{y = f(x)}
+  \end{itemize}
+\end{block}
+
+\begin{block}{Function example}
+  \label{sl:ffunction-ex}
+  \snippetwithoutput{fplusone}{funcf}{plusone}
+\end{block}
+
+A function is not invoked with \n{call}, but rather through being used
+in an expression:
+\begin{verbatim}
+if (test(3.0) .and. something_else) ...
+\end{verbatim}
+You now have the following cases to make the function known in the
+main program:
+\begin{itemize}
+\item If the function is in a \n{contains} section, its type is known
+  in the main program.
+\item If the function is in a module (see section~\ref{sec:modulef}
+  below), it becomes known through a \n{use} statement.
+\end{itemize}
+
+\begin{f77note}
+  Without modules and \n{contains} sections, you need to declare the
+  function type explitly in the calling program. The safe way is
+  through using an \indextermtt{interface} specification.
+\end{f77note}
+
+\begin{exercise}
+  \label{ex:freadpos}
+  Write a program that asks the user for a positive number; negative
+  input should be rejected.  Fill in the missing lines in this code
+  fragment:
+  \snippetwithoutput{readpos}{funcf}{readpos}
+\end{exercise}
+
+\begin{block}{Why a `contains' clause?}
+  \label{sl:whycontain}
+  \begin{multicols}{2}
+    \verbatimsnippet{nocontain}
+    Warning only, crashes.
+    \vfill\columnbreak
+    \verbatimsnippet{wrongcontain}
+    Error, does not compile
+  \end{multicols}
+\end{block}
+
+\begin{block}{Why a `contains' clause, take 2}
+  \label{sl:whycontain_type}
+  \snippetwithoutput{nocontaintype}{funcf}{nocontaintype}
+  At best compiler warning if all in the same file\\
+  For future reference: if you see very small floating point numbers,
+  maybe you have made this error.
+\end{block}
+
+\Level 1 {Arguments}
+
+\begin{block}{Subprogram arguments}
+  \label{sl:farguments}
+ Arguments are defined in subprogram body:
+\begin{verbatim}
+subroutine f(x,y,i)
+  implicit none
+  integer,intent(in) :: i
+  real(4),intent(out) :: x
+  real(8),intent(inout) :: y
+  x = 5; y = y+6
+end subroutine f
+! and in the main program
+call f(x,y,5)
+\end{verbatim}
+\end{block}
+
+\begin{block}{Parameter passing}
+  \label{sl:fpassing}
+  \begin{itemize}
+  \item Everything is passed by reference.
+  \item Use \n{in}, \n{out}, \n{inout} qualifiers to clarify semantics
+    to compiler.
+  \item Terminology: Fortran talks about `dummy' and `actual'
+    arguments. Dummy: in the definition; actual: in the calling program.
+  \end{itemize}
+\end{block}
+
+\begin{block}{Intent checking}
+  \label{sl:fintent}
+  Compiler checks your intent against your implementation. This code
+  is not legal:
+
+  \verbatimsnippet{arginwrong}
+\end{block}
+
+\begin{block}{Why intent checking?}
+\label{sl:intentwhy}
+Allow compiler optimizations:
+
+\begin{multicols}{2}
+\begin{verbatim}
+x = f()
+call ArgOut(x)
+print *,x
+\end{verbatim}
+Call to \n{f} removed
+\vfill\columnbreak
+\begin{verbatim}
+do i=1,1000
+  x = ! something
+  y1 = .... x ....
+  call ArgIn(x)
+  y2 = ! same expression as y1
+\end{verbatim}
+\n{y2} is same as \n{y1} because \n{x} not changed
+\end{multicols}
+
+\end{block}
+
+\Level 1 {Types of procedures}
+
+Procedures that are in the main program (or another type of program
+unit), separated by a \n{contains} clause, are known as
+\indextermsub{internal}{procedures}. This is as opposed to
+\indextermsub{module}{procedures}.
+
+There are also \indexterm{statement functions}, which are
+single-statement functions, usually to identify commonly used
+complicated expressions in a program unit. Presumably the compiler
+will \indexterm{inline} them for efficiency.
+
+The \n{entry} statement is so bizarre that I refuse to discuss it.
+
+\Level 1 {More about arguments}
+
+\begin{block}{Keyword arguments}
+  \label{sl:funcf:keyword}
+  \begin{itemize}
+  \item Use the name of the \indextermsub{formal}{parameter} as
+    keyword.
+  \item Keyword arguments have to come last.
+  \end{itemize}
+  \snippetwithoutput{sayxykw}{funcf}{keyword}
+\end{block}
+
+\begin{block}{Optional arguments}
+  \label{sl:funcf:optional}
+  \begin{itemize}
+  \item Extra specifier: \indextermfort{Optional}
+  \item Presence of argument can be tested with \indextermfort{Present}
+  \end{itemize}
+\end{block}
+
+\Level 0 {Interfaces}
+\label{sec:finterface}
+
+If you want to use a subprogram in your main program, the compiler
+needs to know the signature of the subprogram: how many arguments, of
+what type, and with what intent. You have seen how the
+\indextermtt{contains} clause can be used for this purpose if the
+subprogram resides in the same file as the main program.
+
+If the subprogram is in a separate file, the compiler does not see
+definition and usage in one go. To allowed the compiler to do checking
+on proper usage, we can use an \indextermttdef{interface} block. This
+is placed at the calling site, declaring the signature of the
+subprogram.
+
+\begin{multicols}{2}
+\textbf{Main program:}
+\verbatimsnippet{interfacemain}
+\vfill\columnbreak
+\textbf{Subprogram:}
+\verbatimsnippet{interfunc}
+\end{multicols}
+
+The \indextermtt{interface} block is not required (an older
+\indextermtt{external} mechanism exists for functions), but is
+recommended.
+It is required if the function takes function arguments.
+
+\Level 1 {Polymorphism}
+
+The \indextermtt{interface} block can be used to define a generic
+function:
+\begin{verbatim}
+interface f
+function f1( ..... )
+function f2( ..... )
+end interface f
+\end{verbatim}
+where \n{f1},\n{f2} are functions that can be distinguished by their
+argument types. The generic function~\n{f} then becomes either \n{f1}
+or \n{f2} depending on what type of argument it is called with.
+
+\Level 0 {Modules}
+\label{sec:modulef}
+
+A module is a container for definitions of subprograms and types, and
+for data such as constants and variables. A~module is not a 
+structure or object: there is only one instance.
+
+What do you use a module for?
+\begin{itemize}
+\item Type definitions: it is legal to have the same type definition
+  in multiple program units, but this is not a good idea. 
+  Write the definition just once in a module and make it available
+  that way.
+\item Function definitions: this makes the functions available in multiple
+  sources files of the same program, or in multiple programs.
+\item Define constants: for physics simulations, put all constants in
+  one module and use that, rather than spelling out the constants each
+  time.
+\item Global variables: put variables in a module if they do not fit
+  an obvious scope.
+  \begin{f77note}
+  Modules are much cleaner than common blocks. Do not use those.
+  \end{f77note}
+\end{itemize}
+%
+\begin{block}{Module definition}
+  \label{sl:modulef}
+\verbatimsnippet{modulef}
+\end{block}
+
+
+Any routines come after the \n{contains}\index{contains!in modules}
+
+A module is made available with the \indextermtt{use} keyword, which
+needs to go before the \n{implicit none}.
+%
+\begin{block}{Module use}
+  \label{sl:moduleuse}
+  \verbatimsnippet{moduleuse}
+  Also possible:
+\begin{verbatim}
+Use mymodule, Only: func1,func2
+Use mymodule, func1 => new_name1
+\end{verbatim}
+\end{block}
+
+By default, all the contents of a module is usable by a subprogram
+that uses it. However, a keyword \indextermtt{private} make module
+contents available only inside the module.
+You can make the default behaviour explicit by using the
+\indextermtt{public} keyword. Both \n{public,private} can be used as
+attributes on definitions in the module.
+There is a keyword \indextermtt{protected} for data members that
+are public, but can not be altered by code outside the module.
+
+If you compile a module, you will find a \n{.mod} file in your
+directory. (This is little like a~\n{.h} file in~C++.)
+If this file is not present, you can not \n{use} the module in another
+program unit, so you need to compile the file containing the module
+first.
+
+\begin{exercise}
+  \label{ex:fpointmod}
+  Write a module \n{PointMod} that defines a type \n{Point} and a
+  function \n{distance} to make this code work:
+  %
+  \verbatimsnippet{pointmainex}
+  %
+  Put the program and module in two separate files and compile thusly:
+\begin{verbatim}
+ifort -g -c pointmod.F90
+ifort -g -c pointmain.F90
+ifort -g  -o pointmain pointmod.o pointmain.o 
+\end{verbatim}
+\end{exercise}
+
+\Level 1 {Polymorphism}
+
+\begin{verbatim}
+module somemodule
+
+INTERFACE swap
+MODULE PROCEDURE swapreal, swapint, swaplog, swappoint
+END INTERFACE
+
+  contains
+  subroutine swapreal
+  ...
+  end subroutine swapreal
+  subroutine swapint
+  ...
+  end subroutine swapint
+\end{verbatim}
+
+\Level 1 {Operator overloading}
+
+\begin{verbatim}
+MODULE operator_overloading
+IMPLICIT NONE
+...
+INTERFACE OPERATOR (+)
+MODULE PROCEDURE concat
+END INTERFACE
+\end{verbatim}
+
+including the assignment operator:
+
+\begin{verbatim}
+INTERFACE ASSIGNMENT (=) 
+subroutine_interface_body
+END INTERFACE
+\end{verbatim}
+
+This mechanism can also be used for dot-operators:
+
+\begin{verbatim}
+INTERFACE OPERATOR (.DIST.)
+MODULE PROCEDURE calcdist
+END INTERFACE
+\end{verbatim}
+

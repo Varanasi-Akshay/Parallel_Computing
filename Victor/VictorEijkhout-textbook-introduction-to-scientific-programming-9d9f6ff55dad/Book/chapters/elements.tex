@@ -1,0 +1,692 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% elements.tex : basic language elements
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {From the ground up: Compiling C++}
+
+In this chapter and the next you are going to learn the C++
+language. But first we need some externalia: how do you deal with any
+program?
+
+Let's say that
+\begin{itemize}
+\item you have a source code file \n{myprogram.cxx},
+\item and you want an executable file called \n{myprogram},
+\item and your compiler is \indextermtt{g++}, the C++ compiler of the
+  \indexterm{GNU} project. (If you have the Intel compilers, you will
+  use \indexterm{icpc} instead.)
+\end{itemize}
+To compile your program, you then type
+\begin{verbatim}
+g++ -o myprogram myprogram.cxx
+\end{verbatim}
+\begin{tacc}
+  On TACC machines, use the Intel compiler:
+\begin{verbatim}
+  icpc -o myprogram myprogram.cxx
+\end{verbatim}
+\end{tacc}
+
+which you can verbalize as `invoke the \n{g++} (or \n{icpc}) compiler,
+with output \n{myprogram}, on \n{myprogram.cxx}'.
+
+So let's do an example.
+
+This is a minimal program:
+%
+\codesnippet{nullprogc}
+%
+\begin{enumerate}
+\item The first two lines are magic, for now. Always include them.
+\item The \n{main} line indicates where the program starts; between
+  its opening and closing brace will be the
+  \indextermbus{program}{statements}.
+\item The \n{return} statement indicates successful completion of your program.
+\end{enumerate}
+\begin{exercise}
+  Make a program file with the above lines, compile it and run it.
+\end{exercise}
+As you may have guessed, this program produces absolutely no output.
+
+Here is a statement that at least produces some output:
+%
+\snippetwithoutput{helloc}{basic}{hello}
+
+
+\begin{exercise}
+  Make a program source file that contains the `hello world'
+  statement, compile it and run it. Think about where the statement goes.
+
+  (Did you indent the `hello world' line? Did you editor help you with
+  the indentation?)
+\end{exercise}
+
+\begin{block}{File names}
+  \label{sl:file-ext}
+  File names can have extensions: the part after the dot.
+  \begin{itemize}
+  \item \n{program.cxx} or \n{program.cc} are typical extensions for
+    C++ sources.
+  \item \n{program.cpp} is sometimes used, but your instructor does
+    not like that.
+  \item \n{program} without extension usually indicates an \indexterm{executable}.
+  \end{itemize}
+\end{block}
+
+\Level 0 {Statements}
+\label{sec:statements}
+
+Each programming language has its own (very precise!) rules for what
+can go in a source file. Globally we can say that a program contains
+instructions for the computer to execute, and these instructions take
+the form of a bunch of `statements'. Here are some of the rules on
+statements; you will learn them in more detail as you go through this
+book.
+
+\begin{block}{Program statements}
+  \label{sl:cstatement}
+  \begin{itemize}
+  \item
+    A program contains statements, each terminated by a semicolon.
+  \item `Curly braces' can enclose multiple statements.
+  \item A statement can correspond to some action when the program is
+    executed.
+  \item Some statements are definitions, of data or of possible actions.
+  \item Comments are `Note to self', short:
+\begin{verbatim}
+cout << "Hello world" << endl; // say hi!
+\end{verbatim}
+and arbitrary:
+\begin{verbatim}
+cout << /* we are now going
+           to say hello
+         */ "Hello!" << /* with newline: */ endl;
+\end{verbatim}
+  \end{itemize}
+\end{block}
+
+\begin{exercise}
+  \label{ex:hello-line}
+  Take the `hello world' program you wrote above, and duplicate the
+  hello-line. Compile and run.
+
+  Does it make a difference whether you have the two hellos on the
+  same line or on different lines?
+
+  Experiment with other changes to the layout of your source. Find at
+  least one change that leads to a compiler error.
+\end{exercise}
+
+\begin{block}{Fixed elements}
+  \label{sl:fixedstuff}
+  You see that certain parts of your program are inviolable:
+  \begin{itemize}
+  \item There are \indexterm{keywords} such as \n{return} or \n{cout}; you
+    can not change their definition.
+  \item Curly braces and parentheses need to be matched.
+  \item There has to be a \n{main} keyword.
+  \item The \n{iostream} and \n{namespace} are usually needed.
+  \end{itemize}
+\end{block}
+
+\begin{exercise}
+  \label{ex:cout-what}
+  Experiment with the \n{cout} statement. Replace the string by a
+  number or a mathematical expression. Can you guess how to print more
+  than one thing, for instance:
+  \begin{itemize}
+  \item the string \n{One third is}, and
+  \item the result of the computation~$1/3$,     
+  \end{itemize}
+  with the same \n{cout} statement?
+\end{exercise}
+
+\Level 0 {Variables}
+\label{sec:variables}
+
+A program could not do much without storing data: input data,
+temporary data for intermediate results, and final results.
+Data is stored in \emph{variables}\index{variable},  which have
+\begin{itemize}
+\item a name, so that can refer to them,
+\item a \indexterm{datatype}, and
+\item a value.
+\end{itemize}
+Think of a variable as a labeled placed in memory.
+\begin{itemize}
+\item The variable is defined in a
+  \indextermbus{variable}{declaration},
+\item which can include an \indextermsub{variable}{initialization}.
+\item After a variable is defined, and given a value, it can be used,
+\item or given a (new) value in a \indextermbus{variable}{assignment}.
+\end{itemize}
+
+\begin{slide}{Variable declarations}
+  \label{sl:declaration}
+  Programs usually contain data, which is stored in a
+  \indextermdef{variable}. A~variable has
+  \begin{itemize}
+  \item a \indexterm{datatype},
+  \item a name, and
+  \item a value.
+  \end{itemize}
+  These are defined in a \indextermbus{variable}{declaration} and/or
+  \indextermbus{variable}{assignment}.
+\end{slide}
+
+\begin{block}{Typical variable lifetime}
+  \label{sl:varlife}
+\begin{verbatim}
+int i,j; // declaration
+i = 5; // set a value
+i = 6; // set a new value
+j = i+1; // use the value of i
+i = 8; // change the value of i
+       // but this doesn't affect j:
+       // it is still 7.
+\end{verbatim}
+\end{block}
+
+\Level 1 {Variable declarations}
+
+A variable is defined once
+in a \indextermbus{variable}{declaration},
+but it can be given a (new) value multiple
+times. It is not an error to use a variable that has not been given a
+value, but it may lead to strange behaviour at runtime, since the
+variable may contain random memory contents.
+
+\begin{block}{Variable names}
+  \label{sl:varname}
+  \begin{itemize}
+  \item
+    A variable name has to start with a letter,
+  \item can contains letters and  digits, but not most
+    special characters (except for the underscore).
+  \item For letters it matters
+    whether you use upper or lowercase: the language is \indexterm{case sensitive}.
+  \end{itemize}
+\end{block}
+
+\begin{block}{Declaration}
+  \label{sl:declare-example}
+  There are a couple of ways to make the connection between a name and a
+  type. Here is a simple
+  \indextermbusdef{variable}{declaration}, which establishes the name
+  and the type:
+\begin{verbatim}
+int n;
+float x;
+int n1,n2;
+double re_part,im_part;
+\end{verbatim}
+\end{block}
+
+\begin{block}{Where do declarations go?}
+  \label{sl:declwhere}
+  Declarations can go pretty much anywhere in your program, but need
+  to come before use of the variable.
+
+  Note: it is legal to define a variable before the main program\\
+  but that's not a good idea. Please only declare \emph{inside} main\\
+  (or inside a function et cetera).
+\end{block}
+
+\Level 1 {Datatypes}
+
+\begin{block}{Datatypes}
+  \label{sl:datatypes}
+  Variables come in different types;
+  \begin{itemize}
+  \item We call a variable of type
+    \n{int,float,double} a \indextermsub{numerical}{variable}.
+  \item 
+    For characters: \n{char}. Strings are complicated.
+  \item 
+    You can make your own types. Later.
+  \end{itemize}
+\end{block}
+
+\Level 1 {Assignments}
+\label{sec:ctypes}
+
+Setting a variable
+\begin{verbatim}
+i = 5;
+\end{verbatim}
+means storing a value in the memory location. It is
+not defining a mathematical equality
+\[ \hbox{let $i=5$}. \]
+
+\begin{block}{Assignment}
+  \label{sl:assign1}
+  Once you have declared a variable, you need to establish a value. This is done in an
+  \indextermdef{assignment} statement. After the above declarations, the
+  following are legitimate assignments:
+\begin{verbatim}
+n = 3;
+x = 1.5;
+n1 = 7; n2 = n1 * 3;
+\end{verbatim}
+Variable of the left-hand side gets value of the right-hand side.
+
+You see that you can assign both a simple value or an
+\indexterm{expression}.
+\end{block}
+
+\begin{block}{Assignments}
+  \label{sl:assign2}
+  A variable can be given a value more than once. The following
+  sequence of statements is a legitimate part of a program:
+\begin{verbatim}
+int n;
+n = 3;
+n = 2*n + 5;
+n = 3*n + 7;
+\end{verbatim}
+These are not math equations: variable on the lhs gets the value of
+the rhs.
+\end{block}
+
+\begin{block}{Special forms}
+  \label{sl:special-assign}
+  Update:
+\begin{verbatim}
+  x = x+2; y = y/3;
+  // can be written as
+  x += 2; y /= 3;
+\end{verbatim}
+Integer add/subtract one:
+\begin{verbatim}
+  i++; j--;  /* same as: */ i=i+1; j=j-1;
+\end{verbatim}
+  Pre/post increment:
+\begin{verbatim}
+  x = a[i++]; /* is */ x = a[i]; i++;
+  y = b[++i]; /* is */ i++; y = b[i];
+\end{verbatim}
+\end{block}
+
+\begin{block}{Initialization}
+  \label{sl:init-var}
+  You can also give a variable a value a in
+  \indextermbus{variable}{initialization}. Confusingly, there are
+  several ways of doing that. Here's two:
+\begin{verbatim}
+int n = 0;
+double x = 5.3, y = 6.7;
+double pi{3.14};
+\end{verbatim}
+  Do not use uninitialized variables! Doing so is legal, but there is
+  no guarantee about the initial value. Do not count on it being zero\ldots
+\end{block}
+
+\begin{exercise}
+  \label{ex:print-variables}
+  Write a program that has several variables. Assign values either in
+  an initialization or in an assignment. Print out the values.
+\end{exercise}
+
+\Level 1 {Floating point variables}
+
+Mathematically, integers are a special case of real numbers.
+In a computer, integers are stored very differently from
+\indextermdef{floating point} numbers.
+\begin{itemize}
+\item Within a certain range, roughly
+  $-2\cdot 10^9,\ldots,2\cdot 10^9$,
+  all integer values can be represented.
+\item On the other hand, not all real numbers have a floating point
+  representation. For instance, since computer numbers are binary,
+  $1/2$~is representable but $1/3$~is not.
+\item You can assign variables of one type to another, but this may
+  lead to truncation (assigning a floating point number to an integer)
+  or unexpected bits (assigning a single precision floating point
+  number do a double precision).
+\end{itemize}
+
+\begin{block}{Floating point constants}
+  \label{sl:float-vars}
+  \begin{itemize}
+  \item Default: \n{double}
+  \item Float: \n{3.14f} or \n{3.14F}
+  \item Long double: \n{1.22l} or \n{1.22L}.
+  \end{itemize}
+  This prevents numerical accidents: 
+\begin{verbatim}
+  double x = 3.;
+\end{verbatim}
+  converts float to double, maybe introducing random bits.
+\end{block}
+
+\begin{block}{Warning: floating point arithmetic}
+  \label{sl:float-arith}
+  Floating point arithmetic is full of pitfalls.
+  \begin{itemize}
+  \item Don't count on \n{3*(1./3)} being exactly~1.
+  \item Not even associative.
+  \end{itemize}
+  (See Eijkhout, Introduction to High Performance Computing, chapter~3.)
+\end{block}
+
+\Level 1 {Boolean values}
+
+\begin{block}{Truth values}
+  \label{sl:bool-var}
+  So far you have seen integer and real variables. There are also
+  \indextermsub{boolean}{values} which represent truth values. There are
+  only two values: \indextermtt{true} and \indextermtt{false}.
+\begin{verbatim}
+bool found{false};
+found = true;
+\end{verbatim}
+\end{block}
+
+\begin{exercise}
+  \label{ex:print-truefalse}
+  Print out \n{true} and \n{false}. What do you get?
+\end{exercise}
+
+\Level 1 {Strings}
+
+Strings, that is, strings of characters, are not a C++ built-in
+datatype. Thus, they take some extra setup to use.
+See chapter~\ref{ch:string} for a full discussion.
+For now, if you
+want to use strings:
+
+\begin{block}{Quick intro to strings}
+  \label{sl:quick-string}
+  \begin{itemize}
+  \item Add the following at the top of your file:
+\begin{verbatim}
+#include <string>
+using std::string;
+\end{verbatim}
+\item Declare string variables as
+\begin{verbatim}
+string name;
+\end{verbatim}
+\item And you can now \n{cin} and \n{cout} them.
+  \end{itemize}
+\end{block}
+
+\begin{exercise}
+  \label{ex:ask-for-name}
+  Write a program that asks for the user's first name, and prints
+  something like \n{Hello, Victor!} in response.
+
+  What happens if you enter first and last name?
+\end{exercise}
+
+\Level 0 {Input/Output, or I/O as we say}
+\label{sec:io}
+
+A program typically produces output. For now we will only display
+output on the screen, but output to file is possible too.  Regarding
+input, sometimes a program has all information for its computations,
+but it is also possible to base the computation on user input.
+
+\begin{block}{Terminal output}
+  \label{sl:cout}
+You have already seen \indextermtt{cout}:
+\begin{verbatim}
+float x = 5;
+cout << "Here is the root: " << sqrt(x) << endl;
+\end{verbatim}
+\end{block}
+
+\begin{block}{Terminal input}
+  \label{sl:cin}
+  There is also a \indexterm{cin}, which serves to take user input and
+  put it in a numerical variable.
+\begin{verbatim}
+// add at the top of your program:
+using std::cin;
+
+// then in your main:
+int i;
+cin >> i;
+\end{verbatim}
+There is also \n{getline}, which is more general.
+\end{block}
+
+\begin{exercise}
+  \label{ex:cin-cout3np1}
+  Write a program that 
+  \begin{itemize}
+  \item Displays the message \n{Type a number},
+  \item accepts an integer number from you (use~\n{cin}),
+  \item and then prints out three times that number plus one.
+  \end{itemize}
+\end{exercise}
+
+For more I/O, see chapter~\ref{ch:io}.
+
+\Level 0 {Expressions}
+\label{sec:expr}
+
+The most basic step in computing is to form expressions such as sums,
+products, logical conjuctions, string appending. Expressions in
+programming languages for the most part look the way you would expect
+them to.
+\begin{itemize}
+\item Mathematical operators: \n{+ - /} and \n{*}~for multiplication.
+\item C++ does not have a power operator (Fortran does).
+\item Integer modulus:~\n{5\char`\%2}
+\item You can use parentheses: \n{5*(x+y)}. Use parentheses if you're
+  not sure about the precedence rules for operators.
+\item `Power' and various mathematical functions are realized through
+  library calls.
+\end{itemize}
+
+\begin{block}{Math library calls}
+  \label{sl:cmath}
+  Math function in \indextermtt{cmath}:
+\begin{verbatim}
+#include <cmath>
+.....
+x = pow(3,.5);
+\end{verbatim}
+For squaring, usually better to write \n{x*x} than \n{pow(x,2)}.
+\end{block}
+
+\begin{block}{Arithmetic expressions}
+  \label{sl:arith-expr}
+  \begin{itemize}
+  \item
+    Expression looks pretty much like in math.\\
+    With integers: \n{2+3}\\
+    with reals: \n{3.2/7}
+  \item Use parentheses to group \n{25.1*(37+42/3.)}
+  \item Careful with types.
+  \item There is no `power' operator: library functions. Needs a line
+\begin{verbatim}
+#include <cmath>
+\end{verbatim}
+  \item Modulus: \n{\char`\%}
+  \end{itemize}
+\end{block}
+
+\Level 1 {Truth values}
+
+In addition to numerical types, there are truth values,
+\indextermtt{true} and \indextermtt{false}, with all the usual logical
+operators defined on them.
+
+Logical expressions in C++ are evaluated using
+\indextermsub{shortcut}{operators}: you can write
+\begin{verbatim}
+x>=0 && sqrt(x)<2
+\end{verbatim}
+If \n{x}~is negative, the second part will never be evaluated because
+the `and' conjunction can already be concluded to be false.
+Similarly, `or' conjunctions will only be evaluated until the first
+true clause.
+
+\begin{block}{Boolean expressions}
+  \label{sl:bool-expr}
+  \begin{itemize}
+  \item Testing: \n{== != < > <= >=}
+  \item Not, and, or:   \n{! && ||}
+  \item Shortcut operators:
+\begin{verbatim}
+  if ( x>=0 && sqrt(x)<5 ) {}
+\end{verbatim}
+  \end{itemize}
+\end{block}
+
+The `true' and `false' constants could strictly speaking be stored in
+a single bit. C++~does not do that, but there are bit
+operators that you can apply to, for instance, all the bits in an integer.
+
+\begin{block}{Bit operators}
+  \label{sl:bit-oper}
+ Bitwise: \n{& | ^}
+\end{block}
+
+\Level 1 {Type conversions}
+
+Since a variable has one type, and will always be of that type,
+you may wonder what happens with
+\begin{verbatim}
+float x = 1.5;
+int i;
+i = x;
+\end{verbatim}
+or 
+\begin{verbatim}
+int i = 6;
+float x;
+x = i;
+\end{verbatim}
+
+\begin{itemize}
+\item Assigning a floating point value to an integer truncates the
+  latter.
+\item Assigning an integer to a floating point variable fills it up
+  with zeros after the decimal point.
+\end{itemize}
+
+\begin{exercise}
+  \label{ex:float-convert}
+  \begin{itemize}
+  \item What happens when you assign a positive floating
+    point value to an integer variable?
+  \item What happens when you assign a negative floating
+    point value to an integer variable?
+  \item What happens when you assign a \n{float} to a \n{double}? 
+    Try various numbers for the original float. Can you explain the
+    result?
+    (Hint: think about the conversion between binary and decimal.)
+  \end{itemize}
+\end{exercise}
+
+The rules for type conversion in expressions are not entirely
+logical. Consider
+\begin{verbatim}
+float x; int i=5,j=2;
+x = i/j;
+\end{verbatim}
+This will give~\n{2} and not~\n{2.5}, because \n{i/j} is an integer
+expression and is therefore completely evaluated as such, giving~\n{2}
+after truncation. The fact
+that it is ultimately assigned to a floating point variable does not
+cause it to be evaluated as a computation on floats.
+
+You can force the expression to be computed in floating point numbers
+by writing
+\begin{verbatim}
+x = (1.*i)/j;
+\end{verbatim}
+or any other mechanism that forces a conversion, without changing the
+result.  Another mechanism is the \indexterm{cast}; this will be
+discussed in section~\ref{sec:cast}.
+
+\begin{slide}{Conversion and casting}
+  \label{sl:convert-cast}
+  Real to integer: round down:
+\begin{verbatim}
+  double x,y; x = .... ; y = .... ;
+  int i; i =  x+y:
+\end{verbatim}
+Dangerous:
+\begin{verbatim}
+  int i,j; i = ... ; j = ... ; 
+  double x ; x = 1+i/j;
+\end{verbatim}
+The fraction is executed as integer division.\\
+For floating point result do:
+\begin{verbatim}
+(double)i/j /* or */ (1.*i)/j
+\end{verbatim}
+\end{slide}
+
+\begin{exercise}
+  \label{ex:C2F}
+  Write two programs, one that reads a temperature in Centigrade and
+  converts to Fahrenheit, and one that does the opposite conversion.
+  \[ C = (F-32)\cdot 5/9,\qquad F = 9/5\,C+32 \]
+  Check your program for the freezing and boiling point of water.\\
+  (Do you know the temperature where Celsius and Fahrenheit are the
+  same?)
+  
+  Can you use Unix pipes to make one accept the output of the other?
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:modulus}
+  Write a program that ask for two integer numbers \n{n1,n2}.
+  \begin{itemize}
+  \item Assign the integer ratio $n_1/n_2$ to a variable.
+  \item Can you use this variable to compute the modulus
+    \[ n_1\mod n_2 \]
+    (without using the \n{\char`\%} modulus operator!)\\
+    Print out the value you get.
+  \item Also print out the result from using the modulus operator:\n{\char`\%}.
+  \end{itemize}
+\end{exercise}
+
+Complex numbers exist, see section~\ref{sec:stl-complex}.
+
+\Level 0 {Library functions}
+
+Some functions, such as \indexterm{abs} can be included through \indextermtt{cmath}:
+\begin{verbatim}
+#include <cmath>
+using std::abs;
+\end{verbatim}
+Others, such as \indexterm{max}, are in the less common \indextermtt{algorithm}:
+\begin{verbatim}
+#include <algorithm>
+using std::max;
+\end{verbatim}
+
+\Level 0 {Review questions}
+
+\begin{exercise}
+  \label{ex:cpp-mod}
+What is the output of:
+\begin{verbatim}
+int m=32, n=17;
+cout << n%m << endl;
+\end{verbatim}
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:cpp-cube}
+  Given
+\begin{verbatim}
+int n;
+\end{verbatim}
+write code that
+uses elementary mathematical operators to compute n-cubed: $n^3$.
+Do you get the correct result for all~$n$? Explain.
+\end{exercise}

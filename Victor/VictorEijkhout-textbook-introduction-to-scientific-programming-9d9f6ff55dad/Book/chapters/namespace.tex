@@ -1,0 +1,157 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% namespace.tex : about namespaces
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Solving name conflicts}
+
+In section~\ref{sec:stdvector} you saw that the C++ library comes with
+a \indexterm{vector} class, that implements dynamic arrays. You say
+\begin{verbatim}
+std::vector<int> bunch_of_ints;
+\end{verbatim}
+and you have an object that can store a bunch of ints. And if you use
+such vectors often, you can save yourself some typing by having
+\begin{verbatim}
+using namespace std;
+\end{verbatim}
+somewhere high up in your file, and write
+\begin{verbatim}
+vector<int> bunch_of_ints;
+\end{verbatim}
+in the rest of the file.
+
+More safe:
+\begin{verbatim}
+using std::vector;
+\end{verbatim}
+
+But what if you are writing a geometry package, which includes a
+vector class? Is there confusion with the \ac{STL} vector class?
+There would be if it weren't for the phenomenon
+\indextermdef{namespace}, which acts as as disambiguating prefix for
+classes, functions, variables.
+
+\begin{slide}{You have already seen namespaces}
+  \label{sl:vec-namespace}
+  Safest:
+\begin{verbatim}
+#include <vector>
+int main() {
+  std::vector<stuff> foo;
+}
+\end{verbatim}
+\begin{multicols}{2}
+  Drastic:
+\begin{verbatim}
+#include <vector>
+using namespace std;
+int main() {
+  vector<stuff> foo;
+}
+\end{verbatim}
+\vfill\columnbreak
+Prudent:
+\begin{verbatim}
+#include <vector>
+using std::vector;
+int main() {
+  vector<stuff> foo;
+}
+\end{verbatim}
+\end{multicols}
+\end{slide}
+
+You have already seen namespaces in action when you wrote
+\n{std::vector}: the `\n{std}' is the name of the namespace.
+
+\begin{block}{Defining a namespace}
+  \label{sl:namespace-def}
+  You can make your own namespace by writing
+\begin{verbatim}
+namespace a_namespace {
+  // definitions
+  class an_object { 
+  };
+|
+\end{verbatim}
+\end{block}
+
+so that you can write
+\begin{block}{Namespace usage}
+  \label{sl:namespace-use}
+\begin{verbatim}
+a_namespace::an_object myobject();
+\end{verbatim}
+or
+\begin{verbatim}
+using namespace a_namespace;
+an_object myobject();
+\end{verbatim}
+or
+\begin{verbatim}
+using a_namespace::an_object;
+an_object myobject();
+\end{verbatim}
+\end{block}
+
+\Level 1 {Namespace header files}
+
+If your namespace is going to be used in more than one program, you
+want to have it in a separate source file, with an accompanying header
+file:
+%
+\verbatimsnippet{nameinclude}
+
+The header would contain the normal function and class headers, but
+now inside a named namespace:
+%
+\verbatimsnippet{nameheader}
+
+and the implementation file would have the implementations, in a
+namespace of the same name:
+%
+\verbatimsnippet{nameimpl}
+
+\Level 0 {Best practices}
+
+The problem with
+\begin{verbatim}
+using namespace std;
+\end{verbatim}
+is that it may pull in unwanted functions. For instance:
+
+\begin{block}{Why not `using namespace std'?}
+  \label{sl:namespace-std-harm}
+  \begin{multicols}{2}
+    This compiles, but should not:
+    \verbatimsnippet{swapname}
+    \vfill\columnbreak
+    This gives an error:
+    \verbatimsnippet{swapusing}
+  \end{multicols}
+\end{block}
+
+It is a good idea to pull in functions explicitly:
+\begin{verbatim}
+#include <iostream>
+using std::cout;
+\end{verbatim}
+
+In particular, one should never use the indiscriminate
+\begin{verbatim}
+using namespace std;
+\end{verbatim}
+in a header file. Anyone using the header would have no idea what
+functions are suddenly defined.
+
+\begin{slide}{Big namespace no-no}
+  \label{sl:h-no-using}
+  Do not put \n{using} in a header file that a user may include.
+\end{slide}

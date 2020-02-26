@@ -1,0 +1,97 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% template.tex : on templates
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Sometimes you want a function or a class based on more than one
+different datatypes. For instance, in chapter~\ref{ch:array} you saw
+how you could create an array of ints as \n{vector<int>} and
+of doubles as \n{vector<double>}. Here you will learn the mechanism
+for that.
+
+\begin{block}{Templated type name}
+  \label{sl:template-gen}
+  Basically, you want the type name to be a variable. Syntax:
+\begin{verbatim}
+template <typename yourtypevariable>
+// ... stuff with yourtypevariable ...
+\end{verbatim}
+\end{block}
+
+\Level 0 {Templated functions}
+
+\begin{block}{Example: function}
+  \label{sl:template-fun}
+  Definition:
+\begin{verbatim}
+template<typename T>
+void function(T var) { cout << var << end; }
+\end{verbatim}
+Usage:
+\begin{verbatim}
+int i; function(i);
+double x; function(x);
+\end{verbatim}
+and the code will behave as if you had defined \n{function} twice,
+once for \n{int} and once for \n{double}.
+\end{block}
+
+\begin{exercise}
+  \label{ex:eps-template}
+  Machine precision, or `machine epsilon', is sometimes defined as the
+  smallest number~$\epsilon$ so that $1+\epsilon>1$ in computer
+  arithmetic.
+
+  Write a templated function \n{epsilon} so that the following code
+  prints out the values of the machine precision for the \n{float} and
+  \n{double} type respectively:
+\verbatimsnippet{epsprint}
+\end{exercise}
+
+\Level 0 {Templated classes}
+
+The most common use of templates is probably to define templated
+classes.
+You have in fact seen this mechanism in action:
+\begin{block}{Templated vector}
+  \label{sl:template-vector}
+  the \ac{STL} contains
+  in effect
+\begin{verbatim}
+template<typename T>
+class vector {
+private:
+  // data definitions omitted
+public:
+  T at(int i) { /* return element i */ };
+  int size() { /* return size of data */ };
+  // much more
+}
+\end{verbatim}
+\end{block}
+
+\Level 0 {Templating over non-types}
+
+THESE EXAMPLES ARE NOT GOOD.
+
+See:
+\url{https://www.codeproject.com/Articles/257589/An-Idiots-Guide-to-Cplusplus-Templates-Part}
+
+\begin{block}{Templating a value}
+  Templeting over integral types, not double.
+
+  The templated quantity is a value:
+  %
+  \verbatimsnippet{itemplate}
+\end{block}
+
+\begin{exercise}
+  Write a class that contains an array. The length of the array should
+  be templated.
+\end{exercise}

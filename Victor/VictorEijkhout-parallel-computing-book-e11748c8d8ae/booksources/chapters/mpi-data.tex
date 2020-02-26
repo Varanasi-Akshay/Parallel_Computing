@@ -1,0 +1,43 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Parallel Programming in MPI and OpenMP'
+%%%% by Victor Eijkhout, copyright 2012-7
+%%%%
+%%%% mpi-data.tex : discussion of MPI datatypes
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {MPI Datatypes}
+
+\index{datatype|(}
+
+In the examples you have seen so far, every time data was sent,
+it was as a contiguous buffer with elements of a single type.
+In practice you may want to send heterogeneous data, or
+non-contiguous data.
+\begin{itemize}
+\item Communicating the real parts of an array of complex numbers
+  means specifying every other number.
+\item Communicating a C~structure of Fortran type with more than one
+  type of element is not equivalent to sending an array of elements of
+  a single type.
+\end{itemize}
+The datatypes you have dealt with so far are known as
+\indextermsub{elementary}{datatypes}; irregular objects
+are known as \indextermsub{derived}{datatypes}.
+
+%% \Level 0 {Elementary data types}
+\input chapters/mpi-elementary
+
+%% \Level 0 {Derived datatypes}
+\input chapters/mpi-derived
+
+%% \Level 0 {More about data}
+\input chapters/mpi-moredata
+
+\index{datatype|)}
+

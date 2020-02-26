@@ -1,0 +1,230 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% proto.tex : about prototypes and separate compilation
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Prototypes for functions}
+\label{sec:proto}
+
+In most of the programs you have written in this course, you put any
+functions or classes above the main program, so that the compiler
+could inspect the definition before it encountered the use. However,
+the compiler does not actually need the whole definition, say of a
+function: it is enough to know its name, the types of the input
+parameters, and the return type.
+
+Such a minimal specification of a function is known as function
+\indextermdef{prototype}; for instance
+\begin{verbatim}
+int tester(float);
+\end{verbatim}
+
+A first use of prototypes is \indexterm{forward declaration}:
+\begin{verbatim}
+int f(int);
+int g(int i) { return f(i); }
+int f(int i) { return g(i); }
+\end{verbatim}
+
+Prototypes are useful if you spread your program over multiple
+files. You would put your functions in one file
+and the main program in another:
+\begin{multicols}{2}  
+\begin{verbatim}
+// file: def.cxx
+int tester(float x) {
+  .....
+}
+\end{verbatim}
+\vfill\columnbreak
+\begin{verbatim}
+// file : main.cxx
+int tester(float);
+
+int main() {
+  int t = tester(...);
+  return 0;
+}
+\end{verbatim}
+\end{multicols}
+
+Or you could use your function in multiple programs and you would have to
+write it only once.
+
+\Level 1 {Header files}
+\label{sec:hfile}
+
+Even better than writing the prototype every time you need the
+function is to have a \indexterm{header file}:
+\begin{verbatim}
+// file: def.h
+int tester(float);
+\end{verbatim}
+The header file gets included both in the definitions file and the
+main program:
+\begin{multicols}{2}  
+\begin{verbatim}
+// file: def.cxx
+#include "def.h"
+int tester(float x) {
+  .....
+}
+\end{verbatim}
+\vfill\columnbreak
+\begin{verbatim}
+// file : main.cxx
+#include "def.h"
+
+int main() {
+  int t = tester(...);
+  return 0;
+}
+\end{verbatim}
+\end{multicols}
+
+Having a header file is an important safety measure:
+\begin{itemize}
+\item Suppose you change your function definition, changing its return
+  type:
+\item The compiler will complain when you compile the definitions
+  file;
+\item So you change the prototype in the header file;
+\item Now the compiler will complain about the main program, so you
+  edit that too.
+\end{itemize}
+
+It is necessary to include the header file in the main program. It is
+not strictly necessary to include it in the definitions file, but
+doing so means that you catch potential errors: if you change the
+function definitions, but forget to update the header file, this is
+caught by the compiler.
+
+\begin{remark}
+  By the way, why does that compiler even recompile the main program,
+  even though it was not changed? Well, that's because you used a
+  \indexterm{makefile}. See the tutorial.
+\end{remark}
+\begin{remark}
+  Header files were able to catch more errors in~C than they do
+  in~C++. With polymorphism of functions, it is no longer an error to
+  have 
+\begin{verbatim}
+// header.h
+int somefunction(int);
+\end{verbatim}
+and
+\begin{verbatim}
+#include "header.h"
+
+int somefunction( float x ) { .... }
+\end{verbatim}
+\end{remark}
+
+\Level 1 {C and C++ headers}
+
+You have seen the following syntaxes for including header files:
+\begin{verbatim}
+#include <header.h>
+#include "header.h"
+\end{verbatim}
+The first is typically used for system files, with the second
+typically for files in your own project. There are some header files
+that come from the C~standard library such as \n{math.h}; the
+idiomatic way of including them in C++ is
+\begin{verbatim}
+#include <cmath>
+\end{verbatim}
+
+\Level 0 {Global variables}
+\label{ex:globalvar}
+
+If you have a variable that you want known everywhere, you can make it
+a \indextermsub{global}{variable}:
+\begin{verbatim}
+int processnumber;
+void f() {
+  ... processnumber ...
+}
+int main() {
+  processnumber = // some system call
+};
+\end{verbatim}
+It is then defined in functions defined in your program file.
+
+If your program has multiple files, you should not put `\n{int processnumber}'
+in the other files, because that would create a new variable, that is
+only known to the functions in that file. Instead use:
+\begin{verbatim}
+extern int processnumber;
+\end{verbatim}
+which says that the global variable \n{processnumber} is defined in
+some other file.
+
+What happens if you put that variable in a
+%
+\emph{header file}\index{header file!and global variables}%
+\index{variable!global!in header file}%
+? Since the
+%
+\emph{preprocessor}\index{preprocessor!and header files}%
+\index{header file!treatment by preprocessor}
+acts as if the header is textually inserted, this again leads to
+a separate global variable per file. The solution then is more
+complicated:
+\begin{verbatim}
+//file: header.h
+#ifndef HEADER_H
+#define HEADER_H
+#ifndef EXTERN
+#define EXTERN extern
+#fi
+EXTERN int processnumber
+#fi
+
+//file: aux.cc
+#include "header.h"
+
+//file: main.cc
+#define EXTERN
+#include "header.h"
+\end{verbatim}
+
+This also prevents recursive inclusion of header files.
+
+\Level 0 {Prototypes for class methods}
+
+\begin{block}{Class prototypes}
+  \label{sl:class-proto}
+  Header file:
+\begin{verbatim}
+class something {
+public:
+  double somedo(vector);
+};
+\end{verbatim}
+
+Implementation file:
+\begin{verbatim}
+double something::somedo(vector v) {
+   .... something with v ....
+};
+\end{verbatim}
+Strangely, data members also go in the header file.
+\end{block}
+
+\Level 0 {Header files and templates}
+
+The use of \emph{templates}\index{templates!and separate compilation}
+often make separate compilation impossible: in order to compile the
+templated definitions the compiler needs to know with what types they
+will be used.
+
+\Level 0 {Namespaces and header files}
+
+Never put \n{using namespace} in a header file.

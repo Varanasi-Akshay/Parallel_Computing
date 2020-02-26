@@ -1,0 +1,71 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Parallel Programming in MPI and OpenMP'
+%%%% by Victor Eijkhout, copyright 2012-7
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Communicator basics}
+
+\input chapters/mpi-commbasic
+
+\Level 0 {Subcommunications}
+\label{sec:communicators}
+\index{communicator|(}
+
+In many scenarios you divide a large job over all the available processors.
+However, your job has two or more parts that can be considered as
+jobs by themselves. In that case it makes sense to divide your processors
+into subgroups accordingly.
+
+Suppose for instance that you are running a simulation where inputs are generated,
+a~computation is performed on them, and the results of this computation
+are analyzed or rendered graphically. You could then consider dividing your
+processors in three groups corresponding to generation, computation, rendering.
+
+As long as you only do sends and receives, this division works fine. However,
+if one group of processes needs to perform a collective operation, you don't
+want the other groups involved in this. Thus, you really want the three groups
+to be really distinct from each other.
+
+In order to make such subsets of processes, MPI has the mechanism of
+taking a subset of \indexmpishow{MPI_COMM_WORLD} and turning that subset
+into a new communicator.
+
+Now you understand why the MPI collective calls had an argument for the
+communicator: a~collective involves all proceses \emph{of that communicator}.
+By making a communicator that contains a subset of all available processes,
+you can do a collective on that subset.
+
+\Level 1 {Scenario: climate model}
+
+A climate simulation code has several components, for instance corresponding
+to land, air, ocean, and ice. You can imagine that each needs a different set
+of equations and algorithms to simulate. You can then divide your processes,
+where each subset simulates one component of the climate, occasionally communicating
+with the other components.
+
+\Level 1 {Scenario: quicksort}
+
+The popular quicksort algorithm works by splitting the data
+into two subsets that each can be sorted individually.
+If you want to sort in parallel, you could implement this by making two subcommunicators,
+and sorting the data on these, creating recursively more subcommunicators.
+
+%% \Level 0 {Creating new communicators}
+
+%% There are various ways of making new communicators. We discuss three 
+%% mechanisms, from simple to complicated.
+
+\input chapters/mpi-commdup
+
+\input chapters/mpi-commsplit
+
+\input chapters/mpi-intercomm
+
+\index{communicator|)}
+

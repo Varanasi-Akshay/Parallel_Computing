@@ -1,0 +1,66 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% structf.tex : types Fortran
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{block}{Structures: \noexpand\texttt{type}}
+  \label{sl:ftype}
+  The Fortran name for structures is \indextermtt{type} or
+  \indextermsub{derived}{type}.
+\end{block}
+
+\begin{block}{Type definition}
+  \label{sl:ftype-def}
+  \n{Type name} / \n{End Type} block.
+  Variable declarations inside the block
+\begin{verbatim}
+type mytype
+  integer :: number
+  character :: name
+  real(4) :: value
+end type mytype
+\end{verbatim}
+\end{block}
+
+\begin{block}{Creating a type structure}
+  \label{sl:ftype-set}
+  Declare a typed object in the main program:
+\begin{verbatim}
+Type(mytype) :: typed_object,object2
+\end{verbatim}
+ Initialize with type name:
+\begin{verbatim}
+typed_object = mytype( 1, 'my_name', 3.7 )
+object2 = typed_object
+\end{verbatim}
+\end{block}
+
+\begin{block}{Member access}
+  \label{sl:ftype-access}
+  Access structure members with \verb+%+
+\begin{verbatim}
+Type(mytype) :: typed_object
+type_object%member = ....  
+\end{verbatim}
+\end{block}
+
+\begin{block}{Example}
+  \label{sl:ftype-ex}
+\verbatimsnippet{ftype}
+\end{block}
+
+\begin{verbatim}
+type(my_struct) :: data
+type(my_struct),dimension(1) :: data_array
+\end{verbatim}
+
+\begin{block}{Types as subprogram argument}
+  \label{sl:ftype-pass}
+  \verbatimsnippet{ftypepass}  
+\end{block}

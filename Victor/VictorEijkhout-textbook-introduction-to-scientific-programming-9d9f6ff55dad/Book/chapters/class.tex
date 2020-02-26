@@ -1,0 +1,49 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% scope.tex : scope issues, functions, classes
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Classes and objects}
+\label{sec:class}
+
+Everything you have learned up till now was (more or less) part of the
+C~language, the predecessor of~C++. (The one clear exception was
+\n{cin}/\n{cout}.) You will now learn one of the major distinguishing
+features that makes C++ an `object oriented language':
+\emph{classes}\index{class|textbf} and
+\emph{objects}\index{object}.
+
+A program naturally contains objects: the combination of data
+and functions operating on that data.
+%
+\verbatimsnippet{intclass}
+
+This looks a little like a structure, but a structure only had data
+elements, and no functions. Also note that unlike declaring a
+structure, a class definition  does not itself make any data: it
+defines the structure of objects of that class. The line in the main
+program is what creates an object with the structure as defined in the
+class definition.
+
+You can have more than one version of a function. This is known as
+\indexterm{polymorphism}.
+%
+\verbatimsnippet{intclasspoly}
+
+You can even redefine arithmetic operators such as~\n{+*/\%}.
+
+\Level 0 {Exercises}
+
+\begin{exercise}
+  Write a fraction class which stores non-integer numbers as a
+  numerator/denominator pair. Implement addition and multiplication
+  functions. Make sure to simplify fractions!
+
+  Can you print fractions so that $5/3$ is displayed as~\hbox{\n{1 2/3}}?
+\end{exercise}

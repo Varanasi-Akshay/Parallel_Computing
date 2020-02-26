@@ -1,0 +1,180 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++11/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% if.tex : conditionals
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A program consisting of just a list of assignment and expressions
+would not be terribly versatile. At least you want to be able to say
+`if $x>0$, do one computation, otherwise compute something else', or `until some
+test is true, iterate the following computations'. The mechanism for
+testing and choosing an action accordingly is called a
+\indexterm{conditional}.
+
+\Level 0 {Conditionals}
+\label{sec:if}
+
+Here are some forms a conditional can take.
+
+Single statement
+\begin{verbatim}
+if (x<0)
+  x = -x;
+\end{verbatim}
+Single statement and alternative:
+\begin{verbatim}
+if (x>=0)
+  x = 1;
+else
+  x = -1;
+\end{verbatim}
+Multiple statements:
+\begin{verbatim}
+if (x<0) {
+  x = 2*x; y = y/2;
+} else {
+  x = 3*x; y = y/3;
+}
+\end{verbatim}
+Chaining conditionals (where the dots stand for omitted code):
+\begin{verbatim}
+if (x>0) {
+  ....
+} else if (x<0) {
+  ....
+} else {
+  ....
+}
+\end{verbatim}
+Nested conditionals:
+\begin{verbatim}
+if (x>0) {
+  if (y>0) {
+    ....
+  } else {
+    ....
+  }
+} else {
+  ....
+}
+\end{verbatim}
+\begin{itemize}
+\item
+  In that last example the outer curly brackets are optional. But it's
+  safer to use them anyway.
+\item When you start nesting constructs, use indentation to make it
+  clear which line is at which level. A~good editor helps you with that.
+\end{itemize}
+
+\begin{slide}{If-then-else}
+  \label{sl:ifthenelse}
+  A \indextermdef{conditional} is a test: `if something is true, then do
+  this, otherwise maybe do something else'. The C++ syntax is
+\begin{verbatim}
+if ( something ) {
+  do something;
+} else {
+  do otherwise;
+}
+\end{verbatim}
+\begin{itemize}
+\item The `else' part is optional
+\item You can leave out braces in case of single statement.
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Complicated conditionals}
+  \label{sl:elseif}
+  Chain:
+\begin{verbatim}
+if ( something ) {
+  ...
+} else if ( something else ) {
+  ...
+}
+\end{verbatim}
+Nest:
+\begin{verbatim}
+if ( something ) {
+  if ( something else ) {
+    ...
+  } else {
+    ...
+  }
+}
+\end{verbatim}
+\end{slide}
+
+\begin{exercise}
+  \label{ex:fizzbuzz}
+  Read in an integer. If it's a multiple of three print `Fizz!';
+  if it's a multiple of five print `Buzz'!. It it is 
+  a multiple of both three and five print `Fizzbuzz!'. Otherwise
+  print nothing.
+\end{exercise}
+
+\Level 0 {Switch statement}
+
+If you have a number of cases corresponding to specific integer
+values, there is the \indextermtt{switch} statement.
+
+\begin{block}{Switch statement example}
+  \label{sl:switch}
+  Cases are executed consecutively until you `break':
+  \snippetwithoutput{switchstatement}{basic}{switch}
+\end{block}
+
+\Level 0 {Scopes}
+
+The true and false branch of a conditional can consist of a single
+statement, or of a block in curly brackets. Such a block creates a
+%
+\emph{scope}\index{scope!in conditional branches}
+%
+where you can define local variables.
+
+\begin{verbatim}
+if ( something ) {
+  int i; 
+  .... do something with i
+}
+// the variable `i' has gone away.
+\end{verbatim}
+
+\begin{slide}{Local variables in conditionals}
+  \label{sl:if-scope}
+  The curly brackets in a conditional allow you to define local variables:
+\begin{verbatim}
+if ( something ) {
+  int i; 
+  .... do something with i
+}
+// the variable `i' has gone away.
+\end{verbatim}
+\end{slide}
+
+\Level 0 {Operators}
+
+\begin{block}{Comparison and logical operators}
+  \label{sl:operators}
+  \begin{tabular}{|l|l|l|}
+    \hline
+    Operator&meaning&example\\ \hline
+    \texttt{==}&equals&\texttt{x==y-1}\\
+    \texttt{!=}&not equals&\texttt{x*x*!=5}\\
+    \texttt{>}&greater&\texttt{y>x-1}\\
+    \texttt{>=}&greater or equal&\texttt{sqrt(y)>=7}\\
+    \texttt{<},\texttt{<=}&less, less equal&\texttt{}\\
+    \n{&&},\n{||}&and, or&\n{x<1 && x>0}\\
+    \texttt{!}&not&\n{!( x>1 && x<2 )}\\
+    \hline
+  \end{tabular}
+
+  \emph{Precendence}\index{precedence} rules are common sense. When in
+  doubt, use parentheses.
+\end{block}

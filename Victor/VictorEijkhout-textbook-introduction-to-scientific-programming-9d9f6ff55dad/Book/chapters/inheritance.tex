@@ -1,0 +1,354 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% inheritance.tex : about the relation between classes
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Inclusion relations between classes}
+\label{sec:hasa}
+
+The data members of an object can be of elementary datatypes, or they
+can be objects. For instance, if you write software to manage courses,
+each \n{Course} object will likely have a \n{Person} object,
+corresponding to the teacher.
+\begin{verbatim}
+class Person { /* ... */ }
+class Course {
+private:
+  Person the_instructor;
+  int year;
+}
+class Person {
+  string name;
+  ....
+}
+\end{verbatim}
+
+Designing objects with relations between them
+is a great mechanism for writing structured code,
+as it makes the objects in code behave like objects in the real world.
+The relation where one object contains another, is called a
+\indexterm{has-a relation} between classes.
+
+\begin{slide}{Has-a relationship}
+  \label{sl:obj-hasa}
+  A class usually contains data members. These can be simple types or
+  other classes. This allows you to make structured code.
+\begin{verbatim}
+class Course {
+private:
+  Person the_instructor;
+  int year;
+}
+class Person {
+  string name;
+  ....
+}
+\end{verbatim}
+  This is
+  called the \indexterm{has-a relation}.  
+\end{slide}
+
+At this time, do exercises in section~\ref{sec:FuncHasPoint}.
+
+\Level 1 {Accessors and other methods}
+
+Sometimes a class can behave as if it includes an object of another
+class, while not actually doing so. For instance, a line segment can
+be defined from two points
+\begin{verbatim}
+class Segment {
+private:
+  Point starting_point,ending_point;
+}
+  ...
+int main() {
+  Segment somesegment;
+  Point somepoint = somesegment.get_the_end_point();
+\end{verbatim}
+or from one point, and a distance and angle:
+\begin{verbatim}
+class Segment {
+private:
+  Point starting_point;
+  float length,angle;
+}
+\end{verbatim}
+In both cases the code using the object is written as if the segment
+object contains two points.
+This illustrates how object-oriented programming can decouple the
+\ac{API} of classes from their actual implementation.
+
+\begin{slide}{Literal and figurative has-a}
+  \label{sl:obj-hasa-ish}
+\small
+  A line segment has a starting point and an end point.
+\begin{multicols}{2}
+  A \n{Segment}
+  class can store those points:
+\begin{verbatim}
+class Segment {
+private:
+  Point starting_point,ending_point;
+public:
+  Point get_the_end_point() {
+    return ending_point; };
+}
+  ...
+  Segment somesegment;
+  Point somepoint =
+    somesegment.get_the_end_point();
+\end{verbatim}
+or store one and derive the other:
+\begin{verbatim}
+class Segment {
+private:
+  Point starting_point;
+  float length,angle;
+public:
+  Point get_the_end_point() {
+    /* some computation from the
+       starting point */ };
+}
+\end{verbatim}
+\end{multicols}
+Implementation vs API: implementation can be very different from user interface.
+\end{slide}
+
+Related to this decoupling, a class can also have two very different constructors.
+\begin{verbatim}
+class Segment {
+private:
+ // up to you how to implement!
+public:
+  Segment( Point start,float length,float angle )
+    { .... }
+  Segment( Point start,Point end ) { ... }
+\end{verbatim}
+Depending on how you actually implement the class, the one constructor
+will simply store the defining data, and the other will do some
+conversion from the given data to the actually stored data.
+
+This is another strength of object-oriented programming: you can
+change your mind about the implementation of a class without having
+to change the program that uses the class.
+
+\begin{slide}{Polymorphism in constructors}
+  \label{sl:obj-poly-construct}
+  You have to decide what to store and what to derive, but you can
+  construct two ways:
+\begin{verbatim}
+class Segment {
+private:
+ // up to you how to implement!
+public:
+  Segment( Point start,float length,float angle )
+    { .... }
+  Segment( Point start,Point end ) { ... }
+\end{verbatim}
+Advantage: with a good API you can change your mind about the
+implementation without bothering the user.
+\end{slide}
+
+At this time, do the exercises in section~\ref{sec:poly-rectangle}
+
+\Level 0 {Inheritance}
+\label{sec:inheritance}
+
+In addition to the has-a relation, there is the \indexterm{is-a
+  relation}, also called \indextermdef{inheritance}. Here one class is
+a special case of another class.
+Typically the object of the \indextermsub{derived}{class} (the special
+case) then also inherits the data and methods of the
+\indextermsub{base}{class} (the general case).
+\begin{verbatim}
+class General {
+protected: // note!
+ int g;
+public:
+ void general_method() {};
+};
+
+class Special : public General {
+public:
+  void special_method() { ... g ... };
+};
+\end{verbatim}
+
+\begin{slide}{General case, special case}
+  \label{sl:obj-case}
+  You can have classes where an object of one class is a special case of
+  the other class. You declare that as
+\begin{verbatim}
+class General {
+protected: // note!
+ int g;
+public:
+ void general_method() {};
+};
+
+class Special : public General {
+public:
+  void special_method() { g = ... };
+};
+
+int main() {
+  Special special_object;
+  special_object.general_method();
+  special_object.special_method();
+}
+\end{verbatim}
+\end{slide}
+
+How do you define a derived class?
+\begin{itemize}
+\item You need to indicate what the base class is:
+\begin{verbatim}
+class Special : public General { .... }
+\end{verbatim}
+\item The base class needs to declare its data members as
+  \indextermttdef{protected}: this is similar to private, except that
+  they are visible to derived classes
+\item The methods of the derived class can then refer to data of the
+  base class;
+\item Any method defined for the base class is available as a method
+  for a derived class object.
+\end{itemize}
+
+\begin{slide}{Inheritance: derived classes}
+  \label{sl:obj-derive}
+  \emph{Derived}\index{class!derived} class \n{Special}
+  \emph{inherits}\index{inheritance} methods and data from
+  \indextermsub{base}{class} \n{General}:
+\begin{verbatim}
+int main() {
+  Special special_object;
+  special_object.general_method();
+\end{verbatim}
+Members and methods need to be \n{protected}, not \n{private}, to be inheritable.
+\end{slide}
+
+The derived class has its own constructor, with the same name as the
+class name, but when it is invoked, it also calls the constructor of
+the base class. This can be the default constructor, but often you
+want to call the base constructor explicitly, with parameters that are
+describing how the special case relates to the base case. Example:
+\begin{verbatim}
+class General {
+public:
+  General( double x,double y ) {};
+};
+class Special : public General {
+public:
+  Special( double x ) : General(x,x+1) {};
+};
+\end{verbatim}
+
+\begin{slide}{Constructors}
+  \label{sl:obj-derive-construct}
+  When you run the special case constructor, usually the general case
+  needs to run too. By default the `default constructor', but:
+\begin{verbatim}
+class General {
+public:
+  General( double x,double y ) {};
+};
+class Special : public General {
+public:
+  Special( double x ) : General(x,x+1) {};
+};
+\end{verbatim}
+\end{slide}
+
+\Level 1 {Methods of base and derived classes}
+\label{sec:derive-method}
+
+\begin{block}{Overriding methods}
+  \label{sl:obj-method-override}
+  \begin{itemize}
+  \item A derived class can inherit a method from the base class.
+  \item A derived class can define a method that the base class does
+    not have.
+  \item A derived class \emph{override}\index{method!overriding} a
+    base class method:
+\begin{verbatim}
+class Base {
+public:
+  virtual f() { ... };
+};
+class Deriv : public Base {
+public:
+  virtual f() override { ... };
+};
+\end{verbatim}
+  \end{itemize}
+\end{block}
+
+\Level 1 {Virtual methods}
+
+\begin{block}{Base vs derived methods}
+  \begin{itemize}
+  \item Method defined in base class: can be used in any derived class.
+  \item Method define in derived class: can only be used in that
+    particular derived class.
+  \item Method defined both in base and derived class, marked
+    \indextermtt{override}: derived class method replaces (or extends)
+    base class method.
+  \item Virtual method: base class only declares that a routine has to
+    exist, but does not give base implementation.\\ A class is called
+    \indextermsub{abstract}{class} if it has virtual methods; pure
+    virtual if all methods are virtual.\\ You can not make abstract objects.
+  \end{itemize}  
+\end{block}
+
+\begin{block}{Abstract classes}
+  Special syntax for \indextermsub{abstract}{method}:
+\begin{verbatim}
+class Base {
+public:
+  virtual void f() = 0;
+};
+class Deriv {
+public:
+  virtual void f() { ... };
+};
+\end{verbatim}
+\end{block}
+
+\begin{block}{Example: using virtual class}
+  \small
+  \begin{multicols}{2}
+    \verbatimsnippet{virtfuncvirt}
+    \vfill\columnbreak
+    Suppose \n{DenseVector} derives from \n{VirtualVector}:\\
+    \verbatimsnippet{virtfuncmain}
+  \end{multicols}
+\end{block}
+
+\begin{block}{Implementation}
+  \footnotesize
+  \begin{multicols}{2}
+    \verbatimsnippet{virtfuncdense}
+    \vfill\columnbreak
+    \verbatimsnippet{virtfuncfunc}
+  \end{multicols}
+\end{block}
+
+\Level 1 {Advanced topics in inheritance}
+
+\begin{block}{More}
+  \label{sl:obj-more}  
+  \begin{itemize}
+  \item  Multiple inheritance: an~X is-a~A, but also is-a~B.\\
+    This mechanism is somewhat dangerous.
+  \item Virtual base class: you don't actually define a function in
+    the base class, you only say `any derived class has to define this
+    function'.
+  \end{itemize}
+\end{block}
+

@@ -1,0 +1,404 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% elementsf.tex : basic language elements of Fortran
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Fortran is an old programming language, dating back to the 1950s, and
+the first `high level programming language' that was widely used.
+In a way, the fields of programming language design and compiler
+writing started with Fortran, rather than this language being based on
+established fields. Thus, the design of Fortran has some
+idiosyncracies that later designed languages have not adopted. Many of
+these are now `deprecated' or simply inadvisable. Fortunately, it is
+possible to write Fortran in a way that is every bit as modern and
+sophisticated as other current languages.
+
+In this part of our book, we will teach you safe practices for
+writing Fortran. Occasionally we will not mention practices that you
+will come across in old Fortran codes, but that we would not advise
+you taking up. While our exposition of Fortran can stand on its own,
+we will in places point out explicitly differences with~C++.
+
+For secondary reading, this is a good course on modern Fortran:
+\url{http://www.pcc.qub.ac.uk/tec/courses/f77tof90/stu-notes/f90studentMIF_1.html}
+
+\Level 0 {Compiling Fortran}
+
+For Fortran programs, the compiler is \indextermtt{gfortran} for the
+GNU compiler, and \indextermtt{ifort} for Intel.
+Fortran programs can have a number of extensions, but some of them
+have special meaning to the compiler, by convention. In this book we
+adopt the \indextermtt{F90} extension.
+
+The minimal Fortran program is:
+%
+\verbatimsnippet{emptyf}
+
+\begin{exercise}
+  Add the line
+\begin{verbatim}
+print *,"Hello world!"
+\end{verbatim}
+to the empty program, and compile and run it.
+\end{exercise}
+
+\Level 0 {Main program}
+
+Fortran does not use curly brackets to delineate blocks, instead you
+will find \indextermtt{end} statements. The very first one appears
+right when you start writing your program:
+a~Fortran program needs to start with a \n{Program} line, and end with
+\n{End Program}. The program needs to have a name on both lines:
+%
+\verbatimsnippet{emptyf}
+%
+and you can not use that name for any entities in the program.
+
+\Level 1 {Program structure}
+
+Unlike C++, Fortran can not mix variable declarations and executable
+statements, so both the main program and any subprograms have roughly
+a
+structure:
+\begin{verbatim}
+Program foo
+  < declarations >
+  < statements >
+End Program foo
+\end{verbatim}
+(The \indexterm{emacs} editor will supply the block type and name if
+you supply the `end' and hit the TAB or RETURN key; see
+section~\ref{sec:editor-mode}.)
+
+\begin{slide}{Program structure}
+  \label{sl:programf}
+\begin{verbatim}
+Program foo
+  < declarations >
+  < statements >
+End Program foo
+\end{verbatim}
+\end{slide}
+
+\Level 1 {Statements}
+
+Let's say a word about layout. Fortran has a `one line, one statement'
+principle.
+\begin{itemize}
+\item As long as a statement fits on one line, you don't have to
+  terminate it explicitly with something like a semicolon:
+\begin{verbatim}
+x = 1
+y = 2
+\end{verbatim}
+\item If you want to put two statements on one line, you have to
+  terminate the first one:
+\begin{verbatim}
+x = 1; y = 2
+\end{verbatim}
+\item If a statement spans more than one line, all but the first line
+  need to have an explicit \indexterm{continuation character}, the ampersand:
+\begin{verbatim}
+x = very &
+  long &
+  expression
+\end{verbatim}
+(This is different between
+\emph{free format}\index{Fortran!source format!free}
+and \emph{fixed format}\index{Fortran!source format!fixed},
+where it's the lines after the
+first that are marked a continuation, but we don't teach that here.)
+\end{itemize}
+
+\begin{slide}{Statements}
+  \label{sl:fstatement}
+  \begin{itemize}
+  \item One line, one statement
+\begin{verbatim}
+x = 1
+y = 2
+\end{verbatim}
+\item semicolon to separate multiple statements per line
+\begin{verbatim}
+x = 1; y = 2
+\end{verbatim}
+\item Continuation of a line
+\begin{verbatim}
+x = very &
+  long &
+  expression
+\end{verbatim}
+  \end{itemize}
+\end{slide}
+
+\Level 1 {Comments}
+
+Fortran knows only single-line
+\emph{comments}\index{Fortran!comments},
+indicated by an exclamation point:
+\begin{verbatim}
+x = 1 ! set x to one
+\end{verbatim}
+Everything from the exclamation point onwards is ignored.
+
+Maybe not entirely obvious: you can have a comment after a
+continuation character:
+\begin{verbatim}
+x = f(a) & ! term1 
+  + g(b)   ! term2
+\end{verbatim}
+
+\begin{slide}{Comments}
+  \label{sl:fcomment}
+  \begin{itemize}
+  \item Ignore to end of line
+\begin{verbatim}
+x = 1 ! set x to one
+\end{verbatim}
+\item comment after continuation
+\begin{verbatim}
+x = f(a) & ! term1 
+  + g(b)   ! term2
+\end{verbatim}
+  \end{itemize}
+\end{slide}
+
+\Level 0 {Variables}
+
+Unlike in C++, where you can declare a variable right before you need
+it, Fortran wants its variables declared near the top of the program
+or subprogram:
+\begin{verbatim}
+Program YourProgram
+  ! variable declaration
+  ! executable code
+End Program YourProgram
+\end{verbatim}
+A variable declaration looks like:
+\begin{verbatim}
+type, attributes :: name1, name2, ....
+\end{verbatim}
+where
+\begin{itemize}
+\item \textit{type} is most commonly \n{integer}, \n{real(4)}, \n{real(8)},
+  \n{logical}. See below; section~\ref{sec:ftype}.
+\item \textit{attributes} can be \n{dimension}, \n{allocatable},
+  \n{intent}, \n{parameters} et cetera.
+\item \textit{name} is something you come up with. This has to start
+  with a letter.
+\end{itemize}
+
+\begin{slide}{Variable declarations}
+  \label{sl:fvars}
+  \begin{itemize}
+  \item Variable declarations at the top of the problem
+  \item Variables are implicitly defined. Dangerous, so use:
+\begin{verbatim}
+implicit none
+\end{verbatim}
+\item declaration
+\begin{verbatim}
+type, attributes :: name1, name2, ....
+\end{verbatim}
+where
+\begin{itemize}
+\item \textit{type} is most commonly \n{integer}, \n{real(4)}, \n{real(8)},
+  \n{logical}
+\item \textit{attributes} can be \n{dimension}, \n{allocatable},
+  \n{intent}, \n{parameters} et cetera.
+  \end{itemize}
+\end{itemize}
+\end{slide}
+
+\Level 1 {Data types}
+\label{sec:ftype}
+
+Fortran has a somewhat unusual treatment of data types: if you don't
+specify what data type a variable is, Fortran will deduce it from some
+default or user rules. This is a very dangerous practice, so we
+advocate putting a line
+\begin{verbatim}
+implicit none
+\end{verbatim}
+immediately after any program or subprogram header.
+
+\begin{slide}{Implicit typing}
+  \label{sl:fimplicit}
+  Fortran does not need variable declarations:\\
+  type are determined by name.\\
+  This is very dangerous. Use:
+\begin{verbatim}
+implicit none
+\end{verbatim}
+  in every program unit.
+\end{slide}
+
+You can query how many bytes a data type takes with
+\indextermttdef{kind}.
+
+You can set this in the declaration:
+%
+\verbatimsnippet{fstorage}
+
+\begin{slide}{Floating point types}
+  \label{sl:ffloat}
+  Indicate number of bytes:
+  \verbatimsnippet{fstorage}
+\end{slide}
+
+\begin{block}{Numerical precision}
+  \label{sl:fprecision48}
+  Number of bytes determines numerical precision:
+  \begin{itemize}
+  \item Computations in 4-byte have relative error $\approx 10^{-6}$
+  \item Computations in 8-byte have relative error $\approx 10^{-15}$
+  \end{itemize}
+  Also different exponent range: max $10^{50}$ and $10^{300}$ respectively.
+\end{block}
+
+\begin{block}{Storage size}
+  F08: \indextermtt{storage_size} reports number of bits.
+
+  F95: \indextermtt{bit_size} works on integers only.
+
+  \indextermtt{c_sizeof} reports number of bytes, requires
+  \indextermtt{iso_c_binding} module.
+\end{block}
+
+You can set the precision of floating point numbers with
+\indextermttdef{selected_real_kind}, where the argument is the number
+of significant digits.
+
+\Level 1 {Constants}
+
+Since there are 4-byte and 8-byte reals, how is that for real
+constants? Writing \n{3.14} will usually be a single precision
+real. The question is then, if you write
+\begin{block}{Single precision constants}
+  \label{sl:fsingle}
+\begin{verbatim}
+real(8) :: x
+x = 3.14
+y = 6.022e-23
+\end{verbatim}
+\end{block}
+
+how is that converted to double? This can introduce random junk bits.
+
+Force a constant to be \n{real(8)}:
+\begin{block}{Double precision constants}
+  \label{sl:fdouble}
+  \begin{itemize}
+  \item Use a compiler flag such as \n{-r8} to force all reals to be 8-byte.
+  \item Write \n{3.14d0}
+  \item \verb+x = real(3.14, kind=8)+
+  \end{itemize}
+\end{block}
+
+\Level 1 {Initialization}
+
+Variables can be initialized in their declaration:
+\begin{verbatim}
+integer :: i=2
+real(4) :: x = 1.5
+\end{verbatim}
+
+That this is done at compile time, leading to a common error:
+\begin{verbatim}
+subroutine foo()
+  integer :: i=2
+  print *,i
+  i = 3
+end subroutine foo
+\end{verbatim}
+On the first subroutine call \n{i} is printed with its initialized
+value, but on the second call this initialization is not repeated, and
+the previous value of \n{3} is remembered.
+
+\Level 0 {Input/Output, or I/O as we say}
+\label{sec:fio}
+
+\begin{block}{I/O routines}
+  \label{sl:frw}
+  \begin{itemize}
+  \item Input: 
+\begin{verbatim}
+READ *,n
+\end{verbatim}
+\item Output:
+\begin{verbatim}
+PRINT *,n
+\end{verbatim}
+  \end{itemize}
+  There is also \n{WRITE}.
+
+  Other syntax for read/write with files and formats.
+\end{block}
+
+\Level 0 {Expressions}
+\label{sec:fexpr}
+
+\begin{block}{Arithmetic expressions}
+  \label{sl:farith}
+  \begin{itemize}
+  \item Pretty much as in C++
+  \item Exception: \n{r**2} for power.
+  \item Modulus is a function: \n{MOD(7,3)}.
+  \end{itemize}
+\end{block}
+
+\begin{block}{Boolean expressions}
+  \label{sl:fbool}
+  \begin{itemize}
+  \item 
+    Long form
+    \n{.and. .not. .or.}
+    \n{.lt. .eq. .ge.}
+    \n{.true. .false.}
+  \item Short form:
+    \verb+< <= == /= > >=+
+  \end{itemize}
+\end{block}
+
+\begin{block}{Conversion and casting}
+  Conversion is done through functions.
+  \begin{itemize}
+  \item \n{INT}: truncation; \n{NINT} rounding
+  \item \n{REAL}, \n{FLOAT}, \n{SNGL}, \n{DBLE}
+  \item \n{CMPLX}, \n{CONJG}, \n{AIMIG}
+  \end{itemize}
+\url{http://userweb.eng.gla.ac.uk/peter.smart/com/com/f77-conv.htm}
+\end{block}
+
+
+\begin{block}{Complex}
+  Complex numbers exist
+\end{block}
+
+\Level 0 {Review questions}
+
+\begin{exercise}
+  \label{ex:f-elt-rev1}
+  In declarations
+\begin{verbatim}
+real(4) :: x
+real(8) :: y
+\end{verbatim}
+what do the \n{4} and \n{8} stand for?
+
+What is the practical implication of using the one or the other?
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:f-elt-rev2}
+  In the following code, if \n{value} is nonzero, what do expect about
+  the output?
+  %
+  \verbatimsnippet{d0}
+\end{exercise}

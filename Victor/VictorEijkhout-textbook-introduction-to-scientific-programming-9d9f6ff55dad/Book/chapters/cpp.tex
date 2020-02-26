@@ -1,0 +1,151 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% cpp.tex : about the C preprocessor
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In your source files you have seen lines starting with a hash sign,
+like
+\begin{verbatim}
+#include <iostream>
+\end{verbatim}
+Such lines are interpreted by the
+%
+\emph{C~preprocessor}\index{C preprocessor|see{preprocessor}}.
+
+Your source file is transformed to another source file, in a
+source-to-source translation stage, and only that second file is
+actually compiled by the
+%
+\emph{compiler}\index{compiler!and preprocessor}.
+In the case of an \n{#include} statement, the preprocessing stage
+takes form of literaly inserting another file, here a
+%
+\indexterm{header file}
+into your source.
+
+There are more sophisticated uses of the preprocessor.
+
+\Level 0 {Textual substitution}
+\index{preprocessor!macros|(}
+
+Suppose your program has a number of arrays and loop bounds that are
+all identical. To make sure the same number is used, you can create a
+variable, and pass that to routines as necessary.
+\begin{verbatim}
+void dosomething(int n) {
+  for (int i=0; i<n; i++) ....
+}
+
+int main() {
+  int n=100000;
+
+  double array[n];
+   
+  dosomething(n);
+\end{verbatim}
+You can also use a \emph{preprocessor macro}:
+\begin{verbatim}
+#define N 100000
+void dosomething() {
+  for (int i=0; i<N; i++) ....
+}
+
+int main() {
+  double array[N];
+   
+  dosomething();
+\end{verbatim}
+It is traditional to use all uppercase for such macros.
+
+\Level 0 {Parametrized macros}
+
+Instead of simple text substitution, you can have
+%
+\emph{parametrized preprocessor macros}\index{preprocessor!macro!parametrized}
+\begin{verbatim}
+#define CHECK_FOR_ERROR(i) if (i!=0) return i
+...
+ierr = some_function(a,b,c); CHECK_FOR_ERROR(ierr);
+\end{verbatim}
+
+When you introduce parameters, it's a good idea to use lots of parentheses:
+\begin{verbatim}
+// the next definition is bad!
+#define MULTIPLY(a,b) a*b
+...
+x = MULTIPLY(1+2,3+4);
+\end{verbatim}
+Better
+\begin{verbatim}
+#define MULTIPLY(a,b) (a)*(b)
+...
+x = MULTIPLY(1+2,3+4);
+\end{verbatim}
+
+Another popular use of macros is to simulate multi-dimensional indexing:
+\begin{verbatim}
+#define INDEX2D(i,j,n) (i)*(n)+j
+...
+double array[m,n];
+for (int i=0; i<m; i++)
+  for (int j=0; j<n; j++)
+    array[ INDEX2D(i,j,n) ] = ...
+\end{verbatim}
+
+\begin{exercise}
+  Write a macro that simulates 1-based indexing:
+\begin{verbatim}
+#define INDEX2D1BASED(i,j,n)  ????
+...
+double array[m,n];
+for (int i=1; i<=m; i++)
+  for (int j=n; j<=n; j++)
+    array[ INDEX2D1BASED(i,j,n) ] = ...
+\end{verbatim}
+\end{exercise}
+
+\index{preprocessor!macros|)}
+
+\Level 0 {Conditionals}
+
+\index{preprocessor!conditionals|(}
+
+There are a couple of \emph{preprocessor conditions}.
+
+\Level 1 {Check on a value}
+
+The \n{#if} macro tests on nonzero. A common application is to
+temporarily remove code from compilation:
+\begin{verbatim}
+#if 0
+  bunch of code that needs to
+  be disabled
+#endif
+\end{verbatim}
+
+\Level 1 {Check for macros}
+
+The \n{#ifdef} test tests for a macro being defined. Conversely,
+\n{#ifndef} tests for a macro not being defined. For instance,
+\begin{verbatim}
+#ifndef N
+#define N 100
+#fi
+\end{verbatim}
+Why would a macro already be defined? Well you can do that on the
+compile line:
+\begin{verbatim}
+  icpc -c file.cc -DN=500
+\end{verbatim}
+
+Another application for this test is in preventing recursive inclusion
+of header files; see section~\ref{ex:globalvar}.
+
+\index{preprocessor!conditionals|)}
+

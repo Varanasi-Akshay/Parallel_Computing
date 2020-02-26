@@ -1,0 +1,22 @@
+// anysource.c
+if (procno==nprocs-1) {
+  int *recv_buffer;
+  MPI_Status status;
+
+  recv_buffer = (int*) malloc((nprocs-1)*sizeof(int));
+
+  for (int p=0; p<nprocs-1; p++) {
+    err = MPI_Recv(recv_buffer+p,1,MPI_INT, MPI_ANY_SOURCE,0,comm,
+		      &status); CHK(err);
+    int sender = status.MPI_SOURCE;
+    printf("Message from sender=%d: %d\n",
+	     sender,recv_buffer[p]);
+  }
+} else {
+  float randomfraction = (rand() / (double)RAND_MAX);
+  int randomwait = (int) ( nprocs * randomfraction );
+  printf("process %d waits for %e/%d=%d\n",
+	   procno,randomfraction,nprocs,randomwait);
+  sleep(randomwait);
+  err = MPI_Send(&randomwait,1,MPI_INT, nprocs-1,0,comm); CHK(err);
+}

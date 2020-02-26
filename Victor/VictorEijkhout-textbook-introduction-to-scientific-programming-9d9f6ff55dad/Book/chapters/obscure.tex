@@ -1,0 +1,602 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% obscure.tex : other stuff
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Const}
+
+\Level 1 {Const arguments}
+\label{sec:constparam}
+
+Function arguments marked \indextermtt{const} can not be altered by
+the function code. The following segment gives a compilation error:
+%
+\verbatimsnippet{constchange}
+
+The use of const arguments is one way of protecting you against yourself.
+If an argument is conceptually supposed to stay constant, the compiler
+will catch it if you mistakenly try to change it.
+
+\Level 1 {Const references}
+
+A more sophisticated use of const is the
+\indextermbus{const}{reference}:
+\begin{verbatim}
+void f( const int &i ) { .... }
+\end{verbatim}
+This may look strange. After all, references, and the
+pass-by-reference mechanism, were introduced in
+section~\ref{sec:passing} to return changed values to the calling
+environment. The const keyword negates that possibility of changing
+the parameter.
+
+But there is a second reason for using references. Parameters are
+passed by value, which means that they are copied, and that includes
+big objects such as \n{std::vector}. Using a reference to pass a
+vector is much less costly in both time and space, but then there is the
+possibility of changes to the vector propagating back to the calling
+environment.
+
+Marking a vector argument as const allows
+\indextermbus{compiler}{optimization}. Assume the function~\n{f} as
+above, used like this:
+\begin{verbatim}
+std::vector<double> v(n);
+for ( .... ) {
+  f(v);
+  y = v[0];
+  ... y ... // code that uses y
+}
+\end{verbatim}
+Since the function call does not alter the vector, \n{y}~is invariant
+in the loop iterations, and the compiler changes this code internally to
+\begin{verbatim}
+std::vector<double> v(n);
+int saved_y = v[0];
+for ( .... ) {
+  f(v);
+  ... saved_y ... // code that uses y
+}
+\end{verbatim}
+
+Consider a class that has methods that return an internal member by
+reference, once as const reference and once not:
+%
+\snippetwithoutput{constref}{const}{constref}
+
+We can make visible the difference between pass by value and pass by
+const-reference if we define a class where the
+\indextermsub{copy}{constructor} explicitly reports itself:
+%
+\verbatimsnippet{classwithcopy}
+  
+Now if we define two functions, with the two parameter passing
+mechanisms, we see that passing by value invokes the copy constructor,
+and passing by const reference does not:
+%
+\snippetwithoutput{constcopy}{const}{constcopy}
+
+\Level 1 {Const methods}
+
+We can distinguish two types of methods: those that alter internal
+data members of the object, and those that don't. The ones that don't
+can be marked \indextermtt{const}:
+\begin{verbatim}
+class Things {
+private:
+  int i;
+public:
+  int get() const { return i; }
+  int inc() { return i++; }
+}
+\end{verbatim}
+While this is in no way required, it can be helpful in two ways:
+\begin{itemize}
+\item It will catch mismatches between the prototype and definition of
+  the method. For instance,
+\begin{verbatim}
+class Things {
+private:
+  int var;
+public:
+  int f(int ivar,int c) const {
+    return var+c; // typo: should be `ivar'
+  }
+}
+\end{verbatim}
+Here, the use of \n{var} was a typo, should have been \n{ivar}. Since
+the method is marked \n{const}, the compiler will generate an error.
+\item It allows the compiler to optimize your code. For instance:
+\begin{verbatim}
+class Things {
+public:
+  int f() const { /* ... */ };
+  int g() const { /* ... */ };
+}
+...
+Things t;
+int x,y,z;
+x = t.f();
+y = t.g();
+z = t.f();
+\end{verbatim}
+Since the methods did not alter the object, the compiler can conclude
+that \n{x,z} are the same, and skip the calculation for~\n{z}.
+\end{itemize}
+
+\Level 0 {Auto}
+
+This is not actually obscure, but it intersects many other topics, so
+we put it here for now.
+
+\Level 1 {Declarations}
+
+Sometimes the type of a variable is obvious:
+\begin{verbatim}
+std::vector< std::shared_ptr< myclass >>*
+  myvar = new std::vector< std::shared_ptr< myclass >>
+                ( 20, new myclass(1.3) );
+\end{verbatim}
+(Vector of 20 shared pointers to \n{myclass}, initialized with unique instances.)
+You can write this as:
+\begin{verbatim}
+auto myvar =
+  new std::vector< std::shared_ptr< myclass >>
+            ( 20, new myclass(1.3) );
+\end{verbatim}
+
+\begin{slide}{Type deduction}
+  \label{sl:auto-deduct}
+In:
+\begin{verbatim}
+std::vector< std::shared_ptr< myclass >>*
+  myvar = new std::vector< std::shared_ptr< myclass >>
+                ( 20, new myclass(1.3) );
+\end{verbatim}
+the compiler can figure it out:
+\begin{verbatim}
+auto myvar =
+  new std::vector< std::shared_ptr< myclass >>
+            ( 20, new myclass(1.3) );
+\end{verbatim}
+\end{slide}
+
+\begin{block}{Type deduction in functions}:
+  \label{sl:auto-fun}
+  Return type can be deduced in C++17:
+  \verbatimsnippet{autofun}  
+\end{block}
+
+\begin{block}{Type deduction in functions}:
+  \label{sl:auto-method}
+  Return type can be deduced in C++17:
+  \verbatimsnippet{autoclass}  
+\end{block}
+
+\begin{block}{Auto and references, 1}
+  \label{sl:auto-ref1}
+  \n{auto} discards references and such:
+  %
+  \snippetwithoutput{autoplain}{auto}{plainget}
+\end{block}
+
+\begin{block}{Auto and references, 2}
+  \label{sl:auto-ref2}
+  Combine \n{auto} and references:
+  %
+  \snippetwithoutput{autoref}{auto}{refget}
+\end{block}
+
+\begin{block}{Auto and references, 3}
+  \label{sl:auto-ref3}
+  For good measure:
+  %
+  \snippetwitherror{constautoref}{auto}{constrefget}
+\end{block}
+
+\begin{comment}
+  \begin{block}{Auto plus}
+    \label{sl:auto-plus-const}
+    Keywords like \n{const} and the reference character~\n{\&} can be
+    added:
+\begin{verbatim}
+// class member
+  some_object my_object;
+// class method:
+  some_object &get_some_object() { return my_object; };
+// main program:
+auto object_copy  = thing.get_some_object();
+auto &object_mutable  = thing.get_some_object();
+const auto &object_immutable  = thing.get_some_object();
+\end{verbatim}
+  \end{block}
+\end{comment}
+
+\Level 1 {Iterating}
+
+\begin{block}{Auto iterators}
+  \label{sl:auto-iterator}
+\begin{verbatim}
+vector<int> myvector(20);
+for ( auto copy_of_int : myvector )
+  s += copy_of_int;
+for ( auto &ref_to_int : myvector )
+  ref_to_int = s;
+\end{verbatim}
+Can be used with anything that is iteratable\\
+(vector, map, your own classes!)
+\end{block}
+
+\Level 0 {Lambdas}
+
+The C++11 mechanism of \indextermbus{lambda}{expression}s makes
+dynamic definition of functions possible.
+
+\begin{block}{Lambda expressions}
+  \label{sl:lambda-syntax}
+\begin{verbatim}
+[capture] ( inputs ) -> outtype { definition };
+\end{verbatim}
+Example:
+\verbatimsnippet{lambdaexp}
+Store lambda in a variable:
+\verbatimsnippet{lambdavar}
+\end{block}
+
+A non-trivial use of lambdas uses the capture to fix one argument of a
+function.
+Let's say we want a function that computes exponentials for some fixed
+exponent value. We take the 
+\indextermtt{cmath} function
+\begin{verbatim}
+pow( x,exponent );
+\end{verbatim}
+and fix the exponent:
+%
+\verbatimsnippet{lambdacapt}
+%
+Now \n{powerfunction} is a function of one argument, which computes
+that argument to a fixed power.
+
+\begin{slide}{Capture parameter}
+  \label{sl:lambda-capture}
+  Capture value and reduce number of arguments:
+  %
+  \verbatimsnippet{lambdacapt}
+  %
+  Now \n{powerfunction} is a function of one argument, which computes
+  that argument to a fixed power.
+\end{slide}
+
+Storing a lambda in a class is hard because it has unique
+type. Solution: use \n{std::function}
+
+\begin{block}{Lambda in object}
+  \label{sl:lambda-class}
+  %
+  \verbatimsnippet{lambdaclass}
+\end{block}
+
+\begin{block}{Illustration}
+  \label{sl:lambda-classed}
+  \verbatimsnippet{lambdaclassed}
+\end{block}
+
+\Level 0 {Casts}
+\label{sec:cast}
+
+In C++, constants and variables have clear types. For cases where you
+want to force the type to be something else, there is the
+\indextermdef{cast} mechanism. With a cast you tell the compiler:
+treat this thing as such-and-such a type, no matter how it was
+defined.
+
+In C, there was only one casting mechanism:
+\begin{verbatim}
+sometype x;
+othertype y = (othertype)x;
+\end{verbatim}
+This mechanism is still available as the
+\indextermtt{reinterpret_cast}, which does `take this byte and pretend
+it is the following type':
+\begin{verbatim}
+sometype x;
+auto y = reinterpret_cast<othertype>(x);
+\end{verbatim}
+
+The inheritance mechanism necessitates another casting mechanism.
+An object from a derived class contains in it all the information of
+the base class. It is easy enough to take a pointer to the derived
+class, the bigger object, and cast it to a pointer to the base object.
+The other way is harder.
+
+Consider:
+\begin{verbatim}
+class Base {};
+class Derived : public Base {};
+Base *dobject = new Derived;
+\end{verbatim}
+Can we now cast dobject to a pointer-to-derived ?
+\begin{itemize}
+\item \indextermtt{static_cast} assumes that you know what you are
+  doing, and it moves the pointer regardless.
+\item \indextermtt{dynamic_cast} checks whether \n{dobject} was
+  actually of class \n{Derived} before it moves the pointer, and
+  returns \indextermtt{nullptr} otherwise.
+\end{itemize}
+
+\begin{remark}
+  One further problem with the C-style casts is that their syntax is
+  hard to spot, for instance by searching in an editor.
+  Because C++ casts have a unique keyword, they are easily recognized.
+\end{remark}
+
+\begin{slide}{C++ casts}
+  \label{sl:cpp-casts}
+  Old-style `take this byte and pretend it is XYZ':
+  \n{reinterpret_cast}
+  
+  Casting with classes:
+  \begin{itemize}
+  \item \n{static_cast} cast base to derived without check.
+  \item \n{dynamic_cast} cast base to derived with check.
+  \end{itemize}
+  Adding/removing const: \n{const_cast}
+
+  Syntactically clearly recognizable.
+\end{slide}
+
+Further reading \url{https://www.quora.com/How-do-you-explain-the-differences-among-static_cast-reinterpret_cast-const_cast-and-dynamic_cast-to-a-new-C++-programmer/answer/Brian-Bi}
+
+\Level 1 {Static cast}
+
+One use of casting is to convert to constants to a `larger' type. For
+instance, allocation does not use integers but \indextermtt{size_t}.
+
+\verbatimsnippet{longintcast}
+
+However, if the
+conversion is possible, the result may still not be `correct'.
+%
+\snippetwithoutput{longcast}{cast}{intlong}
+%
+There are no runtime tests on static casting.
+
+Static casts are a good way of casting back void pointers to what they
+were originally.
+
+\begin{slide}{Const cast}
+  \label{sl:const-cast}
+  \verbatimsnippet{longintcast}
+  \snippetwithoutput{longcast}{cast}{intlong}  
+\end{slide}
+
+\Level 1 {Dynamic cast}
+
+Consider the case where we have a base class and derived classes.
+%
+\verbatimsnippet{polybase}
+%
+Also suppose that we have a function that takes a pointer to the base
+class:
+%
+\verbatimsnippet{polymain}
+%
+The function can discover what derived class the base pointer refers
+to:
+%
+\verbatimsnippet{polycast}
+
+\begin{slide}{Pointer to base class}
+  \label{sl:dyn-base-ptr}
+  \begin{multicols}{2}
+    Class and derived:
+    \verbatimsnippet{polybase}
+    \vfill\columnbreak
+    Pass base pointer:
+    \verbatimsnippet{polymain}
+    \vfill\hbox{}
+  \end{multicols}
+\end{slide}
+
+If we have a pointer to a derived object, stored in a pointer to a
+base class object, it's possible to turn it safely into a derived
+pointer again:
+%
+\snippetwithoutput{polycast}{cast}{deriveright}
+
+On the other hand, a \indextermtt{static_cast} would not do the job:
+%
+\snippetwithoutput{polywrong}{cast}{derivewrong}
+
+\begin{slide}{Cast to derived class}
+  \label{sl:dyn-cast}
+  \snippetwithoutput{polycast}{cast}{deriveright}
+  \snippetwithoutput{polywrong}{cast}{derivewrong}
+\end{slide}
+
+Note: the base class needs to be polymorphic, meaning that that pure
+virtual method is needed. This is not the case with a static cast,
+but, as said, this does not work correctly in this case.
+
+\Level 1 {Const cast}
+
+With \indextermtt{const_cast} you can add or remove const from a
+variable. This is the only cast that can do this.
+
+\Level 1 {Reinterpret cast}
+
+The \indextermtt{reinterpret_cast} can take any type and turn it into
+any other. This is of course very dangerous.
+
+\Level 1 {A word about void pointers}
+
+A traditional use for casts in~C was the treatment of
+\indextermsub{void}{pointer}s. The need for this is not as severe in
+C++ as it was before.
+
+A typical use of void pointers appears in the
+PETSc~\cite{petsc-efficient,petsc-home-page} library. Normally when
+you call a library routine, you have no further access to what happens
+inside that routine. However, PETSc has the functionality for you to
+specify a monitor so that you can print out internal quantities.
+\begin{verbatim}
+int KSPSetMonitor(KSP ksp,
+  int (*monitor)(KSP,int,PetscReal,void*),
+  void *context,
+  // one parameter omitted
+  );
+\end{verbatim}
+Here you can declare your own monitor routine that will be called
+internally: the library makes a \indexterm{call-back} to your code.
+Since the library can not predict whether your monitor routine may
+need further information in order to function, there is the
+\n{context} argument, where you can pass a structure as void pointer.
+
+This mechanism is no longer needed in C++ where you would use a
+\indexterm{lambda}:
+\begin{verbatim}
+KSPSetMonitor( ksp,
+  [mycontext] (KSP k,int ,PetscReal r) -> int {
+    my_monitor_function(k,r,mycontext); } );
+\end{verbatim}
+
+\Level 0 {lvalue vs rvalue}
+\label{sec:lrvalue}
+
+The terms `lvalue' and `rvalue' sometimes appear in compiler error
+messages.
+\begin{verbatim}
+int foo() {return 2;}
+
+int main()
+{
+    foo() = 2;
+
+    return 0;
+}
+
+# gives:
+test.c: In function 'main':
+test.c:8:5: error: lvalue required as left operand of assignment
+\end{verbatim}
+
+See the `lvalue' and `left operand'? To first order of approximation
+you're forgiven for thinking that an \indextermdef{lvalue} is something
+on the left side of an assignment. The name actually means `locator
+value': something that's associated with a specific location in
+memory. Thus is lvalue is, also loosely, something that can be modified.
+
+An \indextermdef{rvalue} is then something that appears on the right
+side of an assignemnt, but is really defined as everything that's not
+an lvalue. Typically, rvalues can not be modified.
+
+The assignment \n{x=1} is legal because a variable \n{x} is at some specific
+location in memory, so it can be assigned to. On the other hand,
+\n{x+1=1} is not legal, since \n{x+1} is at best a temporary,
+therefore not at a specific memory location, and thus not an lvalue.
+
+Less trivial examples:
+\begin{verbatim}
+int foo() { x = 1; return x; }
+int main() {
+  foo() = 2;
+}
+\end{verbatim}
+is not legal because \n{foo} does not return an lvalue. However,
+\begin{verbatim}
+class foo {
+private:
+  int x;
+public:
+  int &xfoo() { return x; };
+};
+int main() {
+  foo x;
+  x.xfoo() = 2;
+\end{verbatim}
+is legal because the function \n{xfoo} returns a reference to the
+non-temporary variable \n{x} of the \n{foo} object.
+
+Not every lvalue can be assigned to: in
+\begin{verbatim}
+const int a = 2;
+\end{verbatim}
+the variable \n{a} is an lvalue, but can not appear on the left hand
+side of an assignment.
+
+\Level 1 {Conversion}
+
+Most lvalues can quickly be converted to rvalues:
+\begin{verbatim}
+int a = 1;
+int b = a+1;
+\end{verbatim}
+Here \n{a} first functions as lvalue, but becomes an rvalue in the
+second line.
+
+The ampersand operator takes an lvalue and gives an rvalue:
+\begin{verbatim}
+int i;
+int *a = &i;
+&i = 5; // wrong
+\end{verbatim}
+
+\Level 1 {References}
+
+The ampersand operator yields a reference. It needs to be assigned
+from an lvalue, so
+\begin{verbatim}
+std::string &s = std::string(); // wrong
+\end{verbatim}
+is illegal. The type of \n{s} is an `lvalue reference' and it can not
+be assigned from an rvalue.
+
+On the other hand
+\begin{verbatim}
+const std::string &s = std::string();
+\end{verbatim}
+works, since \n{s} can not be modified any further.
+
+\Level 1 {Rvalue references}
+\label{sec:rvalue-ref}
+
+A new feature of C++ is
+intended to minimize the amount of data copying through
+\indexterm{move semantics}.
+
+Consider a copy assignment operator
+\begin{verbatim}
+BigThing& operator=( const BigThing &other ) {
+  BigThing tmp(other); // standard copy
+  std::swap( /* tmp data into my data */ );
+  return *this;
+};
+\end{verbatim}
+This calls a copy constructor and a destructor on \n{tmp}. (The use of
+a temporary makes this safe under exceptions. The \indextermtt{swap}
+method never throws an exception, so there is no danger of half-copied
+memory.)
+
+However, if you assign
+\begin{verbatim}
+thing = BigThing(stuff);
+\end{verbatim}
+Now a constructor and destructor is called for the temporary rvalue object on
+the right-hand side.
+
+Using a syntax that is new in \indexterm{C++}, we create an
+\indextermbus{rvalue}{reference}:
+\begin{verbatim}
+BigThing& operator=( BigThing &&other ) {
+  swap( /* other into me */ );
+  return *this;
+}
+\end{verbatim}
+

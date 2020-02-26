@@ -1,0 +1,189 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% simplex.tex : simple exercises
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Arithmetic}
+
+\begin{enumerate}
+\item
+  Given
+\begin{verbatim}
+int n;
+\end{verbatim}
+write code that
+uses elementary mathematical operators to compute n-cubed: $n^3$.
+
+Do you get the correct result for all~$n$? Explain.
+\item What is the output of:
+\begin{verbatim}
+int m=32, n=17;
+cout << n%m << endl;
+\end{verbatim}
+\end{enumerate}
+
+\Level 0 {Scope}
+
+\begin{enumerate}
+\item Is this a valid program?
+\begin{verbatim}
+void f() { i = 1; }
+int main() {
+  int i=2;
+  f();
+  return 0;
+}
+\end{verbatim}
+If yes, what does it do; if no, why not?
+\item What is the output of:
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+int main() {
+  int i=5;
+  if (true) { i = 6; }
+  cout << i << endl;
+  return 0;
+}
+\end{verbatim}
+\item What is the output of:
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+int main() {
+  int i=5;
+  if (true) { int i = 6; }
+  cout << i << endl;
+  return 0;
+}
+\end{verbatim}
+\item What is the output of:
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+int main() {
+  int i=2;
+  i += /* 5;
+  i += */ 6;
+  cout << i << endl;
+  return 0;
+}
+\end{verbatim}
+\end{enumerate}
+
+\Level 0 {Looping}
+
+\begin{enumerate}
+\item Suppose a function
+\begin{verbatim}
+bool f(int);
+\end{verbatim}
+is given, which is true for some positive input value. Write a main program that
+finds the smallest positive input value for which \n{f} is true.
+\item Suppose a function
+\begin{verbatim}
+bool f(int);
+\end{verbatim}
+is given, which is true for some negative input value. Write a main program that
+finds the (negative) input with smallest absolute value for which \n{f} is true.
+\end{enumerate}
+
+\Level 0 {Subprograms}
+
+\begin{exercise}
+  \label{ex:flooppos}
+  Write the missing function \n{pos_input} that
+  \begin{itemize}
+  \item reads a number from the user
+  \item returns it
+  \item and returns whether the number is positive
+  \end{itemize}
+  in such a way to make this code work:
+  
+  \snippetwithoutput{flooppos}{funcf}{looppos}
+
+  Hint: is \n{pos_input} a \n{SUBROUTINE} or \n{FUNCTION}? If the
+  latter, what is the type of the function result? How many parameters
+  does it have otherwise? Where does the variable \n{user_input} get
+  its value? So what is the type of the parameter(s) of the function?
+\end{exercise}
+
+\Level 0 {Object oriented exercises}
+
+\begin{exercise}
+  Why is it a good idea to use an accessor function for the data
+  members of a class, rather than
+  declaring data members \n{public} and accessing them directly?
+\end{exercise}
+
+\begin{exercise}
+  You are programming a video game. There are moving elements, and you
+  want to have an object for each. Moving elements need to have a
+  method \n{move} with an argument that indicates a time duration, and
+  this method updates the position of the element, using the speed of
+  that object and the duration.
+
+  Supply the missing bits of code.
+\begin{verbatim}
+class position {
+  /* ... */
+public:
+  position() {};
+  position(int initial) { /* ... */ };
+  void move(int distance) { /* ... */ };
+};
+class actor {
+protected:
+  int speed;
+  position current;
+
+public:
+  actor() { current = position(0); };
+  void move(int duration) {
+    /* THIS IS THE EXERCISE: */
+    /* write the body of this function */
+  };
+};
+class human : public actor {
+public:
+  human() // EXERCISE: write the constructor
+};
+class airplane : public actor {
+public:
+  airplane() // EXERCISE: write the constructor
+};
+
+int main() {
+  human Alice;
+  airplane Seven47;
+  Alice.move( 5 );
+  Seven47.move( 5 );
+\end{verbatim}
+\end{exercise}
+
+\begin{exercise}
+  Let a \n{Point} class be given:
+\begin{verbatim}
+class Point {
+private: 
+  double x,y;
+public:
+  Point( double px,double py ) { x = px; y = py; };
+  // maybe some more methods
+}
+\end{verbatim}
+How would you design a \n{Set} class so that you could write
+\begin{verbatim}
+Point p1,p2,p3;
+Set pointset;
+pointset.add(p1); pointset.add(p2);
+\end{verbatim}
+%  \verbatimsnippet{setminusset}
+\end{exercise}
+

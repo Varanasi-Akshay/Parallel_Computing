@@ -1,0 +1,30 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% obscure.tex : other stuff
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Timing}
+
+Timing is done with the \indextermfort{system_clock} routine.
+\begin{itemize}
+\item This call gives an integer, counting clock ticks.
+\item To convert to seconds, it can also tell you how many ticks per
+  second it has: its \indextermbus{timer}{resolution}.
+\end{itemize}
+
+\begin{verbatim}
+  integer :: clockrate,clock_start,clock_end
+  call system_clock(count_rate=clockrate)
+  print *,"Ticks per second:",clockrate
+
+  call system_clock(clock_start)
+  ! code
+  call system_clock(clock_end)
+  print *,"Time:",(clock_end-clock_start)/REAL(clockrate)
+\end{verbatim}

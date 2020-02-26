@@ -1,0 +1,715 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% function.tex : functions
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A~\indexterm{function}
+(or~\emph{subprogram}\index{subprogram|see{function}}) is a way to
+abbreviate a block of code and replace it by a single line.
+
+\begin{itemize}
+\item Find a block of code that has a clearly identifiable function.
+\item Turn this into a function: the function definition will contain
+  that block, plus a header and (maybe) a return statement.
+\item The function definition is placed before the main program.
+\item The function is called by its name.
+\end{itemize}
+
+%1
+\begin{slide}{Turn blocks of code into functions}
+  \label{sl:function-intro}
+  \begin{itemize}
+  \item Code fragment with clear function:
+  \item Turn into \emph{subprogram}: function \emph{definition}.
+  \item Use by single line: function \emph{call}.
+  \end{itemize}
+\end{slide}
+
+\begin{block}{Example}
+  \label{sl:function-example}
+  \begin{multicols}{2}
+    \small
+    The code for an odd/even test
+\begin{verbatim}
+for (int i=0; i<N; i++) {
+  cout << i;
+  if (i%2==0)
+    cout << " is even";
+  else
+    cout << " is odd";
+  cout << endl;
+}
+\end{verbatim}
+\vfill\columnbreak
+becomes
+\begin{verbatim}
+void report_evenness(int n) {
+  cout << i;
+  if (i%2==0)
+    cout << " is even";
+  else
+    cout << " is odd";
+  cout << endl;
+}
+...
+int main() {
+  ...
+  for (int i=0; i<N; i++)
+    report_evenness(i);
+}
+\end{verbatim}
+  \end{multicols}
+Code becomes more readable: introduce application terminology.
+\end{block}
+
+\begin{block}{Code reuse}
+  \label{sl:function-reuse}
+Example: multiple norm calculations:
+  \begin{multicols}{2}
+    \small
+    Repeated code:
+\begin{verbatim}
+float s = 0;
+for (int i=0; i<nx; i++)
+  s += abs(x[i]);
+cout << "Inf norm x: " << s << endl;
+s = 0;
+for (int i=0; i<ny; i++)
+  s += abs(y[i]);
+cout << "Inf norm y: " << s << endl;
+\end{verbatim}
+\vfill\columnbreak
+becomes:
+\begin{verbatim}
+int InfNorm( float a[],int n) {
+  float s = 0;
+  for (int i=0; i<n; i++)
+    s += abs(a[i]);
+  return s;
+}
+int main() {
+  ... // stuff
+  cout << "Inf norm x: " << InfNorm(x,nx) << endl;
+  cout << "Inf norm y: " << InfNorm(y,ny) << endl;
+\end{verbatim}
+  \end{multicols}
+  Code becomes shorter, easier to maintain.\\
+  (Don't worry about array stuff in this example)\\
+  Introduces application terminology.
+\end{block}
+
+\Level 0 {Function definition and call}
+
+\begin{slide}{Function definition and call}
+  \label{sl:def-call}
+  \begin{multicols}{2}
+\begin{verbatim}
+for (int i=0; i<N; i++) {
+  cout << i;
+  if (i%2==0)
+    cout << " is even";
+  else
+    cout << " is odd";
+  cout << endl;
+}
+\end{verbatim}
+\columnbreak
+\begin{verbatim}
+void report_evenness(int n) {
+  cout << n;
+  if (n%2==0)
+    cout << " is even";
+  else
+    cout << " is odd";
+  cout << endl;
+}
+...
+int main() {
+  ...
+  for (int i=0; i<N; i++)
+    report_evenness(i);
+}
+\end{verbatim}
+  \end{multicols}
+\end{slide}
+
+In the \indextermbus{function}{definition}:
+\begin{itemize}
+\item The keyword \indextermtt{void} indicates that the function does
+  not give any results back to the main program.
+\item The name \n{report_evenness} is picked by you.
+\item The parenthetical \n{(int n)} is called the `argument list' or
+  `parameter list': it
+  says that the function takes an \n{int} as input. For purposes of
+  the function, the int will have the name~\n{n}, but this is not
+  necessarily the same as the name in the main program.
+\item The `body' of the function, the code that is going to be
+  executed, is enclosed in curly brackets.
+\end{itemize}
+
+The \indextermbus{function}{call} consists of
+\begin{itemize}
+\item The name of the function, and
+\item In between parentheses, the value of the input argument.
+\end{itemize}
+
+In the previous example, the function had an input, and performed some
+screen output. To have a function that takes part in the computation
+of your program, you would write something like:
+\begin{verbatim}
+int my_computation(int i) {
+   return i+3;
+}
+...
+// in the main:
+int result;
+result = my_computation(5);
+\end{verbatim}
+
+Functions are defined before the main program, and used in that program:
+Here is a program with a function that doubles its input:
+
+\begin{block}{Program with function}
+  \label{sl:fun-example}
+  \small
+\begin{verbatim}
+#input <iostream>
+using namespace std;
+
+int double_this(int n) {
+  int twice_the_input = 2*n;
+  return twice_the_input;
+}
+
+int main() {
+  int number = 3;
+  cout << "Twice three is: " << 
+    double_this(number) << endl;
+  return 0;
+}
+\end{verbatim}
+\end{block}
+
+Functions can be motivated as making your code more structured and intelligible.
+The source where you use the function call becomes shorter,
+and the function
+name makes the code more descriptive. This is sometimes called
+`self-documenting code'.
+
+Sometimes introducing a function can be motivated from a point of
+\indexterm{code reuse}: if the same block of code appears in two
+places in your source, your replace this by one function definition,
+and two (single line) function calls.
+The two occurences of the function code do not have to be identical:
+
+
+\begin{block}{Code reuse}
+  \label{sl:reuse}
+\begin{verbatim}
+double x,y, v,w;
+y = ...... computation from x .....
+w = ...... same computation, but from v .....
+\end{verbatim}
+can be replaced by
+\begin{verbatim}
+double computation(double in) {
+  return .... computation from `in' ....
+}
+
+y = computation(x);
+w = computation(v);
+\end{verbatim}
+\end{block}
+
+A final argument for using functions is code maintainability:
+\begin{itemize}
+\item Easier to debug: if you use the same (or roughly the same) block
+  of code twice, and you find an error, you need to fix it twice.
+\item Maintainance: if a block occurs twice, and  you change something in such a block
+  once, you have to remember to change the other occurrences too.
+\item Localization: any variables that only serve the calculation in
+  the function now have a limited \indexterm{scope}.
+\begin{verbatim}
+void print_mod(int n,int d) {
+  int m = n%d;
+  cout << "The modulus of " << n << " and " << d 
+       << " is " << m << endl;
+\end{verbatim}
+\end{itemize}
+
+\begin{slide}{Why functions?}
+  \label{sl:func-why}
+  \begin{itemize}
+  \item Easier to read
+  \item Shorter code: reuse
+  \item Cleaner code: local variables are no longer in the main program.
+  \item Maintainance and debugging
+  \end{itemize}
+\end{slide}
+
+Loosely, a function takes input and computes some result which is then returned.
+Formally, a~function consists of:
+\begin{itemize}
+\item \indextermbusdef{function}{result type}: you need to indicate
+  the type of the result;
+\item name: you get to make this up;
+\item zero or more \indextermbus{function}{parameters} or
+  \indextermbus{function}{arguments}: the data that the function
+  operates on; and the
+\item \indextermbusdef{function}{body}: the statements that make up
+  the function. The function body is a \emph{scope}: it can have local
+  variables. (You can not nest function definitions.)
+\item a \indextermdef{return} statement. Which doesn't have to be
+  the last statement, by the way.
+\end{itemize}
+
+\begin{slide}{Anatomy of a function definition}
+  \label{sl:func-anatomy}
+  \begin{itemize}
+  \item Result type: what's computed. \n{void} if no result
+  \item Name: make it descriptive.
+  \item Arguments: zero or more.\\
+    \n{int i,double x,double y}
+  \item Body: any length. This is a scope.
+  \item Return statement: usually at the end, but can be anywhere; the
+    computed result.
+  \end{itemize}
+\end{slide}
+
+The function can then be used in the main program, or in another function:
+\begin{block}{Function call}
+  \label{sl:func-call}
+  The function call
+  \begin{enumerate}
+  \item copies the value of the \indextermbus{function}{argument}
+    to the \indextermbus{function}{parameter};
+  \item causes the function body to be executed, and
+  \item the function call is replaced by whatever you \n{return}.
+  \item (If the function does not return anything, for instance because
+    it only prints output, you declare the return type to be \indextermtt{void}.)
+  \end{enumerate}
+\end{block}
+
+\begin{block}{Functions without input, without return result}
+  \label{sl:func-ex1}
+\begin{verbatim}
+void print_header() {
+  cout << "****************" << endl;
+  cout << "* Output       *" << endl;
+  cout << "****************" << endl;
+  }
+int main() {
+  print_header();
+  cout << "The results for day 25:" << endl;
+  // code that prints results ....
+  return 0;
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{Functions with input}
+  \label{sl:func-ex2}
+\begin{verbatim}
+void print_header(int day) {
+  cout << "****************" << endl;
+  cout << "* Output       *" << endl;
+  cout << "****************" << endl;
+  cout << "The results for day " << day << ":" << endl;
+  }
+int main() {
+  print_header(25);
+  // code that prints results ....
+  return 0;
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{Functions with return result}
+  \label{sl:func-return}
+\begin{verbatim}
+#include <cmath>
+double pi() {
+  return 4*atan(1.0);
+}
+\end{verbatim}
+The \n{atan} is a \indextermsub{standard}{function}
+\end{block}
+
+A function body defines a
+%
+\emph{scope}\index{scope!of function body}%
+\index{function!defines scope}:
+the local variables of the function calculation are invisible to the
+calling program.
+
+Functions can not be nested: you can not define a function inside the
+body of another function.
+
+\begin{exercise}
+  \label{ex:newton-root}
+  Early computers had no hardware for computing a square
+  root. Instead, they used \indexterm{Newton's method}. Suppose you
+  want to compute \[ x=\sqrt{y}. \] This is equivalent to finding the
+  zero of \[ f_y(x) = x^2-y. \]
+  Newton's method does this by evaluating \[ x_{\mathrm{next}}=x-f_y(x)/f_y'(x) \]
+  until the guess is accurate enough.
+  \begin{itemize}
+  \item Write functions \n{f(x,y)} and \n{deriv(x,y)}, that compute
+    $f_y(x)$ and $f_y'(x)$.
+  \item Read a value $y$ and iterate until $|\n{f(x,y)}|<10^{-5}$. Print~$x$.
+  \item Second part: write a function \n{newton_root} that computes~$\sqrt{y}$.
+  \end{itemize}
+\end{exercise}
+
+\Level 0 {Parameter passing}
+\label{sec:passing}
+\index{parameter|seealso{function, parameter}}
+
+C++~functions resemble mathematical functions:
+you have seen that a function can have an input and an
+output. In fact, they can have multiple inputs.
+
+We start by studying functions that look like these mathematical
+functions. They involve a \indextermbus{parameter}{passing} mechanism
+called
+\emph{passing by value}\index{parameter!pass by value}.
+%
+Later we will then look at
+\emph{passing by reference}\index{parameter!pass by reference}.
+
+\Level 1 {Pass by value}
+
+The following style of programming is very much inspired by
+mathematical functions, and is known as \indextermdef{functional programming}:
+\begin{itemize}
+\item A function has one result, which is returned through a return
+  statement. The function call then looks like
+\begin{verbatim}
+y = f(x1,x2,x3);
+\end{verbatim}
+\item The definition of the C++ parameter passing mechanism says that
+  input arguments are copied to the function, meaning that they don't
+  change in the calling program:
+  %
+  \snippetwithoutput{passvalue}{func}{passvalue}
+
+  We say that the input argument is
+  \emph{passed by value}\index{parameter!pass by value}.
+  In this example, the function parameter \n{x} acts as a local
+  variable in the function, and it is initialized with a copy fo the
+  value of \n{number} in the main program.
+\end{itemize}
+
+\begin{slide}{Mathematical type function}
+  \label{sl:func-functional}
+  Pretty good design:
+  \begin{itemize}
+  \item pass data into a function,
+  \item return result through \n{return} statement.
+  \item Parameters are copied into the function.
+%  \item Mark parameters as \n{const}, just in case:
+  \item \indexterm{pass by value}
+  \item `functional programming'
+  \end{itemize}
+\end{slide}
+\begin{slide}{Functional programming example}
+  \label{sl:func-functional-ex}
+  \snippetwithoutput{passvalue}{func}{passvalue}
+\end{slide}
+
+Passing a variable to a routine passes the value; in the routine, the
+variable is local.
+
+\verbatimsnippet{localparm}
+
+You can local changes:
+
+\verbatimsnippet{readonlyparm}
+
+\Level 1 {Pass by reference}
+\label{sec:pass-by-ref}
+\index{pass by reference|see{parameter, pass by reference}}
+  
+Having only one output is a limitation on functions. Therefore there
+is a mechanism for altering the input parameters and returning
+(possibly multiple) results that way. You do this by not copying
+values into the function parameters, but by turning the function
+parameters into aliases of the variables at the place where the
+function is called.
+
+We need the concept of a \indextermdef{reference}:
+\begin{block}{Reference}
+  \label{sl:cpp-reference}
+  A reference indicated with an ampersand, and it acts as an alias of
+  the thing it references.
+  %
+  \snippetwithoutput{refint}{basic}{ref}
+  %
+  (You will not use references often this way.)
+\end{block}
+
+You can make a function parameter into a reference of a variable in
+the main program:
+
+\begin{block}{Parameter passing by reference}
+  \label{sl:pass-by-ref}
+The function parameter \n{n} becomes a reference to the variable \n{i}
+in the main program:
+\begin{verbatim}
+void f(int &n) {
+  n = /* some expression */ ;
+};
+int main() {
+  int i;
+  f(i);
+  // i now has the value that was set in the function
+}
+\end{verbatim}
+\end{block}
+
+Using the ampersand, the parameter is
+\emph{passed by reference}\index{pass by reference}:
+instead of copying the value, the function receives a \emph{reference}:
+information where the variable is stored in memory.
+
+We also the following terminology for function parameters:
+\begin{itemize}
+\item \emph{input}\index{parameter!input|textbf} parameters: passed by
+  value, so that it only functions as input to the function, and no
+  result is output through this parameter;
+\item \emph{output}\index{parameter!output|textbf} parameters: passed
+  by reference so that they return an `output' value to the program.
+\item \emph{throughput}\index{parameter!throughput|textbf} parameters:
+  these are passed by reference, and they have an initial value when
+  the function is called. In C++, unlike Fortran, there is no real
+  separate syntax for these.
+\end{itemize}
+
+\begin{slide}{Results other than through return}
+  \label{sl:func-err-return}
+  Also good design:
+  \begin{itemize}
+  \item Return no function result,
+  \item or return \indexterm{return status} (0~is success, nonzero various
+    informative statuses), and
+  \item return other information by changing the parameters.
+  \item \emph{pass by reference}
+  \item Parameters are also called `input', `output', `throughput'.
+  \end{itemize}
+\end{slide}
+
+\begin{block}{Pass by reference example 1}
+  \label{sl:pass-reference1}
+  \snippetwithoutput{setbyref}{basic}{setbyref}
+  Compare the difference with leaving out the reference.
+\end{block}
+
+As an example, consider a function that tries to read a value from a
+file. With anything file-related, you always have to worry about the
+case of the file not existing and such. So our function return:
+\begin{itemize}
+\item a boolean value to indicate whether the read succeeded, and
+\item the actual value if the read succeeded.
+\end{itemize}
+The following is a common idiom, where the success value is returned
+through the \n{return} statement, and the value through a parameter.
+
+\begin{block}{Pass by reference example 2}
+  \label{sl:pass-reference2}
+\begin{verbatim}
+bool can_read_value( int &value ) {
+  int file_status = try_open_file();
+  if (file_status==0) 
+    value = read_value_from_file();
+  return file_status!=0;
+}
+
+int main() {
+  int n;
+  if (!can_read_value(n))
+    // if you can't read the value, set a default
+    n = 10;
+\end{verbatim}
+\end{block}
+
+\begin{exercise}
+  \label{ex:swap}
+  Write a function \n{swapij} of two parameters that exchanges the input values:
+\begin{verbatim}
+int i=2,j=3;
+swapij(i,j);
+// now i==3 and j==2
+\end{verbatim}
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:div-remain}
+  Write a function that tests divisibility and returns a remainder:
+
+{\small
+\begin{verbatim}
+int number,divisor,remainder;
+// get the number and divisor from the user
+if ( is_divisible(number,divisor,remainder) )
+  cout << number << " is divisible by " << divisor << endl;
+else
+  cout << number << "/" << divisor <<
+      " has remainder " << remainder << endl;
+\end{verbatim}
+}
+\end{exercise}
+
+\Level 0 {Recursive functions}
+\label{sec:recursion}
+
+In mathematics, sequences are often recursively defined. For instance,
+the sequence of factorials $n\mapsto f_n\equiv n!$ can be defined as
+\[ f_0=1,\qquad \forall_{n>0}\colon f_n=n\times f_{n-1}. \]
+Instead of using a subscript, we write an argument in parentheses
+\[ F(n) = n \times F(n-1) \qquad \hbox{if $n>0$, otherwise~$1$} \]
+and now it looks like a C++ function:
+\begin{verbatim}
+int factorial(int n)
+\end{verbatim}
+is the function header of a factorial function. So what would the
+function body be? We need a \n{return} statement, and what we return
+should be $n \times F(n-1)$:
+\begin{verbatim}
+int factorial(int n) {
+  return n*factorial(n-1);
+} // almost correct, but not quite
+\end{verbatim}
+So what happens if you write
+\begin{verbatim}
+int f3; f3 = factorial(3);
+\end{verbatim}
+Well,
+\begin{itemize}
+\item The expression \n{factorial(3)} calls the \n{factorial}
+  function, substituting~\n{3} for the argument~\n{n}.
+\item The return statement returns \n{n*factorial(n-1)}, in this case
+  \n{3*factorial(2)}.
+\item But what is \n{factorial(2)}? Evaluating that expression means
+  that the \n{factorial} function is called again, but now with \n{n}
+  equal to~2.
+\item Evaluating \n{factorial(2)} returns \n{2*factorial(1)},\ldots
+\item \ldots~which returns \n{1*factorial(0)},\ldots
+\item \ldots~which return~\ldots
+\item Uh oh. We forgot to include the case where \n{n} is zero. Let's
+  fix that:
+\begin{verbatim}
+int factorial(int n) {
+  if (n==0)
+    return 1;
+  else
+    return n*factorial(n-1);
+}
+\end{verbatim}
+\item Now \n{factorial(0)} is~1, so \n{factorial(1)} is
+  \n{1*factorial(0)}, which is~1,\ldots
+\item \ldots~so \n{factorial(2)} is~2, and \n{factorial(3)} is~6.
+\end{itemize}
+
+\begin{slide}{Recursion}
+  \label{sl:func-recur}
+  Functions are allowed to call themselves, which is known
+  as~\indexterm{recursion}. You can define factorial as
+  \[ F(n) = n \times F(n-1) \qquad \hbox{if $n>1$, otherwise~$1$} \]
+\begin{verbatim}
+int factorial( int n ) {
+  if (n==1)
+    return 1;
+  else
+    return n*factorial(n-1);
+}
+\end{verbatim}
+\end{slide}
+
+\begin{exercise}
+  \label{ex:recur-sum}
+  The sum of squares:
+  \[ S_n = \sum_{n=1}^N n^2 \]
+  can be defined recursively as
+  \[ S_1=1,\qquad S_n = n^2 + S_{n-1}. \]
+  Write a recursive function that implements this second definition.
+  Test it on numbers that are input by the user.
+
+  Then write a program that prints the first 100 sums of squares.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:recur-fib}
+  Write a recursive function for computing Fibonacci numbers:
+  \[ F_0=1,\qquad F_1=1,\qquad F_{n}=F_{n-1}+F_{n-2} \]
+  First write a program that computes $F_n$ for a value~$n$ that is
+  input by the user.
+
+  Then write a program that prints out a sequence of Fibonacci
+  numbers; the user should input how many.
+\end{exercise}
+
+If you let your Fibonacci program print out each time it computes a
+value, you'll see that most values are computed several times. (Math
+question: how many times?) This is wasteful in running time. This
+problem is addressed in section~\ref{sec:memo}.
+
+\Level 0 {More function topics}
+
+\Level 1 {Default arguments}
+
+\begin{block}{Default arguments}
+  \label{sl:def-arg}
+  Functions can have \indextermsub{default}{argument}(s):
+\begin{verbatim}
+double distance( double x, double y=0. ) {
+  return sqrt( (x-y)*(x-y) );
+}
+  ...
+  d = distance(x); // distance to origin
+  d = distance(x,y); // distance between two points
+\end{verbatim}
+Any default argument(s) should come last in the parameter list.
+\end{block}
+
+\Level 1 {Polymorphic functions}
+\label{sec:polyfunc}
+
+\begin{block}{Polymorphic functions}
+  \label{sl:func-poly}
+  You can have multiple functions with the same name:
+\begin{verbatim}
+double sum(double a,double b) {
+  return a+b; }
+double sum(double a,double b,double c) {
+  return a+b+c; }
+\end{verbatim}
+Distinguished by type or number of input arguments: can not differ only in return type.
+\end{block}
+
+\Level 0 {Review questions}
+
+\begin{exercise}
+  \label{ex:cpp-funcloop1}
+  Suppose a function
+\begin{verbatim}
+bool f(int);
+\end{verbatim}
+is given, which is true for some positive input value. Write a main program that
+finds the smallest positive input value for which \n{f} is true.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:cpp-funcloop2}
+  Suppose a function
+\begin{verbatim}
+bool f(int);
+\end{verbatim}
+is given, which is true for some negative input value. Write a main program that
+finds the (negative) input with smallest absolute value for which \n{f} is true.
+\end{exercise}

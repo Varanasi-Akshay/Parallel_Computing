@@ -1,0 +1,73 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% google.tex : exercises for pagerank
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Basic ideas}
+
+Assuming you have learned about arrays~\ref{ch:array}, in particular
+the use of \n{std::vector}.
+
+The web can be represented as a matrix~$W$ of size~$N$, the number of web
+pages, where $w_{ij}=1$ if page~$i$ has a link to page~$j$ and zero
+otherwise. However, this representation is only conceptual; if you
+actually stored this matrix it would be gigantic and largely full of
+zeros. Therefore we use a \indextermsub{sparse}{matrix}: we store only
+the pairs $(i,j)$ for which $w_{ij}\not=0$. (In this case we can get
+away with storing only the indices; in a general sparse matrix you
+also need to store the actual~$w_{ij}$ value.)
+
+\begin{exercise}
+  Store the sparse matrix representing the web as a
+\begin{verbatim}
+vector< vector<bool> > web;
+\end{verbatim}
+  structure.
+  \begin{enumerate}
+  \item At first, assume that the number of web pages is given and reserve the outer
+    vector. Read in values for nonzero indices and add those to the
+    matrix structure.
+  \item Then, assume that the number of pages is not pre-determined. Read in
+    indices; now you need to create rows as they are needed. Suppose
+    the requested indices are
+\begin{verbatim}
+5,1
+3,5
+1,3
+\end{verbatim}
+    Since your structure has only three rows, you also need to remeber
+    their row numbers.
+  \end{enumerate}
+\end{exercise}
+
+Now we want to model the behaviour of a person clicking on links.
+
+\begin{exercise}
+  Track the probability that a user is on a certain page with a
+  \indextermsub{probability}{vector}:
+\begin{verbatim}
+vector<float> state;
+\end{verbatim}
+  The sum of the entries needs to be~$1$. While the algorithms will
+  mathematically guarantee this, it may be a good idea to test for it
+  every once in a while.
+
+  Now model the user clicking on a link by computing a new probability
+  vector:
+  \begin{itemize}
+  \item if for some page~$p$ \n{state[p]} is positive,
+  \item then for all links~$q$, where \n{web[p][q]} is true,
+  \item the new state gets a contribution of \n{state[p]} divided by
+    the number of $q$-links.
+  \end{itemize}
+  Do you recognize a linear algebra algorithm?
+\end{exercise}
+
+Together this gives an approximation of Google's \indexterm{PageRank}
+algorithm.

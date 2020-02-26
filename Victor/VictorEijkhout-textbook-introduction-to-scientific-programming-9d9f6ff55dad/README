@@ -1,0 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% Introduction to Scientific Programming
+%%%% in C++11 and Fortran2003
+%%%%
+%%%% Victor Eijkhout
+%%%% eijkhout@tacc.utexas.edu
+%%%% copyright 2016/7/8 Victor Eijkhout
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This repository contains the public version of the book
+`Introduction to Scientific Programming',
+which came out of its namesake course
+taught by Victor for the Texas Advanced Computing Center
+to students at The University of Texas at Austin.
+

@@ -1,0 +1,272 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% iof.tex : input and output in Fortran
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Types of I/O}
+
+Fortran has ASCII, for \emph{formatted}\indextermsub{formatted}{I/O},
+and binary, or \emph{unformatted}\indextermsub{unformatted}{I/O}.
+Formatted I/O uses default formatting, but you can specify formatting,
+in the I/O statement itself, or separately in a \n{Format} statement.
+
+\begin{slide}{Types of I/O}
+  \label{sl:fio-types}
+  \begin{itemize}
+  \item Formatted vs unformatted
+  \item Default formatting vs specified format
+  \end{itemize}
+\end{slide}
+
+\begin{block}{I/O commands}
+  \label{sl:fio-commands}
+  \begin{itemize}
+  \item \indextermfort{Print} simple output to terminal
+  \item \indextermfort{Write} output to terminal or file (`unit')
+  \item \indextermfort{read} input from terminal or file
+  \item \indextermfort{Open}, \indextermfort{Close} for files and
+    streams
+  \item \indextermfort{Format} format specification that can be used
+    in multiple statements.
+  \end{itemize}
+\end{block}
+
+\Level 0 {Print to terminal}
+
+The simplest command for outputing data is \indextermtt{print}.
+\begin{verbatim}
+print *,"The result is",result
+\end{verbatim}
+In its easiest form, you use the star to indicate that you don't care
+about formatting; after the comma you can then have any number of
+comma-separated strings and variables.
+
+\begin{block}{Formatted and unformatted I/O}
+  \begin{itemize}
+  \item Formatted: ascii output. This is good for reporting, but not
+    data analysis.
+  \item Unformatted: binary output. Great for further processing of
+    output data. See section~\ref{sec:rawdataf}.
+  \item Beware: binary data is machine-dependent. Use \indexterm{hdf5}
+    for portable binary.
+  \end{itemize}
+\end{block}
+
+\Level 1 {Print on one line}
+
+The statement
+\begin{verbatim}
+print *,item1,item2,item3
+\end{verbatim}
+will print the items on one line.
+
+\begin{block}{Implicit do loops}
+  \label{sl:print-implicit-loop}
+  Parametrized printing with an \indextermsub{implicit}{do loop}:
+\begin{verbatim}
+print *,( i*i,i=1,n)
+\end{verbatim}
+\end{block}
+
+\Level 1 {Printing arrays}
+
+If you print a variable that is an array, all its elements will be
+printed, in \indexterm{column-major} ordering if the array is
+multi-dimensional.
+
+You can also control the printing of an array by using an
+\indextermsub{implicit}{do loop}:
+\begin{verbatim}
+print *,( A(i),i=1,n)
+\end{verbatim}
+
+\begin{slide}{Array printing}
+  \label{sl:fprint-array}
+  \begin{itemize}
+  \item \n{print *,A} prints whole array, column-major
+  \item Implicit do loops:
+\begin{verbatim}
+print *,( A(i,i),i=1,n)
+\end{verbatim}
+  Can also be nested.
+  \end{itemize}
+\end{slide}
+
+\Level 1 {Formats}
+
+The default formatting uses quite a few positions for what can be
+small numbers. To indicate explicitly the formatting, for instance
+limiting the number of positions used for a number, or the whole and
+fractional part of a real number, you can use a format string.
+\begin{verbatim}
+print '(a6,3f5.3)',"Result",x,y,z
+\end{verbatim}
+The format specifier is inside single quotes and parentheses, and
+consists of comma-separated specifications for a single item:
+\begin{itemize}
+\item `\n{a}$n$' specifies a string of $n$~characters. If the actual
+  string is longer, it is truncated in the output.
+\item `\n{i}$n$' specifies an integer of up to~$n$ digits. If the actual
+  number takes more digits, it is rendered with asterisks.
+\item `\n{f}$m.n$' specifies a fixed point representation of a real
+  number, with $m$~total positions (including the decimal point)
+  and $n$~digits in the fractional part.
+\item `\n{e}$m.n$' Exponent representation.
+\item Strings can go into the format:
+\begin{verbatim}
+print '("Result:",3f5.3)',x,y,z
+\end{verbatim}
+\item `\n{x}' for a space, `\n{/}'~for newline
+\end{itemize}
+Putting a number in front of a single specifier indicates that it is
+to be repeated.
+
+If you find yourself using the same format a number of times, you can
+give it a \indexterm{label}:
+\begin{verbatim}
+  print 10,"result:",x,y,z
+10 format('(a6,3f5.3)')
+\end{verbatim}
+
+\url{https://www.obliquity.com/computer/fortran/format.html}
+
+\begin{slide}{Formats}
+  \label{sl:formats}
+  \begin{itemize}
+  \item
+    Fine control of input/output.
+  \item
+    Direct use in print statement:  
+\begin{verbatim}
+print '(a6,3f5.3)',"Result",x,y,z
+print '("Result:",3f5.3)',x,y,z
+\end{verbatim}
+\item Format statement:
+  \end{itemize}
+\begin{verbatim}
+  print 10,"result:",x,y,z
+10 format('(a6,3f5.3)')
+\end{verbatim}
+\end{slide}
+
+\begin{slide}{Format specifiers}
+  \label{sl:formatspec}
+  \begin{itemize}
+  \item `\n{a}$n$' specifies a string of $n$~characters. If the actual
+    string is longer, it is truncated in the output.
+  \item `\n{i}$n$' specifies an integer of up to~$n$ digits. If the actual
+    number takes more digits, it is rendered with asterisks.
+  \item `\n{f}$m.n$' specifies a fixed point representation of a real
+    number, with $m$~total positions (including the decimal point)
+    and $n$~digits in the fractional part.
+  \item `\n{e}$m.n$' Exponent representation.
+  \item Strings can go into the format:
+\begin{verbatim}
+print '("Result:",3f5.3)',x,y,z
+\end{verbatim}
+\item `\n{x}' for a space, `\n{/}'~for newline
+  \end{itemize}
+\end{slide}
+
+\begin{block}{Format repetitions}
+  \label{sl:fformat-rep}
+\begin{verbatim}
+print '( 3i4 )', i1,i2,i3
+print '( 3(i2,":",f7.4) )', i1,r1,i2,r2,i3,r2
+\end{verbatim}
+\end{block}
+
+\begin{block}{Repeats and line breaks}
+  \label{sl:formatrepeat}
+  \begin{itemize}
+  \item If \n{abc} is a format string, then \n{10(abc)} gives 10
+    repetitions. There is no line break.
+  \item If there is more data than specified in the format, the format
+    is reused in a new print statement. This causes line breaks.
+  \item The \n{/} (slash) specifier causes a line break.
+  \item There may be a 80 character limit on output lines.
+  \end{itemize}
+\end{block}
+
+\begin{exercise}
+  \label{ex:f99}
+  Use formatted I/O to print the number $0\cdots99$ as follows:
+\begin{verbatim}
+ 0  1  2  3  4  5  6  7  8  9
+10 11 12 13 14 15 16 17 18 19
+20 21 22 23 24 25 26 27 28 29
+30 31 32 33 34 35 36 37 38 39
+40 41 42 43 44 45 46 47 48 49
+50 51 52 53 54 55 56 57 58 59
+60 61 62 63 64 65 66 67 68 69
+70 71 72 73 74 75 76 77 78 79
+80 81 82 83 84 85 86 87 88 89
+90 91 92 93 94 95 96 97 98 99
+\end{verbatim}
+\end{exercise}
+
+\Level 0 {File and stream I/O}
+
+If you want to send output anywhere else than the terminal screen, you
+need the \indextermfort{write} statement, which looks like:
+\begin{verbatim}
+write (unit,format) data
+\end{verbatim}
+where \n{format} and \n{data} are as described above. The new element
+is the \indexterm{unit}, which is a numerical indication of an output
+device, such as a file.
+
+\Level 1 {Units}
+
+\begin{verbatim}
+Open(11)
+\end{verbatim}
+will result in a file with a name typically \n{fort11}.
+\begin{verbatim}
+Open(11,FILE="filename")
+\end{verbatim}
+Many other options for error handling, new vs old file, etc.
+
+After this:
+\begin{verbatim}
+Write (11,fmt) data
+\end{verbatim}
+Again options for errors and such.
+
+\Level 1 {Other write options}
+
+\begin{verbatim}
+write(unit,fmt,ADVANCE="no") data
+\end{verbatim}
+will not issue a newline.
+
+\indextermfort{open} \indextermfort{close}
+
+\Level 0 {Unformatted output}
+\label{sec:rawdataf}
+
+So far we have looked at ascii output, which is nice to look at for a
+human , but is not the right medium to communicate data to another
+program.
+\begin{itemize}
+\item Ascii output requires time-consuming conversion.
+\item Ascii rendering leads to loss of precision.
+\end{itemize}
+Therefore, if you want to output data that is later to be read by a
+program, it is best to use \indextermsub{binary}{output} or
+\indextermsub{unformatted}{output}, sometimes also called
+\indextermsub{raw}{output}.
+
+\begin{block}{Unformatted output}
+  Indicated by lack of format specification:
+\begin{verbatim}
+write (*) data
+\end{verbatim}
+  Note: may not be portable between machines.
+\end{block}

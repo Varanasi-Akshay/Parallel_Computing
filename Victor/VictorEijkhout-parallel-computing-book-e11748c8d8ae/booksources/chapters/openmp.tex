@@ -1,0 +1,422 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Parallel Programming in MPI and OpenMP'
+%%%% by Victor Eijkhout, copyright 2012-6
+%%%%
+%%%% openmp.tex : topics that have not been rolled into their
+%%%%              own chapter yet.
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Runtime functions and internal control variables}
+\label{ref:omp-environ}
+\index{OpenMP!environment variables|(textbf}
+\index{OpenMP!library routines|(textbf}
+\index{Internal Control Variable (ICV)|(textbf}
+
+OpenMP has a number of settings that can be set through \emph{environment variables},
+and both queried and set through \emph{library routines}. These settings are called
+\emph{\acfp{ICV}}: an OpenMP implementation behaves as if there is an internal variable
+storing this setting.
+
+The runtime functions are:
+\begin{itemize}
+\item \indextermttdef{omp_set_num_threads}
+\item \indextermttdef{omp_get_num_threads}
+\item \indextermttdef{omp_get_max_threads}
+\item \indextermttdef{omp_get_thread_num}
+\item \indextermttdef{omp_get_num_procs}
+\item \indextermttdef{omp_in_parallel}
+\item \indextermttdef{omp_set_dynamic}
+\item \indextermttdef{omp_get_dynamic}
+\item \indextermttdef{omp_set_nested}
+\item \indextermttdef{omp_get_nested}
+\item \indextermttdef{omp_get_wtime}
+\item \indextermttdef{omp_get_wtick}
+\item \indextermttdef{omp_set_schedule}
+\item \indextermttdef{omp_get_schedule}
+\item \indextermttdef{omp_set_max_active_levels}
+\item \indextermttdef{omp_get_max_active_levels}
+\item \indextermttdef{omp_get_thread_limit}
+\item \indextermttdef{omp_get_level}
+\item \indextermttdef{omp_get_active_level}
+\item \indextermttdef{omp_get_ancestor_thread_num}
+\item \indextermttdef{omp_get_team_size}
+%\item \indextermttdef{omp_}
+\end{itemize}
+
+Here are the OpenMP \emph{environment variables}:
+\begin{itemize}
+\item \indextermttdef{OMP_CANCELLATION} Set whether cancellation is activated
+\item \indextermtt{OMP_DISPLAY_ENV} Show OpenMP version and environment variables
+\item \indextermttdef{OMP_DEFAULT_DEVICE} Set the device used in target regions
+\item \indextermttdef{OMP_DYNAMIC} Dynamic adjustment of threads
+\item \indextermttdef{OMP_MAX_ACTIVE_LEVELS} Set the maximum number of nested parallel
+  regions
+\item \indextermttdef{OMP_MAX_TASK_PRIORITY} Set the maximum task priority value
+\item \indextermttdef{OMP_NESTED} Nested parallel regions
+\item \indextermttdef{OMP_NUM_THREADS} Specifies the number of threads to use
+\item \indextermttdef{OMP_PROC_BIND} Whether theads may be moved between CPUs
+\item \indextermttdef{OMP_PLACES} Specifies on which CPUs the theads should be placed
+\item \indextermttdef{OMP_STACKSIZE} Set default thread stack size
+\item \indextermttdef{OMP_SCHEDULE} How threads are scheduled
+\item \indextermttdef{OMP_THREAD_LIMIT} Set the maximum number of threads
+\item \indextermttdef{OMP_WAIT_POLICY} How waiting threads are handled
+\end{itemize}
+
+There are 4 \acp{ICV} that behave as if each thread has its own copy of them.
+The default is implementation-defined unless otherwise noted.
+\begin{itemize}
+  \item It may be possible to adjust dynamically the number of threads
+    for a parallel region. Variable: \indextermtt{OMP_DYNAMIC};
+    routines: \indextermtt{omp_set_dynamic},
+    \indextermtt{omp_get_dynamic}.
+  \item If a code contains \indextermsub{nested}{parallel regions},
+    the inner regions may create new teams, or they may be executed by
+    the single thread that encounters them. Variable:
+    \indextermtt{OMP_NESTED}; routines \indextermtt{omp_set_nested},
+    \indextermtt{omp_get_nested}. Allowed values are \n{TRUE} and
+    \n{FALSE}; the default is false.
+  \item The number of threads used for an encountered parallel region
+    can be controlled. Variable: \indextermtt{OMP_NUM_THREADS};
+    routines \indextermtt{omp_set_num_threads},
+    \indextermtt{omp_get_max_threads}.
+  \item The schedule for a parallel loop can be set. Variable:
+    \indextermtt{OMP_SCHEDULE}; routines
+    \indextermtt{omp_set_schedule}, \indextermtt{omp_get_schedule}.
+\end{itemize}
+
+Non-obvious syntax:
+\begin{verbatim}
+export OMP_SCHEDULE="static,100"
+\end{verbatim}
+
+Other settings:
+\begin{itemize}
+\item\indextermtt{omp_get_num_threads}: query the number of threads
+  active at the current place in the code; this can be lower than what
+  was set with \n{omp_set_num_threads}. For a meaningful answer, this
+  should be done in a parallel region.
+\item\indextermtt{omp_get_thread_num}
+\item\indextermtt{omp_in_parallel}: test if you are in a parallel
+  region (see for instance section~\ref{sec:parallelregion}).
+\item\indextermtt{omp_get_num_procs}: query the physical number of cores available.
+\end{itemize}
+
+Other environment variables:
+\begin{itemize}
+\item \indextermtt{OMP_STACKSIZE} controls the amount of space that is
+  allocated as per-thread \indexterm{stack}; the space for private
+  variables.
+\item \indextermtt{OMP_WAIT_POLICY} determines the behaviour of
+  threads that wait, for instance for \indexterm{critical section}:
+  \begin{itemize}
+  \item \n{ACTIVE} puts the thread in a \indexterm{spin-lock}, where
+    it actively checks whether it can continue;
+  \item \n{PASSIVE} puts the thread to sleep until the \ac{OS} wakes
+    it up.
+  \end{itemize}
+  The `active' strategy uses CPU while the thread is waiting; on the
+  other hand, activating it after the wait is instantaneous. With the
+  `passive' strategy, the thread does not use any CPU while waiting,
+  but activating it again is expensive. Thus, the passive strategy
+  only makes sense if threads will be waiting for a (relatively) long
+  time.
+\item \indextermtt{OMP_PROC_BIND} with values \n{TRUE} and \n{FALSE}
+  can bind threads to a processor. On the one hand, doing so can
+  minimize data movement; on the other hand, it may increase load
+  imbalance.
+\end{itemize}
+
+\index{OpenMP!environment variables|)}
+\index{OpenMP!library routines|)}
+\index{Internal Control Variable (ICV)|)}
+
+\Level 0 {Timing}
+\label{sec:omp-timing}
+
+OpenMP has a wall clock timer routine \indexcommand{omp_get_wtime}
+\begin{verbatim}
+double omp_get_wtime(void);
+\end{verbatim}
+The starting point is arbitrary and is different for each program run;
+however, in one run it is identical for all threads.
+This timer has a resolution given by \indexcommand{omp_get_wtick}.
+
+\begin{exercise}
+  Use the timing routines to demonstrate speedup from using
+  multiple threads.
+  \begin{itemize}
+  \item Write a code segment that takes a measurable amount of time, that is,
+    it should take a multiple of the tick time.
+  \item Write a parallel loop and measure the speedup. You can for instance do this
+\begin{verbatim}
+for (int use_threads=1; use_threads<=nthreads; use_threads++) {
+#pragma omp parallel for num_threads(use_threads)
+    for (int i=0; i<nthreads; i++) {
+        .....
+    }
+    if (use_threads==1)
+      time1 = tend-tstart;
+    else // compute speedup
+\end{verbatim}
+\item In order to prevent the compiler from optimizing your loop away, let
+  the body compute a result and use a reduction to preserve these results.
+  \end{itemize}
+\end{exercise}
+
+\Level 0 {Dependency analysis}
+\index{data dependencies|(}
+\index{flow dependency|see{data dependencies}}
+\index{anti dependency|see{data dependencies}}
+\index{output dependency|see{data dependencies}}
+
+If two statements refer to the same data item,
+we say that there is a \emph{data dependency} between
+the statements. Such dependencies limit the extent to which
+the execution of the statements can be  rearranged.
+The study of this topic probably started in the 1960s,
+when processors could execute statements \emph{out of order}\index{out-of-order execution}
+to increase throughput. The re-ordering of statements
+was limited by the fact that the execution
+had to obey the \indexterm{program order} semantics:
+the result had to be as if the statements were executed
+strictly in the order in which they appear in the program.
+
+These issues of statement ordering, and therefore of
+data dependencies, arise in OpenMP in two main ways:
+\begin{enumerate}
+\item When a loop is parallelized, the iterations are no longer
+  executed in their program order, so we have to check for dependencies.
+\item The introduction of tasks also means that parts of a program
+  can be executed in a different order from in which they appear
+  in a sequential execution.
+\end{enumerate}
+
+The easiest case of dependency analysis is that of
+detecting that loop iterations can be executed independently.
+Iterations are of course independent if a data item
+is read in two different iterations, but if the same
+item is read in one iteration and written in another,
+or written in two different iterations,
+we need to do further analysis.
+
+Analysis of \emph{data dependencies} can be performed
+by a compiler, but compilers take, of necessity,
+a conservative approach. This means that iterations
+may be independent, but can not be recognized as such by
+a compiler. Therefore, OpenMP shifts this responsibility
+to the programmer; see for instance section~\ref{sec:omp-ordered}.
+
+The three types of dependencies are:
+\begin{itemize}
+\item flow dependencies, or `read-after-write';
+\item anti dependencies, or `write-after-read'; and
+\item output dependencies, or `write-after-write'.
+\end{itemize}
+
+\begin{verbatim}
+for (i) {
+  y[i] = t;
+  x[i+1] = y[i+1];
+  t = x[i];
+}
+\end{verbatim}
+
+\Level 1 {Flow dependencies}
+
+Flow dependencies, or read-afer-write,
+are not a problem if the read and write occur in the same
+loop iteration:
+\begin{verbatim}
+for (i=0; i<N; i++) {
+  x[i] = .... ;
+  .... = ... x[i] ... ;
+}
+\end{verbatim}
+On the other hand, if the read happens in a later iteration,
+there is no simple way to parallelize the loop:
+\begin{verbatim}
+for (i=0; i<N; i++) {
+  .... = ... x[i] ... ;
+  x[i+1] = .... ;
+}
+\end{verbatim}
+This usually requires rewriting the code.
+
+\Level 1 {Anti dependencies}
+
+The simplest case of write-after-read is a reduction:
+\begin{verbatim}
+for (i=0; i<N; i++) {
+  t = t + .....
+}
+\end{verbatim}
+This can be dealt with by explicit declaring the loop to be a reduction,
+or to use any of the other strategies in section~\ref{sec:reduction}.
+
+If the read and write are on an array the situation is more complicated.
+The iterations in this fragment
+\begin{verbatim}
+for (i=0; i<N; i++) {
+  x[i] = ... x[i+1] ... ;
+}
+\end{verbatim}
+can not be executed in arbitrary order as such. However, conceptually there
+is no dependency. We can solve this by introducing a temporary array:
+\begin{verbatim}
+for (i=0; i<N; i++)
+  xtmp[i] = x[i];
+for (i=0; i<N; i++) {
+  x[i] = ... xtmp[i+1] ... ;
+}
+\end{verbatim}
+This is an example of a transformation that a compiler is unlikely
+to perform, since it can greatly affect the memory demands of the program.
+Thus, this is left to the programmer.
+
+\Level 1 {Output dependencies}
+
+The case of write-after-write does not occur by itself:
+if a variable is written twice in sequence without an intervening
+read, the first write can be removed without changing the meaning of the program.
+Thus, this case reduces to a flow dependency.
+
+Other output dependencies can easily be removed. In the following code, \n{t}~can be
+declared private, thereby removing the dependency.
+\begin{verbatim}
+for (i=0; i<N; i++) {
+  t = f(i)
+  s += t*t;
+}
+\end{verbatim}
+If the final value of \n{t} is wanted, the \indexpragma{lastprivate} can be used.
+
+\index{data dependencies|)}
+
+\Level 0 {Thread safety}
+\index{thread-safe|(}
+
+With OpenMP it is relatively easy to take existing code and make
+it parallel by introducing parallel sections. If you're careful
+to declare the appropriate variables shared and private,
+this may work fine. However, your code may include
+calls to library routines that include a \indexterm{race condition};
+such code is said not to be \emph{thread-safe}.
+
+For example a routine
+\begin{verbatim}
+static int isave;
+int next_one() {
+ int i = isave;
+ isave += 1;
+ return i;
+}
+
+...
+for ( .... ) {
+  int ivalue = next_one();
+}
+\end{verbatim}
+has a clear race condition, as the iterations of the loop
+may get different \n{next_one} values, as they are supposed to,
+or not. This can be solved by using an \indexpragma{critical}
+pragma for the \n{next_one} call; another solution 
+is to use an \indexpragma{threadprivate} declaration for \n{isave}.
+This is for instance the right solution if  the \n{next_one}
+routine implements a \indexterm{random number generator}.
+
+\index{thread-safe|)}
+
+\Level 0 {Performance and tuning}
+
+%See the EPCC benchmark suite~\cite{epcc-ompbench}.
+
+The performance of an OpenMP code can be influenced by the following.
+
+\begin{description}
+\item[Amdahl effects] Your code needs to have enough parts that are
+  parallel (see~\HPSCref{sec:amdahl}). Sequential parts may be sped up
+  by having them executed redundantly on each thread, since that keeps
+  data locally.
+\item[Dynamism] Creating a thread team takes time. In practice, a team
+  is not created and deleted for each parallel region, but creating
+  teams of different sizes, or recursize thread creation, may
+  introduce overhead.
+\item[Load imbalance] Even if your program is parallel, you need to
+  worry about load balance. In the case of a parallel loop you can set
+  the \indexclause{schedule} clause to \n{dynamic}, which evens out
+  the work, but may cause increased communication.
+\item[Communication] Cache coherence causes communication. Threads
+  should, as much as possible, refer to their own data.
+  \begin{itemize}
+  \item Threads are likely to read from each other's data. That is
+    largely unavoidable.
+  \item Threads writing to each other's data should be avoided: it may
+    require synchronization, and it causes coherence traffic.
+  \item If threads can migrate, data that was local at one time is no
+    longer local after migration.
+  \item Reading data from one socket that was allocated on another
+    socket is inefficient; see section~\ref{sec:first-touch}.
+  \end{itemize}
+\item[Affinity] Both data and execution threads can be bound to a
+  specific locale to some extent. Using local data is more efficient
+  than remote data, so you want to use local data, and minimize the extent to which data
+  or execution can move.
+  \begin{itemize}
+  \item See the above points about phenomena that cause communication.
+  \item Section~\ref{omp:threadbind} describes how you can specify the
+    binding of threads to places. There can, but does not need, to be
+    an effect on affinity. For instance, if an OpenMP thread can
+    migrate between hardware threads, cached data will stay local.
+    Leaving an OpenMP thread completely free to migrate can be
+    advantageous for load balancing, but you should only do that if
+    data affinity is of lesser importance.
+  \item Static loop schedules have a higher chance of using data that
+    has affinity with the place of execution, but they are worse for
+    load balancing. On the other hand, the \indexclause{nowait} clause
+    can aleviate some of the problems with static loop schedules.
+  \end{itemize}
+\item[Binding] You can choose to put OpenMP threads close together or
+  to spread them apart. Having them close together makes sense if they
+  use lots of shared data. Spreading them apart may increase
+  bandwidth. (See the examples in section~\ref{sec:omp:bindeffect}.)
+\item[Synchronization] Barriers are a form of synchronization. They
+  are expensive by themselves, and they expose load
+  imbalance. Implicit barriers happen at the end of worksharing
+  constructs; they can be removed with \n{nowait}.
+
+  Critical sections imply a loss of parallelism, but they are also
+  slow as they are realized through \indexterm{operating system}
+  functions. These are often quite costly, taking many thousands of
+  cycles.  Critical sections should be used only if the parallel work
+  far outweighs it.
+\end{description}
+
+\Level 0 {Accelerators}
+
+In OpenMP 4.0 there is support for offloading work to an
+\emph{accelerator}\index{OpenMP!accelerator support in}
+or
+\emph{co-processor}\index{OpenMP!co-processor support in}:
+\begin{verbatim}
+#pragma omp target [clauses]
+\end{verbatim}
+with clauses such as
+\begin{itemize}
+\item \n{data}: place data
+\item \n{update}: make data consistent between host and device
+\end{itemize}
+
+\endinput
+
+\Level 0 {Idioms}
+
+\Level 1 {While loops}
+
+\verbatimsnippet{linkedlist}
+

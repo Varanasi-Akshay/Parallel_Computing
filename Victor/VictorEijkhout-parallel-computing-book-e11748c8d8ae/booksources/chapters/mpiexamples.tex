@@ -1,0 +1,143 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This text file is part of the source of 
+%%%% `Parallel Programming in MPI and OpenMP'
+%%%% by Victor Eijkhout, copyright 2012-6
+%%%%
+%%%% mpiexamples.tex : MPI example codes
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {C}
+
+\mpiexample{MPI_Cancel}
+
+Cancelling a send operation:
+
+\verbatimsnippet{cancel}
+
+\mpiexample{MPI_Cart...}
+
+\verbatimsnippet{cart}
+\verbatimsnippet{cartshift}
+
+\mpiexample{MPI_Comm_dup}
+
+Giving a library its own communicator.
+
+\verbatimsnippet{rightcatchlib}
+\verbatimsnippet{catchmain}
+
+\mpiexample{MPI_Comm_split}
+
+First we take all processes module two, then
+again recursively.
+
+\verbatimsnippet{commsplit}
+\verbatimsnippet{commsplitp}
+
+\Level 0 {F}
+
+\mpiexample{MPI_Fetch_and_op}
+
+A root process has a table of data; the other processes do 
+atomic gets and update of that data using \indexterm{passive target
+  synchronization} through \indexmpishow{MPI_Win_lock}.
+%
+\verbatimsnippet{fetchop}
+%
+\verbatimsnippet{fetchopp}
+
+\Level 0 {G}
+
+\mpiexample{MPI_Gather}
+
+Gather data onto a root. Only the root allocates the gather buffer.
+\verbatimsnippet{gather}
+
+\mpiexample{MPI_Get}
+
+One process does a one-sided get from another. This also illustrates
+setting size parameters in
+\indexmpishow{MPI_Win_create}. Synchronization is done with
+\indexmpishow{MPI_Win_fence}.
+%
+\verbatimsnippet{getfence}
+
+We make a null window on processes that do not participate.
+%
+\verbatimsnippet{getfencep}
+
+\Level 0 {I}
+
+\mpiexample{MPI_Init_thread}
+
+The \n{Init_thread} call takes the requested level of thread support
+and reports back what the provided level is.
+%
+\verbatimsnippet{thread}
+
+\Level 0 {P}
+
+\mpiexample{MPI_Put}
+
+A one-sided \indexmpishow{MPI_Put} with active target synchronization
+through the use of fences. This is more or less the same as the
+\n{MPI_Get} example above.
+%
+\verbatimsnippet{putblock}
+%
+\verbatimsnippet{putblockp}
+
+\Level 0 {R}
+
+\Level 0 {S}
+
+\mpiexample{MPI_Send_init}
+
+Persistent communication is setup up on the sending process with
+\indexmpishow{MPI_Send_init} and \indexmpishow{MPI_Recv_init}, then
+performed with \indexmpishow{MPI_Startall}. The receiver is using
+regular sends and receives.
+%
+\verbatimsnippet{persist}
+%
+\verbatimsnippet{persistp}
+
+\mpiexample{MPI_Ssend}
+
+Using \n{MPI_Ssend} messages that would fall under the
+\indexterm{eager limit} do block.
+%
+\verbatimsnippet{ssendblock}
+
+\Level 0 {T}
+
+\Level 0 {W}
+
+\mpiexample{MPI_Win_lock}
+
+See the \n{Fetch_and_op} example.
+
+\mpiexample{MPI_Win_start}
+
+A one-sided \indexmpishow{MPI_Put} using active target synchronization:
+use \indexmpishow{MPI_Win_start} and \indexmpishow{MPI_Win_complete}
+on the origin, and \indexmpishow{MPI_Win_post} and
+\indexmpishow{MPI_Win_wait} on the target.
+%
+\verbatimsnippet{postwaittwo}
+
+\mpiexample{MPI_Win_create}
+
+See the \n{MPI_Get} example.
+
+\mpiexample{MPI_Win_fence}
+
+One process does \indexmpishow{MPI_Put} operations, randomly on one of
+two other processes. We use a fence for active target synchronization.
+%
+\verbatimsnippet{randomput}

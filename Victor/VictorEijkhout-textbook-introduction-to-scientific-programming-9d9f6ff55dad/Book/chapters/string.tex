@@ -1,0 +1,127 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% string.tex : text strings
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Characters}
+
+\begin{block}{Characters and ints}
+  \label{sl:int-char}
+  \begin{itemize}
+  \item Type \indextermttdef{char};
+  \item represents `7-bit ASCII': printable and (some) unprintable
+    characters.
+  \item Single quotes: \n{char c = 'a'}
+  \item Equivalent to (short) integer: \n{'x'-'a'} is distance \n{a--x}
+  \end{itemize}
+\end{block}
+
+\begin{exercise}
+  \label{ex:print-ichar}
+  Write a program that accepts an integer $0\cdots26$ and prints the
+  so-manieth letter of the alphabet.
+
+  Extend your program so that if the input is negative, it prints the
+  minus-so-manieth uppercase letter of the alphabet.
+\end{exercise}
+
+\Level 0 {Basic string stuff}
+\label{sec:string}
+
+\begin{block}{String declaration}
+  \label{sl:string-declare}
+\begin{verbatim}
+#include <string>
+using namespace std;
+
+// .. and now you can use `string'
+\end{verbatim}
+(Do not use the C legacy mechanisms.)
+\end{block}
+
+\begin{block}{String creation}
+  \label{sl:string-create}
+  A \indexterm{string} variable contains a string of characters.
+\begin{verbatim}
+string txt;
+\end{verbatim}
+You can initialize the string variable (use \n{-std=c++11}), or assign it dynamically:
+\begin{verbatim}
+string txt{"this is text"};
+string moretxt("this is also text");
+txt = "and now it is another text";
+\end{verbatim}
+\end{block}
+
+\begin{block}{Concatenation}
+  \label{sl:string-plus}
+  Strings can be \emph{concatenated}\index{string!concatenation}:
+\begin{verbatim}
+txt = txt1+txt2;
+txt += txt3;
+\end{verbatim}
+\end{block}
+
+\begin{block}{String is like vector}
+  \label{sl:string-vector}
+  You can query the \emph{size}\index{string!size}:
+\begin{verbatim}
+int txtlen = txt.size();
+\end{verbatim}
+or use subscripts:
+\begin{verbatim}
+cout << "The second character is <<" << 
+        txt[1] << ">>" << endl;
+\end{verbatim}
+\end{block}
+
+\begin{block}{More vector methods}
+  \label{sl:string-vector-methods}
+  Other methods for the vector class apply: \n{insert}, \n{empty},
+  \n{erase}, \n{push_back}, et cetera.
+
+  \url{http://en.cppreference.com/w/cpp/string/basic_string}
+\end{block}
+
+\begin{exercise}
+  \label{ex:printdigits}
+  Write a function to print out the digits of a number: \n{156} should
+  print \n{one five six}. Use a vector or array of strings, containing
+  the names of the digits.
+
+  Start by writing a program that reads a single digit and prints its name.
+
+  For the full program it is easiest to generate the  digits last-to-first.
+  Then figure out how to print them reversed.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:printnumber}
+  Write a function to convert an integer to a string: the input
+  \n{205} should give \n{two hundred fifteen}, et cetera.
+\end{exercise}
+
+\begin{exercise}
+  Write a pattern matcher, where a period~\n{.} matches any one
+  character, and \n{x*} matches any number of~`\n{x}' characters.
+
+  For example:
+  \begin{itemize}
+  \item The string \n{abc} matches \n{a.c} but \n{abbc} doesn't.
+  \item The string \n{abbc} matches \n{ab*c}, as does \n{ac}, but
+    \n{abzbc} doesn't.
+  \end{itemize}
+\end{exercise}
+
+\Level 0 {Conversion}
+
+\n{to_string}
+
+
+

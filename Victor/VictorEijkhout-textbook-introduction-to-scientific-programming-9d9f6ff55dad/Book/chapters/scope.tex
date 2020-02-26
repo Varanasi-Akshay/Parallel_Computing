@@ -1,0 +1,282 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% scope.tex : scope issues
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Scope rules}
+
+The concept of \indextermdef{scope} answers the question `when is the
+binding between a name (read: variable) and the internal entity valid'.
+
+\Level 1 {Lexical scope}
+
+C++, like Fortran and most other modern languages, uses
+\indextermsub{lexical}{scope} rule. This means that you can textually
+determine what a variable name refers to.
+\begin{verbatim}
+int main() {
+  int i;
+  if ( something ) {
+    int j;
+    // code with i and j
+  }
+  int k;
+  // code with i and k
+}
+\end{verbatim}
+\begin{itemize}
+\item The lexical scope of the variables \n{i,k} is the main program
+  including any blocks in it, such as the conditional, from the point
+  of definition onward. You can think that the variable in memory is
+  created when the program execution reaches that statement, and after
+  that it can be refered to by that name.
+\item The lexical scope of \n{j} is limited to the true branch of the
+  conditional. The integer quantity is only created if the true branch
+  is executed, and you can refer to it during that execution. After
+  execution leaves the conditional, the name ceases to exist, and so
+  does the integer in memory.
+\end{itemize}
+
+\begin{slide}{Lexical scope}
+  \label{sl:lexical}
+  Visibility of variables
+\begin{verbatim}
+int main() {
+  int i;
+  if ( something ) {
+    int j;
+    // code with i and j
+  }
+  int k;
+  // code with i and k
+}
+\end{verbatim}  
+\end{slide}
+
+\Level 1 {Shadowing}
+
+Scope can be limited by an occurrence of a variable by the same name:
+%
+\snippetwithoutput{shadowtrue}{basic}{shadowtrue}
+%
+The first variable \n{i} has lexical scope of the whole program, minus
+the two conditionals. While its
+\emph{lifetime}\index{variable!lifetime} is the whole program, it is
+unreachable in places because it is
+\emph{shadowed}\index{variable!shadowing} by the variables \n{i} in the conditionals.
+
+\begin{slide}{Shadowing}
+  \label{sl:scope-shadow}
+\begin{verbatim}
+int main() {
+  int i = 3;
+  if ( something ) {
+    int i = 5;
+  }
+  cout << i << endl; // gives 3
+  if ( something ) {
+    float i = 1.2;
+  }
+  cout << i << endl; // again 3
+}
+\end{verbatim}
+Variable \n{i} is shadowed: invisible for a while.\\
+After the lifetime of the shadowing variable, its value is unchanged
+from before.
+\end{slide}
+
+\begin{block}{Shadowing and scope are lexical}
+  \label{sl:scope-shadowfalse}
+  This is independent of dynamic / runtime behaviour!
+  %
+  \snippetwithoutput{shadowfalse}{basic}{shadowfalse}
+\end{block}
+
+\Level 1 {Lifetime versus reachability}
+
+The use of functions introduces a complication in the lexical scope story:
+a variable can be present in memory, but may not be textually accessible:
+\begin{verbatim}
+void f() {
+  ...
+}
+int main() {
+  int i;
+  f();
+  cout << i;
+}
+\end{verbatim}
+During the execution of \n{f}, the variable \n{i} is present in
+memory, and it is unaltered after the execution of~\n{f},
+but it is not accessible.
+
+\begin{slide}{Life time vs reachability}
+  \label{sl:scope-lifetime}
+  Even without shadowing, a variable can exist but be unreachable.
+\begin{verbatim}
+void f() {
+  ...
+}
+int main() {
+  int i;
+  f();
+  cout << i;
+}
+\end{verbatim}
+\end{slide}
+
+A special case of this is recursion:
+\begin{verbatim}
+void f(int i) {
+  int j = i;
+  if (i<100)
+    f(i+1);
+}
+\end{verbatim}
+Now each incarnation of \n{f} has a local variable~\n{i}; during a
+recursive call the outer~\n{i} is still alive, but it is inaccessible.
+
+\Level 1 {Scope subtleties}
+
+\Level 2 {Mutual recursion}
+
+If you have two functions \n{f,g} that call each other, you need
+%
+\emph{forward declaration}\index{forward declaration!of functions}.
+%
+There is also forward declaration of
+%
+\emph{classes}\index{forward declaration!of classes}.
+
+\Level 2 {Closures}
+
+We don't have
+%
+lambdas\index{lambda|see{closure}}
+or
+%
+\emph{closures}\indexterm{closure} yet in this book.
+
+\Level 0 {Static variables}
+\label{sec:static-scope}
+
+Variables in a function have \indextermsub{lexical}{scope} limited to
+that function. Normally they also have \indextermsub{dynamic}{scope}
+limited to the function execution: after the function finishes they
+completely disappear. (Class objects have their
+%
+\emph{destructor}\index{destructor!at end of scope}
+called.)
+
+There is an exception: a \indextermsub{static}{variable} persists
+between function invocations.
+\begin{verbatim}
+void fun() {
+  static int remember;
+}
+\end{verbatim}
+For example
+\begin{verbatim}
+int onemore() {
+  static int remember++; return remember;
+}
+int main() {
+  for ( ... )
+    cout << onemore() << end;
+  return 0;
+}
+\end{verbatim}
+gives a stream of integers.
+\begin{exercise}
+  The static variable in the \n{onemore} function is never
+  initialized. Can you find a mechanism for doing so?
+  Can you do it with a default argument to the function?
+\end{exercise}
+
+\Level 0 {Review questions}
+
+\begin{exercise}
+  \label{ex:cpp-scope1}
+  Is this a valid program?
+\begin{verbatim}
+void f() { i = 1; }
+int main() {
+  int i=2;
+  f();
+  return 0;
+}
+\end{verbatim}
+If yes, what does it do; if no, why not?
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:cpp-scope2}
+  What is the output of:
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+int main() {
+  int i=5;
+  if (true) { i = 6; }
+  cout << i << endl;
+  return 0;
+}
+\end{verbatim}
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:cpp-scope3}
+  What is the output of:
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+int main() {
+  int i=5;
+  if (true) { int i = 6; }
+  cout << i << endl;
+  return 0;
+}
+\end{verbatim}
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:cpp-scope4}
+  What is the output of:
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+int main() {
+  int i=2;
+  i += /* 5;
+  i += */ 6;
+  cout << i << endl;
+  return 0;
+}
+\end{verbatim}
+\end{exercise}
+
+\endinput
+
+Global variables, local variables.
+
+When you defined a function for primality testing, you placed it
+outside the main program, and the main program was able to use
+it. There are other things than functions that can be defined outside
+the main program, such as \indextermsub{global}{variables}.
+
+Here is a program that uses a global variable:
+\begin{verbatim}
+int i=5;
+int main() {
+  i = i+3;
+  cout << i << endl;
+  return 0;
+}
+\end{verbatim}
+

@@ -1,0 +1,139 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% error.tex : on error handling
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {General discussion}
+
+Sources or errors:
+\begin{itemize}
+\item Array indexing. See section~\ref{sec:stdvector}.
+\item Null pointers
+\item Division by zero and other numerical errors.
+\end{itemize}
+
+Guarding against errors.
+\begin{itemize}
+\item Check preconditions.
+\item Catch results.
+\item Check postconditions.
+\end{itemize}
+
+Error reporting:
+\begin{itemize}
+\item Message
+\item Total abort
+\item Exception
+\end{itemize}
+
+Assertions:
+\begin{verbatim}
+#include <cassert>
+...
+assert( bool )
+\end{verbatim}
+assertions are omitted with optimization
+
+Function return values
+
+\Level 0 {Exception handling}
+
+\begin{block}{Exception throwing}
+  \label{sl:exception-throw}
+  \emph{Throwing} an \emph{exception}%
+  \index{exception!throwing} is one way of signalling an error or
+  unexpected behaviour:
+\begin{verbatim}
+void do_something() {
+  if ( oops )
+    throw(5);
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{Catching an exception}
+  \label{sl:exception-catch}
+  It now becomes possible to detect this unexpected behaviour by
+  \emph{catching}\index{exception!catch}
+  the exception:
+\begin{verbatim}
+throw {
+  do_something();
+} catch (int i) {
+  cout << "doing something failed: error=" << i << endl;
+}
+\end{verbatim}
+\end{block}
+
+You can throw integers to indicate an error code, a string with an
+actual error message. You could even make an error class:
+
+\begin{block}{Exception classes}
+  \label{sl:exception-class}
+\begin{verbatim}
+class MyError {
+public :
+  int error_no; string error_msg;
+  MyError( int i,string msg )
+  : error_no(i),error_msg(msg) {};
+}
+
+throw( MyError(27,"oops");
+
+try {
+  // something
+} catch ( MyError &m ) {
+  cout << "My error with code=" << m.error_no
+    << " msg=" << m.error_msg << endl;
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{Multiple catches}
+  \label{sl:exception-catches}
+  You can multiple \n{catch} statements to catch different types of
+  errors:
+\begin{verbatim}
+try {
+  // something
+} catch ( int i ) {
+  // handle int exception
+} catch ( std::string c ) {
+  // handle string exception
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{Catch-all}
+  \label{sl:exception-catchall}
+  Catch all exceptions:
+\begin{verbatim}
+try {
+  // something
+} catch ( ... ) { // literally: three dots
+  cout << "Something went wrong!" << endl;
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{More about exceptions}
+  \label{sl:exception-more}
+  \begin{itemize}
+  \item Functions can define what exceptions they throw: 
+\begin{verbatim}
+void func() throw( MyError, std::string );
+void funk() throw();
+\end{verbatim}
+\item Predefined exceptions: \indextermtt{bad_alloc},
+  \indextermtt{bad_exception}, etc.
+\item An exception handler can throw an exception; to rethrow the same
+  exception use `\n{throw;}' without arguments.
+\item Exceptions delete all stack data, but not \n{new} data.
+  \end{itemize}
+\end{block}

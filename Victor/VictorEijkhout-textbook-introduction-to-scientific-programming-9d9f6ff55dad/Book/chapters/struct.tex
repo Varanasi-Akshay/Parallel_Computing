@@ -1,0 +1,126 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% struct.tex : about structures
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Why structures?}
+\label{sec:struct}
+
+You have seen the basic datatypes in section~\ref{sec:ctypes}. These
+are enough to program whatever you want, but it would be nice if the
+language had some datatypes that are more abstract, closer to the
+terms in which you think about your application. For instance, if you
+are programming something to do with geometry, you had rather talk
+about points than explicitly having to manipulate their coordinates.
+
+Structures are a
+first way to define your own datatypes. A~\indextermttdef{struct}
+acts like a datatype for which you choose the name. A~\n{struct}
+contains other datatypes; these can be elementary, or other structs.
+%
+\verbatimsnippet{structdef}
+
+The elements of a structure are also called
+\emph{members}\index{member!of struct}.
+You can give them an initial value:
+\begin{verbatim}
+struct vector { double x=0.; double y=0.; } ;
+\end{verbatim}
+  
+\begin{slide}{Bundling information}
+  \label{sl:struct-why}
+  Sometimes a number of variables belong logically together. For
+  instance two doubles can be the $x,y$ components of a vector.
+
+  This can be captured in the \n{struct} construct.
+
+  \verbatimsnippet{structdef}
+
+  (This can go in the main program or before it.)
+
+The elements of a structure are usually called \indexterm{members}.
+\end{slide}
+
+\Level 0 {The basics of structures}
+
+\begin{block}{How to use structures}
+  \label{sl:structinprog}
+  \begin{enumerate}
+  \item Declare what is in your structure;
+  \item Make some structures;
+  \item Use them.
+  \end{enumerate}
+\begin{verbatim}
+// declaration of the struct
+struct AStructName { int num; double val; }
+int main() {
+  // declaration of struct variables
+  AStructName mystruct1,mystruct2;
+  .... code that uses your structures ....
+}
+\end{verbatim}
+\end{block}
+
+\begin{block}{Struct initialization}
+  \label{sl:structinit}
+  \verbatimsnippet{pointinit}
+\end{block}
+
+\begin{block}{Using structures}
+  \label{sl:struct-use}
+  Once you have defined a structure, you can make variables of that
+  type. Setting and initializing them takes a new syntax:
+  \snippetwithoutput{structuse}{struct}{point}
+  Period syntax: `apostrophe-s'.
+\end{block}
+
+Note: if you use initializations in the \n{struct} definition,
+you can not use the brace-assignment.
+
+\begin{block}{Functions on structures}
+  \label{sl:struct-pass}
+  You can pass a structure to a function:
+  %\verbatimsnippet{structpass}
+  \snippetwithoutput{structpass}{struct}{pointfun}
+\end{block}
+
+\begin{block}{Returning structures}
+  \label{sl:struct-return}
+  You can return a structure from a function:
+  \snippetwithoutput{structreturn}{struct}{pointadd}
+
+  (Something weird here with scopes: the explanation is that the
+  returned value is copied.)
+\end{block}
+
+\begin{exercise}
+  \label{ex:vecstruct}
+  Write a function \n{inner_product} that takes two \n{vector}
+  structures and computes the inner product.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:matstruct}
+  Write a $2\times 2$ matrix class (that is, a structure storing 4
+  real numbers), and write a function \n{multiply}
+  that multiplies a matrix times a vector.
+
+  Can you make a matrix structure that is based on the vector
+  structure, for instance using it to store the matrix columns?
+\end{exercise}
+
+\begin{block}{Passing structures by reference}
+  \label{sl:struct-passref}
+  Prevent copying cost by passing by reference, use \n{const} to
+  prevent changes:
+  \verbatimsnippet{structpassref}
+\end{block}
+
+
+

@@ -1,0 +1,258 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% infect.tex : exercises for infectious disease simulation
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This section contains a sequence of exercises that builds up to a
+somewhat realistic simulation of the spread of infectious
+diseases. 
+
+\Level 0 {Model design}
+
+It is possible to model disease propagation statistically, but here we
+will build an explicit simulation: we will maintain an explicit
+description of all
+the people in the population, and track for each of them their status.
+
+We will use a simple model where a person can be:
+\begin{itemize}
+\item sick: when they are sick, they can infect other people;
+\item susceptible: they are healthy, but can be infected;
+\item recovered: they have been sick, but no longer carry the disease,
+  and can not be infected for a second time;
+\item inocculated: they are healthy, do not carry the disease, and can
+  not be infected.
+\end{itemize}
+In more complicated models a person could be infectious during only
+part of their illness, or there could be secondary infections with
+other diseases, et cetera. We keep it simple here:
+any sick person is infectious.
+
+In the exercises below we will gradually develop a somewhat realistic
+model of how the disease spreads from an infectious person. We always
+start with just one person infected.
+The program will then track the population from day to day,
+running indefinitely until none of the population
+is sick. Since there is no re-infection, the run will always end.
+
+\Level 1 {Other ways of modeling}
+
+Instead of capturing every single person in code, a~`contact network'
+model,
+it is possible to use an
+\ac{ODE} approach to disease modeling. You would then model the
+percentage of infected persons by a single scalar, and derive
+relations for that and other scalars~\cite{Anderson:population1979}.
+
+\url{http://mathworld.wolfram.com/Kermack-McKendrickModel.html}
+
+This is known as a `compartmental model'. Both the contact network and
+the compartmental model capture part of the truth. In fact, they can
+be combined. We can consider a country as a set of cities, where
+people travel between any pair of cities. We then use a compartmental
+model inside a city, and a contact network between cities.
+
+\Level 0 {Coding up the basics}
+
+\prerequisite{\ref{ch:object}}
+
+We start by writing code that models a single person. The main methods
+serve to infect a person, and to track their state. We need to have
+some methods for inspecting that state. 
+
+The intended output looks something like:
+\begin{verbatim}
+On day 10, Joe is susceptible
+On day 11, Joe is susceptible
+On day 12, Joe is susceptible
+On day 13, Joe is susceptible
+On day 14, Joe is sick (5 to go)
+On day 15, Joe is sick (4 to go)
+On day 16, Joe is sick (3 to go)
+On day 17, Joe is sick (2 to go)
+On day 18, Joe is sick (1 to go)
+On day 19, Joe is recovered
+\end{verbatim}
+
+\begin{exercise}
+  \label{ex:infect:person}
+  Write a \n{Person} class with methods:
+  \begin{itemize}
+  \item \n{status_string()} : returns a description of the
+    person's state;
+  \item \n{update()} : update the person's status to the next day;
+  \item \n{infect(n)} : infect a person, with the disease to run for
+    $n$ days;
+  \item \n{is_stable()} : report whether the person has been sick and
+    is recovered.
+  \end{itemize}
+  The main program should execute these statements in a loop:
+  \verbatimsnippet{infect0}
+\end{exercise}
+
+Your main program could for instance look like:
+\verbatimsnippet{infect0}
+
+Here is a suggestion how you can model 
+disease status. Use a single integer with the following interpretation:
+\begin{itemize}
+\item healthy but not inoculated, value~$0$,
+\item recovered, value~$-1$,
+\item inocculated, value~$-2$,
+\item and sick, with $n$ days to go before recovery,  modeled by value~$n$.
+\end{itemize}
+The \n{Person::update} method then updates this integer.
+
+\Level 0 {Population}
+
+\prerequisite{\ref{ch:array}}
+
+Next we need a \n{Population} class. Implement a population as a \n{vector}
+consisting of \n{Person} objects. Initially we only infect one person, and there
+is no transmission of the disease.
+
+The trace output should look something like:
+\begin{verbatim}
+Size of
+population?
+In step   1 #sick:    1 :  ? ? ? ? ? ? ? ? ? ? + ? ? ? ? ? ? ? ? ?
+In step   2 #sick:    1 :  ? ? ? ? ? ? ? ? ? ? + ? ? ? ? ? ? ? ? ?
+In step   3 #sick:    1 :  ? ? ? ? ? ? ? ? ? ? + ? ? ? ? ? ? ? ? ?
+In step   4 #sick:    1 :  ? ? ? ? ? ? ? ? ? ? + ? ? ? ? ? ? ? ? ?
+In step   5 #sick:    1 :  ? ? ? ? ? ? ? ? ? ? + ? ? ? ? ? ? ? ? ?
+In step   6 #sick:    0 :  ? ? ? ? ? ? ? ? ? ? - ? ? ? ? ? ? ? ? ?
+Disease ran its course by step 6
+\end{verbatim}
+
+\begin{exercise}
+  \label{ex:infect:notransfer}
+  Program a population without infection.
+  \begin{itemize}
+  \item Write the \n{Population} class. The constructor takes the number of people:
+\begin{verbatim}
+Population population(npeople);  
+\end{verbatim}
+  \item Write a method that infects a random person:
+\begin{verbatim}
+population.random_infection();
+\end{verbatim}
+  \item Write a method \n{count_infected} that counts how many people are infected.
+  \item Write an \n{update} method that updates all persons in the population.
+  \item Loop the \n{update} method until no people are infected: the
+    \n{Population::update} method should apply \n{Person::update} to
+    all person in the population.
+  \end{itemize}
+\item Write a routine that displays the state of the popular, using
+  for instance: \n{?}~for susceptible, \n{+}~for infected, \n{-}~for recovered.
+\end{exercise}
+
+\Level 0 {Contagion}
+
+This past exercise was too simplistic: the original patient zero was
+the only one who ever got sick.
+Now we incorporate contagion, seeing how far the disease can spread
+from a single infected person.
+
+We start with a very simple model of infection.
+
+\begin{exercise}
+  \label{ex:infect:1}
+  Read in a number $0\leq p \leq 1$ representing the probability of
+  disease transmission upon contact. Incorporate this into the
+  program: in each step the direct neighbours of an infected person
+  get sick themselves.
+\begin{verbatim}
+population.set_probability_of_transfer(probability);  
+\end{verbatim}
+  Run a number of simulations with population sizes and contagion
+  probabilities. Are there cases where people escape getting sick?
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:infect:2}
+  Incorporate inoculation: read another number representing the
+  percentage of people that has been vaccinated. Choose those members
+  of the population randomly.
+
+  Describe the effect of vaccinated people on the spread of the
+  disease. Why is this model unrealistic?
+\end{exercise}
+
+\Level 0 {Spreading}
+
+To make the simulation more realistic, we let every sick person come
+into contact with a fixed number of random people every day. This
+gives us more or less the \indexterm{SIR model};
+\url{https://en.wikipedia.org/wiki/Epidemic_model}.
+
+Set the number of people that a person comes into contact with, per
+day, to~6 or so. You have already programmed the probability that a
+person who comes in contact with an infected person gets sick themselves.
+Again start the simulation with a single infected person.
+
+\begin{exercise}
+  \label{ex:infect:3}
+  Code the random interactions. Now run a number of simulations varying
+  \begin{itemize}
+  \item The percentage of people inoculated, and
+  \item the chance the disease is transmitted on contact.
+  \end{itemize}
+  Record how long the disease runs through the population. With a
+  fixed number of contacts and probability of transmission, how is
+  this number of function of the percentage that is vaccinated?
+
+  Investigate the matter of `herd immunity': if enough people are
+  vaccinated, then some people who are not vaccinated will still never get
+  sick. Let's say you want to have this probability over 95
+  percent. Investigate the percentage of inoculation that is needed
+  for this as a function of the contagiousness of the disease.
+\end{exercise}
+
+\Level 0 {Project writeup and submission}
+
+\Level 1 {Program files}
+
+In the course of this project you have written more than one main
+program, but some code is shared between the multiple programs.
+Organize your code with one file for each main program, and a single
+`library' file with the class methods. This requires you to use
+\indextermsub{separate}{compilation} for building the program, and you
+need a \indexterm{header} file; section~\ref{sec:hfile}.
+
+Submit all source files with instructions on how to build all the main
+programs. You can put these instructions in a file with a descriptive
+name such as \n{README} or \n{INSTALL}, or you can use a
+\indexterm{makefile}.
+
+\Level 1 {Writeup}
+
+In the writeup, describe the `experiments' you have performed and the
+conclusions you draw from them. The exercises above give you a number
+of questions to address.
+
+For each main program, include some sample output, but note that this
+is no substitute for writing out your conclusions in full sentences.
+
+The last exercise asks you to explore the program behaviour as a
+function of one or more parameters. Include a table to report on the
+behaviour you found. You can use Matlab or Matplotlib in Python (or
+even Excell) to plot your data, but that is not required.
+
+\endinput
+
+\begin{exercise}
+  You can make the model more realistic by letting innoculation be
+  only partly effective. For instance, 50\% of people got the flu
+  vaccine, but it was only 40\% effective; 90\%~of people have the
+  measles vaccine, and it is about 97\%
+  effective. (\url{https://www.cdc.gov/nchs/fastats/immunize.htm}) How
+  does your model function in this case? Keep in mind that different
+  diseases have different degrees of infectuousness
+  (\url{https://en.wikipedia.org/wiki/Basic_reproduction_number}).
+\end{exercise}

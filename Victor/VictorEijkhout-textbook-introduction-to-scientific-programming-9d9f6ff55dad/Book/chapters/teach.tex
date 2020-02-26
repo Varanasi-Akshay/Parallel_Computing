@@ -1,0 +1,147 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% teach.tex : a teachers guide
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This book was written for a one-semester introductory programming course at The
+University of Texas at Austin, aimed primarily at students in the
+physical and engineering sciences. Thus, examples and exercises are as
+much as possible scientifically motivated. This target audience also
+explains the inclusion of Fortran.
+
+This book is not encyclopedic. Rather than teaching each topic in its
+full glory,
+the author has taken a `good practices' approach, where students learn
+enough of each topic to become a competent programmer. This serves to
+keep this book at a manageable length, and to minimize class lecture
+time, emphasizing lab exercises instead.
+
+Even then, there is more material here than can be covered and
+practiced in one semester. If only C++ is taught, it is probably
+possible to cover the whole of Part~\ref{part:cpp}; for the case where
+both C++ and Fortran are taught, we have a suggested timeline below.
+
+\Level 0 {Justification}
+
+The chapters of Part~\ref{part:cpp} and Part~\ref{part:f} are
+presented in suggested teaching order. 
+Here we briefly justify our (non-standard) sequencing of topics and
+outline a timetable for material to be covered in one semester.
+Most notably, Object-Oriented programming is covered
+before arrays and pointers come very late, if at all.
+
+There are several thoughts behind this. For one, dynamic arrays in~C++
+are most easily realized through the \n{std::vector} mechanism, which
+requires an understanding of classes. The same goes for
+\n{std::string}.
+
+Secondly, in the traditional approach, OOP is taught late, if at all, in
+the course. We consider OOP to be an important notion in program
+design, and central to~C++, rather than an embellishment on the
+traditional C~mechanisms.
+
+\Level 0 {Timeline for a C++/F03 course}
+
+As remarked above, this book is based on a course that teaches both
+C++ and Fortran2003. Here we give the timeline used, including some of
+the assigned exercises.
+
+For a one semester course of slightly over three months, two months
+would be spent on~C++ (see table~\ref{tab:c++plan}), after which a
+month is enough to explain Fortran. Remaining time will go to exams
+and elective topics.
+
+\begin{table}[ht]
+  \begin{tabular}{|l|l|p{1in}|p{1in}p{1in}p{1in}|}
+    \hline
+    lesson$\#$&date&Topic&Exercises&&\\
+    &&&prime&geom&infect\\
+    \hline
+    1& 1/18 & Statements and expressions&\ref{ex:prime:sum}, \ref{ex:prime:modvar}&&\\
+    2& 1/24 & Conditionals&\ref{ex:prime:divtest}&&\\
+    3& 1/26 & Control structures&&&\\
+    4& 1/31 & Looping&\ref{ex:prime:test}, \ref{ex:prime:test2}, \ref{ex:prime:while}&&\\
+    5 && continue&&&\\
+    6& 2/06 & Functions&\ref{ex:prime:func}&&\\
+    7 && continue&&&\\
+    8& 2/12 & I/O (lecture~8)&&&\\
+    9& 2/19 & Structs&\ref{ex:prime:struct}&&\\
+    10& 2/23 & Objects&\ref{ex:prime:sequence}, \ref{ex:prime:goldbach-pqr}&
+        \ref{ex:geom:point}&\ref{ex:infect:person}\\
+    11 && continue&&&\\
+    12& 2/28 & has-a relation&&\ref{ex:geom:line}, \ref{ex:geom:line2},
+        \ref{ex:geom:rect}, \ref{ex:geom:rect2}&\ref{ex:infect:notransfer}\\
+    13& 3/02 & inheritance&&\ref{ex:geom:square}, \ref{ex:geom:line3}&\\
+    14& 3/07 & Arrays&&&\ref{ex:infect:notransfer} and further\\
+    15 && continue&&&\\
+    16& 3/23 & Strings&&&\\
+    \hline
+  \end{tabular}
+  \caption{Two-month lesson plan for C++}
+  \label{tab:c++plan}
+\end{table}
+
+\Level 1 {Project-based teaching}
+
+To an extent it is inevitable that students will do a number of
+exercises that are not connected to any earlier or later ones.
+However, to give some continuity, we have given some programming
+projects that students gradually build towards.
+
+\begin{description}
+\item[prime] Prime number testing, culminating in prime number
+  sequence objects, and testing a corollary of the Goldbach
+  conjecture.
+\item[geom] Geometry related concepts; this is mostly an exercise in
+  object-oriented programming.
+\item[infect] The spreading of infectuous diseases; these are
+  exercises in basic array programming.
+\end{description}
+
+Rather than including the project exercises in the didactic sections,
+each section of these projects list the prerequisite basic sections.
+
+\iffalse
+\begin{itemize}
+\item[1: 1/18] Statements and expressions
+\item[2: 1/24] Conditionals
+\item[3: 1/26] Control structures
+\item[4: 1/31] Looping
+\item[5] continue
+\item[6: 2/06] Functions
+\item[7] continue
+\item[8: 2/12] I/O (lecture~8)
+\item[9: 2/19] Structs
+\item[10: 2/23] Objects
+\item[11] continue
+\item[12: 2/28] has-a relation
+\item[13: 3/02] inheritance
+\item[14: 3/07] Arrays
+\item[15] continue
+\item[16: 3/23] Strings
+\end{itemize}
+\fi
+
+\Level 1 {Fortran or advanced topics}
+
+After two months of grounding in OOP programming in~C++, the Fortran
+lectures and exercises reprise this sequence, letting the students do
+the same exercises in Fortran that they did in~C++.  However, array
+mechanisms in Fortran warrant a separate lecture.
+
+If the course focuses solely on~C++, the third month can be devoted to
+\begin{itemize}
+\item templates,
+\item exceptions,
+\item namespaces,
+\item multiple inheritance,
+\item the cpp preprocessor,
+\item closures.
+\end{itemize}
+

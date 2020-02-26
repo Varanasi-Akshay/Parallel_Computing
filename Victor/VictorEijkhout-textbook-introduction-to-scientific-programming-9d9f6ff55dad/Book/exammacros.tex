@@ -1,0 +1,26 @@
+\usepackage{multicol,pslatex,verbatim}
+\newcommand\inv{^{-1}}\newcommand\invt{^{-t}}
+\def\n#{\bgroup \catcode`\_=12 \catcode`\>=12 \catcode`\<=12 \catcode`\#=12
+  \catcode`\&=12 \catcode`\^=12 \catcode`\~=12 \def\\{\char`\\}\relax
+  \tt \let\next=}
+
+\makeatletter
+\def\codesnippet#1{\verbatiminput{snippets.code/#1}}
+\def\verbatimsnippet#1{\verbatiminput{snippets.code/#1}}
+\newcommand{\snippetwithoutput}[3]{
+  \par\vbox{
+  \begin{multicols}{2}
+    \def\verbatim@startline{\verbatim@line{\leavevmode\relax}}
+    \footnotesize\textbf{Code:}
+    \codesnippet{#1}
+    \par\hbox{}\vfill\columnbreak
+    \textbf{Output:}
+    \hbox{}
+    \immediate\write18{ cd ../../code/#2 && make #3 && make run_#3 > #3.out }
+    \verbatiminput{../../code/#2/#3.out}
+    \par\hbox{}\vfill\hbox{}
+  \end{multicols}
+  }
+}
+\makeatother
+

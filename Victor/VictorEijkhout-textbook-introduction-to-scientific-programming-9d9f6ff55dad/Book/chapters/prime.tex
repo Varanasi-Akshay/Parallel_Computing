@@ -1,0 +1,252 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% prime.tex : exercises for prime number finding
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Level 0 {Arithmetic}
+
+\prerequisite{\ref{sec:expr}}
+
+\begin{exercise}
+  \label{ex:prime:sum}
+  Read two integers into two variables, and print their sum, product,
+  quotient, modulus.
+  
+  %% Do this also with real variables.
+
+  %% What is $5/3$ as integer? If you compute it as a real number~$x$, is
+  %% $3x$ exactly equal to~$5$?
+\end{exercise}
+
+A less common operator is the modulo operator~\n{\char`\%}.
+
+\begin{exercise}
+  \label{ex:prime:modvar}
+  Read two numbers and print out their modulus. Two ways:
+  \begin{itemize}
+  \item use the \n{cout} function to print the expression, or
+  \item assign the expression to a variable, and print that variable.
+  \end{itemize}
+\end{exercise}
+
+\Level 0 {Conditionals}
+
+\prerequisite{\ref{sec:if}}
+
+\begin{exercise}
+  \label{ex:prime:divtest}
+  Read two numbers and print a message like
+\begin{verbatim}
+3 is a divisor of 9
+\end{verbatim}
+  if the first is an exact
+  divisor of the second, and another message
+\begin{verbatim}
+4 is not a divisor of 9
+\end{verbatim}
+if it is not.
+\end{exercise}
+
+\Level 0 {Looping}
+
+\prerequisite{\ref{sec:for}}
+
+\begin{exercise}
+  \label{ex:prime:test}
+  Read an integer and determine whether it is prime by testing for the
+  smaller numbers whether they are a
+  divisor of that number. 
+
+  Print a final message
+\begin{verbatim}
+Your number is prime
+\end{verbatim}
+or
+\begin{verbatim}
+Your number is not prime: it is divisible by ....
+\end{verbatim}
+where you report just one found factor.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:prime:test2}
+  Rewrite the previous exercise with a boolean variable to represent
+  the primeness of the input number.
+\end{exercise}
+
+\Level 0 {Functions}
+
+\prerequisite{\ref{ch:function}}
+
+Above you wrote several lines of code to test whether a number was
+prime.
+
+\begin{exercise}
+  \label{ex:prime:func}
+  Write a function \n{is_prime} that takes an integer input, and returns a boolean
+  corresponding to whether the input was prime.
+\begin{verbatim}
+int main() {
+  bool isprime;
+  isprime = prime_test_function(13);
+\end{verbatim}
+  Read the number in, and print the value of the boolean.
+\end{exercise}
+
+\Level 0 {While loops}
+
+\prerequisite{\ref{sec:loopuntil}}
+
+\begin{exercise}
+  \label{ex:prime:while}
+  Take your prime number testing function \n{is_prime}, and use it to
+  write program that prints multiple primes:
+  \begin{itemize}
+  \item Read an integer \n{how_many} from the input, indicating how
+    many (successive) prime numbers should be printed.
+  \item Print that many successive primes, each on a separate line.
+  \item (Hint: keep a variable
+    \n{number_of_primes_found} that is increased whenever a new prime is found.)
+  \end{itemize}
+\end{exercise}
+
+\Level 0 {Structures}
+
+\prerequisite{\ref{sec:struct}, \ref{sec:reference}}
+
+A~\n{struct} functions to bundle together a number of data item. We
+only discuss this as a preliminary to classes.
+
+\begin{exercise}
+  \label{ex:prime:struct}
+  Rewrite the exercise that found a predetermined number of primes,
+  putting the \n{number_of_primes_found} and
+  \n{last_number_tested} variables in a structure. Your main program should
+  now look like:
+  %
+  \verbatimsnippet{primestructmain}
+  %
+%  You also need to use the structure in the \n{nextprime} exercise.
+\end{exercise}
+
+\Level 0 {Classes and objects}
+
+\prerequisite{\ref{sec:object}, \ref{sec:objectf}}
+
+In exercise~\ref{ex:prime:struct} you made a structure that contains
+the data for a primesequence, and you have separate functions that
+operate on that structure or on its members.
+
+\begin{exercise}
+  \label{ex:prime:sequence}
+  Write a class \n{primegenerator} that contains members
+  \n{number_of_primes_found} and
+  \n{last_number_tested}, and methods \n{nextprime}, \n{isprime}.
+  %
+  {\footnotesize Hint: the
+  function \n{nextprime} does not need the object as argument,
+  because the members are in the object, and therefore global
+  to that function.}
+
+  Your main program should look as follows:
+  %
+  \verbatimsnippet{primesequencemain}
+\end{exercise}
+
+In the previous exercise you defined the \n{primegenerator} class, and
+you made one object of that class:
+\begin{verbatim}
+primegenerator sequence;
+\end{verbatim}
+But you can make multiple generators, that all have their own internal
+data and are therefore independent of each other.
+
+\begin{exercise}
+  \label{ex:goldbach:conj}
+  The \indexterm{Goldbach conjecture} says that every even number,
+  from~4 on, is the sum of two primes $p+q$. Write a program to test this
+  for the even numbers up to 20~million.
+
+  Make an outer loop over the even numbers~$e$. In each iteration,
+  make a \n{primegenerator} object to generate $p$ values.
+  For each~$p$ test whether~$e-p$ is prime.
+
+  For each even number, print out how it is the sum of two primes. If
+  multiple possibilities exist, only print the first one you find.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:prime:goldbach-pqr}
+  The \indexterm{Goldbach conjecture} says that every even number~$2n$
+  (starting at~4), is the sum of two primes $p+q$: \[ 2n=p+q.\]
+  Equivalently, every number~$n$ is equidistant from two primes. In
+  particular this holds for each prime number:
+  \[ \forall_{p\,\mathrm{prime}}\exists_{q\,\mathrm{prime}}\colon
+  \hbox{$r\equiv p+(p-q)$ is prime}. \]
+
+  Write a program that tests this. You need two prime number
+  generators, one for the $p$-sequence and one for the $q$-sequence.
+  For each $p$ value, 
+  when the program finds the $q$~value, print the $q,p,r$ triple and
+  move on to the next~$p$.
+
+  Allocate an array where you record all the $p-q$ distances that you
+  found. Print some elementary statistics, for instance: what is the average, do the
+  distances increase or decrease with~$p$?
+\end{exercise}
+
+\Level 0 {Arrays}
+
+Another algorithm for finding prime numbers is the
+\indexterm{Eratosthenes sieve}. It goes like this.
+\begin{enumerate}
+\item You take a range of integers, starting at~2.
+\item Now look at the first number. That's a prime number.
+\item Scratch out all of its multiples.
+\item Find the next number that's not scratched out; since that's
+  not a multiple of a previous number, it must be a prime
+  number. Report it, and go back to the previous step.
+\end{enumerate}
+
+The new mechanism you need for this is the data structure for storing
+all the integers.
+\begin{verbatim}
+int N = 1000;
+vector<int> integers(N);
+\end{verbatim}
+
+\begin{exercise}
+  Read in an integer that denotes the largest number you want to test.
+  Make an array of integers that long. Set the elements to the
+  successive integers.
+\end{exercise}
+
+\Level 0 {Inheritance and virtual methods}
+
+If you turn the Eratosthenes sieve into a generator class, you see
+that it has a \n{nextprime} function, just like the other generator
+class you wrote above.
+
+\begin{exercise}
+  Use inheritance to express the commonality between the classes:
+  \begin{itemize}
+  \item Make a \n{generator} base class; it probably remembers the
+    last prime found;
+  \item Make \n{bruteforce_generator} and \n{sieve_generator} classes
+    that derive from \n{generator}, and that each have their own
+    \n{nextprime} method.
+  \end{itemize}
+\end{exercise}
+
+Since the derived classes have different \n{nextprime} methods, you
+can not really put that method in the base class. However:
+
+\begin{exercise}
+  Add \n{nextprime} as a virtual method to the base class.
+\end{exercise}

@@ -1,0 +1,120 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++11/Fortran2003
+%%%% copyright 2017/8 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% ispbook.tex : main file of the textbook
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{boek3}
+
+\usepackage{comment,listings,pdflscape,verbatim}
+\makeatletter
+\def\verbatim@startline{\verbatim@line{\leavevmode\kern\unitindent\relax}}
+\makeatother
+
+\usepackage[pdftex,colorlinks]{hyperref}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{graphicx,undertilde,arydshln,wrapfig}
+\usepackage{times,makeidx,multirow,multicol}
+\usepackage{dirtree}
+
+\input bookmacs
+
+%%%%
+%%%% Where is this course?
+%%%%
+\includecomment{tacc}
+
+\makeindex
+
+\begin{document}
+
+\title{Introduction to Scientific Programming in C++/Fortran2003}
+\author{Victor Eijkhout}
+\date{2017}
+\maketitle
+
+\tableofcontents
+
+\part{Introduction}
+
+\CHAPTER{Introduction}{intro}
+\CHAPTER{Warming up}{warmup}
+\CHAPTER{Teachers guide}{teach}
+
+\part{C++}
+\label{part:cpp}
+
+\CHAPTER{Basic elements of C++}{elements}
+\CHAPTER{Conditionals}{if}
+\CHAPTER{Looping}{loop}
+\CHAPTER{Functions}{function}
+\CHAPTER{Scope}{scope}
+\CHAPTER{Structures}{struct}
+\CHAPTER{Classes and objects}{object}
+\CHAPTER{Arrays}{array}
+\CHAPTER{Strings}{string}
+\CHAPTER{Input/output}{io}
+\CHAPTER{References}{address}
+% \CHAPTER{Polymorphism}{poly}
+\CHAPTER{Memory}{memory}
+\CHAPTER{Pointers}{pointer}
+\CHAPTER{Prototypes}{proto}
+\CHAPTER{Namespaces}{namespace}
+\CHAPTER{Preprocessor}{cpp}
+\CHAPTER{Templates}{template}
+\CHAPTER{Error handling}{error}
+\CHAPTER{Standard Template Library}{stl}
+\CHAPTER{Obscure stuff}{obscure}
+
+%\CHAPTER{More exercises}{exercises}
+
+\part{Fortran}
+\label{part:f}
+
+\CHAPTER{Basics of Fortran}{elementsf}
+\CHAPTER{Conditionals}{iff}
+\CHAPTER{Loop constructs}{loopf}
+\CHAPTER{Scope}{scopef}
+\CHAPTER{Subprograms and modules}{functionf}
+\CHAPTER{String handling}{stringf}
+\CHAPTER{Structures, eh, types}{structf}
+\CHAPTER{Classes and objects}{classf}
+\CHAPTER{Arrays}{arrayf}
+\CHAPTER{Pointers}{pointf}
+\CHAPTER{Input/output}{iof}
+\CHAPTER{Leftover topics}{obscuref}
+
+\part{Exercises and projects}
+
+\CHAPTER{Simple exercises}{simplex}
+\CHAPTER{Not-so simple exercises}{morex}
+\CHAPTER{Prime numbers}{prime}
+\CHAPTER{Infectuous disease simulation}{infect}
+\CHAPTER{Geometry}{geom}
+\CHAPTER{PageRank}{google}
+
+\part{Advanced topics}
+
+\CHAPTER{Programming strategies}{topdown}
+\CHAPTER{Tiniest of introductions to algorithms and data structures}{algodata}
+\CHAPTER{Complexity}{efficiency}
+\CHAPTER{C for C++ programmers}{ccpp}
+
+\part{Index and such}
+
+\Level 0 {Index}
+\begin{multicols}{2}
+\printindex
+\end{multicols}
+
+\bibliographystyle{plain}
+\bibliography{vle}
+
+\closeout\chapterlist
+\end{document}

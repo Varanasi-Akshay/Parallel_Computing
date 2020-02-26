@@ -1,0 +1,58 @@
+\begin{thebibliography}{1}
+
+\bibitem{Chan2007Collective}
+Ernie Chan, Marcel Heimlich, Avi Purkayastha, and Robert van~de Geijn.
+\newblock Collective communication: theory, practice, and experience.
+\newblock {\em Concurrency and Computation: Practice and Experience},
+  19:1749--1783, 2007.
+
+\bibitem{Eijkhout:IHPSClulu}
+{Eijkhout, Victor with Robert van de Geijn and Edmond Chow}.
+\newblock {\em Introduction to High Performance Scientific Computing}.
+\newblock lulu.com, 2011.
+\newblock \url{http://www.tacc.utexas.edu/~eijkhout/istc/istc.html}.
+
+\bibitem{goglin:hwloc}
+Brice Goglin.
+\newblock {Managing the Topology of Heterogeneous Cluster Nodes with Hardware
+  Locality (hwloc)}.
+\newblock In {\em {International Conference on High Performance Computing \&
+  Simulation (HPCS 2014)}}, Bologna, Italy, July 2014. {IEEE}.
+
+\bibitem{Gropp:UsingMPI1}
+W.~Gropp, E.~Lusk, and A.~Skjellum.
+\newblock {\em Using {MPI}}.
+\newblock {T}he {MIT} {P}ress, 1994.
+
+\bibitem{Hoefler:case-for-nbc}
+Torsten Hoefler, Prabhanjan Kambadur, Richard~L. Graham, Galen Shipman, and
+  Andrew Lumsdaine.
+\newblock A case for standard non-blocking collective operations.
+\newblock In {\em Proceedings, Euro PVM/MPI}, Paris, France, October 2007.
+
+\bibitem{Hoefler:2010:SCP}
+Torsten Hoefler, Christian Siebert, and Andrew Lumsdaine.
+\newblock Scalable communication protocols for dynamic sparse data exchange.
+\newblock {\em SIGPLAN Not.}, 45(5):159--168, January 2010.
+
+\bibitem{charmpp}
+L.~V. Kale and S.~Krishnan.
+\newblock Charm++: Parallel programming with message-driven objects.
+\newblock In {\em Parallel Programming using C++, G. V. Wilson and P. Lu,
+  editors}, pages 175--213. MIT Press, 1996.
+
+\bibitem{Liu:2003:OMP-SPMD}
+Zhenying Liu, Barbara Chapman, Tien-Hsiung Weng, and Oscar Hernandez.
+\newblock Improving the performance of openmp by array privatization.
+\newblock In {\em Proceedings of the OpenMP Applications and Tools 2003
+  International Conference on OpenMP Shared Memory Parallel Programming},
+  WOMPAT'03, pages 244--259, Berlin, Heidelberg, 2003. Springer-Verlag.
+
+\bibitem{thakur:ijhpca-sync}
+R.~Thakur, W.~Gropp, and B.~Toonen.
+\newblock Optimizing the synchronization operations in {MPI} one-sided
+  communication.
+\newblock {\em Int'l Journal of High Performance Computing Applications},
+  19:119--128, 2005.
+
+\end{thebibliography}

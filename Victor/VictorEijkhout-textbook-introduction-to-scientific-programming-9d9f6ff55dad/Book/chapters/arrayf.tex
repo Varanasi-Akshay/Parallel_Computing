@@ -1,0 +1,586 @@
+% -*- latex -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This TeX file is part of the course
+%%%% Introduction to Scientific Programming in C++/Fortran2003
+%%%% copyright 2017 Victor Eijkhout eijkhout@tacc.utexas.edu
+%%%%
+%%%% arrayf.tex : arrays in Fortran
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Array handling in Fortran is similar to C++ in some ways, but there
+are differences, such as that  Fortran indexing starts at~1, rather
+than~0. More importantly, Fortran has better handling of
+multi-dimensional arrays.
+
+\Level 0 {Static arrays}
+
+The preferred way for specifying an array size is:
+
+\begin{block}{Fortran dimension}
+  \label{sl:farray-dimension}
+\begin{verbatim}
+real(8), dimension(100) :: x,y
+integer :: i(10,20)
+\end{verbatim}
+  Static, obey scope.
+\end{block}
+
+Such an array, with size explicitly indicated, is called a
+\indextermsub{static}{array} or \indextermsub{automatic}{array}.
+(See section~\ref{sec:allocatable} for
+dynamic arrays.)
+
+Array indexing in Fortran is 1-based:
+\begin{block}{1-based Indexing}
+  \label{sl:farray-base1}
+\begin{verbatim}
+integer,parameter :: N=8
+real(4),dimension(N) :: x
+do i=1,N
+  ... x(i) ...
+\end{verbatim}
+\end{block}
+
+Unlike C++, Fortran can specify the lower bound explicitly:
+\begin{block}{Lower bound}
+  \label{sl:farray-lower}
+\begin{verbatim}
+real,dimension(-1:7) :: x
+do i=-1,7
+  ... x(i) ...
+\end{verbatim}
+\end{block}
+
+Such arrays, as in~C++, obey the scope: they disappear at the end of
+the program or subprogram.
+
+\Level 1 {Initialization}
+
+There are various syntaxes for \indextermbus{array}{initialization},
+including the use of implicit do-loops:
+\begin{block}{Array initialization}
+  \label{sl:farray-init}
+  \verbatimsnippet{farrayinit}
+\end{block}
+
+\Level 1 {Sections}
+
+\begin{block}{Array sections}
+  \label{sl:farray-section}
+  Use the colon notation to indicate ranges:
+\begin{verbatim}
+real(4),dimension(5) :: x
+x(2:5) = x(1:4)
+\end{verbatim}
+\end{block}
+
+\begin{block}{Use of sections}
+  \label{sl:farray-sectionassign}
+  \snippetwithoutput{fsectionassign}{arrayf}{sectionassign}
+\end{block}
+
+You can even use a stride:
+
+\begin{block}{Strided sections}
+  \label{sl:farray-strideassign}
+  \snippetwithoutput{fsectionmg}{arrayf}{sectionmg}
+\end{block}
+
+\Level 1 {Integer arrays as indices}
+
+\begin{block}{Index arrays}
+  \label{sl:farray-indexarray}
+\begin{verbatim}
+integer,dimension(4) :: i = [2,4,6,8]
+real(4),dimension(10) :: x
+print *,x(i)
+\end{verbatim}
+\end{block}
+
+\Level 0 {Multi-dimensional}
+
+Arrays above had `\emph{rank}\index{array!rank}~one'. The rank is
+defined as the number of indices you need to address the
+elements. Calling this the `dimension' of the array can be confusing, but
+we will talk about the first and second dimension of the array.
+
+A rank-two array, or matrix, is defined like this:
+\begin{block}{Multi-dimension arrays}
+  \label{sl:farray-2d}
+\begin{verbatim}
+real(8),dimension(20,30) :: array
+array(i,j) = 5./2
+\end{verbatim}
+\end{block}
+
+\begin{block}{Array layout}
+  \label{sl:farray-layout}
+  Sometimes you have to take into account how a higher rank array
+  is laid out in (linear) memory:
+
+  \includegraphics[scale=.1]{arraybycol}
+
+  `First index varies quickest'
+\end{block}
+
+\begin{block}{Array printing}
+  \label{sl:farray-print}
+  Fill array by rows:
+  \[ \begin{matrix}1&2&\ldots&N\\ N+1&\ldots\\ &\ldots\\ &&&MN
+  \end{matrix}
+  \]
+  %
+  \snippetwithoutput{printarray}{arrayf}{printarray}
+\end{block}
+
+\Level 1 {Querying an array}
+
+We have the following properties of an array:
+\begin{itemize}
+\item The bounds are the lower and upper bound in each dimension.
+  For instance, after
+\begin{verbatim}
+integer,dimension(-1:1,-2:2) :: symm
+\end{verbatim}
+the array \n{symm} has a lower bound of~\n{-1} in the first dimension
+and \n{-2} in the second. The functions \indextermttdef{Lbound} and
+\indextermttdef{Ubound} give these bounds as array or scalar:
+\begin{verbatim}
+array_of_lower = Lbound(symm)
+upper_in_dim_2 = Ubound(symm,2)
+\end{verbatim}
+
+\snippetwithoutput{fsection2}{arrayf}{fsection2}
+
+\item The \emph{extent}\index{extent!of array dimension} is the number
+  of elements in a certain dimension, and the
+  \emph{shape}\index{shape!of array} is the array of extents.
+
+\item The \indextermttdef{size} is the number of elements, either for
+  the whole array, or for a specified dimension.
+\begin{verbatim}
+integer :: x(8), y(5,4)
+size(x)
+size(y,2)
+\end{verbatim}
+\end{itemize}
+
+\begin{slide}{Query functions}
+  \label{sl:farray-query}
+    \begin{itemize}
+    \item Bounds: \n{lbound}, \n{ubound}
+    \item \n{size}
+\begin{verbatim}
+integer :: x(8), y(5,4)
+size(x)
+size(y,2)
+\end{verbatim}
+    \end{itemize}
+\end{slide}
+
+\Level 1 {Reshaping}
+
+\indextermfort{RESHAPE}
+\begin{verbatim}
+  array = RESHAPE( list,shape )
+\end{verbatim}
+Example:
+\verbatimsnippet{shape44}
+
+\indextermfort{SPREAD}
+\begin{verbatim}
+  array = SPREAD( old,dim,copies )
+\end{verbatim}
+
+\Level 0 {Arrays to subroutines}
+
+Subprogram needs to know the shape of an array, not the actual bounds:
+
+\begin{block}{Pass array to subroutine}
+  \label{sl:farray-pass1d}
+  \verbatimsnippet{fpass1d}
+\end{block}
+
+The array inside the subroutine is known as a
+\indextermsub{assumed-shape}{array} or
+\indextermsub{automatic}{array}.
+
+\Level 0 {Allocatable arrays}
+\label{sec:allocatable}
+
+Static arrays are fine at small sizes. However, 
+there are two main arguments against using them at large sizes.
+\begin{itemize}
+\item Since the size is explicitly stated, it makes your program
+  inflexible, requiring recompilation to run it with a different
+  problem size.
+\item Since they are allocated on the so-called \indexterm{stack},
+  making them too large can lead to \indextermbus{stack}{overflow}.
+\end{itemize}
+
+A better strategy is to indicate the shape of the array, and use
+\indextermtt{allocate} to specify
+the size later, presumably in terms of run-time program parameters.
+
+\begin{block}{Array allocation}
+  \label{sl:farray-alloc}
+\begin{verbatim}
+real(8), dimension(:), allocatable :: x,y
+
+n = 100
+allocate(x(n), y(n))
+\end{verbatim}
+You can \indextermtt{deallocate} the array when you don't need the
+space anymore.
+\end{block}
+
+If you are in danger of running out of memory, it can be a good idea
+to add a \n{stat=ierror} clause to the \n{allocate} statement:
+\begin{verbatim}
+integer :: ierr
+allocate( x(n), stat=ierr )
+if ( ierr/=0 ) ! report error
+\end{verbatim}
+
+Has an array been allocated:
+\begin{verbatim}
+Allocated( x ) ! returns logical
+\end{verbatim}
+
+Allocatable arrays are automatically deallocated when they go out of
+scope. This prevents the \indextermbus{memory}{leak} problems of~C++.
+
+Explicit deallocate:
+\begin{verbatim}
+deallocate(x)
+\end{verbatim}
+
+\Level 0 {Array slicing}
+
+Fortran is more sophisticated than C++ in how it can handle arrays as
+a whole. For starters, you can assign one array to another:
+\begin{verbatim}
+real(4),dimension(25,26) :: a,b
+a = b
+\end{verbatim}
+You can assign subarrays, or \emph{array slices}\index{index!slice},
+as long as they have the same shape. You use colon-syntax to indicate
+ranges:
+
+\begin{block}{Array slicing}
+  \label{sl:farray-slices}
+  \begin{itemize}
+  \item {\tt :} %\n{:}
+    to get all indices,
+  \item {\tt :n} % \n{:n}
+    to get indices up to~\n{n},
+  \item {\tt n:} % \n{n:}
+    to get indices \n{n} and up.
+  \item {\tt m:n}
+    indices in range \n{m,...,n}.
+  \end{itemize}
+\end{block}
+
+For multi-dimensional arrays, you need to indicate a range in all
+dimensions.
+
+\begin{block}{Array slicing in multi-D}
+  \label{sl:farray-sliced}
+\begin{verbatim}
+real(8),dimension(10) :: a,b
+a(1:9) = b(2:10)
+\end{verbatim}
+or
+\begin{verbatim}
+logical,dimension(25,3) :: a
+logical,dimension(25)   :: b
+a(:,2) = b
+\end{verbatim}
+You can also use strides.
+\end{block}
+
+\begin{exercise}
+  \label{ex:farray-shift}
+
+  \includegraphics[scale=.3]{yx_average}
+
+  Code $\forall_i\colon y_i=(x_i+x_{i+1})/2$:
+  \begin{itemize}
+  \item First with a do loop; then
+  \item in a single array assignment statement by using sections.
+  \end{itemize}
+  Initialize the array \n{x} with values that allow you to check the
+  correctness of your code.
+\end{exercise}
+
+\Level 0 {Array output}
+
+Use implicit do-loops; section~\ref{sec:f-impdo}.
+
+\Level 0 {Operating on an array}
+
+\Level 1 {Arithmetic operations}
+
+Between arrays of the same shape:
+\begin{verbatim}
+A = B+C
+D = D*E
+\end{verbatim}
+(where the multiplication is by element).
+
+\Level 1 {Intrinsic functions}
+
+The following intrinsic functions are avaible for arrays:
+\begin{block}{Array intrinsics}
+  \label{sl:array-funcf}
+  \begin{itemize}
+  \item \indextermtt{MaxVal} finds the maximum value in an array.
+  \item \indextermtt{MinVal} finds the minimum value in an array.
+  \item \indextermtt{Sum} returns the sum of all elements.
+  \item \indextermtt{Product} return the product of all elements.
+  \item \indextermfort{MaxLoc} returns the index of the maximum
+    element.
+\begin{verbatim}
+i = MAXLOC( array [, mask ] )
+\end{verbatim}
+  \item \indextermtt{MinLoc} returns the index of the minimum element.
+  \item \indextermtt{MatMul} returns the matrix product of two matrices.
+  \item \indextermtt{Dot_Product} returns the dot product of two
+    arrays.
+  \item \indextermtt{Transpose} returns the transpose of a matrix.
+  \item \indextermtt{Cshift} rotates elements through an array.
+  \end{itemize}
+\end{block}
+
+\begin{exercise}
+  \label{ex:fmatnorm}
+  The 1-norm of a matrix is defined as the maximum sum of absolute
+  values in any column:
+  \[ \|A\|_1 = \max_j \sum_i |A_{ij}| \]
+  while the infinity-norm is defined as the maximum row sum:
+  \[ \|A\|_\infty = \max_i \sum_j |A_{ij}| \]
+  Implement these functions using array intrinsics.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:fmatmul}
+  Compare implementations of the matrix-matrix product.
+  \begin{enumerate}
+  \item Write the regular \n{i,j,k} implementation, and store it as
+    reference.
+  \item Use the \n{DOT_PRODUCT} function, which eliminates the \n{k}
+    index. How does the timing change? Print the maximum absolute
+    distance between this and the reference result.
+  \item Use the \n{MATMUL} function. Same questions.
+  \item Bonus question: investigate the \n{j,k,i} and \n{i,k,j}
+    variants. Write them both with array sections and individual array
+    elements. Is there a difference in timing?
+  \end{enumerate}
+  Does the optimization level make a difference in timing?
+\end{exercise}
+
+\Level 1 {Restricting with \tt{where}}
+
+\indextermfort{where}
+\begin{verbatim}
+where ( A<0 ) B = 0
+\end{verbatim}
+
+Full form:
+\begin{verbatim}
+WHERE ( logical argument )
+  sequence of array statements
+ELSEWHERE
+  sequence of array statements
+END WHERE
+\end{verbatim}
+
+\Level 1 {Global condition tests}
+
+Reduction of a test on all array elements:
+\indextermfort{all}
+\begin{verbatim}
+REAL(8),dimension(N,N) :: A
+LOGICAL :: positive,positive_row(N),positive_col(N)
+positive = ALL( A>0)
+positive_row = ALL( A>0,1 )
+positive_col = ALL( A>0,2 )
+\end{verbatim}
+
+\begin{exercise}
+  Use array statements (that is, no loops) to fill a two-dimensional
+  array~\n{A} with random numbers between zero and~one. Then fill two
+  arrays \n{Abig} and \n{Asmall} with the elements of~\n{A} that are
+  great than~$0.5$, or less than~$0.5$ respectively:
+  \[ A_{\scriptstyle\mathrm{big}}(i,j) =
+  \begin{cases}
+    A(i,j)&\hbox{if $A(i,j)\geq 0.5$}\\ 0&\hbox{otherwise}
+  \end{cases}
+  \]
+  \[ A_{\scriptstyle\mathrm{small}}(i,j) =
+  \begin{cases}
+    0&\hbox{if $A(i,j)\geq 0.5$}\\ A(i,j)&\hbox{otherwise}
+  \end{cases}
+  \]
+  Using more array statements, add \n{Abig} and \n{Asmall}, and test
+  whether the sum is close enough to~\n{A}.
+\end{exercise}
+
+Similar to \n{all}, there is a function~\indextermfort{any} that tests
+if any array element satisfies the test.
+\begin{verbatim}
+if ( Any( Abs(A-B)>
+\end{verbatim}
+
+\Level 0 {Array operations}
+
+\Level 1 {Loops without looping}
+
+In addition to ordinary do-loops, Fortran has mechanisms that save you
+typing, or can be more efficient in some circumstances.
+\begin{itemize}
+\item Slicing: if your loop assigns to an array from another array,
+  you can use slice notation:
+\begin{verbatim}
+a(:) = b(:)
+c(1:n) = d(2:n+1)
+\end{verbatim}
+\item The \indextermtt{forall} keyword also indicates an array assignment:
+\begin{verbatim}
+forall (i=1:n)
+  a(i) = b(i)
+  c(i) = d(i+1)
+end forall
+\end{verbatim}
+You can tell that this is for arrays only, because the loop index has
+to be part of the left-hand side of every assignment.
+
+This mechanism is prone to misunderstanding and therefore now
+deprecated.
+It is not a parallel loop! For that, the following mechanism is preferred.
+\item The \indexterm{do concurrent} is a true do-loop. With the
+  \n{concurrent} keyword the user specifies that the
+  iterations of a loop are independent, and can therefore possibly be
+  done in parallel:
+\begin{verbatim}
+do concurrent (i=1:n)
+  a(i) = b(i)
+  c(i) = d(i+1)
+end do
+\end{verbatim}
+\end{itemize}
+
+\Level 1 {Loops without dependencies}
+
+Here are some illustrations of simple array copying with the above
+mechanisms.
+
+\verbatimsnippet{blockrecur}
+\begin{verbatim}
+Original     1   2   3   4   5   6   7   8   9  10
+Recursive    0   2   4   6   8  10  12  14  16  18
+\end{verbatim}
+
+\verbatimsnippet{blockslice}
+\begin{verbatim}
+Original     1   2   3   4   5   6   7   8   9  10
+Sliced       0   2   4   6   8  10  12  14  16  18
+\end{verbatim}
+
+\verbatimsnippet{blockforall}
+\begin{verbatim}
+Original     1   2   3   4   5   6   7   8   9  10
+Forall       0   2   4   6   8  10  12  14  16  18
+\end{verbatim}
+
+\verbatimsnippet{blockconc}
+\begin{verbatim}
+Original     1   2   3   4   5   6   7   8   9  10
+Concurrent   0   2   4   6   8  10  12  14  16  18
+\end{verbatim}
+
+\begin{exercise}
+  Create arrays \n{A,C} of length~\n{2N}, and \n{B}~of length~\n{N}.
+  Now implement
+  \[ B_i = (A_{2i}+A_{2i+1})/2,\quad i=1,\ldots N \]
+  and
+  \[ C_i = A_{i/2},\quad i=1,\ldots 2N \]
+  using all four mechanisms. Make sure you get the same result every time.
+\end{exercise}
+
+\Level 1 {Loops with dependencies}
+
+For parallel execution of a loop, all iterations have to be independent.
+This is not the case if the loop has a \indexterm{recurrence}, and in
+this case, the `do concurrent' mechanism is not appropriate.
+%
+Here are the above four constructs, but applied to a loop with a dependence.
+%
+\verbatimsnippet{slicerecur}
+%
+\begin{verbatim}
+Original   1   2   3   4   5   6   7   8   9  10
+Recursiv   1   2   4   8  16  32  64 128 256 512
+\end{verbatim}
+
+The slicing version of this:
+%
+\verbatimsnippet{sliceslice}
+%
+\begin{verbatim}
+Original   1   2   3   4   5   6   7   8   9  10
+Sliced     1   2   4   6   8  10  12  14  16  18
+\end{verbatim}
+%
+acts as if the right-hand side is saved in a temporary array, and
+subsequently assigned to the left-hand side.
+
+Using `forall' is equivalent to slicing:
+%
+\verbatimsnippet{sliceforall}
+%
+\begin{verbatim}
+Original     1   2   3   4   5   6   7   8   9  10
+Forall       1   2   4   6   8  10  12  14  16  18
+\end{verbatim}
+
+On the other hand, `do concurrent' does not use temporaries, so it is
+more like the sequential version:
+%
+\verbatimsnippet{sliceconc}
+%
+\begin{verbatim}
+Original     1   2   3   4   5   6   7   8   9  10
+Concurrent   1   2   4   8  16  32  64 128 256 512
+\end{verbatim}
+Note that the result does not have to be equal to the sequential
+execution: the compiler is free to rearrange the iterations any way it
+sees fit.
+
+\Level 0 {Review questions}
+
+\begin{exercise}
+  \label{ex:farray-assign-slice}
+  Let the following declarations be given, and assume that all arrays
+  are properly initialized:
+\begin{verbatim}
+real                   :: x
+real, dimension(10)    :: a, b
+real, dimension(10,10) :: c, d
+\end{verbatim}
+
+Comment on the following lines: are they legal, if so what do they do?
+\begin{enumerate}
+\item \n{a = b}
+\item \n{a = x}
+\item \n{a(1:10) = c(1:10)}
+\end{enumerate}
+
+How would you:
+\begin{enumerate}
+\item Set the second row of \n{c} to~\n{b}?
+\item Set the second row of \n{c} to the elements of~\n{b}, last-to-first?
+\end{enumerate}
+\end{exercise}
