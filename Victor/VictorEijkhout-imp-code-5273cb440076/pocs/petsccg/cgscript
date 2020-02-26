@@ -1,0 +1,33 @@
+#!/bin/bash
+
+##
+## script for petsc cg
+##
+
+#SBATCH -J petsccgtest
+#SBATCH -o petsccgtest.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -n 3200           # Total number of mpi tasks requested
+#SBATCH -N 200            # Total number of nodes
+#SBATCH -p normal  # Queue (partition) name -- normal, development, etc.
+#SBATCH -t 00:30:00     # Run time (hh:mm:ss) - 1.5 hours
+#SBATCH -A A-ccsc
+#SBATCH --mail-user=eijkhout@tacc.utexas.edu
+##SBATCH --mail-type=end
+
+#. /home1/apps/intel/itac/9.0.3.049/bin/itacvars.sh
+
+
+export VT_LOGFILE_FORMAT=stfsingle
+
+for nodes in 2 4 6 8 10 20 50 100 200 ; do
+
+  export TACC_TASKS_PER_NODE=16
+  export procs=$(( TACC_TASKS_PER_NODE * nodes ))
+  export MY_NSLOTS=${procs}
+
+  echo "Running on $nodes nodes with $procs procs total"
+  export VT_LOGFILE_NAME=petsccg-${procs}.stf
+  /work/00434/eijkhout/ibrun.v -trace petsccg -ksp_max_it 5 -nlocal 300000 -log_summary
+
+done
+

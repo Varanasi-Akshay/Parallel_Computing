@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH -J ssteptest
+#SBATCH -o ssteptest.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -n 160            # Total number of mpi tasks requested
+#SBATCH -N 10            # Total number of nodes
+#SBATCH -p normal  # Queue (partition) name -- normal, development, etc.
+#SBATCH -t 00:30:00     # Run time (hh:mm:ss) - 1.5 hours
+#SBATCH -A A-ccsc
+##SBATCH --mail-type=end
+##SBATCH --mail-user=eijkhout@tacc.utexas.edu
+
+PROGRAM=sstep
+for b in "" "-block" ; do
+echo "****************************************************************"
+echo ; echo "Using blocking option: $b" ; echo
+echo "****************************************************************"
+for n in 100 1000 10000 100000 ; do
+    ibrun -trace ../../mpi/mpi_apps/${PROGRAM} $b -steps 25 -xps 100 -nlocal $n -summary
+done
+done

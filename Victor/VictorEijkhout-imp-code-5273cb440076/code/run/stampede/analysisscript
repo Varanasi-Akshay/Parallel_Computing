@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J analysistest
+#SBATCH -o analysistest.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -n 160            # Total number of mpi tasks requested
+#SBATCH -N 10            # Total number of nodes
+#SBATCH -p development  # Queue (partition) name -- normal, development, etc.
+#SBATCH -t 00:30:00     # Run time (hh:mm:ss) - 1.5 hours
+#SBATCH -A A-ccsc
+#SBATCH --mail-type=end
+#SBATCH --mail-user=eijkhout@tacc.utexas.edu
+
+for n in 100 1000 10000 100000 ; do
+    ibrun -trace ../../mpi/mpi_apps/cg -steps 5 -nlocal $n -summary
+done
+
+
+
+
+

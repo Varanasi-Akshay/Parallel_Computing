@@ -1,0 +1,37 @@
+# -*- makefile -*-
+################################################################
+####
+#### This make include file is part of the prototype implementation of
+#### the Integrative Model for Parallelism
+####
+#### copyright Victor Eijkhout 2014-6
+####
+#### unittest rules for regression testing
+####
+################################################################
+
+info ::
+	@echo "make regressioncompile"
+	@echo "make regression  [BROKENOPTIONS=...]"
+	@if [ ! -z "${BASICBROKENOPTIONS}" ] ; then \
+	    echo "    (standard set: ${BASICBROKENOPTIONS})" ; \
+	fi
+
+.PHONY: regressioncompile regression broken
+regressioncompile :
+	@for u in ${REGRESSIONTESTS} ; do \
+	  make $$u ; \
+	  if [ $$? -ne 0 ] ; then echo "compilation failed for $$u"; exit 1; fi ; \
+	done
+regression :
+	@echo "================================================================"
+	@echo " Regression test"
+	@echo " testing ${REGRESSIONTESTS}"
+	@echo " using ${REGRESSION_PROCS} processors"
+	@echo " currently disabled: ${BASICBROKENOPTIONS}${BROKENOPTIONS}"
+	@echo "================================================================"
+	@for u in ${REGRESSIONTESTS} ; do \
+	  make unittest UNITTEST=$$u ; \
+	done
+broken :
+	@echo ${BASICBROKENOPTIONS}~[hide]

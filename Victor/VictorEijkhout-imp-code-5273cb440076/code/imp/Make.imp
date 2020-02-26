@@ -1,0 +1,38 @@
+# -*- makefile -*-
+################################################################
+####
+#### This make include file is part of the prototype implementation of
+#### the Integrative Model for Parallelism
+####
+#### copyright Victor Eijkhout 2014-6
+####
+#### unittest rules for mode-independent files
+####
+################################################################
+
+${IMPCODEDIR}/imp_base.o ${IMPCODEDIR}/indexstruct.o ${IMPCODEDIR}/imp_functions.o : \
+    ${IMPCODEDIR}/imp_base.cxx ${IMPCODEDIR}/imp_functions.cxx \
+    ${IMPCODEDIR}/imp_base.h ${IMPCODEDIR}/utils.cxx ${IMPCODEDIR}/utils.h \
+    ${IMPCODEDIR}/indexstruct.cxx ${IMPCODEDIR}/indexstruct.hpp
+	@cd ${IMPCODEDIR} ; \
+	    make imp_base.o indexstruct.o imp_functions.o \
+	        OPTLEVEL=${OPTLEVEL}
+${IMPCODEDIR}/imp_functions.o : ${IMPCODEDIR}/impfunc_struct_index.cxx
+
+${IMPCODEDIR}/utils.o : ${IMPCODEDIR}/utils.h
+	@cd ${IMPCODEDIR} ; \
+	    make utils.o OPTLEVEL=${OPTLEVEL}
+
+${OMPCODEDIR}/omp_base.o ${OMPCODEDIR}/omp_functions.o : \
+    ${OMPCODEDIR}/omp_base.cxx ${OMPCODEDIR}/omp_base.h ${OMPCODEDIR}/omp_ops.h \
+    ${OMPCODEDIR}/omp_functions.cxx
+	cd ${OMPCODEDIR}; make omp_base.o omp_functions.o OPTLEVEL=${OPTLEVEL}
+${MPICODEDIR}/mpi_base.o ${MPICODEDIR}/mpi_functions.o : \
+    ${MPICODEDIR}/mpi_base.cxx ${MPICODEDIR}/mpi_base.h ${MPICODEDIR}/mpi_ops.h \
+    ${MPICODEDIR}/mpi_functions.cxx
+	cd ${MPICODEDIR}; make mpi_base.o mpi_functions.o OPTLEVEL=${OPTLEVEL}
+${PRODUCTCODEDIR}/product_base.o : \
+    ${PRODUCTCODEDIR}/product_base.cxx ${PRODUCTCODEDIR}/product_base.h \
+    ${PRODUCTCODEDIR}/product_ops.h
+	cd ${PRODUCTCODEDIR}; make product_base.o OPTLEVEL=${OPTLEVEL}
+

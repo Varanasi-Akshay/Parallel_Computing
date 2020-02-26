@@ -1,0 +1,23 @@
+#!/bin/bash
+
+make clean
+if [ ${TACC_SYSTEM} = "hikari" ] ; then
+  echo "Setup for hikari"
+  source ${HOME}/bin/mpix
+fi
+
+if [ ${TACC_SYSTEM} = "stampede" ] ; then
+  export SIZES="1000 3000 9000"
+else
+  export SIZES="1000 3000 10000"
+fi
+
+for s in ${SIZES} ; do
+  for t in 1 10 100 ; do
+    make overlaps DFLAGS="-DN=$s -DTHICK=$t -DTIME -DSYSTEM=${TACC_SYSTEM}"
+    for o in `make listoverlaps`; do
+      mv $o $o-$s-$t
+    done
+  done
+done
+

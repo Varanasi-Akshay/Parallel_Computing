@@ -1,0 +1,59 @@
+#!/bin/bash
+#SBATCH -J transposerun
+#SBATCH -o transposerun.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -n 4096            # Total number of mpi tasks requested
+#SBATCH -N 256            # Total number of nodes
+#SBATCH -p normal  # Queue (partition) name -- normal, development, etc.
+#SBATCH -t 00:10:00     # Run time (hh:mm:ss) - 1.5 hours
+#SBATCH -A A-ccsc
+##SBATCH --mail-type=ALL
+##SBATCH --mail-user=eijkhout@tacc.utexas.edu
+
+MPIRUN=ibrun
+
+# we measure processes and threads along each side
+# with 8 x 8 processes total
+
+#stampede
+max_p_per_node=16
+max_t_side=8
+
+# largest grid:
+max_p_side=128
+max_n_side=4000
+
+for p in 2 4 8 16 32 64 ; do
+
+  cores=$(( p * p ))
+  echo "Running with ${cores} cores" ; echo
+
+  for t in 1 2 4 ; do
+
+    mpi_nprocs=$(( cores / t / t ))
+
+    if [ ${mpi_nprocs} -gt 0 ] ; then
+
+	export MY_NSLOTS=${mpi_nprocs}
+
+	s=${max_n_side}
+	
+        # number of threads is squared
+	export OMP_NUM_THREADS=$(( t*t ))
+	
+	export TACC_TASKS_PER_NODE=$(( max_p_per_node / t / t ))
+	if [ ${TACC_TASKS_PER_NODE} -eq 0 ] ; then
+	    export TACC_TASKS_PER_NODE=1
+	elif [ ${TACC_TASKS_PER_NODE} -gt ${mpi_nprocs} ] ; then
+	    export TACC_TASKS_PER_NODE=${mpi_nprocs}
+	fi
+	echo "Running with ${cores} cores, ${MY_NSLOTS} mpi processes, ${TACC_TASKS_PER_NODE} mpi tasks per node, and ${OMP_NUM_THREADS} threads per node"
+	
+	export OMP_PROC_BIND=spread
+	export OMP_PLACES=cores
+	./ibrun.v tacc_affinity ./transpose ${s}
+
+    fi  
+    #### ${MPIRUN} -np $( p*p )) ./transpose ${s}
+
+  done
+done

@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH -o overlap-ls5-16.o%j
+#SBATCH -e overlap-ls5-16.e%j
+#SBATCH -N 16
+#SBATCH -n 16
+#SBATCH -p normal
+#SBATCH -t 00:15:00
+#SBATCH -A A-ccsc
+#SBATCH --mail-type=end
+#SBATCH --mail-user=eijkhout@tacc.utexas.edu
+
+export OMP_NUM_THREADS=2
+export OMP_PLACES=sockets
+export OMP_PROC_BIND=close
+
+for s in 1000 3000 10000 ; do
+  for t in 1 10 100 ; do
+    echo "Testing overlaps with N=$s and thick=$t"
+    for o in `make listoverlaps`; do
+      if [ $o = "overlap4x" ] ; then
+        MPICH_MAX_THREAD_SAFETY=multiple ibrun $o-$s-$t
+      else
+        ibrun $o-$s-$t
+      fi
+    done
+  done
+done
+
+

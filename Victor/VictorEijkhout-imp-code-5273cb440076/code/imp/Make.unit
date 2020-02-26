@@ -1,0 +1,26 @@
+# -*- makefile -*-
+################################################################
+####
+#### This make include file is part of the prototype implementation of
+#### the Integrative Model for Parallelism
+####
+#### copyright Victor Eijkhout 2014/5
+####
+#### unittest rules for mode-independent files
+####     load after Make.apps
+####
+################################################################
+
+##
+## all unit tests depend on this, add to it as necessary
+##
+UNITTEST_OBJS := ${APPS_OBJS}
+${UNITTEST_OBJS} : ${IMPCODEDIR}/imp_base.h ${IMPCODEDIR}/imp_ops.h \
+    ${IMPCODEDIR}/imp_functions.h ${IMPCODEDIR}/utils.h
+
+${OMPCODEDIR}/omp_unittest_functions.o : ${IMPCODEDIR}/unittest_functions.h
+
+##
+## all unittest object files, defined in mode makefiles
+##
+${UNITTEST_OBJECTS} : ${IMPCODEDIR}/imp_ops.h ${IMPCODEDIR}/imp_base.h

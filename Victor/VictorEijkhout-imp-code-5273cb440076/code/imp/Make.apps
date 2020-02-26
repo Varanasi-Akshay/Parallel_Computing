@@ -1,0 +1,190 @@
+# -*- makefile -*-
+################################################################
+####
+#### This make include file is part of the prototype implementation of
+#### the Integrative Model for Parallelism
+####
+#### copyright Victor Eijkhout 2014-6
+####
+#### rules for test applications
+####
+################################################################
+
+
+##
+## object files for all apps, also to be used in Make.unit
+##
+APPS_OBJS := \
+    ${IMPCODEDIR}/imp_base.o ${IMPCODEDIR}/indexstruct.o ${IMPCODEDIR}/imp_functions.o \
+    ${IMPCODEDIR}/unittest_functions.o ${IMPCODEDIR}/utils.o 
+${IMPCODEDIR}/utils.o : ${IMPCODEDIR}/utils.h
+${IMPCODEDIR}/unittest_functions.o : \
+    ${IMPCODEDIR}/unittest_functions.h ${IMPCODEDIR}/unittest_functions.cxx
+
+##
+## rules for the executables
+##
+# rule for making the mode-specific cxx file from the imp/template_%.cxx file
+${patsubst %,%.cxx,${EXECUTABLES}} : ${patsubst %,${IMPCODEDIR}/template_%.cxx,${EXECUTABLES}}
+	@echo "generate $@"
+	@export TARGET=`pwd` ; cd ${IMPCODEDIR} ; \
+	 for e in ${EXECUTABLES} ; do \
+	    cat template_$$e.cxx \
+	    | sed -e 's/IMP_/${MODE}_/g' -e 's/\*!/*/' > $$TARGET/$$e.cxx ; \
+	 done
+
+# special purpose rule for compiling the cg.cxx and such;
+# we dont want a general rule in this directory
+# ${patsubst %,%.o,${EXECUTABLES}} ${patsubst %,${MODE}_%_kernel.o,${EXECUTABLES}} :
+# 	make ${@:.o=.cxx}
+# 	${CXX} ${CXXFLAGS} ${MPIFLAGS} ${CXXUNITFLAGS} -I${CATCHDIR} -c ${@:.o=.cxx}
+
+info ::
+	@echo "make extract (extract all app sources)"
+	@echo "make app_compile (compile all apps)"
+.PHONY: extract app_compile
+extract:
+	@for a in ${EXECUTABLES} ; do \
+	  make $$a.cxx ; \
+	done
+app_compile:
+	@for a in ${EXECUTABLES} ; do \
+	  make $$a ; \
+	done
+
+##
+## files for specific applications
+##
+
+####
+#### Balance
+####
+SPECIFIC_OBJECTS_unittest_distribution := ${IMPCODEDIR}/balance_functions.o
+SPECIFIC_OBJECTS_balance := ${IMPCODEDIR}/balance_functions.o
+
+ALL_SPECIFIC_OBJECTS += \
+    ${IMPCODEDIR}/balance_functions.o
+
+unittest_balance :: ${IMPCODEDIR}/balance_functions.o
+	@touch foo # why? 
+${IMPCODEDIR}/balance_functions.o : \
+    ${IMPCODEDIR}/balance_functions.cxx ${IMPCODEDIR}/balance_functions.h
+	@cd ${IMPCODEDIR} ; \
+	    make balance_functions.o OPTLEVEL=${OPTLEVEL}
+
+####
+#### Conjugate Gradients
+####
+SPECIFIC_OBJECTS_cg := ${MPICODEDIR}/mpi_apps/mpi_cg_kernel.o
+SPECIFIC_OBJECTS_cg0 := ${MPICODEDIR}/mpi_apps/mpi_cg_kernel.o
+SPECIFIC_OBJECTS_cg1 := ${MPICODEDIR}/mpi_apps/mpi_cg_kernel.o
+SPECIFIC_OBJECTS_cgr := ${MPICODEDIR}/mpi_apps/mpi_cg_kernel.o
+SPECIFIC_OBJECTS_cgm := ${MPICODEDIR}/mpi_apps/mpi_cg_kernel.o
+
+ALL_SPECIFIC_OBJECTS += \
+    ${MPICODEDIR}/mpi_apps/mpi_cg_kernel.o
+
+${MPICODEDIR}/mpi_apps/mpi_cg_kernel.o : ${IMPCODEDIR}/cg_kernel.h
+	cd ${MPICODEDIR}/mpi_apps ; \
+	    make mpi_cg_kernel.o
+# ${MPICODEDIR}/kmeans_local.o : ${MPICODEDIR}/kmeans_local.h
+# 	cd ${MPICODEDIR}/ ; \
+# 	    make kmeans_local.o
+
+
+####
+#### Kmeans
+####
+SPECIFIC_OBJECTS_kmeans := \
+    ${MPICODEDIR}/mpi_apps/mpi_kmeans_kernel.o \
+    ${IMPCODEDIR}/kmeans_functions.o
+SPECIFIC_OBJECTS_unittest_kmeans := \
+    ${MPICODEDIR}/mpi_apps/mpi_kmeans_kernel.o \
+    ${IMPCODEDIR}/kmeans_functions.o
+
+${IMPCODEDIR}/kmeans_functions.o : \
+    ${IMPCODEDIR}/kmeans_functions.h ${IMPCODEDIR}/kmeans_functions.cxx
+	@cd ${IMPCODEDIR} ; \
+	  make kmeans_functions.o OPTLEVEL=${OPTLEVEL}
+${MPICODEDIR}/mpi_apps/mpi_kmeans_kernel.o : \
+    ${MPICODEDIR}/mpi_apps/mpi_kmeans_kernel.cxx ${IMPCODEDIR}/kmeans_functions.h
+	cd ${MPICODEDIR}/mpi_apps ; \
+	    make mpi_kmeans_kernel.o 
+
+ALL_SPECIFIC_OBJECTS += \
+    ${IMPCODEDIR}/kmeans_functions.o \
+    ${MPICODEDIR}/mpi_apps/mpi_kmeans_kernel.o
+
+####
+#### Laplace
+####
+SPECIFIC_OBJECTS_grids := \
+    ${IMPCODEDIR}/laplace_functions.o
+SPECIFIC_OBJECTS_laplace-bilinear := \
+    ${IMPCODEDIR}/laplace_functions.o
+ALL_SPECIFIC_OBJECTS += \
+    ${IMPCODEDIR}/laplace_functions.o
+
+${IMPCODEDIR}/laplace_functions.o : \
+    ${IMPCODEDIR}/laplace_functions.cxx ${IMPCODEDIR}/laplace_functions.h
+	@cd ${IMPCODEDIR} ; \
+	    make laplace_functions.o OPTLEVEL=${OPTLEVEL}
+
+####
+#### Lulesh
+####
+SPECIFIC_OBJECTS_unittest_lulesh := ${IMPCODEDIR}/lulesh_functions.o
+SPECIFIC_OBJECTS_lulesh-1d := ${IMPCODEDIR}/lulesh_functions.o
+SPECIFIC_OBJECTS_lulesh-2d := ${IMPCODEDIR}/lulesh_functions.o
+SPECIFIC_OBJECTS_lulesh := ${IMPCODEDIR}/lulesh_functions.o
+
+ALL_SPECIFIC_OBJECTS += \
+    ${IMPCODEDIR}/lulesh_functions.o
+
+unittest_lulesh :: ${IMPCODEDIR}/lulesh_functions.o
+	@touch foo # why? 
+${IMPCODEDIR}/lulesh_functions.o : \
+    ${IMPCODEDIR}/lulesh_functions.cxx ${IMPCODEDIR}/lulesh_functions.h
+	@cd ${IMPCODEDIR} ; \
+	    make lulesh_functions.o OPTLEVEL=${OPTLEVEL}
+
+####
+#### General support functions
+####
+${IMPCODEDIR}/unittest_functions.o : ${IMPCODEDIR}/unittest_functions.h
+	@cd ${IMPCODEDIR} ; \
+	    make unittest_functions.o OPTLEVEL=${OPTLEVEL}
+
+##
+## dot output
+##
+info ::
+	@echo "make dot"
+.PHONY: dot
+dot :
+	@for d in *.dot ; do \
+	  echo "converting $$d to $${d%%.dot}.pdf" ; \
+	  sed -i -e '/one/d' $$d ; \
+	  dot -Tpdf $$d -o $${d%%.dot}.pdf ; \
+	done
+clean ::
+	@for d in *.dot ; do \
+	  /bin/rm -f $${d%%.dot}.pdf ; \
+	done
+	@/bin/rm -f *.dot
+
+##
+## regression rules for the apps directories
+## (the "runapp" rule is mode-specific)
+##
+info ::
+	@echo "make appregression [REGRESSION_APPS=(choose from ${EXECUTABLES})]"
+.PHONY: appregression
+REGRESSION_APPS = heat cg0 nbody
+appregression:
+	@for e in ${REGRESSION_APPS} ; do \
+	  echo "Testing $$e" ; \
+	  rm -f $$e ; make $$e >/dev/null 2>&1 ; \
+	  if [ ! -f $$e ] ; then echo "Could not make $$e"; exit 1; fi ; \
+	  make runapp APP=$$e ; \
+	done

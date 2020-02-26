@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH -e overlap-stampede2-16.e%j    # Output and error file name (%j expands to jobID)
+#SBATCH -o overlap-stampede2-16.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -n 16            # Total number of mpi tasks requested
+#SBATCH -N 16            # Total number of nodes
+#SBATCH -p normal  # Queue (partition) name -- normal, development, etc.
+#SBATCH -t 00:30:00     # Run time (hh:mm:ss)
+#SBATCH -A A-ccsc
+#SBATCH --mail-type=end
+#SBATCH --mail-user=eijkhout@tacc.utexas.edu
+
+export OMP_NUM_THREADS=2
+export OMP_PLACES=sockets
+export OMP_PROC_BIND=close
+
+for s in 1000 3000 10000 ; do
+  for t in 1 10 100 ; do
+    echo "Testing overlaps with N=$s and thick=$t"
+    for o in `make listoverlaps`; do
+      ibrun $o-$s-$t
+    done
+  done
+done

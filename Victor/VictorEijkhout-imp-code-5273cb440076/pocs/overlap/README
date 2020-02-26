@@ -1,0 +1,51 @@
+%%%%
+%%%% Introduction
+%%%%
+
+These are programs for overlapping communication and
+computation. Various degrees of MPI cleverness.
+
+%%%%
+%%%% Workflow
+%%%%
+
+"make listoverlaps" shows the active codes. This list is used in:
+- compile_overlaps : compile the overlap codes into size/thickness variants.
+  Call this script first.
+- sbatch.<machine> is a bunch of scripts for various TACC clusters
+  make sure there is an output directory corresponding to the machine.
+  Submit this script on your favourite cluster.
+- analyze.py <outputfile> : text-based analysis
+- make charts / make bigcharts <machine> : analyze the files in the machine directory,
+  making a bunch of graphs
+
+%%%%
+%%%% Code details
+%%%%
+
+All codes are based on doing two independent sequences of grid updates.
+Processes are arranged in a square grid, so the number of MPI ranks has to be a square.
+Each process gets a square subdomain. 
+The computation is a 5-point stencil, but have a parameter for how thick a border
+    will be communicated.
+We use MPI_Type_create_subarray for finding the communicated regions.
+
+As a baseline, here are two completely scalar codes:
+
+- overlap1 : this is the basic non-communicating code
+- overlap1p : as 1, but now using two omp threads
+
+Next we measure the MPI overhead, both the send/receive overhead, and the packing:
+
+- overlap2 : the basic MPI code: Isend/Irecv immediately followed by WaitAll
+- overlap2f : as 2, but we communicate a contiguous area
+
+Now we try to overlap, single-threaded:
+
+- overlap3 : we pipeline the time step loop body, so one grid is overlapped, the other not
+- overlap4 : we pipeline the whole process
+
+The problem with a single thread approach is that the packing is not overlapped, so we use two threads:
+
+- overlap4t : start a parallel region for each pair of independent pack/compute
+- overlap4p : put a big parallel region around the whole experiment

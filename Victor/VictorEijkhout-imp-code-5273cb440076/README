@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% This is the README for the public repository of the 
+%%%%     Integrative Model for Parallelism
+%%%%
+%%%% copyright Victor Eijkhout 2012-7
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+0. NOTE
+
+This is a development repository. There is NO GUARANTEE that
+anything here is useful, will not change, or will compile and run
+to begin with.
+
+1. Reading material
+
+The reports directory contains a couple of technical reports
+describing the ideas of the IMP model
+
+2. Code
+
+Code in the `code' directory relies on a couple of external packages.
+
+- For unittests you need to download the file catch.hpp
+  from https://github.com/philsquared/Catch
+
+- in the Make.inc file you need to indicate the location
+  of cppformat. Download from http://cppformat.github.io/
+
+You need to indicate the location of these in imp/Make.inc
+There is an example file to base yourself off.
+
+The code uses many C++11 and C++14 features.
+
+3. Running
+
+In the subdirectories mpi,omp,product the command "make regression"
+should pass. NOTE not guaranteed in the development version.
+
+In mpi/mpi_apps et cetera, type "make" to see which applications
+can be build and run.
+

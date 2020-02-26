@@ -1,0 +1,19 @@
+MPIRUN = ibrun
+
+# we measure processes and threads along each side
+# with 8 x 8 processes total
+
+for p in 2 4 8 ; do
+
+  # threads * procs = 8
+  t=$(( 8 / p ))
+
+  # threads * local size = 200
+  s=$(( 200 / t ))
+  
+  # number of threads is squared
+  export OMP_NUM_THREADS=$(( t*t ))
+
+  ${MPIRUN} -np $( p*p )) ./transpose ${s}
+
+done

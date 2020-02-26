@@ -1,0 +1,35 @@
+# -*- makefile -*-
+################################################################
+####
+#### This make include file is part of the prototype implementation of
+#### the Integrative Model for Parallelism
+####
+#### copyright Victor Eijkhout 2014-7
+####
+#### examples settings. copy this to Make.inc and customize;
+#### this file should not go into the repository.
+####
+################################################################
+
+IMPROOT = ${HOME}/Current/Ilib/i-mp/code
+SYMUTIL = /usr/bin/dsymutil
+MPIRUN = mpirun
+OPTLEVEL = 0
+
+MPICXX = mpicxx
+
+####
+#### Catch
+####
+CATCHDIR = ${WORK}/catch
+
+####
+#### cppformat
+####
+CPPFORMAT_INC = ${HOME}/Installation/cppformat/cppformat
+CPPFORMAT_LIB = ${HOME}/Installation/cppformat/installation/lib
+LIBFORMAT = libfmt.a
+
+LIBCXX_intel = 
+LIBCXX_gcc   = -lc++
+LIBCXX = ${LIBCXX_${TACC_FAMILY_COMPILER}}

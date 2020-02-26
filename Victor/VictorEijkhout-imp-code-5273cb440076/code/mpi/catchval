@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export program=$1
+
+$* >${program}.out${PMI_RANK} 2>&1

@@ -1,0 +1,56 @@
+#!/bin/bash
+
+##
+## first optional argument is the domain side
+##
+export domain_size=25
+if [ $# -gt 0 ] ; then
+  export domain_size=$1
+fi
+
+##
+## second optional argument is the number of cores
+##
+export cores=${domain_size}
+#$(( domain_size * domain_size / 6 ))
+if [ $# -gt 1 ] ; then
+  export cores=$2
+fi
+export maxblock=$(( domain_size-1 ))
+
+export outputfile=avoid-d${domain_size}-c${cores}.out
+rm -f ${outputfile}
+touch ${outputfile}
+
+( echo ; \
+  echo "Run with 2D domain, side=${domain_size}" ; \
+  echo "reporting ${cores} cores" ; \
+  echo ) | tee -a ${outputfile}
+
+##
+## now run for all possible blockings
+##
+for latency in 100 1000 10000 ; do
+  echo "Latency: ${latency}" | tee -a ${outputfile}
+  for nlocal in 10 100 1000 ; do
+    echo "nlocal = ${nlocal}" | tee -a ${outputfile}
+    for block in 1 2 3 4 5 6 8 10 ; do
+      if [ $(( block * (maxblock/block) )) -eq $maxblock ] ; then
+	echo "Blocking by ${block}" | tee -a ${outputfile}
+
+	export steps=$(( maxblock/block ))
+	export over=$(( maxblock+1 ))
+
+	./avoid2 -steps ${steps} -blocking ${block} \
+	    -nodes 3 -over ${domain_size} -nlocal 10 \
+	    -cores ${cores} \
+	    -latency ${latency} \
+	| grep "Parallel time" \
+	| tee -a ${outputfile}
+      fi
+    done # block
+  echo 
+  done # nlocal
+done # latency
+
+##  ./avoid2 -blocking $b -steps $((12/b)) -nodes 3 -over 25 -nlocal 10 -latency 2000

@@ -1,0 +1,72 @@
+# -*- makefile -*-
+################################################################
+####
+#### This make include file is part of the prototype implementation of
+#### the Integrative Model for Parallelism
+####
+#### copyright Victor Eijkhout 2014-6
+####
+#### compiler definitions
+####
+################################################################
+
+.PRECIOUS: %.o. %.dSYM
+
+# set this in Make.inc: OPTLEVEL = 0/1/2
+ifdef TACC_ITAC_DIR
+  ITACFLAGS = -trace -DVT -I${TACC_ITAC_DIR}/intel64/include
+else
+  ITACFLAGS =
+endif
+CXX_OPTFLAGS_intel = -O${OPTLEVEL} -g    -std=c++11 ${ITACFLAGS} -fno-omit-frame-pointer
+CXX_OPTFLAGS_gcc   = -O${OPTLEVEL} -ggdb -std=gnu++1y -Wno-sign-compare -fpermissive
+CXX_OPTFLAGS = ${CXX_OPTFLAGS_${TACC_FAMILY_COMPILER}}
+
+C_COMPILER_gcc   = gcc
+C_COMPILER_intel = icc
+C_COMPILER = ${C_COMPILER_${TACC_FAMILY_COMPILER}}
+
+CXX_COMPILER_gcc   = g++
+CXX_COMPILER_intel = icpc
+CXX_COMPILER = ${CXX_COMPILER_${TACC_FAMILY_COMPILER}}
+
+OMPFLAGS_intel    = -openmp
+OMPFLAGS_gcc      = -fopenmp
+OMPFLAGS = ${OMPFLAGS_${TACC_FAMILY_COMPILER}}
+
+MPIFLAGS_intel    = 
+MPIFLAGS_gnu      = 
+MPIFLAGS = ${MPIFLAGS_${TACC_FAMILY_COMPILER}}
+
+CXXUNITFLAGS = # -fpermissive
+#-Wnounused-but-set-variable -Werror=no-unused-variable
+
+info ::
+	@echo "make clean"
+clean ::
+	@/bin/rm -rf *~ *.o ddt.o* *.dSYM *.ir out *.stf* ddt.o* \
+	  unittest.out
+	@for x in *.cxx ; do \
+	  /bin/rm -f $${x%%.cxx} ; \
+	done
+	@for d in *.dot ; do /bin/rm -f $$d $${d%%.dot}.pdf ; done
+
+diagnosis :
+	@echo "TACC_FAMILY_COMPILER=${TACC_FAMILY_COMPILER}"
+	@echo "CXX_OPTFLAGS=${CXX_OPTFLAGS}"
+	@echo "CXXFLAGS=${CXXFLAGS}"
+	@echo "CXX=${CXX}"
+
+countlines :
+	@if [ -z "${IMPROOT}" ] ; then \
+	  echo "Need to set IMPROOT variable" ; exit 1 ; fi
+	@for d in imp mpi omp product ; do \
+	  ( cd ${IMPROOT}/$$d ; \
+	    echo "Counting in <<" $$d ">>" ; \
+	    ( for f in *base.{cxx,h} ; do \
+	        cat $$f \
+	        | grep -v "^[ \t]*$$" | grep -v "^[ \t]*//" \
+	        ; \
+	      done ) | wc -l ; \
+	  ) ; \
+	done

@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH -e overlap-hikari-25.e%j    # Output and error file name (%j expands to jobID)
+#SBATCH -o overlap-hikari-25.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -N 25
+#SBATCH -n 25
+#SBATCH -p normal
+#SBATCH -t 01:00:00
+#SBATCH -A A-ccsc
+#SBATCH --mail-type=end
+#SBATCH --mail-user=eijkhout@tacc.utexas.edu
+
+source ${HOME}/bin/mpix
+export MV2_CPU_MAPPING=0-23
+export OMP_NUM_THREADS=2
+export OMP_PLACES=cores
+export OMP_PROC_BIND=close
+
+for s in 1000 3000 10000 ; do
+  for t in 1 10 100 ; do
+    echo "Testing overlaps with N=$s and thick=$t"
+    for o in `make listoverlaps`; do
+      ibrun $o-$s-$t
+    done
+  done
+done

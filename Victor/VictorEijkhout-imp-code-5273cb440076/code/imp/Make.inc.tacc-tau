@@ -1,0 +1,32 @@
+# -*- makefile -*-
+################################################################
+####
+#### This make include file is part of the prototype implementation of
+#### the Integrative Model for Parallelism
+####
+#### copyright Victor Eijkhout 2014-6
+####
+#### settings for Stampede, using TAU
+####
+################################################################
+
+SYMUTIL = /bin/true
+OPTLEVEL = 0
+MPIRUN = ibrun
+REGRESSION_PROCS = 16
+CPPFORMAT_INC = ${WORK}/cppformat/cppformat
+CPPFORMAT_LIB = ${WORK}/cppformat/installation/lib
+LIBFORMAT = libfmt.a
+CATCHDIR = ${WORK}/catch
+
+ifdef TACC_TAU_DIR
+  CXX = tau_cxx.sh
+  MPICXX = mpicxx -cxx=tau_cxx.sh
+  LIBCXX_intel = -L/opt/apps/gcc/4.9.1/lib64 -lstdc++
+else
+  MPICXX = mpicxx
+  LIBCXX_intel = 
+endif
+
+LIBCXX_gcc   = 
+LIBCXX = ${LIBCXX_${TACC_FAMILY_COMPILER}}

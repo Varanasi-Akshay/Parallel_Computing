@@ -1,0 +1,707 @@
+Testing overlaps with N=1000 and thick=1
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1 runtime 3.085780e-02 for 7.200000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1p runtime 2.378416e-02 for 3.600000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2 runtime 3.334498e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap3 runtime 3.299618e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4 runtime 3.307891e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2f runtime 3.241611e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+TACC: MPI job exited with code: 255
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+TACC: MPI job exited with code: 255
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4h runtime 4.073310e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4x runtime 4.489112e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=1000 and thick=10
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1 runtime 3.083420e-02 for 7.200000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1p runtime 2.380204e-02 for 3.600000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2 runtime 5.989599e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap3 runtime 5.553699e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4 runtime 5.608010e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2f runtime 3.580689e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4h runtime 4.879689e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4x runtime 6.238294e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=1000 and thick=100
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1 runtime 2.692389e-02 for 7.200000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1p runtime 2.333617e-02 for 3.600000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2 runtime 1.412828e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap3 runtime 1.339250e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4 runtime 1.094720e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2f runtime 5.179715e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+TACC: MPI job exited with code: 139
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4h runtime 8.602977e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4x runtime 1.281118e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=3000 and thick=1
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1 runtime 2.421288e-01 for 6.480000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1p runtime 1.741040e-01 for 3.240000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2 runtime 2.646141e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap3 runtime 2.546220e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4 runtime 2.693501e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2f runtime 2.750330e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+TACC: MPI job exited with code: 255
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4h runtime 3.202600e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4x runtime 3.463299e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=3000 and thick=10
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1 runtime 2.410572e-01 for 6.480000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1p runtime 1.693952e-01 for 3.240000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2 runtime 3.295858e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap3 runtime 3.139372e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4 runtime 3.377309e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2f runtime 2.511940e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4h runtime 3.431561e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4x runtime 3.842280e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=3000 and thick=100
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1 runtime 2.428648e-01 for 6.480000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1p runtime 1.745441e-01 for 3.240000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2 runtime 4.617569e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap3 runtime 4.512498e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4 runtime 4.687619e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2f runtime 3.238661e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4h runtime 3.698080e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4x runtime 5.426641e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=10000 and thick=1
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1 runtime 3.105574e+00 for 7.200000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1p runtime 1.837618e+00 for 3.600000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2 runtime 3.636887e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap3 runtime 3.441411e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4 runtime 3.298802e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2f runtime 3.212075e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+TACC: MPI job exited with code: 255
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4h runtime 3.686686e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4x runtime 4.186001e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=10000 and thick=10
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1 runtime 3.102813e+00 for 7.200000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1p runtime 1.965829e+00 for 3.600000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2 runtime 3.479085e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap3 runtime 3.747831e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4 runtime 3.591206e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2f runtime 3.241617e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+TACC: MPI job exited with code: 139
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4h runtime 3.872162e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4x runtime 4.539514e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=10000 and thick=100
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1 runtime 3.105369e+00 for 7.200000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1p runtime 1.807385e+00 for 3.600000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2 runtime 3.960869e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap3 runtime 4.193450e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4 runtime 4.399731e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2f runtime 3.314314e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+TACC: MPI job exited with code: 134
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+TACC: MPI job exited with code: 255
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4h runtime 3.981181e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 858909
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4x runtime 4.951130e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.

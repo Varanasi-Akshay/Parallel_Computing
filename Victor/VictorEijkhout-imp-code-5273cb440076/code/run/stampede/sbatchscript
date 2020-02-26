@@ -1,0 +1,38 @@
+#!/bin/bash
+
+##
+## automatically generated batch script
+## for program testing
+##
+
+#SBATCH -J ssteptest
+#SBATCH -o ssteptest.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -n 3200
+#SBATCH -N 200
+#SBATCH -p normal  # Queue (partition) name -- normal, development, etc.
+#SBATCH -t 04:00:00     # Run time (hh:mm:ss) - 1.5 hours
+#SBATCH -A A-ccsc
+#SBATCH --mail-user=eijkhout@tacc.utexas.edu
+#SBATCH --mail-type=end
+
+#. /home1/apps/intel/itac/9.0.3.049/bin/itacvars.sh
+
+
+export VT_LOGFILE_FORMAT=stfsingle
+
+for nodes in 2 4 6 8 10 20 50 100 200 ; do
+
+  export TACC_TASKS_PER_NODE=16
+  export procs=$(( TACC_TASKS_PER_NODE * nodes ))
+  export MY_NSLOTS=${procs}
+
+  if [  -gt 3200 ] ; then
+    echo "Script internal inconsistency"; exit 1
+  fi
+
+  echo "Running on $nodes nodes with $procs procs total"
+  export VT_LOGFILE_NAME=sstep-c4-${procs}.stf
+  /work/00434/eijkhout/ibrun.v -trace ../../mpi/mpi_apps/sstep  -summary
+
+done
+

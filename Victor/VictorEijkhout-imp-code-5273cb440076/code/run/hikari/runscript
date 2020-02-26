@@ -1,0 +1,64 @@
+#!/bin/bash
+
+if [ $# -lt 1 ] ; then
+  echo "Usage: $0 program"; exit 1
+fi
+
+PROGRAM=$1
+
+if [ $# -eq 2 ] ; then
+  COLLECTIVE=$2
+  VT_LOGFILE_NAME=${PROGRAM}-c${COLLECTIVE}
+else
+  COLLECTIVE=2
+  VT_LOGFILE_NAME=${PROGRAM}
+fi
+
+if [ ${PROGRAM} = "cg" -o ${PROGRAM} = "cgm" -o ${PROGRAM} = "gropp" ] ; then
+  OPTIONS="-steps 5 -nlocal 300000 -collective ${COLLECTIVE} -summary"
+fi
+
+TASKS_PER_NODE=16
+MAX_NODES=200
+cat >sbatchscript <<EOF
+#!/bin/bash
+
+##
+## automatically generated batch script
+## for program testing
+##
+
+#SBATCH -J ${PROGRAM}test
+#SBATCH -o ${PROGRAM}test.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -n $(( TASKS_PER_NODE * MAX_NODES ))
+#SBATCH -N ${MAX_NODES}
+#SBATCH -p normal  # Queue (partition) name -- normal, development, etc.
+#SBATCH -t 04:00:00     # Run time (hh:mm:ss) - 1.5 hours
+#SBATCH -A A-ccsc
+#SBATCH --mail-user=eijkhout@tacc.utexas.edu
+#SBATCH --mail-type=end
+
+#. ${TACC_ITAC_DIR}/bin/itacvars.sh
+
+
+export VT_LOGFILE_FORMAT=stfsingle
+
+for nodes in 2 4 6 8 10 20 50 100 200 ; do
+
+  export TACC_TASKS_PER_NODE=16
+  export procs=\$(( TACC_TASKS_PER_NODE * nodes ))
+  export MY_NSLOTS=\${procs}
+
+  if [ \${MY_NSLOTS} -gt \$(( TASKS_PER_NODE * MAX_NODES )) ] ; then
+    echo "Script internal inconsistency"; exit 1
+  fi
+
+  echo "Running on \$nodes nodes with \$procs procs total"
+  export VT_LOGFILE_NAME=${VT_LOGFILE_NAME}-\${procs}.stf
+  ${WORK}/ibrun.v -trace ../../mpi/mpi_apps/${PROGRAM} ${OPTIONS} -summary
+
+done
+
+EOF
+
+sbatch sbatchscript

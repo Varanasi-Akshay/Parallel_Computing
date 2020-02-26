@@ -1,0 +1,729 @@
+Testing overlaps with N=1000 and thick=1
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1 runtime 4.476094e-02 for 7.200000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1p runtime 6.661296e-02 for 3.600000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2 runtime 6.177187e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap3 runtime 5.225801e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4 runtime 5.366778e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2f runtime 5.503702e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4t runtime 1.001780e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4p runtime 7.585096e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4h runtime 8.882689e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4x runtime 9.641790e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=1000 and thick=10
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1 runtime 4.461598e-02 for 7.200000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1p runtime 5.799007e-02 for 3.600000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2 runtime 8.590198e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap3 runtime 8.480501e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4 runtime 7.526684e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2f runtime 5.685997e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4t runtime 1.150770e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4p runtime 9.980392e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4h runtime 9.332895e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4x runtime 1.149302e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=1000 and thick=100
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1 runtime 4.504490e-02 for 7.200000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap1p runtime 5.832100e-02 for 3.600000e+07
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2 runtime 2.441480e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap3 runtime 2.416298e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4 runtime 1.803241e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap2f runtime 8.472586e-02 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4t runtime 2.705281e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4p runtime 2.591331e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4h runtime 1.865439e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 8000000, insize: 8032032
+Total allocation 320640640.000000
+overlap4x runtime 2.421150e-01 for 7.200000e+07 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=3000 and thick=1
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1 runtime 4.332230e-01 for 6.480000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1p runtime 2.572398e-01 for 3.240000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2 runtime 5.002589e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap3 runtime 4.989519e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4 runtime 4.570122e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2f runtime 4.745519e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4t runtime 5.173240e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4p runtime 2.924080e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4h runtime 4.908271e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4x runtime 5.055230e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=3000 and thick=10
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1 runtime 4.338949e-01 for 6.480000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1p runtime 2.652018e-01 for 3.240000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2 runtime 5.723519e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap3 runtime 5.945110e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4 runtime 5.483801e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2f runtime 4.847498e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4t runtime 5.878992e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4p runtime 3.422570e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4h runtime 4.992270e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4x runtime 5.724931e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=3000 and thick=100
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1 runtime 4.362609e-01 for 6.480000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap1p runtime 2.661068e-01 for 3.240000e+08
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2 runtime 1.071089e+00 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap3 runtime 1.014725e+00 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4 runtime 9.610229e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap2f runtime 6.298418e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4t runtime 1.035303e+00 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4p runtime 7.229900e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4h runtime 6.486361e-01 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 72000000, insize: 72096032
+Total allocation 2881920640.000000
+overlap4x runtime 1.068279e+00 for 6.480000e+08 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=10000 and thick=1
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1 runtime 5.993389e+00 for 7.200000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1p runtime 3.189655e+00 for 3.600000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2 runtime 6.816724e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap3 runtime 6.672650e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4 runtime 6.374673e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2f runtime 6.715028e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4t runtime 6.360316e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4p runtime 3.590218e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4h runtime 6.342105e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4x runtime 6.337475e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=10000 and thick=10
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1 runtime 6.050312e+00 for 7.200000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1p runtime 3.206893e+00 for 3.600000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2 runtime 7.126068e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap3 runtime 6.984921e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4 runtime 6.564026e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2f runtime 6.696071e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4t runtime 6.640569e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4p runtime 3.773540e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4h runtime 6.425355e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4x runtime 6.538180e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+Testing overlaps with N=10000 and thick=100
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1 runtime 6.049276e+00 for 7.200000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap1p runtime 3.184459e+00 for 3.600000e+09
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2 runtime 7.817405e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap3 runtime 7.773990e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4 runtime 7.501662e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap2f runtime 7.030120e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4t runtime 7.441781e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4p runtime 4.536534e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4h runtime 6.466392e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
+TACC: Starting up job 25277
+TACC: Starting parallel tasks...
+outsize: 800000000, insize: 800320032
+Total allocation 32006400640.000000
+overlap4x runtime 7.244282e+00 for 7.200000e+09 flops
+check 1.000000e+00
+ 
+TACC: Shutdown complete. Exiting.
