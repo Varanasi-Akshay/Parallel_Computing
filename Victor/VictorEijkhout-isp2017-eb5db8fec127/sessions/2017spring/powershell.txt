@@ -1,0 +1,45 @@
+## clone the repository
+[eijkhout@isp02 ~]$ hg clone https://VictorEijkhout@bitbucket.org/VictorEijkhout/isp2017
+destination directory: isp2017
+requesting all changes
+adding changesets
+adding manifests
+adding file changes
+added 22 changesets with 49 changes to 25 files
+updating to branch default
+23 files updated, 0 files merged, 0 files removed, 0 files unresolved
+[eijkhout@isp02 ~]$ cd isp2017/
+
+## update the repository
+[eijkhout@isp02 isp2017]$ hg pull -u 
+pulling from https://VictorEijkhout@bitbucket.org/VictorEijkhout/isp2017
+searching for changes
+no changes found
+[eijkhout@isp02 isp2017]$ ls
+background  EijkhoutIntroSciProgramming.pdf  lectures  README
+[eijkhout@isp02 isp2017]$ ls background/
+Eijkhout Scientific Programming.pdf  emacs tutorial.pdf               syllabus2017spring.pdf    vi_cheat_sheet.pdf
+Eijkhout Unix tutorial.pdf           Kriemann Leipzig cppscicomp.pdf  TICPP-2nd-ed-Vol-one.zip
+emacs reference card.pdf             Linux Cheatsheet.pdf             TICPP-2nd-ed-Vol-two.zip
+[eijkhout@isp02 isp2017]$ ls lectures/
+0 TACC overview.pdf           2 IntroToLinux_History.pdf   4 Statements and expressions.pdf  6 Looping.pdf
+1 Computational Thinking.pdf  3 IntroToLinux_Commands.pdf  5 Control Structures.pdf          7 Functions.pdf
+[eijkhout@isp02 isp2017]$ cd
+[eijkhout@isp02 ~]$ ls
+imastudent  intel  introduction-to-scientific-programming  isp2017
+
+## last word of the previous line
+[eijkhout@isp02 ~]$ mkdir testing
+[eijkhout@isp02 ~]$ cd !$
+cd testing
+
+## make changes in the previous command
+[eijkhout@isp02 testing]$ touch testfile.cc
+[eijkhout@isp02 testing]$ icpc -o testfile.cc 
+icpc: command line error: no files specified; for help type "icpc -help"
+[eijkhout@isp02 testing]$ ^o^c
+icpc -c testfile.cc 
+
+## repeat last command starting with.....
+[eijkhout@isp02 testing]$ !t
+touch testfile.cc

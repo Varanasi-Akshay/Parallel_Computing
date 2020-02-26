@@ -1,0 +1,874 @@
+rect.cxx:8:3: note:   candidate expects 2 arguments, 0 provided
+rect.cxx:4:7: note: candidate: constexpr Point::Point(const Point&)
+ class Point {
+       ^~~~~
+rect.cxx:4:7: note:   candidate expects 1 argument, 0 provided
+rect.cxx:4:7: note: candidate: constexpr Point::Point(Point&&)
+rect.cxx:4:7: note:   candidate expects 1 argument, 0 provided
+rect.cxx: In function 'int main()':
+rect.cxx:24:22: error: 'class Rectangle' has no member named 'area'
+   cout << tallskinny.area() << end;
+                      ^~~~
+[isprect:10] fg
+emacs rect.cxx
+
+[1]+  Stopped                 emacs rect.cxx
+[isprect:11] g++ -o rectangle rect.cxx
+rect.cxx: In function 'int main()':
+rect.cxx:25:22: error: 'class Rectangle' has no member named 'area'
+[1]+  Stopped                 emacs rect.cxx
+[isprect:13] g++ -o rectangle rect.cxx && ./rectangle
+rect.cxx: In function 'int main()':
+rect.cxx:26:29: error: no match for 'operator<<' (operand types are 'std::basic_ostream<char>::__ostream_type {aka std::basic_ostream<char>}' and '<unresolved overloaded function type>')
+   cout << tallskinny.area() << end;
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:108:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__ostream_type& (*)(std::basic_ostream<_CharT, _Traits>::__ostream_type&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:108:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'std::basic_ostream<char>::__ostream_type& (*)(std::basic_ostream<char>::__ostream_type&) {aka std::basic_ostream<char>& (*)(std::basic_ostream<char>&)}'
+/opt/local/include/gcc7/c++/ostream:117:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__ios_type& (*)(std::basic_ostream<_CharT, _Traits>::__ios_type&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>; std::basic_ostream<_CharT, _Traits>::__ios_type = std::basic_ios<char>]
+       operator<<(__ios_type& (*__pf)(__ios_type&))
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:117:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'std::basic_ostream<char>::__ios_type& (*)(std::basic_ostream<char>::__ios_type&) {aka std::basic_ios<char>& (*)(std::basic_ios<char>&)}'
+/opt/local/include/gcc7/c++/ostream:127:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::ios_base& (*)(std::ios_base&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(ios_base& (*__pf) (ios_base&))
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:127:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'std::ios_base& (*)(std::ios_base&)'
+/opt/local/include/gcc7/c++/ostream:166:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(long __n)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:166:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'long int'
+/opt/local/include/gcc7/c++/ostream:170:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(unsigned long __n)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:170:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'long unsigned int'
+/opt/local/include/gcc7/c++/ostream:174:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(bool) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(bool __n)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:174:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'bool'
+In file included from /opt/local/include/gcc7/c++/ostream:693:0,
+                 from /opt/local/include/gcc7/c++/iostream:39,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/bits/ostream.tcc:91:5: note: candidate: std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(short int) [with _CharT = char; _Traits = std::char_traits<char>]
+     basic_ostream<_CharT, _Traits>::
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/local/include/gcc7/c++/bits/ostream.tcc:91:5: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'short int'
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:181:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(short unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(unsigned short __n)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:181:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'short unsigned int'
+In file included from /opt/local/include/gcc7/c++/ostream:693:0,
+                 from /opt/local/include/gcc7/c++/iostream:39,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/bits/ostream.tcc:105:5: note: candidate: std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(int) [with _CharT = char; _Traits = std::char_traits<char>]
+     basic_ostream<_CharT, _Traits>::
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/local/include/gcc7/c++/bits/ostream.tcc:105:5: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'int'
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:192:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(unsigned int __n)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:192:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'unsigned int'
+/opt/local/include/gcc7/c++/ostream:201:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(long long __n)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:201:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'long long int'
+/opt/local/include/gcc7/c++/ostream:205:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(unsigned long long __n)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:205:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'long long unsigned int'
+/opt/local/include/gcc7/c++/ostream:220:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(double) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(double __f)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:220:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'double'
+/opt/local/include/gcc7/c++/ostream:224:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(float) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(float __f)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:224:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'float'
+/opt/local/include/gcc7/c++/ostream:232:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long double) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(long double __f)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:232:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'long double'
+/opt/local/include/gcc7/c++/ostream:245:7: note: candidate: std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(const void*) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]
+       operator<<(const void* __p)
+       ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:245:7: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'const void*'
+In file included from /opt/local/include/gcc7/c++/ostream:693:0,
+                 from /opt/local/include/gcc7/c++/iostream:39,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/bits/ostream.tcc:119:5: note: candidate: std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__streambuf_type*) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__streambuf_type = std::basic_streambuf<char>]
+     basic_ostream<_CharT, _Traits>::
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/local/include/gcc7/c++/bits/ostream.tcc:119:5: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'std::basic_ostream<char>::__streambuf_type* {aka std::basic_streambuf<char>*}'
+In file included from /opt/local/include/gcc7/c++/string:52:0,
+                 from /opt/local/include/gcc7/c++/bits/locale_classes.h:40,
+                 from /opt/local/include/gcc7/c++/bits/ios_base.h:41,
+                 from /opt/local/include/gcc7/c++/ios:42,
+                 from /opt/local/include/gcc7/c++/ostream:38,
+                 from /opt/local/include/gcc7/c++/iostream:39,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/bits/basic_string.h:6082:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/bits/basic_string.h:6082:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   couldn't deduce template parameter '_Alloc'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/bits/ios_base.h:46:0,
+                 from /opt/local/include/gcc7/c++/ios:42,
+                 from /opt/local/include/gcc7/c++/ostream:38,
+                 from /opt/local/include/gcc7/c++/iostream:39,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/system_error:217:5: note: candidate: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::error_code&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os, const error_code& __e)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/system_error:217:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'const std::error_code&'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:497:5: note: candidate: std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT) [with _CharT = char; _Traits = std::char_traits<char>]
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:497:5: note:   no known conversion for argument 2 from '<unresolved overloaded function type>' to 'char'
+/opt/local/include/gcc7/c++/ostream:502:5: note: candidate: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:502:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'char'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:508:5: note: candidate: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:508:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'char'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:514:5: note: candidate: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:514:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'signed char'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:519:5: note: candidate: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:519:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'unsigned char'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:539:5: note: candidate: std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>]
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:539:5: note:   no known conversion for argument 2 from '<unresolved overloaded function type>' to 'const char*'
+In file included from /opt/local/include/gcc7/c++/ostream:693:0,
+                 from /opt/local/include/gcc7/c++/iostream:39,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/bits/ostream.tcc:321:5: note: candidate: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'const char*'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:556:5: note: candidate: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:556:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'const char*'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:569:5: note: candidate: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:569:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'const signed char*'
+   cout << tallskinny.area() << end;
+                                ^~~
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:574:5: note: candidate: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^~~~~~~~
+File Edit Options Buffers Tools C++ Help
+#include <iostream>
+using namespace std;
+
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+-UUU:**--F1  rect.cxx       Top L16    (C++/l Abbrev) -------------------------------
+File Edit Options Buffers Tools C++ Help
+
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  return 0;
+-UUU:**--F1  rect.cxx        7% L17    (C++/l Abbrev) -------------------------------
+/opt/local/include/gcc7/c++/ostream:574:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   cannot convert 'std::end' (type '<unresolved overloaded function type>') to type 'const unsigned char*'
+   cout << tallskinny.area() << end;
+                                ^~~
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  return 0;
+}
+-UUU:----F1  rect.cxx       Bot L17    (C++/l Abbrev) -------------------------------
+Wrote /Users/eijkhout/isprect/rect.cxx
+File Edit Options Buffers Tools C++ Help
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+-UUU:----F1  rect.cxx        7% L17    (C++/l Abbrev) -------------------------------
+Font-Lock mode disabled in current buffer
+File Edit Options Buffers Tools C++ Help
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+-UUU:----F1  rect.cxx        7% L17    (C++/l Abbrev) -------------------------------
+Font-Lock mode disabled in current buffer
+File Edit Options Buffers Tools C++ Help
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+-UUU:----F1  rect.cxx        7% L17    (C++/l Abbrev) -------------------------------
+Font-Lock mode disabled in current buffer
+File Edit Options Buffers Tools C++ Help
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  return 0;
+-UUU:----F1  rect.cxx        7% L17    (C++/l Abbrev) -------------------------------
+Font-Lock mode disabled in current buffer
+File Edit Options Buffers Tools C++ Help
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  return 0;
+-UUU:----F1  rect.cxx        7% L12    (C++/l Abbrev) --------------------------------
+File Edit Options Buffers Tools C++ Help
+#include <iostream>
+using namespace std;
+
+class Point {
+private:
+  double x,y;
+public:
+  Point() {}; // this is the default constructor
+  Point(double ux,double uy) { x=ux; y=uy; };
+};
+
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+int main() {
+  Point origin(0.,0.);
+-UUU:----F1  rect.cxx       Top L12    (C++/l Abbrev) --------------------------------
+File Edit Options Buffers Tools C++ Help
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+class Square : public Rectangle	{
+public:
+  Square( Point ll,double w) : Rectangle(......) { ....};
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  Square unit(origin,1.);
+  cout << unit.area() << endl;
+  return 0;
+}
+File Edit Options Buffers Tools C++ Help
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+class Square : public Rectangle {
+public:
+  Square( Point ll,double w) : Rectangle(......) { ....};
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  Square unit(origin,1.);
+  cout << unit.area() << endl;
+  return 0;
+}
+-UUU:----F1  rect.cxx       Bot L35    (C++/l Abbrev) ---------------------------------
+File Edit Options Buffers Tools C++ Help
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+class Square : public Rectangle {
+public:
+  Square( Point ll,double w) : Rectangle(......) { ....};
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  Square unit(origin,1.);
+  cout << unit.area() << endl;
+  return 0;
+}
+-UUU:----F1  rect.cxx       Bot L35    (C++/l Abbrev) -----------------------------------------------
+Wrote /Users/eijkhout/isprect/rect.cxx
+File Edit Options Buffers Tools C++ Help
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+class Square : public Rectangle {
+public:
+  Square( Point ll,double w) : Rectangle(......) { ....};
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  Square unit(origin,1.);
+  cout << unit.area() << endl;
+  return 0;
+}
+-UUU:----F1  rect.cxx       Bot L35    (C++/l Abbrev) ----------------------------------------------------------------
+Wrote /Users/eijkhout/isprect/rect.cxx
+File Edit Options Buffers Tools C++ Help
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+class Square : public Rectangle {
+public:
+  Square( Point ll,double w) : Rectangle(......) { ....};
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  Square unit(origin,1.);
+  cout << unit.area() << endl;
+  return 0;
+}
+-UUU:----F1  rect.cxx       Bot L35    (C++/l Abbrev) -----------------------------------------------------------------
+Wrote /Users/eijkhout/isprect/rect.cxx
+File Edit Options Buffers Tools C++ Help
+class Rectangle {
+private:
+  Point lowerleft; // this line requires default constructor
+  double width,height;
+public:
+  //  Rectangle( Point ll,Point ur ) {
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Rectangle( Point ll,double w,double h) {
+    lowerleft = ll; width = w; height = h;
+  };
+  double area() { return width*height; };
+};
+
+class Square : public Rectangle {
+public:
+  Square( Point ll,double w) : Rectangle(......) { ....};
+};
+
+int main() {
+  Point origin(0.,0.);
+  Rectangle tallskinny( origin, 1., 27 );
+  cout << tallskinny.area() << endl;
+  Square unit(origin,1.);
+  cout << unit.area() << endl;
+  return 0;
+}
+-UUU:----F1  rect.cxx       Bot L35    (C++/l Abbrev) -------------------------------------------------------------------
+Wrote /Users/eijkhout/isprect/rect.cxx
+File Edit Options Buffers Tools C++ Help
+#include <iostream>                                         |  double x,y;
+using namespace std;                                        |public:
+                                                            |  Point() {}; // this is the default constructor
+class Point {                                               |  Point(double ux,double uy) { x=ux; y=uy; };
+private:                                                    |};
+  double x,y;                                               |
+public:                                                     |class Rectangle {
+  Point() {}; // this is the default constructor            |private:
+  Point(double ux,double uy) { x=ux; y=uy; };               |  Point lowerleft; // this line requires default constructor
+};                                                          |  double width,height;
+                                                            |public:
+class Rectangle {                                           |  //  Rectangle( Point ll,Point ur ) {
+private:                                                    |  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Point lowerleft; // this line requires default constructo\|  Rectangle( Point ll,double w,double h) {
+r                                                           |    lowerleft = ll; width = w; height = h;
+  double width,height;                                      |  };
+public:                                                     |  double area() { return width*height; };
+  //  Rectangle( Point ll,Point ur ) {                      |};
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();} |
+  Rectangle( Point ll,double w,double h) {                  |class Square : public Rectangle {
+    lowerleft = ll; width = w; height = h;                  |public:
+  };                                                        |  Square( Point ll,double w) : Rectangle(......) { ....};
+  double area() { return width*height; };                   |};
+};                                                          |
+                                                            |int main() {
+class Square : public Rectangle {                           |  Point origin(0.,0.);
+-UUU:----F1  rect.cxx       Top L1     (C++/l Abbrev) ------|-UUU:----F1  rect.cxx        8% L19    (C++/l Abbrev) -------
+File Edit Options Buffers Tools C++ Help
+#include <iostream>                                         |  double x,y;
+using namespace std;                                        |public:
+                                                            |  Point() {}; // this is the default constructor
+class Point {                                               |  Point(double ux,double uy) { x=ux; y=uy; };
+private:                                                    |};
+  double x,y;                                               |
+public:                                                     |class Rectangle {
+  Point() {}; // this is the default constructor            |private:
+  Point(double ux,double uy) { x=ux; y=uy; };               |  Point lowerleft; // this line requires default constructor
+};                                                          |  double width,height;
+                                                            |public:
+class Rectangle {                                           |  //  Rectangle( Point ll,Point ur ) {
+private:                                                    |  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();}
+  Point lowerleft; // this line requires default constructo\|  Rectangle( Point ll,double w,double h) {
+r                                                           |    lowerleft = ll; width = w; height = h;
+  double width,height;                                      |  };
+public:                                                     |  double area() { return width*height; };
+  //  Rectangle( Point ll,Point ur ) {                      |};
+  //        width = ur.x()-ll.x(); height = ur.y()-ll.y();} |
+  Rectangle( Point ll,double w,double h) {                  |class Square : public Rectangle {
+    lowerleft = ll; width = w; height = h;                  |public:
+  };                                                        |  Square( Point ll,double w) : Rectangle(......) { ....};
+  double area() { return width*height; };                   |};
+};                                                          |
+                                                            |int main() {
+class Square : public Rectangle {                           |  Point origin(0.,0.);
+-UUU:----F1  rect.cxx       Top L1     (C++/l Abbrev) ------|-UUU:----F1  rect.cxx        8% L25    (C++/l Abbrev) -------
+Wrote /Users/eijkhout/isprect/rect.cxx
+-UUU:----F1  rect.cxx       Bot L35    (C++/l Abbrev) --------------------------------
+Wrote /Users/eijkhout/isprect/rect.cxx
+In file included from /opt/local/include/gcc7/c++/iostream:39:0,
+                 from rect.cxx:1:
+/opt/local/include/gcc7/c++/ostream:682:5: note: candidate: template<class _Ostream, class _Tp> typename std::enable_if<std::__and_<std::__not_<std::is_lvalue_reference<_Tp> >, std::__is_convertible_to_basic_ostream<_Ostream>, std::__is_insertable<typename std::__is_convertible_to_basic_ostream<_Tp>::__ostream_type, const _Tp&, void> >::value, typename std::__is_convertible_to_basic_ostream<_Tp>::__ostream_type>::type std::operator<<(_Ostream&&, const _Tp&)
+     operator<<(_Ostream&& __os, const _Tp& __x)
+     ^~~~~~~~
+/opt/local/include/gcc7/c++/ostream:682:5: note:   template argument deduction/substitution failed:
+rect.cxx:26:32: note:   couldn't deduce template parameter '_Tp'
+   cout << tallskinny.area() << end;
+                                ^~~
+[isprect:14] fg
+emacs rect.cxx
+
+[1]+  Stopped                 emacs rect.cxx
+[isprect:15] g++ -o rectangle rect.cxx && ./rectangle
+27
+[isprect:16] fg
+emacs rect.cxx
+[isprect:17] cd .
+[isprect:18] cd ..
+[~:19] mkdir ispmakea
+[~:20] cd !$
+cd ispmakea
+[ispmakea:21] cp ~/Current/SSC/ISP/ISP2017/sessions/
+2017spring/     collatz.cxx     emacs_demo.cxx  make_demos/
+[ispmakea:21] cp ~/Current/SSC/ISP/ISP2017/sessions/make_demos/
+files_a/            files_b/            make_session1a.txt  make_session1b.txt
+[ispmakea:21] cp -r ~/Current/SSC/ISP/ISP2017/sessions/make_demos/files_a .
+[ispmakea:22] cd files_a/
+[files_a:23] ls
+Makefile		primeprogram.cxx
+[files_a:24] emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:25] make primelibrary.o
+g++ -c primelibrary.cxx
+[files_a:26] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:27] make clean
+/bin/rm -f primeprogram *~ *.o
+[files_a:28] ls
+Makefile		primelibrary.cxx	primeprogram.cxx
+[files_a:29] make primeprogram
+g++ -c primeprogram.cxx
+primeprogram.cxx: In function 'int main()':
+primeprogram.cxx:7:50: error: 'isprime' was not declared in this scope
+   cout << "The number " << n << " is prime: " << isprime(n) << endl;
+                                                  ^~~~~~~
+primeprogram.cxx:7:50: note: suggested alternative: 'isprint'
+   cout << "The number " << n << " is prime: " << isprime(n) << endl;
+                                                  ^~~~~~~
+                                                  isprint
+make: *** [primeprogram.o] Error 1
+[files_a:30] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:31] make clean
+/bin/rm -f primeprogram *~ *.o
+[files_a:32] # now we have a header file
+[files_a:32] make primeprogram
+g++ -c primeprogram.cxx
+g++ -c primelibrary.cxx
+g++ -o primeprogram primeprogram.o primelibrary.o
+[files_a:33] # apparently the main program could be compiled
+[files_a:33] # with the knowledge of what isprime looks like.
+[files_a:33] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:34] echo 5 | ./primeprogram
+The number 5 is prime: 1
+[files_a:35] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:36] # let's do something that makes no mathematical sense
+[files_a:36] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:37] make primeprogram
+g++ -c primeprogram.cxx
+g++ -c primelibrary.cxx
+g++ -o primeprogram primeprogram.o primelibrary.o
+Undefined symbols for architecture x86_64:
+  "isprime(int)", referenced from:
+      _main in primeprogram.o
+     (maybe you meant: isprime(int, int))
+ld: symbol(s) not found for architecture x86_64
+collect2: error: ld returned 1 exit status
+make: *** [primeprogram] Error 1
+[files_a:38] cat primelibrary.cxx
+bool isprime(int n,int m) {
+  return n%2==0 || m%3==0 || n%5==0 || n%7==0;
+}
+[files_a:39] # the library has changed, but the main program hasn't.
+[files_a:39] # why?
+[files_a:39] # well, the header is no longer correct.
+[files_a:39] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:40] # i have now included the header also in the library:
+[files_a:40] cat primelibrary.cxx
+#include "primelibrary.h"
+
+bool isprime(int n,int m) {
+  return n%2==0 || m%3==0 || n%5==0 || n%7==0;
+}
+[files_a:41] !mak
+make primeprogram
+g++ -c primelibrary.cxx
+g++ -o primeprogram primeprogram.o primelibrary.o
+Undefined symbols for architecture x86_64:
+  "isprime(int)", referenced from:
+      _main in primeprogram.o
+     (maybe you meant: isprime(int, int))
+ld: symbol(s) not found for architecture x86_64
+collect2: error: ld returned 1 exit status
+make: *** [primeprogram] Error 1
+[files_a:42] # the problem now si that may main program
+[files_a:42] # did not get recompiled.
+[files_a:42] # i can change the header but that doesn't force
+[files_a:42] # recompilation.
+[files_a:42] # one more change to the makefile!
+[files_a:42] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[files_a:43] cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+.SECONDEXPANSION:
+primeprogram : $$@.o primelibrary.o
+	g++ -o $@ $^
+primeprogram.o : primeprogram.cxx
+	g++ -c $^
+primelibrary.o : primelibrary.cxx
+	g++ -c $^
+primeprogram.o primelibrary.o : primelibrary.h
+
+clean :
+	/bin/rm -f primeprogram *~ *.o
+[files_a:44] # see the dependency on the .h?
+[files_a:44] !mak
+make primeprogram
+g++ -o primeprogram primeprogram.o primelibrary.o
+Undefined symbols for architecture x86_64:
+  "isprime(int)", referenced from:
+      _main in primeprogram.o
+     (maybe you meant: isprime(int, int))
+ld: symbol(s) not found for architecture x86_64
+collect2: error: ld returned 1 exit status
+make: *** [primeprogram] Error 1
+[files_a:45] make clean
+/bin/rm -f primeprogram *~ *.o
+[files_a:46] make primeprogram
+g++ -c primeprogram.cxx primelibrary.h
+g++ -c primelibrary.cxx primelibrary.h
+g++ -o primeprogram primeprogram.o primelibrary.o
+Undefined symbols for architecture x86_64:
+  "isprime(int)", referenced from:
+      _main in primeprogram.o
+     (maybe you meant: isprime(int, int))
+ld: symbol(s) not found for architecture x86_64
+collect2: error: ld returned 1 exit status
+make: *** [primeprogram] Error 1
+[files_a:47] # i'm still not using the updated definition in the
+[files_a:47] # main program
+[files_a:47] # class dismissed. it's 1:45
+[files_a:47] make clean
+/bin/rm -f primeprogram *~ *.o
+[files_a:48] ls
+Makefile		primelibrary.h		primeprogram.cxx
+primelibrary.cxx	primelibrary.h.gch
+[files_a:49] less primelibrary.h.gch
+"primelibrary.h.gch" may be a binary file.  See it anyway?
+[files_a:50] rm !$
+rm primelibrary.h.gch
+[files_a:51]

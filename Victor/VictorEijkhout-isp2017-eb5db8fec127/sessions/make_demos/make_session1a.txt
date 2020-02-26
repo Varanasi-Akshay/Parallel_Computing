@@ -1,0 +1,228 @@
+[isptest:56] mkdir mkdemo
+[isptest:57] cd !$
+cd mkdemo
+[mkdemo:58] clear
+[mkdemo:59]
+[mkdemo:59] ls
+[mkdemo:60] mkdir 1whole
+[mkdemo:61] emacs primeprogram.cxx
+
+[2]+  Stopped                 emacs primeprogram.cxx
+[mkdemo:62] g++ -o primeprogram primeprogram.cxx
+[mkdemo:63] g++ -o primeprogram primeprogram.cxx
+[mkdemo:64] echo 5 | ./primeprogram
+5 is prime : 0
+[mkdemo:65] ^5^3
+echo 3 | ./primeprogram
+3 is prime : 1
+[mkdemo:66] #lt's make a makefile
+[mkdemo:66] fg
+emacs primeprogram.cxx
+
+[2]+  Stopped                 emacs primeprogram.cxx
+[mkdemo:67] make
+make: `primeprogram' is up to date.
+[mkdemo:68] # oops
+[mkdemo:68] rm primeprogram
+[mkdemo:69] ls
+1whole/			Makefile		primeprogram.cxx
+[mkdemo:70] fg
+emacs primeprogram.cxx
+[mkdemo:71] # let's move everything into place
+[mkdemo:71] mv Makefile primeprogram.cxx 1whole/
+[mkdemo:72] cd !$
+cd 1whole/
+[1whole:73] ls
+Makefile		primeprogram.cxx
+[1whole:74] cat Makefile
+primeprogram :
+	g++ -o primeprogram primeprogram.cxx
+[1whole:75] make
+g++ -o primeprogram primeprogram.cxx
+[1whole:76] # and now we have:
+[1whole:76] ls
+Makefile		primeprogram*		primeprogram.cxx
+[1whole:77] # let's test
+[1whole:77] echo 3 | ./primeprogram
+3 is prime : 1
+[1whole:78] ^3^5
+echo 5 | ./primeprogram
+5 is prime : 0
+[1whole:79] # let's fix our program
+[1whole:79] fg
+emacs Makefile primeprogram.cxx	(wd: ~/isptest/make/1single)
+[1whole:80] pwd
+/Users/eijkhout/isptest/mkdemo/1whole
+[1whole:81] fg
+-bash: fg: current: no such job
+[1whole:82] emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[1whole:83] # for me 'ls' is an alias
+[1whole:83] alias ls
+alias ls='ls -F'
+[1whole:84] /bin/ls
+Makefile		primeprogram		primeprogram.cxx
+[1whole:85] /bin/ls -F
+Makefile		primeprogram*		primeprogram.cxx
+[1whole:86] # back to th main story
+[1whole:86] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[1whole:87] make
+make: `primeprogram' is up to date.
+[1whole:88] # wasn't it suposed to recopile the program?
+[1whole:88] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[1whole:89] # I have introduced a prereq:
+[1whole:89] cat Makefile
+primeprogram : primeprogram.cxx
+	g++ -o primeprogram primeprogram.cxx
+[1whole:90] # now let's see:
+[1whole:90] make
+g++ -o primeprogram primeprogram.cxx
+[1whole:91] make
+make: `primeprogram' is up to date.
+[1whole:92] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[1whole:93] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[1whole:94] # the new first rule in the makefile is:
+[1whole:94] cat Makefile
+info :
+	@echo "you can do: make primeprogram"
+
+primeprogram : primeprogram.cxx
+	g++ -o primeprogram primeprogram.cxx
+[1whole:95] # and now
+[1whole:95] make
+you can do: make primeprogram
+[1whole:96] make primeprogram
+make: `primeprogram' is up to date.
+[1whole:97] # here is another usefule thing you can do with makefiles:
+[1whole:97] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[1whole:98] # i have introduced a clean rule:
+[1whole:98] !cat
+cat Makefile
+info :
+	@echo "you can do: make primeprogram"
+
+primeprogram : primeprogram.cxx
+	g++ -o primeprogram primeprogram.cxx
+
+clean :
+	rm -f primeprogram
+[1whole:99] make clean
+rm -f primeprogram
+[1whole:100] ls
+Makefile		Makefile~		primeprogram.cxx	primeprogram.cxx~
+[1whole:101] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[1whole:102] make clean
+rm -f primeprogram *~
+[1whole:103] ls
+Makefile		primeprogram.cxx
+[1whole:104] make primeprogram
+g++ -o primeprogram primeprogram.cxx
+[1whole:105] cd ..
+[mkdemo:106] cp -r 1whole 2obj
+[mkdemo:107] fg
+emacs Makefile primeprogram.cxx	(wd: ~/isptest/mkdemo/1whole)
+[mkdemo:108] cd 2obj/
+[2obj:109] ls
+Makefile		primeprogram*		primeprogram.cxx
+[2obj:110] # stage 2 of the story
+[2obj:110] emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[2obj:111] # we are going to do separate compilation
+[2obj:111] g++ -c primeprogram.cxx
+[2obj:112] # now we have make an object file:
+[2obj:112] ls
+Makefile		primeprogram*		primeprogram.cxx	primeprogram.o
+[2obj:113] # turn the object file into a program
+[2obj:113] g++ -o primeprogram primeprogram.o
+[2obj:114] !ec
+echo 5 | ./primeprogram
+5 is prime : 1
+[2obj:115] # let's do an object ile in the makefile
+[2obj:115] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[2obj:116] make clean
+rm -f primeprogram *~ *.o
+[2obj:117] # no obj files, etc
+[2obj:117] ls
+Makefile		primeprogram.cxx
+[2obj:118] make primeprogram
+g++ -c primeprogram.cxx
+g++ -o  primeprogram  primeprogram.o
+[2obj:119] # two commands? my makefile said:
+[2obj:119] cat Makefile
+info :
+	@echo "you can do: make primeprogram"
+
+primeprogram : primeprogram.o
+	g++ -o  primeprogram  primeprogram.o
+primeprogram.o : primeprogram.cxx
+	g++ -c primeprogram.cxx
+
+clean :
+	rm -f primeprogram *~ *.o
+[2obj:120] echo 7 | ./primeprogram
+7 is prime : 0
+[2obj:121] fg
+emacs Makefile primeprogram.cxx
+
+[1]+  Stopped                 emacs Makefile primeprogram.cxx
+[2obj:122] # i ahve just edited my program
+[2obj:122] cat primeprogram.cxx
+#include <iostream>
+using namespace std;
+
+bool isprime(int n) {
+  return n%3==0 || n%5==0 || n%7==0;
+}
+
+int main() {
+  int n;
+  cin >> n;
+  cout << n << " is prime : " << isprime(n) << endl;
+  return 0;
+}
+[2obj:123] # let's see if the makefile detects that
+[2obj:123] make primeprogram
+g++ -c primeprogram.cxx
+g++ -o  primeprogram  primeprogram.o
+[2obj:124] cat Makefile
+info :
+	@echo "you can do: make primeprogram"
+
+primeprogram : primeprogram.o
+	g++ -o  primeprogram  primeprogram.o
+primeprogram.o : primeprogram.cxx
+	g++ -c primeprogram.cxx
+
+clean :
+	rm -f primeprogram *~ *.o
+[2obj:125] # i didn't have to make the whole program, i could just make the object:
+[2obj:125] make clean
+rm -f primeprogram *~ *.o
+[2obj:126] ls
+Makefile		primeprogram.cxx
+[2obj:127] make primeprogram.o
+g++ -c primeprogram.cxx
+[2obj:128]

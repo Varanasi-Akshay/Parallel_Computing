@@ -1,0 +1,223 @@
+Last login: Thu Mar 23 12:59:33 on ttys003
+You have mail.
+[~:1] cd isp
+[isp:2] mkdir separate
+[isp:3] emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:4] cat fg.cxx 
+void f() { g(); }
+void g() { f(); }
+
+int main() {
+  return 0;
+}
+[isp:5] g++ -c fg.cxx 
+fg.cxx: In function 'void f()':
+fg.cxx:1:14: error: 'g' was not declared in this scope
+ void f() { g(); }
+              ^
+[isp:6] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:7] !cat
+cat fg.cxx 
+void g();
+
+void f() { g(); }
+void g() { f(); }
+
+int main() {
+  return 0;
+}
+[isp:8] !g
+g++ -c fg.cxx 
+[isp:9] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:10] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:11] cat g.cxx
+// this file does not contain a program, just a function
+void g() { f(); }
+[isp:12] g++ -c g.cxx
+g.cxx: In function 'void g()':
+g.cxx:2:14: error: 'f' was not declared in this scope
+ void g() { f(); }
+              ^
+[isp:13] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:14] cat g.cxx
+// this file does not contain a program, just a function
+void f(); // prototype of 
+void g() { f(); }
+[isp:15] !g
+g++ -c g.cxx
+[isp:16] ls
+fg.cxx		fg.o		g.cxx~		nullprogram*	threetimes.cc
+fg.cxx~		g.cxx		g.o		separate/	threetimes.cc~
+[isp:17] # see that g.o? that is an object file
+[isp:17] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:18] cat fg.cxx
+void g(); // this is a prototype of g.
+
+void f() { g(); }
+
+int main() {
+  return 0;
+}
+[isp:19] g++ -c fg.cxx
+[isp:20] ls
+fg.cxx		fg.o		g.cxx~		nullprogram*	threetimes.cc
+fg.cxx~		g.cxx		g.o		separate/	threetimes.cc~
+[isp:21] g++ -o fg_program fg.o g.o
+[isp:22] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:23] # I have edited the dfinition of g:
+[isp:23] cat g.cxx
+// this file does not contain a program, just a function
+void f(); // prototype of 
+void g(int i) { f(); }
+[isp:24] g++ -c g.cxx
+[isp:25] g++ -c fg.cxx
+[isp:26] # wow. that was not suppsoed to succeed......
+[isp:26] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:27] # here are the prototypes:
+[isp:27] cat fg.h
+void g(); // this is a prototype of g.
+void f(); // prototype of f
+[isp:28] # now try to compile the main
+[isp:28] g++ -c fg.cxx
+[isp:29] # and the program with the function:
+[isp:29] g++ -c g.cxx
+[isp:30] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:31] # victor says a bad word
+[isp:31] g++ -o fg_program fg.o g.o 
+Undefined symbols for architecture x86_64:
+  "g()", referenced from:
+      f()    in fg.o
+ld: symbol(s) not found for architecture x86_64
+collect2: error: ld returned 1 exit status
+[isp:32] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:33] g++ -c fg.cxx
+fg.cxx: In function 'void f()':
+fg.cxx:3:14: error: 'i' was not declared in this scope
+ void f() { g(i); }
+              ^
+[isp:34] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:35] fg
+emacs fg.cxx
+
+[1]+  Stopped                 emacs fg.cxx
+[isp:36] # here is what we have now, and this works:
+[isp:36] cat *.{cxx,h}
+#include "fg.h"
+
+void f() { g(1); }
+
+int main() {
+  return 0;
+}
+// this file does not contain a program, just a function
+#include "fg.h"
+
+void g(int i) { f(); }
+void g(int); // this is a prototype of g.
+void f(); // prototype of f
+[isp:37] for f in *.{cxx,h} ; do echo "%%%%% $f" ; cat $f ; done
+%%%%% fg.cxx
+#include "fg.h"
+
+void f() { g(1); }
+
+int main() {
+  return 0;
+}
+%%%%% g.cxx
+// this file does not contain a program, just a function
+#include "fg.h"
+
+void g(int i) { f(); }
+%%%%% fg.h
+void g(int); // this is a prototype of g.
+void f(); // prototype of f
+[isp:38] fg
+emacs fg.cxx
+[isp:39] emacs fclass.cxx
+
+[1]+  Stopped                 emacs fclass.cxx
+[isp:40] fg
+emacs fclass.cxx
+
+[1]+  Stopped                 emacs fclass.cxx
+[isp:41] g++ -c fprogram.cxx
+In file included from fprogram.cxx:1:0:
+fclass.h:5:1: error: expected ';' after class definition
+ }
+ ^
+[isp:42] fg
+emacs fclass.cxx
+
+[1]+  Stopped                 emacs fclass.cxx
+[isp:43] g++ -c fprogram.cxx
+[isp:44] cat fprogram.cxx
+#include "fclass.h"
+
+int main() {
+  thing x(13);
+  return 0;
+}
+[isp:45] cat fclass.h
+class thing {
+public:
+  thing(int);
+  int dosomething();
+};
+
+[isp:46] fg
+emacs fclass.cxx
+
+[1]+  Stopped                 emacs fclass.cxx
+[isp:47] cat fclass.{cxx,h}
+#include "fclass.h"
+
+thing::thing(int i) { };
+
+int thing::dosomething() { return 5; };
+class thing {
+public:
+  thing(int);
+  int dosomething();
+};
+
+[isp:48] cat fprogram.cxx
+#include "fclass.h"
+
+int main() {
+  thing x(13);
+  return 0;
+}
+[isp:49] 

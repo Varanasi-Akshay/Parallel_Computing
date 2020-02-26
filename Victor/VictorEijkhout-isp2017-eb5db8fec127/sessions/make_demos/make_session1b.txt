@@ -1,0 +1,282 @@
+[1whole:140] emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:141] g++ -o primeprogram primeprogram.cxx
+[1whole:142] echo 2 | ./primeprogram
+The number 2 is prime: 1
+[1whole:143] ^2^3
+echo 3 | ./primeprogram
+The number 3 is prime: 1
+[1whole:144] ^3^5
+echo 5 | ./primeprogram
+The number 5 is prime: 0
+[1whole:145] # I get tired of typing the compile command so I'm making a makefile
+[1whole:145] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:146] # my makefile contains
+[1whole:146] cat Makefile
+primeprogram :
+	g++ -o primeprogram primeprogram.cxx
+[1whole:147] # let's execute this
+[1whole:147] make
+make: `primeprogram' is up to date.
+[1whole:148] # sorry. let's clean up first
+[1whole:148] rm primeprogram
+[1whole:149] # and now we can:
+[1whole:149] make
+g++ -o primeprogram primeprogram.cxx
+[1whole:150] ls
+Makefile		primeprogram*		primeprogram.cxx
+[1whole:151] # we have already seen a property of make:
+[1whole:151] # if something is already built, it is not rebuilt
+[1whole:151] # is that good or bad?
+[1whole:151] # well....
+[1whole:151] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:152] # I have edited my program:
+[1whole:152] cat primeprogram.cxx
+#include <iostream>
+using namespace std;
+
+bool isprime(int n) {
+  return n%2==0 || n%3==0 || n%5==0;
+}
+
+int main() {
+  int n;
+  cin >> n;
+  cout << "The number " << n << " is prime: " << isprime(n) << endl;
+  return 0;
+}
+[1whole:153] # so let's ake it atgain
+[1whole:153] make
+make: `primeprogram' is up to date.
+[1whole:154] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:155] # I have added a `prerequisite' to the makefile:
+[1whole:155] cat Makefile
+primeprogram : primeprogram.cxx
+	g++ -o primeprogram primeprogram.cxx
+[1whole:156] # and now:
+[1whole:156] make
+g++ -o primeprogram primeprogram.cxx
+[1whole:157] make
+make: `primeprogram' is up to date.
+[1whole:158] # personal victor prefernece: i don't like mysterious makefiles
+[1whole:158] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:159] # i have added a info rule:
+[1whole:159] !ca
+cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+primeprogram : primeprogram.cxx
+	g++ -o primeprogram primeprogram.cxx
+[1whole:160] # and now "make" will execute the first rule,which is:
+[1whole:160] make
+you can do : make primeprogram
+[1whole:161] make primeprogram
+make: `primeprogram' is up to date.
+[1whole:162] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:163] # i have added a clean rule:
+[1whole:163] !ca
+cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+primeprogram : primeprogram.cxx
+	g++ -o primeprogram primeprogram.cxx
+
+clean :
+	/bin/rm -f primeprogram *~
+[1whole:164] make clean
+/bin/rm -f primeprogram *~
+[1whole:165] ls
+Makefile		primeprogram.cxx
+[1whole:166] # let's talk about separate compilation
+[1whole:166] make clean
+/bin/rm -f primeprogram *~
+[1whole:167] # you have been doing: g++ -o myprogream myprog.cc
+[1whole:167] # you can also:
+[1whole:167] g++ -c primeprogram.cxx
+[1whole:168] # what does this give me?
+[1whole:168] ls
+Makefile		primeprogram.cxx	primeprogram.o
+[1whole:169] # the .o file is an "object file"
+[1whole:169] # o files are "linked" into an executable:
+[1whole:169] g++ -o primeprogram primeprogram.o
+[1whole:170] # and now we have actually an executable:
+[1whole:170] ls
+Makefile		primeprogram*		primeprogram.cxx	primeprogram.o
+[1whole:171] # let 's see if we can train our makefile to do this.
+[1whole:171] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:172] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:173] make clean
+/bin/rm -f primeprogram *~ *.o
+[1whole:174] make primeprogram
+g++ -c primeprogram.cxx
+g++ -o primeprogram primeprogram.o
+[1whole:175] # why did it do what it did?
+[1whole:175] cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+primeprogram : primeprogram.o
+	g++ -o primeprogram primeprogram.o
+primeprogram.o :
+	g++ -c primeprogram.cxx
+
+clean :
+	/bin/rm -f primeprogram *~ *.o
+[1whole:176] # after clean:
+[1whole:176] make clean
+/bin/rm -f primeprogram *~ *.o
+[1whole:177] # there is no object file:
+[1whole:177] ls
+Makefile		primeprogram.cxx
+[1whole:178] !?prime?
+make primeprogram
+g++ -c primeprogram.cxx
+g++ -o primeprogram primeprogram.o
+[1whole:179] !ec:p
+echo 5 | ./primeprogram
+[1whole:179] ^5^7
+echo 7 | ./primeprogram
+The number 7 is prime: 0
+[1whole:180] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:181] # i have edited my program agian:
+[1whole:181] cat primeprogram.cxx
+#include <iostream>
+using namespace std;
+
+bool isprime(int n) {
+  return n%2==0 || n%3==0 || n%5==0 || n%7==0;
+}
+
+int main() {
+  int n;
+  cin >> n;
+  cout << "The number " << n << " is prime: " << isprime(n) << endl;
+  return 0;
+}
+[1whole:182] # so let's remake:
+[1whole:182] make primeprogram
+make: `primeprogram' is up to date.
+[1whole:183] # how do you figure that?
+[1whole:183] cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+primeprogram : primeprogram.o
+	g++ -o primeprogram primeprogram.o
+primeprogram.o :
+	g++ -c primeprogram.cxx
+
+clean :
+	/bin/rm -f primeprogram *~ *.o
+[1whole:184] # conclusion: the object file existed, so was not remade,
+[1whole:184] # so we need to tell make that it depends on the source file:
+[1whole:184] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:185] cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+primeprogram : primeprogram.o
+	g++ -o primeprogram primeprogram.o
+primeprogram.o : primeprogram.cxx
+	g++ -c primeprogram.cxx
+
+clean :
+	/bin/rm -f primeprogram *~ *.o
+[1whole:186] # so now:
+[1whole:186] make primeprogram
+g++ -c primeprogram.cxx
+g++ -o primeprogram primeprogram.o
+[1whole:187] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:188] cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+primeprogram : primeprogram.o
+	g++ -o primeprogram primeprogram.o
+primeprogram.o : primeprogram.cxx
+	g++ -c $^
+
+clean :
+	/bin/rm -f primeprogram *~ *.o
+[1whole:189] # I have introduced a variable
+[1whole:189] make clean ; make primeprogram
+/bin/rm -f primeprogram *~ *.o
+g++ -c primeprogram.cxx
+g++ -o primeprogram primeprogram.o
+[1whole:190] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:191] make clean ; make primeprogram
+/bin/rm -f primeprogram *~ *.o
+g++ -c primeprogram.cxx
+g++ -o primeprogram primeprogram.o
+[1whole:192] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:193] make clean ; make primeprogram
+/bin/rm -f primeprogram *~ *.o
+g++ -c primeprogram.cxx
+g++ -o primeprogram primeprogram.o
+[1whole:194] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:195] # final makefile:
+[1whole:195] !ca
+cat Makefile
+info :
+	@echo "you can do : make primeprogram"
+
+.SECONDEXPANSION:
+primeprogram : $$@.o
+	g++ -o $@ $^
+primeprogram.o : primeprogram.cxx
+	g++ -c $^
+
+clean :
+	/bin/rm -f primeprogram *~ *.o
+[1whole:196] !ma
+make clean ; make primeprogram
+/bin/rm -f primeprogram *~ *.o
+g++ -c primeprogram.cxx
+g++ -o primeprogram primeprogram.o
+[1whole:197] fg
+emacs primeprogram.cxx
+
+[1]+  Stopped                 emacs primeprogram.cxx
+[1whole:198]

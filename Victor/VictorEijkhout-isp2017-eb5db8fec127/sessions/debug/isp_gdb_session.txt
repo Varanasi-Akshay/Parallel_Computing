@@ -1,0 +1,652 @@
+Last login: Thu Dec  7 12:04:41 on ttys015
+You have mail.
+[~:1] ssh isp.tacc.utexas.edu
+eijkhout@isp.tacc.utexas.edu's password: 
+Last login: Thu Dec  7 11:52:41 2017 from cpe-70-114-197-123.austin.res.rr.com
+------------------------------------------------------------------------------
+Welcome to the Texas Advanced Computing Center
+   at The University of Texas at Austin
+
+** Unauthorized use/access is prohibited. **
+
+If you log on to this computer system, you acknowledge your awareness
+of and concurrence with the UT Austin Acceptable Use Policy. The
+University will prosecute violators to the full extent of the law.
+
+TACC Usage Policies:
+http://www.tacc.utexas.edu/user-services/usage-policies/
+
+TACC Support: 
+https://portal.tacc.utexas.edu/tacc-consulting
+
+------------------------------------------------------------------------------
+Intel(R) Parallel Studio XE 2017 Update 1 for Linux*
+Copyright (C) 2009-2016 Intel Corporation. All rights reserved.
+[eijkhout@isp02 ~]$ cd hpc-book-private/tutorials/gdb/
+[eijkhout@isp02 gdb]$ ls
+c  cxx  f  Makefile  square2
+[eijkhout@isp02 gdb]$ cd f/
+[eijkhout@isp02 f]$ ls
+hello.F  Makefile  say.F  square100.F  square.F
+[eijkhout@isp02 f]$ cat say.F 
+      Program Say
+      integer in
+      read(5,*) n
+      do i=1,n
+         print *,"Hello"
+      end do
+      End
+[eijkhout@isp02 f]$ cat square.F 
+      Program square
+      real squares(1)
+      integer i
+
+      do i=1,100
+         squares(i) = sqrt(1.*i)
+         sum = sum + squares(i)
+      end do
+      print *,"Sum:",sum
+
+      End
+[eijkhout@isp02 f]$ emacs !$
+emacs square.F
+
+[1]+  Stopped                 emacs square.F
+[eijkhout@isp02 f]$ cat !$
+cat square.F
+      Program square
+      real :: squares(1)
+      integer :: i
+
+      do i=1,100
+         squares(i) = sqrt(1.*i)
+         sum = sum + squares(i)
+      end do
+      print *,"Sum:",sum
+
+      End
+[eijkhout@isp02 f]$ fg
+emacs square.F
+
+[1]+  Stopped                 emacs square.F
+[eijkhout@isp02 f]$ make square
+gfortran -g -o square square.F
+[eijkhout@isp02 f]$ ./square 
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+#0  0x7FFAC56DD6F7
+#1  0x7FFAC56DDD3E
+#2  0x7FFAC4BE226F
+#3  0x4008E5 in MAIN__ at square.F:9
+Segmentation fault (core dumped)
+[eijkhout@isp02 f]$ cat square.F
+      Program square
+      implicit none
+      real :: squares(1)
+      real :: sum = 0
+      integer :: i
+
+      do i=1,100
+         squares(i) = sqrt(1.*i)
+         sum = sum + squares(i)
+      end do
+      print *,"Sum:",sum
+
+      End
+[eijkhout@isp02 f]$ fg
+emacs square.F
+
+[1]+  Stopped                 emacs square.F
+[eijkhout@isp02 f]$ make square
+gfortran -g -o square square.F
+[eijkhout@isp02 f]$ ./square 
+
+Program received signal SIGBUS: Access to an undefined portion of a memory object.
+
+Backtrace for this error:
+#0  0x7F886EA396F7
+#1  0x7F886EA39D3E
+#2  0x7F886DF3E26F
+#3  0x4008E5 in MAIN__ at square.F:9
+Bus error (core dumped)
+[eijkhout@isp02 f]$ gdb square
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-100.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/eijkhout/hpc-book-private/tutorials/gdb/f/square...done.
+(gdb) run
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/f/square 
+
+Program received signal SIGBUS, Bus error.
+0x00000000004008e5 in square () at square.F:9
+9	         sum = sum + squares(i)
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-196.el7_4.2.x86_64 libgcc-4.8.5-16.el7_4.1.x86_64 libgfortran-4.8.5-16.el7_4.1.x86_64 libquadmath-4.8.5-16.el7_4.1.x86_64
+(gdb) list
+4	      real :: squares(1)
+5	      integer :: i
+6	
+7	      do i=1,100
+8	         squares(i) = sqrt(1.*i)
+9	         sum = sum + squares(i)
+10	      end do
+11	      print *,"Sum:",sum
+12	
+13	      End
+(gdb) where
+#0  0x00000000004008e5 in square () at square.F:9
+#1  0x00000000004009ca in main (argc=1, argv=0x7fffffffcfe3) at square.F:13
+#2  0x00007ffff6fc3c05 in __libc_start_main () from /lib64/libc.so.6
+#3  0x00000000004007c9 in _start ()
+(gdb) frame 0
+#0  0x00000000004008e5 in square () at square.F:9
+9	         sum = sum + squares(i)
+(gdb) print sum
+$1 = 4.14626455
+(gdb) print i
+$2 = 1073741824
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/f/square 
+
+Program received signal SIGBUS, Bus error.
+0x00000000004008e5 in square () at square.F:9
+9	         sum = sum + squares(i)
+(gdb) break main
+Breakpoint 1 at 0x4009a5: file square.F, line 13.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/f/square 
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffcfe3) at square.F:13
+13	      End
+(gdb) where
+#0  main (argc=1, argv=0x7fffffffcfe3) at square.F:13
+#1  0x00007ffff6fc3c05 in __libc_start_main () from /lib64/libc.so.6
+#2  0x00000000004007c9 in _start ()
+(gdb) list
+8	         squares(i) = sqrt(1.*i)
+9	         sum = sum + squares(i)
+10	      end do
+11	      print *,"Sum:",sum
+12	
+13	      End
+(gdb) list -
+1	      Program square
+2	      implicit none
+3	      real :: sum = 0
+4	      real :: squares(1)
+5	      integer :: i
+6	
+7	      do i=1,100
+(gdb) break 7
+Breakpoint 2 at 0x400899: file square.F, line 7.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/f/square 
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffcfe3) at square.F:13
+13	      End
+(gdb) break 8
+Breakpoint 3 at 0x4008a6: file square.F, line 8.
+(gdb) run 
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/f/square 
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffcfe3) at square.F:13
+13	      End
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 6823] will be killed.
+
+Quit anyway? (y or n) y
+[eijkhout@isp02 f]$ gdb square
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-100.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/eijkhout/hpc-book-private/tutorials/gdb/f/square...done.
+(gdb) break 8
+Breakpoint 1 at 0x4008a6: file square.F, line 8.
+(gdb) run 
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/f/square 
+
+Breakpoint 1, square () at square.F:8
+8	         squares(i) = sqrt(1.*i)
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-196.el7_4.2.x86_64 libgcc-4.8.5-16.el7_4.1.x86_64 libgfortran-4.8.5-16.el7_4.1.x86_64 libquadmath-4.8.5-16.el7_4.1.x86_64
+(gdb) print i
+$1 = 1
+(gdb) list
+3	      real :: sum = 0
+4	      real :: squares(1)
+5	      integer :: i
+6	
+7	      do i=1,100
+8	         squares(i) = sqrt(1.*i)
+9	         sum = sum + squares(i)
+10	      end do
+11	      print *,"Sum:",sum
+12	
+(gdb) print i
+$2 = 1
+(gdb) print sum
+$3 = 0
+(gdb) next
+9	         sum = sum + squares(i)
+(gdb) 
+7	      do i=1,100
+(gdb) 
+
+Breakpoint 1, square () at square.F:8
+8	         squares(i) = sqrt(1.*i)
+(gdb) print i
+$4 = 2
+(gdb) step
+9	         sum = sum + squares(i)
+(gdb) cont
+Continuing.
+
+Breakpoint 1, square () at square.F:8
+8	         squares(i) = sqrt(1.*i)
+(gdb) print i
+$5 = 3
+(gdb) cont
+Continuing.
+
+Breakpoint 1, square () at square.F:8
+8	         squares(i) = sqrt(1.*i)
+(gdb) print i
+$6 = 4
+(gdb) delete 1
+(gdb) break 8 if (i.gt.100)
+Breakpoint 2 at 0x4008a6: file square.F, line 8.
+(gdb) cont
+Continuing.
+
+Program received signal SIGBUS, Bus error.
+0x00000000004008e5 in square () at square.F:9
+9	         sum = sum + squares(i)
+(gdb) print i
+$7 = 1073741824
+(gdb) list
+4	      real :: squares(1)
+5	      integer :: i
+6	
+7	      do i=1,100
+8	         squares(i) = sqrt(1.*i)
+9	         sum = sum + squares(i)
+10	      end do
+11	      print *,"Sum:",sum
+12	
+13	      End
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 6830] will be killed.
+
+Quit anyway? (y or n) y
+[eijkhout@isp02 f]$ ls
+hello.F  Makefile  say.F  square  square100.F  square.F
+[eijkhout@isp02 f]$ cd ../cxx
+[eijkhout@isp02 cxx]$ ls
+boundcatch.cxx  bounds.cxx  hello.cxx  Makefile  rootcatch.cxx  root.cxx
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make root && ./root
+g++ -g -O0 -o root root.cxx
+Root of 175.02 is 13.2295
+Root of 150.16 is 12.254
+Root of 125.54 is 11.2045
+Root of 101.28 is 10.0638
+Root of 77.5 is 8.80341
+Root of 54.32 is 7.37021
+Root of 31.86 is 5.64447
+Root of 10.24 is 3.2
+Root of -10.42 is -nan
+Root of -30 is -nan
+Root of -48.38 is -nan
+Root of -65.44 is -nan
+Root of -81.06 is -nan
+Root of -95.12 is -nan
+Root of -107.5 is -nan
+Root of -118.08 is -nan
+Root of -126.74 is -nan
+Root of -133.36 is -nan
+Root of -137.82 is -nan
+Root of -140 is -nan
+Root of -139.78 is -nan
+Root of -137.04 is -nan
+Root of -131.66 is -nan
+Root of -123.52 is -nan
+Root of -112.5 is -nan
+Root of -98.48 is -nan
+Root of -81.34 is -nan
+Root of -60.96 is -nan
+Root of -37.22 is -nan
+Root of -10 is -nan
+Root of 20.82 is 4.56289
+Root of 55.36 is 7.44043
+Root of 93.74 is 9.68194
+Root of 136.08 is 11.6653
+Root of 182.5 is 13.5093
+Root of 233.12 is 15.2683
+Root of 288.06 is 16.9723
+Root of 347.44 is 18.6397
+Root of 411.38 is 20.2825
+Root of 480 is 21.9089
+Root of 553.42 is 23.5249
+Root of 631.76 is 25.1348
+Root of 715.14 is 26.7421
+Root of 803.68 is 28.3493
+Root of 897.5 is 29.9583
+Root of 996.72 is 31.5709
+Root of 1101.46 is 33.1883
+Root of 1211.84 is 34.8115
+Root of 1327.98 is 36.4415
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make root && ./root
+g++ -g -O0 -o root root.cxx
+Root of 175.02 is 13.2295
+Root of 150.16 is 12.254
+Root of 125.54 is 11.2045
+Root of 101.28 is 10.0638
+Root of 77.5 is 8.80341
+Root of 54.32 is 7.37021
+Root of 31.86 is 5.64447
+Root of 10.24 is 3.2
+Floating point exception (core dumped)
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ gdb root
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-100.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/eijkhout/hpc-book-private/tutorials/gdb/cxx/root...done.
+(gdb) list
+24	{
+25	  float r;
+26	  r = sqrt(n);
+27	  return r; 
+28	}
+29	 
+30	int main() {
+31	
+32	  // this is needed to enable floating point exception catching
+33	  feenableexcept(FE_INVALID | FE_OVERFLOW); 
+(gdb) 
+34	  
+35	  for (int i=1; i<50; i++) {
+36	    float x,y, xi = i;
+37	    x = 200 + .02*xi*xi*xi - 25*xi;
+38	    y = root(x);
+39	    cout << "Root of " << x << " is " << y << endl;
+40	  }
+41	
+42	  return 0;
+43	}
+(gdb) break 38 if (x<0)
+Breakpoint 1 at 0x400a2a: file root.cxx, line 38.
+(gdb) run
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/cxx/root 
+Root of 175.02 is 13.2295
+Root of 150.16 is 12.254
+Root of 125.54 is 11.2045
+Root of 101.28 is 10.0638
+Root of 77.5 is 8.80341
+Root of 54.32 is 7.37021
+Root of 31.86 is 5.64447
+Root of 10.24 is 3.2
+
+Breakpoint 1, main () at root.cxx:38
+38	    y = root(x);
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-196.el7_4.2.x86_64 libgcc-4.8.5-16.el7_4.1.x86_64 libstdc++-4.8.5-16.el7_4.1.x86_64
+(gdb) print x
+$1 = -10.4200001
+(gdb) print i
+$2 = 9
+(gdb) break 35
+Breakpoint 2 at 0x4009b4: file root.cxx, line 35.
+(gdb) delete 1
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+
+Starting program: /home/eijkhout/hpc-book-private/tutorials/gdb/cxx/root 
+
+Breakpoint 2, main () at root.cxx:35
+35	  for (int i=1; i<50; i++) {
+(gdb) step
+36	    float x,y, xi = i;
+(gdb) 
+37	    x = 200 + .02*xi*xi*xi - 25*xi;
+(gdb) 
+38	    y = root(x);
+(gdb) 
+root (n=175.020004) at root.cxx:26
+26	  r = sqrt(n);
+(gdb) 
+std::sqrt (__x=175.020004) at /usr/include/c++/4.8.2/cmath:483
+483	  { return __builtin_sqrtf(__x); }
+(gdb) 
+root (n=175.020004) at root.cxx:27
+27	  return r; 
+(gdb) 
+28	}
+(gdb) 
+main () at root.cxx:39
+39	    cout << "Root of " << x << " is " << y << endl;
+(gdb) 
+Root of 175.02 is 13.2295
+35	  for (int i=1; i<50; i++) {
+(gdb) cont
+Continuing.
+Root of 150.16 is 12.254
+Root of 125.54 is 11.2045
+Root of 101.28 is 10.0638
+Root of 77.5 is 8.80341
+Root of 54.32 is 7.37021
+Root of 31.86 is 5.64447
+Root of 10.24 is 3.2
+
+Program received signal SIGFPE, Arithmetic exception.
+std::sqrt (__x=-10.4200001) at /usr/include/c++/4.8.2/cmath:483
+483	  { return __builtin_sqrtf(__x); }
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 7735] will be killed.
+
+Quit anyway? (y or n) y
+[eijkhout@isp02 cxx]$ ls
+boundcatch.cxx  bounds.cxx  hello.cxx  Makefile  root  rootcatch.cxx  root.cxx
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ grep catch *.cxx
+boundcatch.cxx: **** boundcatch.cxx : catching bounds stuff with exceptions
+boundcatch.cxx:    } catch (...) {
+rootcatch.cxx:// this is needed to enable floating point exception catching
+rootcatch.cxx:// this is needed to enable floating point exception catching
+root.cxx:// this is needed to enable floating point exception catching
+root.cxx:  // this is needed to enable floating point exception catching
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make boundcatch && ./boundcatch
+g++ -g -O0 -o boundcatch boundcatch.cxx
+0
+11
+24
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  vector::_M_range_check
+Aborted (core dumped)
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make boundcatch && ./boundcatch
+g++ -g -O0 -o boundcatch boundcatch.cxx
+0
+11
+24
+Problem setting index 24 at i=2
+terminate called after throwing an instance of 'int'
+Aborted (core dumped)
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make boundcatch && ./boundcatch
+make: `boundcatch' is up to date.
+0
+11
+24
+Problem setting index 24 at i=2
+terminate called after throwing an instance of 'int'
+Aborted (core dumped)
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make boundcatch && ./boundcatch
+g++ -g -O0 -o boundcatch boundcatch.cxx
+boundcatch.cxx: In function ‘int main()’:
+boundcatch.cxx:32:14: error: expected type-specifier
+     } catch (std::out_of_range) {
+              ^
+boundcatch.cxx:32:31: error: expected unqualified-id before ‘)’ token
+     } catch (std::out_of_range) {
+                               ^
+make: *** [boundcatch] Error 1
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make boundcatch && ./boundcatch
+g++ -g -O0 -o boundcatch boundcatch.cxx
+boundcatch.cxx:20:12: error: ‘std::out_of_range’ has not been declared
+ using std::out_of_range;
+            ^
+boundcatch.cxx: In function ‘int main()’:
+boundcatch.cxx:34:14: error: expected type-specifier
+     } catch (std::out_of_range) {
+              ^
+boundcatch.cxx:34:31: error: expected unqualified-id before ‘)’ token
+     } catch (std::out_of_range) {
+                               ^
+make: *** [boundcatch] Error 1
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make boundcatch && ./boundcatch
+g++ -g -O0 -o boundcatch boundcatch.cxx
+boundcatch.cxx: In function ‘int main()’:
+boundcatch.cxx:34:14: error: expected type-specifier
+     } catch (std::out_of_range) {
+              ^
+boundcatch.cxx:34:31: error: expected unqualified-id before ‘)’ token
+     } catch (std::out_of_range) {
+                               ^
+make: *** [boundcatch] Error 1
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make boundcatch && ./boundcatch
+g++ -g -O0 -o boundcatch boundcatch.cxx
+boundcatch.cxx: In function ‘int main()’:
+boundcatch.cxx:34:14: error: expected type-specifier before ‘out_of_range’
+     } catch (out_of_range) {
+              ^
+make: *** [boundcatch] Error 1
+[eijkhout@isp02 cxx]$ fg
+emacs square.F	(wd: ~/hpc-book-private/tutorials/gdb/f)
+
+[1]+  Stopped                 emacs square.F  (wd: ~/hpc-book-private/tutorials/gdb/f)
+(wd now: ~/hpc-book-private/tutorials/gdb/cxx)
+[eijkhout@isp02 cxx]$ make
+make <progname>
+    where progname=hello root bounds boundcatch
+make clean
+[eijkhout@isp02 cxx]$ cat Makefile 
+################################################################
+####
+#### Makefile for Introduction to High-Performance Scientific Computing
+#### by Victor Eijkhout
+#### copyright 2010-7
+####
+#### Makefile for gdb examples, C++ style
+####
+################################################################
+
+info ::
+	@echo "make <progname>"
+	@echo "    where progname=${PROGS}"
+
+PROGS = hello root bounds boundcatch
+% : %.cxx
+	g++ -g -O0 -o $@ $^
+
+info ::
+	@echo "make clean"
+clean :
+	@/bin/rm -rf ${PROGS} *~ *.o *.dSYM
+[eijkhout@isp02 cxx]$ 

@@ -1,0 +1,40 @@
+################################################################
+####
+#### This is the repository of class materials
+#### (lecture slides, supplementary reading, and such)
+#### for the course
+####
+#### Introduction to Scientific Programming
+#### spring/fall 2017
+####
+#### taught by Victor Eijkhout / Carrie Arnold / Charlie Dey
+####
+################################################################
+
+This repository will be regularly updated so you should 
+
+1. Create an account on bitbucket, so that you can get
+  notifications if the repository is updated.
+  (There are good reasons for signing up with your utexas.edu
+  email, rather gmail or such.)
+
+And while you could
+
+2. Visit the repository website and download the new files, or
+3. regulary download the whole repository
+
+it is probably better if
+
+4. Install "hg" (also known as "mercurial") on your machine
+5. and "clone" the repository:
+
+hg clone https://bitbucket.org/VictorEijkhout/isp2017
+
+(That actually doesn't require step 1.)
+
+You can then update your clone by typing
+
+hg update -u
+
+in your local directory.
+

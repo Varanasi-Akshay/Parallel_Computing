@@ -1,0 +1,126 @@
+[isp:6] cat main.cxx
+#include <iostream>
+using namespace std;
+
+int main() {
+  cout << "5 is prime: " << isprime(5) << endl;
+  return 0;
+}
+[isp:7] icpc -c main.cxx
+main.cxx: In function 'int main()':
+main.cxx:5:29: error: 'isprime' was not declared in this scope
+   cout << "5 is prime: " << isprime(5) << endl;
+                             ^~~~~~~
+main.cxx:5:29: note: suggested alternative: 'isprint'
+   cout << "5 is prime: " << isprime(5) << endl;
+                             ^~~~~~~
+                             isprint
+[isp:8] fg
+emacs main.cxx lib.cxx Makefile
+
+[1]+  Stopped                 emacs main.cxx lib.cxx Makefile
+[isp:9] cat lib.cxx
+bool isprime(int i) {
+  return i%2!=0;
+}
+[isp:10] icpc -c lib.cxx
+[isp:11] # but I still can not compile my main program
+[isp:11] fg
+emacs main.cxx lib.cxx Makefile
+
+[1]+  Stopped                 emacs main.cxx lib.cxx Makefile
+[isp:12] # header file:
+[isp:12] cat lib.h
+// this is the header file that contains
+// the definitions of my functions
+
+bool isprime(int i);
+
+[isp:13] # sources:
+[isp:13] cat main.cxx
+#include <iostream>
+using namespace std;
+
+#include "lib.h"
+
+int main() {
+  cout << "5 is prime: " << isprime(5) << endl;
+  return 0;
+}
+[isp:14] cat lib.cxx
+#include "lib.h"
+
+bool isprime(int i) {
+  return i%2!=0;
+}
+[isp:15] icpc -c main.cxx
+[isp:16] icpc -c lib.cxx
+[isp:17] # and now link them together:
+[isp:17] icpc -o primeprogram main.o lib.o
+[isp:18] ./primeprogram
+5 is prime: 1
+[isp:19] fg
+emacs main.cxx lib.cxx Makefile
+
+[1]+  Stopped                 emacs main.cxx lib.cxx Makefile
+[isp:20] icpc -c main.cxx
+main.cxx: In function 'int main()':
+main.cxx:7:3: error: 'PrimeGenerator' was not declared in this scope
+   PrimeGenerator sequence;
+   ^~~~~~~~~~~~~~
+main.cxx:9:11: error: 'sequence' was not declared in this scope
+   cout << sequence.nextprime() << endl;
+           ^~~~~~~~
+main.cxx:9:11: note: suggested alternative: 'setenv'
+   cout << sequence.nextprime() << endl;
+           ^~~~~~~~
+           setenv
+[isp:21] fg
+emacs main.cxx lib.cxx Makefile
+
+[1]+  Stopped                 emacs main.cxx lib.cxx Makefile
+[isp:22] icpc -c main.cxx
+[isp:23] # header, including proto of class:
+[isp:23] cat lib.h
+// this is the header file that contains
+// the definitions of my functions
+
+class PrimeGenerator {
+private :
+  int lastnumber{0};
+public:
+// only prototype: not function definition
+  int nextprime();
+};
+
+bool isprime(int i);
+
+[isp:24] # library functions, note the :: syntax
+[isp:24] cat lib.cxx
+#include "lib.h"
+
+PrimeGenerator::nextprime() {
+  lastnumber += 2;
+  return lastnumber;
+};
+
+bool isprime(int i) {
+  return i%2!=0;
+}
+[isp:25] // main program:
+-bash: //: is a directory
+[isp:26] # main program:
+[isp:26] cat main.cxx
+#include <iostream>
+using namespace std;
+
+#include "lib.h"
+
+int main() {
+  PrimeGenerator sequence;
+  cout << "5 is prime: " << isprime(5) << endl;
+  cout << sequence.nextprime() << endl;
+
+  return 0;
+}
+[isp:27]
