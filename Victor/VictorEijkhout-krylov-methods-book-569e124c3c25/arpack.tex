@@ -1,0 +1,18 @@
+\Level 0 {Implicitly restarted Arnoldi}
+
+Let $AV_m=V_{m+1}H_{[m+1,m]}=V_mH_m+f_me_m^t$ and $m=k+p$. 
+Find the eigenvalues of~$H$ and perform $p=m-k$ steps of QR with the
+$p$ wanted eigenvalues as shifts. This gives
+$Q=Q_1\cdots Q_p$. From the observation that
+$e_i^tQ_j\in[{e_{i-1},e_i,\ldots}]$, it follows that $e_m^tQ=\alpha
+e_k+\cdots$.
+
+Define $\tilde V_m=V_mQ$, $\tilde H_m=Q^*H_mQ$, then
+\begin{eqnarray*}
+    A\tilde V_m&=&\tilde V_m\tilde H_m+f_me_m^tQ\\
+                &=&\tilde V_m\tilde H_m+\tilde f_ke_k^t+\tilde
+                    f_{k+1}e_{k+1}^t+\cdots
+\end{eqnarray*}
+so the first $k$ columns satisfy an Arnoldi relation:
+\[ A\tilde V_k=\tilde V_k\tilde H_k+\tilde f_ke_k^t \]
+This can be used as the starting point of $p$ further iterations.

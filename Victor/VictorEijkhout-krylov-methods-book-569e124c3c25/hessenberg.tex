@@ -1,0 +1,313 @@
+The subject of Hessenberg matrices comes up often in the discussion of
+polynomial iterative methods. If we combine the equations for
+a Krylov sequence, $AK=KJ$,
+and for residuals as combinations
+of the Krylov sequence, $R=KU$,
+with $U$~upper triangular, we find that
+\[AR_n=R_{n+1}H,  \qquad\hbox{with $H=U\inv JU$} \]
+where clearly $H$ is of upper Hessenberg form. Recall that in
+remark~\ref{hess-from-R-update} we saw a different origin of
+Hessenberg matrices.
+
+In the preconditioned case we have $R=KU$ where
+$K=\KmethodAv{AM\inv}{k_1}$ (see remark~\ref{R=AM-Krylov}), leading to
+\begin{equation} AM\inv R=\nobreak RH,\qquad\hbox{with $H=U\inv JU$}.
+        \label{eq:hess-from-u}\end{equation}
+
+We will state more about the relation between the residual sequence
+and the Hessenberg matrix in section~\ref{sec:hess-res}; in particular
+we shall see (lemma~\ref{Hess-Krylov}) that the connection between
+combinations of Krylov sequences and Hessenberg matrices is an
+equivalence.
+However, in this section we start out by proving a number of facts about
+Hessenberg matrices independent of any connection to iterative
+methods.
+
+\begin{comment}
+We start with a lemma that is not used anywhere in this document.
+\begin{lemma}\label{H=J+U}
+Let $U$ be a triangular matrix with identity diagonal,
+then $H=U\inv JU$ has identity lower diagonal.
+\end{lemma}
+\begin{proof}
+Write $U=I+\hat U_1$ and $U\inv=I+\hat U_2$ where $\hat U_i$ are
+strictly upper triangular matrices. Then
+\begin{eqnarray*}
+     U\inv JU&=&(I+\hat U_2)J(I+\hat U_1)=(I+\hat U_2)(J+U_3)
+        =J+U_4+U_5+\hat U_6\\
+    &=&J+U_7\end{eqnarray*}
+where $U_i$ are upper and $\hat U_i$ strictly upper triangular matrices.
+\end{proof}
+\end{comment}
+
+\Level 1 {Hessenberg matrices with zero column sums}
+
+Combining the fact that residuals sequences are normalised
+combinations (lemma~\ref{R-Krylov-combo}) $R=KU$ with $u_{1j}\equiv1$
+of a Krylov sequence, and that the Hessenberg matrix relating the
+residuals to the system by $AM\inv R=RH$ equals $H=U\inv JU$, we derive an
+important property of~$H$: it has zero column sums.  We will then
+state some facts about such Hessenberg matrices.
+
+\begin{llemma}{$H$ zero column sums iff $U$ normalized}
+\label{Zero-column}\label{H:zero:colsum}
+Let $U$ be a nonsingular upper triangular matrix,
+and let $H=U\inv JU$.
+The Hessenberg matrix $H$ has zero column sums
+iff the first row of~$U$ is constant.
+\end{llemma}
+\begin{proof} With the zero vector and the all-ones vector~$e$ we can
+formulate the zero column sums as $e^tH=0^t$. Then
+\begin{eqnarray*}
+  e^tH=e^tU_{n+1}\inv JU_n=0^t&\Leftrightarrow&e^tU_{n+1}\inv J=0^t\\
+  &\Leftrightarrow&e^tU_{n+1}\inv=(\alpha,0,0,\ldots)
+  \qquad\hbox{some nonzero $\alpha$}\\
+  &\Leftrightarrow&\alpha\inv e^t=(1,0,0,\ldots)U_{n+1}
+\end{eqnarray*}
+(in the transition from the first to the second line we use the fact that
+$U$~is nonsingular to state that $\alpha$~is nonzero)
+which proves the statement.\end{proof}
+
+\begin{block}
+The analogous block statement is sufficiently different that we give it
+its own lemma.
+\begin{lemma}
+Let $U$ be a nonsingular block upper triangular matrix with nonsingular
+diagonal blocks, and let $H=U\inv JU$.
+The first block row of~$U$ consists of identical elements
+iff (in a block sense)
+\begin{equation} \forall_j\colon\sum_ih_{ij}=\emptyset.
+    \label{eq:block-H-zero-column}\end{equation}
+\end{lemma}
+\begin{proof}
+The proof is as above, but with $\alpha$~being any nonsingular matrix.
+% and the row vectors $e^t$ and~$0^t$ have identity and zero blocks.
+\end{proof}
+\end{block}
+
+Next we consider the $LU$ factorisation of a Hessenberg matrix with
+zero column sums.
+
+\begin{llemma}{$H=(I-J)U$ iff zero column sums}
+\label{H=(I-J)-fac}
+Let $H$ be an upper Hessenberg matrix of maximum rank, then $H$~can be
+factored as $H=(I-J)U$ iff 
+\[ 
+\begin{cases}
+  \hbox{$H$ is of size $(n+1)\times n$ and all its columns sums are
+    zero, or}\\
+  \hbox{$H$ is of size $n\times n$ and all its columns sums except for
+    the last are zero;}
+\end{cases}
+\]
+the $I-J$ factor is of the same shape as $H$ and $U$~is square with
+dimension the column dimension of~$H$.
+\end{llemma}
+\begin{proof}
+  Trivially, if $H=(I-J)U$ its column sums are zero if it is
+  rectangular and all but the last zero if it is square, since
+  $e^t(I-J)_{[n+1,n]}=0^t$.  Conversely, the first column sum being
+  zero imply that $h_{21}=-h_{11}$.  Since the matrix has maximum
+  rank, the elements in the first column are nonzero.  The first
+  elimination step of Gaussian elimination then entails adding the
+  first row to the second.  This implies that the first column of the
+  $L$~factor can be chosen as~$(1,-1,0,0,\ldots)^t$.
+
+  Since elimination did not involve scaling the pivot row, there was
+  no change to the column sums of any column, nor did the elimination
+  change the (column) rank of the remaining block.  Hence the
+  remaining $2:*,2:*$ block of~$H$ is again a Hessenberg matrix of
+  full rank with properties as stipulated, and we can inductively
+  repeat this argument.
+\end{proof}
+
+\begin{block}
+This lemma holds true in the block case, if we substitute $J\rightarrow\bm{J}$,
+and we interpret the zero column sums in the stronger sense
+of~\eqref{eq:block-H-zero-column}. The matrix~$U$ is
+block upper triangular.
+\end{block}
+
+Sometimes we are interested in a factorisation of the form $C(J-I)$
+rather than $(J-I)B$.
+\begin{llemma}{$U(I-J)=(I-J)V$ if $U$ constant column sums, {\bf this
+      only works for $H$ square}}
+\label{lemma:JI-right-fac}
+Let $U_{n+1}$ be an upper triangular matrix with constant column
+sums~$\alpha$. Then $H:=U_{n+1}(I-J)$ can be written as $H=(I-J)V_n$,
+where $V_n$ is upper triangular with constant row sums~$\alpha$.
+%$V_ne=(e^tU)^t$.
+\end{llemma}
+\begin{proof}
+  Let $U_{n+1}$ have constant column sums~$\alpha$, that is,
+  $e^tU=\alpha e^t$.  Then $H:=U_{n+1}(I-J)$ satisfies $e^tH=0^t$, so
+  from lemma~\ref{H=(I-J)-fac} $H$~can be written as $H=(I-J)V_n$ with
+  $V_n$ an upper triangular matrix.  From $He=U_{n+1}(1,0,\ldots,0,-1)^t$
+  and $He=(I-J)V_ne$ we find for $f=V_ne$ that $(I-J)f=u_{11}e$, so
+  $Ve=u_{11}e$.
+\end{proof}
+
+\Level 1 {QR decompositions of Hessenberg matrices}
+\FurtherReading
+
+The $QR$ decomposition of the Hessenberg matrix with
+zero column sums takes a remarkably simple form.
+
+\begin{lemma}\label{H:QR:zero-colsum}
+Let $H$ be an upper Hessenberg matrix with zero column sums, and let
+$H=QR$~be a decomposition into an orthonormal matrix and an upper
+triangular matrix. Then $Q$~is given by
+\[ q_{kn}=-{1\over\sqrt{n(n+1)}}\quad k\leq n;\qquad
+        q_{n+1n}=\sqrt{n\over n+1}. \]
+Furthermore, $Q=(J-I)B^{-1}$, where $B$~is an upper bidiagonal matrix.
+\end{lemma}
+\begin{proof} $H$~has zero column sums, so $Q$~has zero column sums.
+The values given satisfy this requirement plus orthonormality
+of the columns. Then, with $\alpha_n=\sqrt{n(n+1)}$:
+\begin{eqnarray*}
+ Q&=&\begin{pmatrix}-\alpha_1^{-1}&-\alpha_2^{-1}\cr
+                \alpha_1^{-1}&-\alpha_2^{-1}\cr
+                &2\alpha_2^{-1}&\cdots\cr &&\ddots\cr\end{pmatrix}\\
+ &=&\begin{pmatrix}-1\cr 1&-1\cr &1&-1\cr &&\ddots&\ddots\end{pmatrix}
+        \begin{pmatrix}1&1&1&\cdots\cr &2&2&\cdots\cr &&3&\cdots\cr &&&\ddots\cr\end{pmatrix}
+        {\rm diag}(\alpha_i^{-1})\\
+ &=&(J-I)\left[{\rm diag}(\alpha_i)(I-J^t){\rm diag}(i^{-1})\right]^{-1}
+        \end{eqnarray*}
+that is, $Q=(J-I)B^{-1}$ with
+\[ B = \begin{pmatrix}\sqrt{2\over 1}&-\sqrt{1\over 2}\cr
+                &\sqrt{3\over 2}&-\sqrt{2\over 3}\cr
+                &&\ddots&\ddots\cr\end{pmatrix}. \]
+\end{proof}
+
+
+We are sometimes interested in relations between the $QR$ decompositions
+of Hessenberg matrices that are equivalent through diagonal
+transformations.
+
+\begin{llemma}{QR decomps of equiv Hess related by two bidiagonal mats}
+\label{lemma:HQR-scale}
+Let $H_1=Q_1U_1$ and $H_2=Q_2U_2$ be $QR$ decompositions of
+Hessenberg matrices that are related by $H_1=\Omega H_2\Omega^{-1}$
+where $\Omega$~is a diagonal matrix. Then there is an upper triangular
+matrix~$T$ such that
+\[ Q_2=\Omega^{-1}Q_1T,\qquad U_2=T^{-1}U_1\Omega. \]
+If $H_2$~has zero column sums, $T$~takes the form~$B_1B_2^{-1}$ where
+$B_1$~and~$B_2$ are upper bi-diagonal matrices.
+\end{llemma}
+\begin{proof} We have $H_1\Omega=Q_1U_1\Omega=\Omega H_2=\Omega Q_2U_2$,
+so $Q_1^t\Omega Q_2=U_1\Omega U_2^{-1}\equiv T$, and $T$~is clearly
+upper triangular. This proves the first statement of the lemma.
+
+If $H_2$ has zero column sums, by lemma~\ref{H:QR:zero-colsum} its
+$QR$~decomposition satisfies $Q_2=(J-I)B_2^{-1}$,
+where $B_2$~is upper bi-diagonal.
+Since $Q_1^t\Omega Q_2$ is upper triangular, $Q_1^t\Omega(J-I)$~is
+also upper triangular, but it is also of lower Hessenberg form,
+hence it is of upper bi-diagonal form, say
+\begin{equation}
+        B_1\equiv Q_1^t\Omega(J-I).
+        \label{eq:B1-def}\end{equation}
+From 
+\[ Q_1^t\Omega(J-I)=U_1\Omega U_2^{-1}B_2 \]
+we find that $TB_2=U_1\Omega U_2^{-1}B_2=B_1$.
+This proves the second statement of the lemma.\end{proof}
+
+For future reference we note that
+\[ B_1\equiv Q_1^t\Omega(J-I)=TB_2=U_1\Omega U_2^{-1}B_2, \]
+we have
+\begin{equation}
+        H_2\Omega^{-1}U_1^{-1}=Q_2U_2\Omega^{-1}U_1^{-1}
+                =Q_2B_2B_1^{-1}=(J-I)B_1^{-1}.
+        \label{eq:H-Om-U}\end{equation} 
+
+\Level 1 {Hessenberg matrices of residual sequences}
+\label{sec:hess-res}
+
+The following auxiliary lemma states the connection between Hessenberg
+matrices and Krylov sequences.
+
+\begin{llemma}{In $AM\inv R=RH$, $H$ Hessenberg
+iff $R$ is combination of Krylov sequence}
+\label{Hess-Krylov}
+Let $AM\inv R=RH$, let $K=\KmethodAv{AM\inv}{k_1}$, and let
+$r_1= k_1\alpha$ for some $\alpha\not=0$,
+then $H$~is an irreducible upper Hessenberg matrix
+iff there is a~nonsingular upper triangular matrix~$U$ such
+that~$R=\nobreak KU$; $U$~and~$H$ are related by~$H=U\inv JU$.
+\end{llemma}
+
+\begin{proof} If $U$ is a nonsingular upper triangular matrix, $AM\inv
+K=KJ$, and $R=KU$, then
+\[ AM\inv R=RU\inv JU \] where $U\inv JU$ is of irreducible
+upper Hessenberg shape.
+
+Conversely, if $H$ is an upper Hessenberg matrix, $r_1= k_1\alpha$ for
+some~$\alpha\not=\nobreak 0$, and $AM\inv R_{n-1}=R_nH$, then an upper
+triangular matrix $U_n$ can be determined such that
+$R_n=K_nU_n$, namely $U$~has to satisfy 
+\[U_nH=JU_{n-1}\]
+and this can be solved recursively.  For instance, noting that the
+first row of $JU_{n-1}$ is zero (and picking $u_{11}=\alpha$):
+\begin{eqnarray*}
+u_{11}h_{11}+u_{12}h_{21}=0
+    &\Rightarrow&u_{12}=-\alpha h_{11}h_{21}\inv,\\
+u_{11}h_{12}+u_{12}h_{22}+u_{13}h_{32}=0
+    &\Rightarrow&u_{13}=-(\alpha h_{11}+u_{12}h_{22})h_{32}\inv,\\
+u_{11}h_{13}+\cdots=0
+    &\Rightarrow&u_{14}=-(\ldots)h_{43}\inv,\quad\hbox{et cetera}
+\end{eqnarray*}
+Then for the second row
+\begin{eqnarray*}
+u_{11}=u_{22}h_{21}&\Rightarrow&u_{22}=(\ldots)h_{21}\inv\\
+u_{12}=u_{22}h_{22}+u_{23}h_{32}&\Rightarrow&u_{23}=(\ldots)h_{32}\inv,
+\quad\hbox{et cetera}
+\end{eqnarray*}
+and in general
+\[ \forall_i\forall_{j\geq i-1}\colon
+     u_{ij+1}h_{j+1j}=u_{i-1j}-\sum_{i\leq k\leq j}u_{ik}h_{kj}. \]
+We see that $U$ can be solved if all $h_{i+1,i}\not=0$,
+that is, if $H$~is irreducible. Now 
+\[ AM\inv\ RU\inv =RHU\inv RU\inv (UHU\inv)=RU\inv J \]
+so $RU\inv=\KmethodAv{AM\inv}{r_1u_{11}\inv}$.
+Since we choose $u_{11}$ to satisfy $r_1u_{11}\inv=k_1$, 
+we find $RU\inv= K$, that is, $R=\nobreak KU$.
+\end{proof}
+
+\begin{block}
+A block extension of the above statement holds, if
+we define a block Hessenberg matrix to be irreducible if the lower diagonal
+blocks are nonsingular.
+\end{block}
+
+We can now collect some results to state the nature of the
+Hessenberg matrix associated with a residual sequence.
+
+\begin{ttheorem}{In $AM\inv R=RH$, $H$ zero column sum
+Hessenberg iff $R$ residual sequence}
+\label{zero-col-residual}
+Let a matrix~$A$, a preconditioner~$M$, a sequence~$R$, and an
+irreducible upper Hessenberg matrix~$H$ related by $AM\inv R=RH$ be
+given, then $R$~is a residual sequence if and only if $H$~has zero
+column sums.
+\end{ttheorem}
+\begin{proof} Combine lemmas \ref{R-Krylov-combo}, \ref{Hess-Krylov} 
+and~\ref{Zero-column}.\end{proof}
+
+\begin{block}
+In the block case, $R$ is a block residual sequence iff
+in $AR=RH$ the block Hessenberg matrix~$H$ has zero column sums
+in the strong sense of \eqref{eq:block-H-zero-column}.
+\end{block}
+
+In lemma~\ref{lemma:combo-res-seq} we saw that affine combinations of
+residual sequences form again a residual sequence. We can give a
+corresponding statement in terms of Hessenberg matrices.
+\begin{lemma}
+Let $R$ be a residual sequence, and $G$ a series of affine
+combinations of~$R$, then $AG=GH$ with $H$~a~Hessenberg matrix with
+zero column sums.
+\end{lemma}
+\begin{proof}
+Trivial.
+\end{proof}
+

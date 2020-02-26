@@ -1,0 +1,88 @@
+From the trigonometric identity
+\begin{equation}
+ \cos[(k+1)\theta]=2\cos(\theta)\cos(k\theta) -\cos[(k-1)\theta]
+ \label{eq:cheby-cos-relation}\end{equation}
+we find that $\cos(k\theta)$ can be expressed as a polynomial of degree~$k$
+in~$\cos(\theta)$. Proof by induction, where the cases $k=0,1$ are
+trivial.
+
+Denoting these polynomials as
+\begin{equation}
+    T_k(\cos\theta)=\cos(k\theta)
+    \label{eq:cheby-cos}\end{equation}
+we get the Chebyshev polynomials. They satisfy the recurrence
+\begin{eqnarray*}
+&&T_0(x)=1,\quad T_1(x)=x,\\
+&&T_{k+1}(x)=2T_k(x)-T_{k-1}(x)
+\end{eqnarray*}
+Obviously, we can extend the domain of definition beyond the
+interval~$[-1,1]$.
+
+Since the function $\cosh(k\theta)$ also satisfies the trigonometric
+recurrence \eqref{eq:cheby-cos-relation}, we find that
+\[ T_k(\cosh(\theta)=\cosh(k\theta) \]
+and
+\[ T_k(x)=
+  \begin{cases}
+    \cos[k\cos\inv(x)]&\hbox{for $|x|\leq1$}\cr
+    \cosh[k\cosh\inv(x)]&\hbox{for $x\geq1$}\cr
+    (-1)^k\cosh[k\cosh\inv(-x)]&\hbox{for $x\leq-1$}\cr
+  \end{cases} 
+\]
+or
+\[ T_k(x) = {1\over 2}[(x+\sqrt{x^2-1})^k+(x-\sqrt{x^2-1})^k]. \]
+
+From \eqref{eq:cheby-cos} obviously
+\[ \begin{cases}\max_{|x|\leq1}|T_k(x)|=1\cr
+    T_k(x_i)=(-1)^i&\hbox{for $x_i=\cos(i\pi/k)$.}\end{cases} \]
+
+Outside of the $[-1,1]$ interval, the polynomials grow quickly. In a
+way, they grow quicker than any other polynomial. This is the basis
+for the standard Chebyshev minimization theorem.
+
+Let $0<a<b$ and consider the mapping $x\mapsto(b+a-2x)/(b-a)$; this
+maps
+\[ \left\{\begin{matrix}b\cr a\cr 0\end{matrix}\right\}\rightarrow
+    \left\{\begin{matrix}-1\cr 1\cr {b+a\over b-a}>0\end{matrix}\right\} \]
+Consider the shifted and scaled Chebyshev polynomial
+\[ \tilde T_k(x)=T_k\left({b+a-2x\over b-a}\right)
+      /T\left({b+a\over b-a}\right); \]
+the fact that $T_k$ grows faster than any other polynomial is
+expressed by the fact that $\tilde T_k$ is less than any other
+polynomial on the interval~$[a,b]$ among those polynomials that
+satisfy~$P(0)=1$.
+
+\begin{theorem}
+\label{th:cheby-optimal}
+Let $0<a<b$, let $\Pnn$ be the set of polynomials of degree~$n$ with
+$P(0)=1$, and let $\tilde T_n(x)=T_n((b+a-2x)/(b-a))/T((b+a)/b-a))$ be
+the scaled and shifted Chebyshev polynomial, then
+\[ \max_{x\in[a,b]} |\tilde T_n(x)|
+    =\min_{P\in\Pn}\max_{x\in[a,b]}|P(x)| \]
+\end{theorem}
+\begin{proof}
+We will use the following properties of~$\tilde T_n$:
+\[ \tilde T_n(0)=1,
+    \qquad \begin{cases}a=x_0<\cdots<x_n=b\cr
+             \forall_i\colon |\tilde
+             T_n(x_i)|=M=\max_{x\in[a,b]}|\tilde T_n(x)|\end{cases} \]
+(Just to stress the relevant bit, it is essential that the maximum
+             value on $[a,b]$ is assumed in $n+1$ points.)
+
+Now assume that $P\in\Pnn$ is such that
+\[ \max_{x\in[a,b]}|P(x)|<M, \]
+then in particular 
+\[ \forall_i\colon |P(x_i)|<M. \]
+This implies that with $r=\tilde T_n-P$:
+\begin{eqnarray*}
+P(x_i)>0&\Rightarrow&r(x_i)>0\\
+P(x_i)<0&\Rightarrow&r(x_i)<0
+\end{eqnarray*}
+Since $r$ alternates on the $k+1$ points~$x_i$, there must be
+$k$~zeros~$y_i$:
+\[ \forall_{i=0\ldots k-1}\colon \hbox{$y_i\in (x_i,x_{i+1})$ and
+  $r(y_i)=0$}. \]
+However, $r(0)=0$ too, so $r$~is a polynomial of degree~$\leq k$ with
+$k+1$ zeros. By contradiction, no polynomial $P$ with the stated
+properties can exist.
+\end{proof}

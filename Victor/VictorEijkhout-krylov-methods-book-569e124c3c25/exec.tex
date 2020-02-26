@@ -1,0 +1,72 @@
+\Level 1 {Basics}
+
+Let $A\bar x=b$. The Cayley-Hamilton theorem states that there is a
+polynomial such that $A\inv=-\pi(A)$. Let $x_1$ be an approximation
+to~$\bar x$ and $r_1=Ax_1-b$, then $\bar x-x_1=\pi(A)r_1$. Since $\bar
+x$ is also the solution of any system $M\inv A\bar x=M\inv b$, we
+generalise this as
+\begin{equation}\forall_M\colon\bar x-x_1=\pi(M\inv A)M\inv r_1.
+\end{equation}
+which leads to the definition of a {\em preconditioned
+polynomial iterative method}:
+\begin{equation}x_{i+1}-x_i=\pi_i(M\inv A)M\inv r_1.
+    \label{eq:zero-it}\end{equation}
+
+The basic theorem of polynomial iterative methods states that $R$ is
+the sequence of residuals of a preconditioned polynomial iterative
+method iff
+\begin{equation}AM\inv R=RH\label{eq:zero}\end{equation}
+where $H$~is a Hessenberg matrix with zero column sums.
+
+The class of conjugacy-based methods satisfies \eqref{zero-it} and
+\eqref{zero}; coefficients follow from an orthogonality requirement
+on~$R$. For {\em Arnoldi method} this is $(R,R)_B=0$ for some~$B$; for
+{\em Lanczos methods} it is $(R,S)_B=0$ where $S$~is another sequence.
+
+\Level 1 {Computation of coefficients}
+
+Since $H$ with zero column sums can be factored $H=(I-J)D\inv(I-U)$
+(with $J$ the unit lower subdiagonal), we split \eqref{eq:zero} as
+\begin{equation}APD=R(I-J),\qquad M\inv R=P(I-U)\end{equation}
+by introducing search directions~$P$.
+
+\begin{description}
+\item[Arnoldi]
+The coefficients of $D$ and~$U$ follow from the requirement that
+$R^tM\inv R$ be diagonal ($\Omega\equiv R^tM\inv R$). From
+\begin{equation}R^tM\inv R=R^tP(I-U)\label{eq:one}\end{equation}
+we conclude that $R^tP$ is upper triangular. From
+\begin{equation}P^tAPD=P^tR(I-J)\label{eq:two}\end{equation}
+we then get that $P^tAP$ is lower triangular.
+The coefficients of~$U$ then follow from
+\begin{equation}I-U=(R^tP)\inv\Omega\label{eq:three}\end{equation}
+Define $\Theta=\diag(P^tAP)$ and take the diagonal of \eqref{eq:two}
+to get $D=\Theta\inv\Omega^t$.
+
+\item[CG]
+In the symmetric case we have $\Theta=P^tAP$, so from \eqref{eq:two}
+we get $\Omega^t=\Theta D=P^tR(I-J)$. Use this in \eqref{eq:three} to
+get
+\begin{equation}I-U=\Omega\inv(I-J^t)\Omega.\end{equation}
+
+\item[BiCG]
+Suppose we have a Krylov method based on~$A^t$, written as
+\begin{equation}A^tM\invt S=SH\Rightarrow A^tQD=S(I-J),\,M\invt S=Q(I-U)
+\end{equation}
+The orthogonality requirement that $\Omega=S^tM\inv R$ be diagonal
+gives that $S^tP$ and~$R^tQ$ are upper triangular, and from the $M\inv
+R=\ldots$, $M\invt S=\ldots$ equations
+$\diag(S^tP)=\diag(Q^tR)=\Omega$.
+
+Furthermore, by
+\[Q^tAPD=Q^tR(I-J),\qquad P^tA^tQD=P^tS(I-J) \]
+we find that $\Theta=Q^tAp$ is both lower and upper triangular, hence
+diagonal. This gives again $\Theta D=\Omega$.
+
+Combining
+\[\Omega=\Theta D=Q^tR(I-J)\quad\hbox{and}\quad\Omega^t=R^tQ(I-U)\]
+gives again
+\begin{equation}I-U=\Omega\invt(I-J^t)\Omega^t.\end{equation}
+
+\end{description}
+

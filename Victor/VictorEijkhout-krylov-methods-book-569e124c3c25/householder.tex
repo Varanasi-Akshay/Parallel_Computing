@@ -1,0 +1,43 @@
+Let $u$ be a normalised vector, and define 
+the Householder reflector $Q_u=I-2uu^t$ which has the properties
+ \[ Q_uu=-u,\qquad v\perp u\Rightarrow Q_uv=v,\qquad Q_u=Q_u^t=Q_u\inv. \]
+Now let $v$ and $w$ be vectors with the same norm, and let
+$u=(v-w)/\|v-w\|$, then $Q_u$ has the properties
+ \[ Q_uv=w,\qquad Q_uw=v,\qquad z\perp v-w\Rightarrow Q_uz=z. \]
+Proof: write $v=(v+w)/2+(v-w)/2$; $Qv=Q(v+w)/2+Q(v-w)/2=(v+w)/2-(v-w)/2=w$.
+
+We can now effect a reduction $AV=VH$ of an arbitrary~$A$ to
+upper Hessenberg form as follows. Let 
+ \[ a\equiv \begin{pmatrix}0\cr a_{21}\cr a_{31}\cr\vdots\cr a_{n1}\end{pmatrix},\qquad
+    b=\|a\|\begin{pmatrix}0\cr 1\cr 0\cr \vdots\cr 0\end{pmatrix}, \]
+then, with $u=(a-b)/\|a-b\|$\footnote{If $a$ and $b$ are already close,
+we expect a large roundoff error. Hence it may be preferable
+to choose $b=-\sign(a_{21})\|a\|e_2$. For more on roundoff analysis of
+Householder reflectors, see Golub and Van Loan~\cite{GoVL:matcomp},
+and Wilkinson~\cite{Wi:AEP}.},
+ \[
+     Q_uA=\begin{pmatrix}a_{11}&*&\cdots&*\cr *&*&\cdots&*\cr 
+                  0&*&\cdots&*\cr \vdots&\vdots&&\vdots\cr 0&*&\cdots&*\cr\end{pmatrix},
+    \qquad
+     Q_uAQ_u=\begin{pmatrix}a_{11}&*&\cdots&*\cr *&*&\cdots&*\cr 
+                  0&*&\cdots&*\cr \vdots&\vdots&&\vdots\cr 0&*&\cdots&*\cr\end{pmatrix}.
+ \]
+In the symmetric case, $Q_uAQ_u$ will also have zeros
+in the top row, corresponding to those in the first column.
+
+Now call $Q_1\equiv Q_u$, and repeat this story on the
+remaining matrix~$A_2\equiv\nobreak Q_1AQ_1$ with, in terms of elements
+of~$A_2$,
+ \[ a\equiv \begin{pmatrix}0\cr 0\cr a_{32}\cr a_{42}\cr\vdots\cr a_{n2}\end{pmatrix},\qquad
+    b=\|a\|\begin{pmatrix}0\cr0\cr 1\cr 0\cr \vdots\cr 0\end{pmatrix}. \]
+In this manner we get a reduction to Hessenberg form:
+\[ Q_n\cdots Q_1AQ_1\cdots Q_n=H \qquad\Rightarrow\qquad
+  \hbox{$AQ=QH$ with $Q=Q_1\cdots Q_n$}. \]
+In the symmetric case this is a reduction to tridiagonal form.
+We note that the matrix $Q$ has the special form
+\begin{equation}
+    Q=\begin{pmatrix}1&0&\cdots&0\cr 0&*&\cdots&*\cr
+    \vdots&\vdots&&\vdots\cr 0&*&\cdots&*\cr\end{pmatrix}
+    \label{eq:Hess-Q-form}              
+\end{equation}
+

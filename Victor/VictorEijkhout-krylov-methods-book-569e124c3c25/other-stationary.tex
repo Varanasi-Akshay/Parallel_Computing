@@ -1,0 +1,165 @@
+\Level 0 {Convergence of stationary iterative methods}
+
+The matrix framework that was used throughout this paper can also be
+applied to traditional stationary iterative methods and the steepest
+descent method (see for instance \cite{Va:book}
+and~\cite{HaYo:applied}).
+
+Stationary iterative methods in their most basic form update an
+iterate as 
+\begin{equation}
+	x_{n+1}=x_n-M\inv r_n
+	\label{stat:update}\end{equation}
+where $r_n=Ax_n-f$ and
+$M$ approximates~$A$. Multiplying by~$A$ gives
+\begin{eqnarray} r_{n+1}&=&r_n-AM\inv r_n=(I-AM\inv)r_n
+                \label{stat:r-update}\\
+    \Rightarrow r_{n+1}=(I-AM\inv)^nr_1.
+                \label{stat:r-total}
+\end{eqnarray}
+The error equation for $e_n=x_n-x$ is likewise
+\[ e_{n+1}=(I-M\inv A)e_n. \]
+Writing \eqref{stat:r-update} on matrix form gives
+\[ AM\inv R=R(I-J), \]
+that is, the Hessenberg matrix is of simply bidiagonal form,~$I-J$.
+
+Convergence of stationary iterative methods is governed by
+\eqref{stat:r-total}. The conclusion is that method converges if and
+only if $\rho(I-AM\inv)<1$\footnote{Actually, this is convergence {\em
+for all initial vectors}. We can have convergence under less limited
+conditions if the righthand side and initial guess are in the right
+subspaces. However, because of roundoff this is pretty much
+irrelevant.}.
+In practical cases, this is a hard
+condition to satisfy. If $A$~is an M-matrix coming from a second order
+PDE, and $M$~is derived by a regular splitting, we find that
+$\rho(I-AM\inv)=1-O(h^2)$ (methods such as Jacobi or Gauss-Seidel) or
+$\rho(I-AM\inv)=1-O(h)$ (SOR with optimal relaxation parameter), where
+$h$~is the mesh size.
+
+\Level 0 {Parametrisation: Richardson iteration}
+\label{sec:richardson}
+
+Parametrising \eqref{stat:update} gives the Richardson iteration
+\begin{equation} x_{n+1}=x_n-\alpha_nM\inv r_n. 
+    \label{eq:richardson}\end{equation}
+This updating formula can be
+written in matrix form as \[X(I-J)=M\inv RD\] from which we find
+$R(I-J)=AM\inv RD$, and thus
+\begin{equation}
+	AM\inv R=R(I-J)D\inv.
+	\label{eq:richardson-AR=RH}\end{equation}
+From $r_{n+1}=(I-\alpha_n AM\inv)r_n$ we get
+\[r_{n+1}=\Pi^n_i(I-\alpha_iAM\inv)r_1=Q_n(AM\inv)r_1.\]
+If we know the spectrum~$S$ of~$AM\inv$, we can accelerate convergence by
+choosing the $\alpha_i$ coefficients to minimize
+\[ \max_{t\in S}Q_n(t). \]
+If $AM\inv$ is definite, the optimal polynomial is the Chebyshev
+polynomial, and this method is known as the Chebyshev semi-iterative
+method.
+The above method can also handle indefinite problems.
+
+\Level 0 {Steepest descent}
+\label{sec:steepest-descent}
+
+The steepest descent follows from a particular choice of the iteration
+parameters in the Richardson scheme of \eqref{eq:richardson}.
+Of all possible search directions~$p_i$ in a general update scheme
+$x_{i+1}=x_i-\alpha_ip_i$, the choice $p_i=\nobreak r_i$ gives the
+steepest descent direction; the value of~$\alpha_i$ is chosen to
+minimise the residual~$r_{i+1}$. Specifically, the optimal parameter
+in the steepest descent method is
+\begin{equation}
+    \alpha_i = r_i^tr_i/r_i^tAr_i
+    \label{eq:steepest-descent-alpha}\end{equation}
+\begin{truth}
+(See section~\ref{sec:line-search} for the derivation.)
+\end{truth}
+
+The line search used in the methods studied earlier in this monograph
+has the search direction a combination of earlier residuals. Krylov
+methods such as the Conjugate Gradient algorithm can then be regarded
+as generalisations of steepest descent where the search direction is
+in the span of previous residuals, in particular where the combination
+is such that the residual is orthogonal to all previous search
+directions; see \eqref{eq:rp-semi-ortho}.
+
+\begin{comment}
+The matrix~$U$ satisfying $UH=JU$ contains the polynomial coefficients
+of~$P_n$. For this particular matrix~$H$ we find (the unsurprising
+fact) that the elements of~$U$ satisfy (see
+lemma~\ref{lemma:polynomial:recurrence})
+\[ -u_{in+1}=u_{i-1n}-u_{in}, \] 
+that is, they are after some normalization
+the coefficients of the polynomial $(1-x)^n$.
+\end{comment}
+
+\Level 0 {Recovering CG from Stationary Iteration}
+\label{sec:recover}
+
+After a process of stationary iteration, we have residuals satisfying
+\[ AM\inv R=R(I-J). \]
+It is possible to reconstruct from these residuals the ones that would
+have been generated from a CG process. Both sets of residuals are
+combinations of the same Krylov sequence; they only differ in that CG
+residuals are orthogonal. It would then be possible to generate a
+number of steps of stationary iteration, and take convex combination
+of these afterwards (see lemma~\ref{lemma:convex-res}), in such a way
+as to minimise the residuals in a certain norm.
+
+Thus, we are to find an upper triangular matrix~$U$ with column
+sums~$\equiv1$ which makes for $\bar R=RU$ the matrix $\bar RM\inv \bar R$
+diagonal. We can then form $\bar X=XU$, and these are the solution
+approximations from~CG\footnote{We use the term CG generically: our
+algorithm also works for nonsymmetric matrices, where OrthoMin
+results; below we will explain how to derive MinRes and GMRES}.
+The construction of~$U$ proceeds by a QR process, during
+which care is taken that all coefficients in a column sum to one.
+
+This process incurs some storage overhead: in the most naive
+implementation, we need to retain both the residuals and iterates.
+Additionally, in order to make $\bar RM\inv R$ diagonal, we need to have
+stored both the $R$ and~$M\inv R$ sequence. However, this is an
+overestimate of the storage demands in practice. We will now sketch
+the actual implementation.
+
+In typical stationary iterative methods we solve an equation of the form
+\[ (D+L)x\supnp=-Ux\supn+b, \]
+so the vectors $r\supn$ and $M\inv r\supn$ are never explicitly
+computed. However, we can derive $M\inv r\supn=x\supnp-x\supn$ at
+minimal cost, and the coefficients $Lx\supn$ and $-U\supn+b$ are already
+computed, so assembling $r\supn$ is not very costly. A~single
+relaxation parameter in the stationary iteration can also be easily
+accomodated, though more complicated relaxations, such as by a
+diagonal matrix, take more work.
+
+Also, since we are storing the
+$M\inv R$ sequence, we can dispense with storing the iterates except
+for the first one.
+
+In order to reconstruct MinRes and GMRES from stationary iteration, we
+use the fact that their residuals are orthogonal under the $AM\inv$
+inner product, so we store $AM\inv R$ instead of~$M\inv
+R$. The~$AM\inv r\supn$ vectors can be derived as~$AM\inv
+r\supn=\nobreak r\supnp-\nobreak r\supn$.
+
+Of course, ultimately one wants to reconstruct the iterates of the
+other sequence, and not just the residuals.
+If the residuals of one method are convex combinations of those of
+another method, the iterates follow from the same combination process.
+\begin{llemma}{Convex combinations of iterates same as residuals}
+\label{lemma:comboX}
+Let $R$ and $\bar R $ be residual sequences such that $\bar R =R U$ where
+$U$~has unit column sums, then the iterates sequences $X$ and~$\bar X$
+follow the same relation: $\bar X=XU$.
+\end{llemma}
+\begin{proof} We can write in matrix notation $R=AX-fe^t$ where
+$e^t=(1,\ldots)$. Noting that $e^tU=e^t$, we get
+\begin{eqnarray*}
+\bar R &=&RU\qquad \Leftrightarrow\\
+A\bar X-fe^t&=&(AX-fe^t)U\\
+&=&AXU-fe^t
+\end{eqnarray*}
+which by nonsingularity of~$A$ gives the stated result.
+\end{proof}
+

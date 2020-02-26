@@ -1,0 +1,122 @@
+\Level 1 {Iterating in subspaces}
+\FurtherReading
+
+\Level 2 {approach 1}
+
+This section is based on~\cite{Ni:deflation-cg}.
+
+Let $E$ be a basis for the left-nullspace\index{null space} of~$A$,
+that is, $E^tA=0$.  For any vector~$x$, $E^tAx=0$, that is, $Ax$~is
+orthogonal to the nullspace.  Now let~$E^tr_i=0$ for~$i\leq n$, then
+from
+\[ r_{n+1} = \alpha AM\inv r_n+\sum_{i\leq n}\beta_i r_i \]
+we find that~$E^tr_{n+1}=0$, that is, given an initial residual that
+is orthogonal to the nullspace, each subsequent one will be too. This
+statement is independent of the coefficients chosen; in particular, it
+does not use orthogonality of any kind. Also, note
+that $M\inv$~appears as a right multiplicator, hence we can talk about
+the nullspace of~$A$ without involving~$M$ in the story.
+
+We need to force the first residual to be orthogonal to~$E$. Let $x$
+be artitrary; we want to calculate~$f$ such that with $x_1=x-f$ the
+vector~$r_1$ is $E$-orthogonal. Consider the identities
+\begin{eqnarray*}
+E^tr_1&=&E^t(Ax_1-b)\\
+&=&E^t(Ax-Af-b)\\
+&=&E^tr-E^tAf
+\end{eqnarray*}
+Now let $d$ be such that $f=Ed$, then solving \[E^tAEd=E^tr\] will
+give~$d$, and therefore~$f$.
+
+We can construct a singular matrix as follows:
+\[ \tilde A=A(I-E(E^tAE)\inv E^tA). \]
+Clearly $E^t\tilde A=0$.
+
+\Level 2 {approach 2}
+
+Here's another way of looking at deflated system solving. Let $E$
+describe a low-dimensional subspace. Defining
+\[ P=I-E(E^tE)\inv E^t,\qquad Q=I-P=E(E^tE)\inv E^t \]
+gives
+\[ E^tQ=E^t,\quad E^tP=0,\quad QE=E,\quad PE=0.\]
+We now try to find a solution of the form $x+y$ such that
+$A(x+y)=b$. We try to find $x$,$y$ such that
+\[ PAx=Pb,\quad PAy=0,\quad QAy=Qb,\quad QAx=0 \]
+which gives
+\[ A(x+y)=(PA+QA)(x+y)=PAx+QAy=Pb+Qb=b.\]
+For the second clause, $PAy=0$, it is enough that $y\in A\inv E$.
+For the fourthclause, $QAx=0$, is sufficies that $E^tAx=0$.
+
+Let $d=(E^tE)\inv E^tb$ and let $y=A\inv Ed$ (that's the second
+clause), then $QAy=QEd=Qb$: the second postulate.
+
+If $y\in A\inv E$ then $Ay\in E\Rightarrow PAy=0$, so
+\[ PAx=Pb \Rightarrow PA(x+y)=Pb.\]
+The equation $PAx=Pb$ can be solved with a deflated method. I think.
+
+Also, if $E^tAx=0$ then $QAx=0$, so
+\[ QAy=Qb\Rightarrow QA(x+y) = QB. \]
+
+\Level 2 {approach 3}
+
+Let $N$ be a null-space, that is, $AN=0$. Define $P=I-N(N^tN)\inv N^t$, then
+\[\begin{cases}x=Ny\Rightarrow Px=0\\ N^tx=0\Rightarrow Px=x\end{cases}\]
+Since $N^tP=0$, $Px\perp N$. From $PN=0\Rightarrow N^tP^t=0$ we get
+$P^tx\perp N$. Therefore, for all $x$, $P^tAPx\perp N$.
+
+Same argument about Krylov space staying orthogonal to the null space.
+
+Now solve $P^tAP(P^tx)=P^tb$ iteratively.
+
+\Level 2 {Null spaces and preconditioners}
+
+Let $N$ be the right nullspace: $AN=0$. Consider the fact that
+\[ x_{n+1}=x_0 + \sum_{i\leq n}\alpha_i(M\inv A)^ir_0,\]
+
+\Level 2 {approach 4}
+
+Taken from~\cite{LewisRehm:nonseparable}.
+
+Let $N$ be the left nullspace of~$A$: $N^tA=0$. From $Ax=b$ this
+implies that $N^tb=0$ needs to hold. Since the solution of singular
+a system is not unique, we impose a minimum length condition~$N^tx=0$.
+
+We now consider a conjugate gradient method for solving $Ax=b$.
+\begin{lemma}
+  The residuals $R$ and search directions $P$ are
+  $N$-orthogonal. Applying a CG process to $Ax=b$ is equivalent to
+  iterating on the nonsingular system with coefficient matrix $\bar
+  Q^tA\bar Q$.
+\end{lemma}
+\begin{proof}
+Augment $N$ by $\bar Q$
+($N^t\bar Q=0$) such that $Q=[N,\bar Q]$ is unitary. The residual
+equation $R=AX-be^t$ gives $N^tR=0$ (note that no relations on $X$ are
+used). Write 
+\[ Q^tR=
+\begin{pmatrix}
+  0\\ \bar Q^tR
+\end{pmatrix}
+\]
+From $R=P(I-U)$ we get
+\[ Q^tP=
+\begin{pmatrix}
+  0\\ \bar Q^tP
+\end{pmatrix}
+\]
+Finally, $APD=R(I-J)$ becomes
+\[
+\begin{array}{rl}
+  (Q^tAQ)(Q^tP)D&{}=Q^tR(I-J)\\
+  \begin{pmatrix}
+    0&0\\ 0&\bar Q^tA\bar Q
+  \end{pmatrix}
+  \begin{pmatrix}
+    0\\ \bar Q^tP
+  \end{pmatrix} D&{}=
+  \begin{pmatrix}
+    0\\ \bar Q^tR
+  \end{pmatrix}(I-J)
+\end{array}
+\]
+\end{proof}

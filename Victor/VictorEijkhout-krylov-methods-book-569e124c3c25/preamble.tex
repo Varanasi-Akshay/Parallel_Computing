@@ -1,0 +1,118 @@
+\usepackage{fleqn,comment,verbatim,amsmath,amssymb,pslatex}
+\usepackage[pdftex]{graphicx}
+
+%
+% pdf formatting for screen or paper
+%
+\excludecomment{print}
+% no edits below this line.
+\includecomment{screen}
+\begin{print}
+\excludecomment{screen}
+\end{print}
+\input paperscreen
+
+%
+% index
+%
+\usepackage{makeidx}
+\makeindex
+
+%
+% minitoc leads to spool overflow
+%
+%\usepackage{minitoc}
+%\setcounter{secttocdepth}{1}
+
+%
+% statements
+%
+\makeatletter
+\newcommand{\listofstatements}{\@starttoc{sta}}
+\newcommand{\liststatement}[1]{\addcontentsline{sta}{statement}{#1}}
+\newcommand{\l@statement}[2]{\par\noindent #1 {\itshape #2}}
+\makeatother
+
+\input truthenvs
+
+%
+% comment
+%
+\excludecomment{notes}
+\includecomment{truth}
+%% optional stuff
+%\includecomment{extended}
+\excludecomment{miss}
+\includecomment{truth}
+
+\newenvironment{block}
+{\medskip\begingroup\leftskip1in
+ \noindent\hbox{\sl Block statement}\hfill\break}%
+{\ifdim\predisplaysize=0pt \hfil\break\fi
+ \sl End of block statement\par\medskip\endgroup}
+\newenvironment{extended}
+{\medskip\begingroup\leftskip1in
+ \noindent\hbox{\sl Extended statement}\hfill\break}%
+{\ifdim\predisplaysize=0pt \hfil\break\fi
+ \sl End of extended statement\par\medskip\endgroup}
+\iffalse
+\specialcomment{block}%
+{\medskip\begingroup\leftskip1in
+ \noindent\hbox{\sl Block statement}\hfill\break}%
+{\hfill\break\sl End of block statement\medskip\endgroup}
+%\excludecomment{block}
+\fi
+
+\newcommand{\FurtherReading}{
+ \vtop{\sl\noindent For further reading:
+       the material in this section is not referred to elsewhere.}}
+
+%
+% Outline
+%
+\usepackage{outliner}
+\newcounter{asection}
+\begin{screen}
+\OutlineLevelStart0{\section{#1}
+  \edef\tmp{\noexpand\label{sec\arabic{section}}}\tmp
+  \hbox to \hsize{%
+    \setcounter{asection}{\value{section}}%
+    \addtocounter{asection}{-1}%
+    Previous section:
+      \edef\tmp{\noexpand\ref{sec\arabic{asection}}}\tmp
+    \hfill
+    \addtocounter{asection}{2}%
+    Next section:
+      \edef\tmp{\noexpand\ref{sec\arabic{asection}}}\tmp
+    }}
+\end{screen}
+
+\begin{print}
+\OutlineLevelStart0{\section{#1}}
+\renewcommand{\OutlinePageBreak}{%
+  \vfill\pagebreak
+  \ifodd\value{page}\else\hbox{}\vfill\pagebreak[4]\fi}
+\end{print}
+
+\OutlinePageBreaks{1}
+\OutlineLevelStart1{\subsection{#1}}
+\OutlineLevelStart2{\subsubsection{#1}}
+  
+%
+% fancy headings
+%
+\begin{print}
+\usepackage{fancyheadings}
+\pagestyle{fancy}
+\lhead{}\rhead{}\cfoot{}
+\lfoot{\sl Victor Eijkhout}
+\rfoot{\sl Everything I know about CG\hskip40pt \thepage}
+\end{print}
+\begin{screen}
+\pagestyle{empty}
+\end{screen}
+
+\emergencystretch=20pt \hbadness=2000
+
+\input krylovmacros
+

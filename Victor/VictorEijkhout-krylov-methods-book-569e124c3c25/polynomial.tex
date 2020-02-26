@@ -1,0 +1,950 @@
+% -*- latex -*-
+In this section we will define polynomial iterative methods,
+that is, sequences of vector iterates. Ultimately we will use such
+sequences to solve linear systems with.
+
+\Level 1 {Vector sequence notation and conventions}
+
+We are investigating vector sequences, that is, sequences
+\[ X\in\R^{n\times k}\colon X\equiv [x_i]_{i,i<k}\equiv
+    i\mapsto x_i\qquad\hbox{$x_i\in\R^n$, $i=0\ldots k$}, \]
+where we use $[\langle\hbox{expression with $i$}\rangle]_i$ to denote
+a sequence indexed by~$i$.
+
+There are two types of operations on sequences.
+If we apply an operator \[A\in\R^{n\times n}\] from the left to a sequence~$X$,
+then $AX$~is the sequence $[Ax_i]_i$.
+We can also apply operators 
+\[ U\in[\R^{n\times k}\rightarrow\R^{n\times k}] \]
+from the right: if $X$ is a sequence, $XU$~is one too. 
+
+Since our vector sequences model iterative processes, and we can not
+look into the future, operators applied from the right will always be
+upper triangular or banded lower triangular.
+
+We introduce two sets of upper triangular transformations:
+\begin{ddefinition}{Upper triangular and normalized upper triangular transformations}
+\[ U\in\U \equiv i>j\rightarrow u_{ij}=0; \]
+\[ U\in\Un \equiv \hbox{$U\in\U$ and $u_{1j}\equiv 1$}. \]
+\end{ddefinition}
+
+We also introduce sets of polynomials that will be seen to be closely
+related to these upper triangular transformations:
+\begin{ddefinition}{Polynomials and normalized polynomials}
+\[ \Pn=\{\hbox{polynomials of degree $n$}\}; \]
+\[ \Pnn=\{\hbox{polynomials $P$ of degree $n$ such that $P(0)=1$}\}. \]
+\end{ddefinition}
+
+When only an initial part of a sequence is needed we denote it
+by, for instance, $X_n$~for the first $n$ columns of~$X$.
+An initial part of a right-multiplying operator is denoted
+by, for instance, $U_n$~if square, or $H_{[n+1,n]}$~if rectangular.
+\begin{truth}
+  In general, however, the simplicity of presentation will benefit
+  greatly from the fact that we formulate most everything in terms of
+  infinite sequences. Section~\ref{sec:truncated-sequence} will
+  address some of the subtleties involved.
+\end{truth}
+\begin{miss}
+  We introduce a further notation: if $X$ is a sequence of $k$ terms,
+  that is, it is a block of size~$n\times\nobreak k$, then $\mis{X}$
+  denotes the sequence with the last term missing, that is, a the
+  leading $n\times\nobreak(k-\nobreak1)$ subblock.
+\end{miss}
+
+\begin{block}
+All of the above can be generalised to the block case,
+where $x_i\in\R^{n\times k}$, represented as a block of $k$ vectors.
+The upper triangular matrices then become of block upper triangular
+shape, where the blocks corresponding to the scalar
+elements are of size~$k\times\nobreak k$. Often, the element blocks
+are equal to a scalar multiple of the identity matrix; we can then
+use the outer product notation~$\bm{A}$.
+
+Block iterative methods are treated extensively in
+section~\ref{sec:block}; however we will remark in relevant cases on
+block extensions of statements we prove.  In preparation for these
+extensions, even scalar statements will often be written in such a way
+that commutativity of scalars is not used.
+\end{block}
+
+\Level 1 {Polynomial vector sequences}
+
+In this section we introduce the basic form of iterative methods. All
+methods in this monograph will conform to this scheme.
+
+\Level 2 {Basic statement}
+
+\begin{precond}
+\begin{ddefinition}{Polynomial iterative method}
+\label{def:poly-it}
+A polynomial iterative method is a sequence of
+vectors~$\{x_i\}_{i\geq1}$ in~$\R^N$\footnote
+{Since we will mostly deal with vectors of the same size, the vector dimension~$N$
+will go unremarked on.}, denoted by a
+4-tuple \[X=\Pmethod,\] where $x_0$,~$f$ are vectors
+in~$\R^N$, $A$~is an $N\times N$ matrix, and $\pi_n\in\Pn$;
+the sequence $X$ is defined by
+        \begin{equation} x_{i+1}-x_0=\pi_i(A)\{Ax_0-f\}.
+        \label{eq:poly-meth_1}
+        \end{equation}
+\end{ddefinition}
+\end{precond}
+
+\begin{block}
+In a block version of this definition, $x_1$~and~$f$ are elements
+of~$\R^{n\times k}$, and the polynomial has matrix-valued coefficients
+in~$\R^{k\times k}$.
+\end{block}
+
+Definition~\bref{eq:poly-meth_1}
+can be motivated informally from the following
+observations. Let $Ax=f$ and let $x_0$ be an arbitrary vector.
+First of all
+        \[ r_0=Ax_0-f\Rightarrow x=A\inv f=x_0-A\inv r_0,\]
+stating that we can find the solution~$x$ if we can compute~$A\inv r_0$.
+
+Then, by the Cayley-Hamilton theorem,
+there is a polynomial~$\phi$ such that $\phi(A)=\nobreak0$, and without
+loss of generality we can write $\phi(x)=1+x\pi(x)$%
+\footnote{We will see this equation reflected in~\eqref{eq:phi-pi-poly}.}
+with $\pi$~another polynomial. Then
+        \[ A\inv=-\pi(A)\qquad\hbox{so}\qquad  x-x_0=\pi(A)r_0. \]
+Polynomial iterative methods then can be viewed as constructing
+successive polynomials
+that in some sense approximate this polynomial~$\pi$.
+
+\begin{remark}
+In practice, we often encounter the formulation
+\[ x_{i+1}-x_i=\pi_i(A)\{Ax_0-f\}. \]
+It is not hard to see that this is equivalent to
+\eqref{eq:poly-meth_1}. We will go into this more in
+section~\ref{sec:matrix-form}, in particular
+lemma~\ref{lemma:IJ-IE-equiv}.
+\end{remark}
+
+\begin{truth}
+We sharpen the above statement slightly, since we do not actually
+need $\phi(A)=0$: it suffices if $\phi$ is such that $\phi(A)r_0=0$\footnote
+{That said, I am not aware of any methods that exploit the difference.}.
+\begin{theorem}
+\label{th:solution}
+Let polynomials $\pi$ and $\phi$ be related as $\phi(x)=1+x\pi(x)$, then
+\[ \hbox{$\phi(A)r_0=0$ iff $x_0+\pi(A)r_0=A\inv f$}. \]
+\end{theorem}
+\end{truth}
+
+The Cayley-Hamilton theorem gives an upper bound on the degree of the
+polynomial needed to compute~$A\inv$. In some cases, a polymial of
+lesser degree may already yield the inverse in exact arithmetic, or a
+sequence of polynomials may yield progressively better approximations
+to the system solution, so that early termination of the process is
+possible.  For more about termination, see
+section~\ref{sec:termination}%
+\begin{truth}
+; for convergence, see
+section~\ref{sec:convergence}
+\end{truth}
+.
+
+\begin{comment}
+Next we will define polynomial sequences independent of the particular
+choices for $A$, $\{\pi_i\}$, and~$f$, but only dependent on a
+solution vector.
+\begin{ddefinition}{Polynomial sequence for a solution}
+A sequence $\{x_i\}_{i\geq1}$
+is called a polynomial sequence for the vector~$x$
+if it is a polynomial method $\Pmethod$,
+where $A$~and~$f$ are such that $A x=f$.
+The vector $ x$ is called the {\it solution vector} of the
+sequence.
+\end{ddefinition}
+\end{comment}
+
+\Level 2 {Preconditioned polynomial methods}
+
+In the definition of a polynomial vector sequence we call $x=A\inv f$
+the {\it solution vector} of the method. Now, there are many choices
+for the matrix~$A$ and vector~$f$ that all have~$x$ as solution. This
+raises the question what the relation is between a given method and
+these other systems.
+
+\begin{precond}
+\begin{lemma}
+Let $X$ be the polynomial method 
+$\PmethodAf{\bar A}{\bar f}$ where $\bar A x=\bar f$
+for the solution~$x$, and let a matrix~$A$ and a
+vector~$f$ be such that also $Ax=f$, then there is a matrix~$M$
+such that
+\begin{equation} 
+ x_{i+1}-x_0=\pi_i(M\inv A)M\inv (Ax_0-f)
+        \label{eq:left-prec}.\end{equation}
+\end{lemma}
+\begin{proof}
+Let $X$ be the method 
+$\PmethodAf{\bar A}{\bar f}$ where $\bar Ax=\bar f$.
+Let $A$ and~$f$ be such that also $Ax=f$. Then
+\[ A\inv f=\bar A\inv \bar f\Rightarrow \bar f=\bar AA\inv f. \]
+Now define $M\inv=\bar AA\inv$, then
+\[ \bar A=M\inv A,\quad \bar f=M\inv f,\]
+so 
+\[ x_{i+1}-x_0=\pi_i(M\inv A)M\inv r_0 \]
+where $r_0=Ax_0-f$.
+\end{proof}
+
+\Eqref{eq:left-prec} can also be written as
+\[ x_{i+1}-x_0= M\inv\pi_i(AM\inv)(Ax_0-f). \]
+\Eqref{eq:left-prec} is not the description of a polynomial sequence
+as defined above. However, it is common enough that we will give it a
+name.
+
+\begin{ddefinition}{Preconditioned polynomial method}
+A sequence generated by \eqref{eq:left-prec} is called a (left)
+preconditioned polynomial method for the solution~$A\inv f$; we use
+the notation $\PmethodM$.
+\end{ddefinition}
+
+The matrix~$M$ is called a \index{Preconditioner}`preconditioner',
+since it will be intended as a conditioning operator for the original
+system. Note that $M$ need not be --~and in many practical applications
+is not~-- given explicitly: the only
+requirement is that the action $y\leftarrow M\inv x$ is computable, that is,
+it should be possible to solve~$y$ from $My=x$.
+
+We need to tie preconditioned methods to the polynomial methods we
+already defined.
+
+\begin{llemma}{Preconditioned methods are polynomial methods}
+Let $Ax=f$ and nonsingular~$M$ be given and let
+    \[ \{x_i\}_i = \PmethodM \]
+be a preconditioned polynomial method, then $\{x_i\}$
+is a polynomial iterative method with solution~$x$:
+\begin{equation}
+        \PmethodAf{A,M}{f}=\PmethodAf{M\inv A}{M\inv f}
+        \label{eq:preconditioned-is-polynomial}
+\end{equation}
+\end{llemma}
+\begin{proof}
+Define $\bar A=M\inv A$ and $\bar f=M\inv f$, then $\bar Ax=\bar f$.
+Now write the definition of the preconditioned
+polynomial method as in~\eqref{eq:left-prec}:
+\[ x_{i+1}-x_0=\pi_i(M\inv A)M\inv (Ax_0-f) \]
+then we rewrite this as \[ x_{i+1}-x_0=\pi_i(\bar A)(\bar Ax_0-\bar f), \]
+which conforms to the definition of a polynomial iterative method,
+and \eqref{eq:preconditioned-is-polynomial} follows.
+\end{proof}
+
+\Eqref{eq:left-prec} is called a `left preconditioned' iterative
+method, since it is a polynomial method based on the left-transformed
+system \[M\inv Ax=M\inv f.\] We can derive left preconditioned methods
+from the Cayley-Hamilton theorem by observing that
+\begin{eqnarray*}
+\bar x=A\inv f&=&(M\inv A)\inv(M\inv f)=(M\inv A)\inv
+M\inv(Ax_0-r_0)\\
+&=&x_0-(M\inv A)\inv M\inv r_0\\
+&=&x_0+\pi(M\inv A)M\inv r_0
+\end{eqnarray*}
+
+\begin{truth}
+So far we talked about left preconditioning which corresponds to a
+scaling of the system.
+Right preconditioning, which is more like a scaling of the sequence of
+iterates, can be derived as follows:
+\[ Mx_{i+1}-Mx_0=\pi_i(AM\inv)(AM\inv (Mx_0)-f). \]
+In other words, $MX=\PmethodAxf{AM\inv}{Mx}{f}$, which means that
+$MX$ is a polynomial method for the right preconditioned system
+\[ AM\inv x=f.\]
+Writing $Y=MX$, we then have a polynomial method $Y=\PmethodAxf{AM\inv}{Mx}{f}$
+for the solution~$MA\inv f=Mx$, and we can
+reconstruct a method for~$x$ by $x_i=M\inv y_i$.
+
+Constructing $y_0=Mx_0$ is not feasible in general, since we usually
+can only compute the action of~$M\inv$ on some vector. However, we can
+simply start iterating with an arbitrary~$y_0$, and let $x_0$ be
+defined implicitly from this relation. 
+
+The final iterate~$x_n$ can still be
+found from $x_n=M\inv y_n$ where $y_n$~is the final iterate of the
+right preconditioned method we are actually computing. There is a
+practical disadvantage to proceeding this way: if we monitor the
+iteration process, we can not relate the $y_i$ vectors to the original
+system and solution without incurring extra work for the
+transformation $x_i=M\inv y_i$.
+
+More about left and right preconditioning in
+section~\ref{sec:left-right-prec}.
+\end{truth}
+\end{precond}
+
+\begin{comment}
+\begin{lemma}
+\label{BX-method}
+If $\{x_i\}_{i\geq1}$ is a polynomial sequence 
+for~$\bar x$ and $B$~is an invertible
+matrix, then $\{Bx_i\}_{i\geq1}$~is a polynomial sequence for~$B\bar x$,
+specifically, if $\{x_i\}_{i\geq1}$~is $\Pmethod$ then 
+$\{Bx_i\}_{i\geq1}$~is
+$\pxPmethod{BAB\inv}{Bx}{Bf}$.
+\end{lemma}
+\begin{proof} This follows from
+        \[ Bx_{i+1}-Bx_0=\pi_i(BAB\inv)\{(BAB\inv)Bx_0-Bf\}. \]
+\end{proof}
+\end{comment}
+
+\begin{extended}
+\Level 2 {Extended iterative methods}
+
+Although the vast majority of iterative methods, both in this
+monograph and in practice, are of the polynomial form of
+\eqref{eq:poly-meth_1} or \eqref{eq:left-prec}, sometimes we come
+across more general methods, where the $x_i$~vectors are updated with
+arbitrary --~or not-so-arbitrary but at least not polynomially
+derived~-- vectors. For this we define
+
+\begin{ddefinition}{Extended (preconditioned) iterative methods}
+A sequence $\{x_i\}$ is called an extended iterative method if
+\[ x_{i+1}-x_i \in\Span{w_0,\ldots,w_i}; \]
+it is called an extended preconditioned iterative method if
+\[ x_{i+1}-x_i \in M\inv \Span{w_0,\ldots,w_i}. \]
+\end{ddefinition}
+
+Since, in practice, iterative methods are almost always preconditioned,
+the first, unpreconditioned, form is not so much a more basic form, as
+it is a form where a, possibly iteration-dependent, preconditioner is
+incorporated into the update vector.
+
+In the rest of this monograph we will occasionally remark on the
+extended form of certain statements.
+\end{extended}
+
+\Level 1 {Krylov sequences}
+
+Polynomial methods are tightly connected, in ways that we will explore
+later, to so-called Krylov sequences.
+
+\begin{ddefinition}{Krylov sequence}
+Let a matrix~$A$, a sequence~$X$ and a vector~$f$ be given.
+We define the Krylov sequence with respect to $A$, $x_0$, and~$f$ as
+\[ \Kmethod\equiv k_0=Ax_0-f,\quad k_{i+1}=Ak_i, \]
+or, shorter, with respect to just $A$ and a starting vector~$k_0$:
+\[ \Kmethodv{k_0}\equiv k_{i+1}=Ak_i. \]
+\end{ddefinition}
+
+An initial part~$K_n$ of a Krylov sequence~$K$ may span an
+$n$-dimensional subspace, or it may be invariant. If
+$k_{n+1}\in\Span{k_0,\ldots,k_n}$, then $K_n$~is invariant:
+$AK_n\subset K_n$. Invariant subspaces can be good or bad;
+theorem~\ref{th:invariant} shows that an invariant subspace signifies
+that the solution of a linear system is reached. Later we will see
+that in some methods invariant subspaces mean trouble.
+\begin{question}
+Find the reference
+\end{question}
+
+Computationally, generating the Krylov sequence is not a good way of
+finding the subspace spanned by~$K_n$. The vectors~$k_i$ will tend more and
+more towards the dominant eigenvector of~$A$. The iterative
+methods presented later in this monograph are essentially ways of
+generating the same basis as the Krylov sequence, but in a more stable manner.
+
+\Level 1 {Matrix formulation}
+\label{sec:matrix-form}
+
+In this section we will develop the matrix formulation tools 
+that will facilitate
+further presentation and analysis of polynomial iterative methods.
+
+First of all, we  often abbreviate vector sequences as a matrix:
+\[ X=(x_0,x_2,\ldots). \]
+Next we introduce
+the `left-shift' operator~$J$ for sequences:
+\[
+  J=(\delta_{i,j+1})=
+  \begin{pmatrix}0\\ 1&0\\ &1&\ddots\\ &&\ddots&0\\
+    &&&1\\
+  \end{pmatrix} 
+\]
+so that for sequences $X$ and~$Y$ the statement
+$\mis{Y}=XJ$\footnote{Recall the notation that $\mis{Y}$ is the
+  sequence~$Y$ minus its last column.} implies~$y_i=x_{i+1}$. Also,
+Krylov sequences $y_{i+1}=Ay_i$ can be denoted
+as~$A\mis{Y}=YJ$. Furthermore, we introduce the matrix
+        \[ E_1=\begin{pmatrix}1&\ldots\cr 0&\ldots\cr \vdots\cr\end{pmatrix} \]
+which picks the first element of a sequence: $Y=XE_1$ is shorthand for
+`$y_i=x_0$ for all~$i$'.
+
+\begin{block}
+In block versions of these definitions, the scalars~$1$ are
+replaced by identity matrices, and the zeros by zero matrices,
+all of size~$k\times\nobreak k$, where $k$~is the width of a block vector,
+so $E_1\rightarrow \bm{E_1}$ and $J\rightarrow \bm{J}$.
+\end{block}
+
+The operators $J-I$ and $J-E_1$ are convenient in talking about
+updating a sequence. We will use the notational convention that $J-I$
+and $J-E_1$ will always be rectangular matrices with one more row than
+columns; to prevent notational overload their exact sizes will not be
+indicated, unless they are not clear from the context.
+
+We can now summarize sequence updates in block form:
+%\[ \mis{Y}=X(J-I)\qquad\Leftrightarrow\qquad y_i=x_{i+1}-x_i \]
+\begin{equation}
+  Y_n=X_{n+1}(J-I)\qquad\Leftrightarrow\qquad y_i=x_{i+1}-x_i
+  \label{eq:y-update-from-prev-x}
+\end{equation}
+and
+%\[ \mis{Y}=X(J-E_1)\qquad\Leftrightarrow\qquad y_i=x_{i+1}-x_0. \]
+\begin{equation}
+  Y_n=X_{n+1}(J-E_1)\qquad\Leftrightarrow\qquad y_i=x_{i+1}-x_0.
+  \label{eq:y-update-from-first-x}
+\end{equation}
+The relation between $J-I$ and $J-E_1$ is as follows:
+\begin{equation}
+  \begin{matrix}
+    (J-E_1)_{[n+1,n]}&=&(J-I  )_{[n+1,n]}(I-J^t)_n\inv\\
+    (J-I  )_{[n+1,n]}&=&(J-E_1)_{[n+1,n]}(I-J^t)_n
+  \end{matrix} 
+  \label{eq:I&J/E}
+\end{equation}
+The following auxiliary lemma shows that constructing a sequence by
+updating it from its first element
+        \[ x_{i+1}-x_0=\sum_{j\leq i}k_jc_{ji} \]
+is equivalent to updating it from the previous element as
+        \[ x_{i+1}-x_i=\sum_{j\leq i}k_j\tilde c_{ji}. \]
+
+\begin{llemma}{Updating a sequence equivalent to making from scratch}
+\label{lemma:IJ-IE-equiv}
+If $X$ and $K$ are sequences, $U$~is upper triangular, then
+\[ X_{n+1}(J-E_1)=KU_n \qquad\hbox{iff}\qquad X_{n+1}(J-I)=KV_n \]
+for some upper triangular matrix~$V$. 
+\end{llemma}
+\begin{proof} 
+Let $X(J-E)=KU$, then using~\eqref{eq:I&J/E}:
+\[
+\begin{array}{r@{{}={}}l}
+X(J-I)&X(J-E)(I-J^t)\\ &KU(I-J^t)=KV
+\end{array}
+\]
+where $V=U(I-J^t)$. Conversely, if $X(J-I)=KV$:
+\[
+\begin{array}{r@{{}={}}l}
+X(J-E)&X(J-I)(I-J^t)\inv \\ &KV(I-J^t)\inv=KU.
+\end{array}
+\]
+\end{proof}
+
+\begin{block}
+There are two block versions of this lemma,
+replacing all ones by identity blocks: $U$ can be either a true upper
+triangular matrix, or a block triangular matrix where the diagonal
+blocks are not necessarily themselves of diagonal form.
+\end{block}
+
+\begin{remark}
+  \label{rem:IJ-IE-upper}
+  In the proof of lemma~\ref{lemma:IJ-IE-equiv} we remarked that
+  the upper triangular matrices are related by
+  \[ V=U(I-J^t). \]
+  In other words,
+  \[ v_{*,1}=u_{*,1},\qquad j>1\rightarrow v_{*,j}=u_{*,j}-u_{*,j-1} \]
+  and conversely
+  \[ j>1\rightarrow u_{*j} = v_{*1}+\cdots+v_{*,j}. \]
+\end{remark}
+
+The right hand side in \eqref{eq:left-prec} can be described
+differently in terms of a Krylov sequence: 
+applying successive polynomials to an initial vector
+is equivalent to taking linear combinations of the Krylov series.
+
+\begin{precond}
+\begin{llemma}{Polynomial application vs combinations of a Krylov sequence}
+\label{lemma:Poly-U}\label{th:polynomial}
+Let a matrix~$A$, a preconditioner~$M$, a vector~$k_0$, and
+polynomials~$\pi_i$ with $\deg(\pi_i)=i-1$ be given, then
+\[ [\pi_i(M\inv A)M\inv k_0]_i=K\method{M\inv A,M\inv k_0}U(\pi), \]
+where $U(\pi)$ is an upper triangular matrix with the columns 
+containing the polynomial coefficients; specifically, 
+        \[ \pi_i(x)=u_{ii}x^{i-1}+\cdots+u_{2i}x+u_{1i}. \]
+\end{llemma}
+\end{precond}
+
+\begin{block}
+For the block version of this lemma we have to note that the polynomial
+application proceeds as
+\[ A^ik_0u_{ii}+\cdots +Ak_0u_{2i}+k_0u_{1i}, \]
+where the $u_{ij}$ are $k\times k$ blocks. Correspondingly, $U$~is
+a block upper triangular matrix.
+\end{block}
+
+We now have the following matrix characterisation of polynomial iterative
+methods:
+
+\begin{llemma}{Update~/ generation relations for polynomial sequence}
+  \label{Poly-4}\label{lemma:update-x}
+  Let $X$ be a sequence, and let the matrix~$A$ and the vector~$f$ be
+  given. Define $k_0=Ax_0-f$, and let $K=\KmethodAv{M\inv A}{M\inv k_0}$.
+  Then the following statements are equivalent.
+  \begin{enumerate}
+  \item\label{it:def} $X=\PmethodM$
+  \item\label{it:x-gen-pi}
+    There are polynomials $\{\pi_i\}_{i\geq1}$ such that
+    \[ X_{n+1}(J-E_1)=(\pi_1(M\inv A)M\inv k_1,\pi_2(M\inv A)M\inv
+    k_1,\ldots)_n.
+    \]
+  \item\label{it:x-update-pi}
+    There are polynomials $\{\pi_i\}_{i\geq1}$ such that
+    \[ X_{n+1}(J-I)=(\pi_1(M\inv A)M\inv k_1,\pi_2(M\inv A)M\inv
+    k_1,\ldots)_n. \]
+  \item\label{it:x-gen-u}
+    There is an upper triangular matrix $U$ such that
+    \[ X_{n+1}(J-E_1)=KU_n. \]
+  \item\label{it:x-update-u}
+    There is an upper triangular matrix $V$ such that
+    \[ X_{n+1}(J-I)=KV_n. \]
+  \end{enumerate}
+  The polynomials in items \ref{it:x-gen-pi} and~\ref{it:x-update-pi}
+  are related by
+  \begin{equation}
+      \phi_{*,1}=\pi_{*,1},\quad j>1\rightarrow 
+      \begin{cases}
+        \phi_{*,j}=\pi_{*,j}-\pi_{*,j-1}  \\
+        \pi_{*j} = \phi_{*1}+\cdots+\phi_{*,j}. 
+      \end{cases}
+    \label{eq:IJ-IE-poly}
+  \end{equation}
+
+  The upper triangular matrices in items \ref{it:x-gen-u} and~\ref{it:x-update-u}
+  are related by
+  \begin{equation}
+      v_{*,1}=u_{*,1},\quad j>1\rightarrow 
+      \begin{cases}
+        v_{*,j}=u_{*,j}-u_{*,j-1}  \\
+        u_{*j} = v_{*1}+\cdots+v_{*,j}. 
+      \end{cases}
+      \label{eq:IJ-IE-upper}
+  \end{equation}
+\end{llemma}
+\begin{proof} Statements \ref{it:def}~and~\ref{it:x-gen-pi} are equivalent
+by definition~\ref{def:poly-it}.
+Lemma~\ref{lemma:Poly-U} shows the equivalence
+of \ref{it:x-update-pi}~and~\ref{it:x-update-u}, and of
+\ref{it:x-gen-pi}~and~\ref{it:x-gen-u}.
+Lemma~\ref{lemma:IJ-IE-equiv} shows the equivalence
+%of \ref{it:x-update-pi}~and~\ref{it:x-gen-pi}, and 
+of \ref{it:x-update-u}~and~\ref{it:x-gen-u}.
+
+The relation~\eqref{eq:IJ-IE-upper} was stated in remark~\ref{rem:IJ-IE-upper}
+and the relation~\eqref{eq:IJ-IE-poly} between polynomials follows from it.
+\end{proof}
+
+This lemma states that polynomial methods, which by definition work by
+updating with a polynomial time the original residual, can also be
+considered as updating with combinations of a Krylov sequence.
+
+\begin{extended}
+The extended form of the block formulation gives us
+\[ X(J-I)=WU,\qquad X(J-E_1)=WV, \]
+and 
+\[ X(J-I)=M\inv WU,\qquad X(J-E_1)=M\inv WV, \]
+for preconditioned extended methods.
+\end{extended}
+
+\Level 1 {Residual sequences}
+
+In the previous section we looked at vector sequences.
+The intended model for these is that of
+successive approximations to the solution of a linear system.
+Often, the residuals corresponding to these iterates are more
+interesting to consider.
+
+With the vector~$e=(1,\ldots)^t$ we
+can denote residuals $r_i=Ax_i-f$ as a sequence 
+by $R=AX-fe^t$. 
+
+\begin{ddefinition}{Residuals of a sequence}
+\label{def:residual}
+Let a matrix~$A$, a sequence~$X$ and a vector~$f$
+be given. We define the residuals of the sequence~$X$
+with respect to $A$ and~$f$ as:
+\[ \Rmethod\equiv [r_i=Ax_i-f]_i. \]
+\end{ddefinition}
+
+\begin{block}
+Block residuals are defined analogously, where $f$~is
+a block vector of $k$~columns, and $e$~is a vector of $k\times k$
+identity matrices.
+\end{block}
+
+It is an interesting fact that often we need not concern ourselves with the
+right hand side vector~$f$, since it usually drops out of equations
+such as
+\begin{eqnarray*}
+R(J-I)&=&AX(J-I)\\ R(J-E_1)&=&AX(J-E_1) \end{eqnarray*}
+
+\begin{precond}
+\begin{ddefinition}{Residual sequence}
+Let a matrix $A$ a~vector~$f$ and a sequence~$X$ be given, and
+let~$R=\Rmethod$ (definition~\ref{def:residual}).  We call~$R$ a
+`(preconditioned) residual sequence' if $X$~is a (preconditioned)
+polynomial iterative method.
+\end{ddefinition}
+
+Lemma~\ref{Poly-4} above states that polynomial iterative methods use
+combinations of a Krylov sequence for updating. The following lemma
+shows that the residuals of the iterative method are then themselves
+combinations of this Krylov sequence; there is a normalization
+condition on these combinations.
+
+\begin{llemma}{Residual sequences 
+consist of normalised combinations of Krylov sequence}
+\label{R-Krylov-combo}
+Let a matrix $A$, a~vector~$f$, and a sequence~$X$ be given. 
+Let $R=\Rmethod$ and $K=\Kmethod$. Then
+\begin{eqnarray}
+    &&\exists_{\{\pi_i\in\Pn\}}\colon X=\PmethodM \\
+  &\Leftrightarrow&
+    x_{i+1}=x_1+\pi_i(M\inv A)M\inv r_1
+     \\ \label{eq:x-def-recap}
+  &\Leftrightarrow&
+    \exists_{U\in \U}\colon X(J-E_1)=KU
+     \\ \label{eq:x-udef-recap}
+  &\Leftrightarrow&
+    \exists_{V\in \Un}\colon \Rmethod=\KmethodA{AM\inv}V
+     \\\label{eq:R-norm-comb}
+  &\Leftrightarrow&
+    \exists_{\{\phi_i\in\Pnn\}}\colon\Rmethod=[\phi_i(AM\inv)r_1]
+ \end{eqnarray}
+where 
+and the $\phi_i$ and $\pi_i$ polynomials are related by
+\begin{equation} \phi_{i+1}(x)=1+x\pi_i(x),
+    \label{eq:phi-pi-poly}
+\end{equation}
+$U$~contains the coefficients of the $\pi$~polynomials
+and $V$~contains the coefficients of the $\phi$~polynomials,
+and \[ V=\begin{pmatrix} 1&\cdots\\ 0&U \end{pmatrix}. \]
+\end{llemma}
+
+\begin{proof} Suppose $X$~is generated by a polynomial iterative
+method~$\PmethodM$, satisfying~\ref{eq:x-def-recap} by definition.
+%
+Equation~\eqref{eq:x-udef-recap} is the matrix formulation of 
+this statement.
+
+Multiplying equation~\eqref{eq:x-def-recap}
+by~$A$ and subtracting~$f$ on both sides gives
+\[ r_{i+1}=r_1+AM\inv \pi_i(AM\inv)r_1, \]
+in other words, $r_{i+1} = \phi_{i+1}(AM\inv)r_1$ with $\phi_i$
+satisfying \eqref{eq:phi-pi-poly}. This establishes \eqref{eq:R-norm-comb}.
+
+We can also multiply \eqref{eq:x-udef-recap} by~$A$, giving
+\[ R(J-E_1) = AKU = KJU; \]
+Noting that $RE_1=KE_1$ we find
+\[ RJ = K(E_1+JU). \]
+Attaching $r_1$ to the left of this, we get
+\[ R=K(E_1+JUJ^t) \]
+where we oberve that $JUJ^t$ has $U$ as its $2:,2:$ subblock.
+%
+By lemma~\ref{lemma:Poly-U} it follows that $R=KU$ where
+$U=U(\phi_i)\in\Un$ and $K=\KmethodAv{AM\inv}{r_1}$.
+It is easy to see that all implications in this proof are equivalences.
+\end{proof}
+\end{precond}
+
+\begin{block}
+In the block version of this lemma, $U$~is a  block upper triangular
+matrix with identity blocks in the first block row.
+\end{block}
+
+\begin{remark}
+\Eqref{eq:R-norm-comb} states that the residuals are combinations of
+the Krylov space vectors. This should not be interpreted as a
+computational statement, that is, residuals are usually not
+constructed from computed Krylov vectors. Generating the Krylov space
+explicitly is essentially the \index{Power method}`power
+method'. Taking subsequent combinations of this sequence, for instance to
+orthogonalise it, is quickly numerically unstable.
+\end{remark}
+
+\begin{precond}
+\begin{remark}\label{R=AM-Krylov}
+Note that, even though we started with a left-preconditioned method,
+$R$~consists of combinations of a Krylov sequence with coefficient
+matrix~$AM\inv$, that is, a right-preconditioned matrix.
+\end{remark}
+\end{precond}
+
+\begin{extended}
+The update equation $X(J-I)=WU$ gives the update statement
+$R(J-I)=AWU$ for~$R$; however, it is not
+possible to go beyond that to a statement about~$R$ itself.
+\end{extended}
+
+We make some simple observations.
+
+\begin{precond}
+\begin{ccorollary}{Iterative method can be updated with residuals}
+\label{lemma:x-update-r}
+Let $X$ be a preconditioned polynomial iterative method, and $R$~its
+residuals, then there are upper triangular matrices~$U$,~$V$ such that
+\[ X(J-E_1)=RU,\quad X(J-I)=RV. \]
+\end{ccorollary}
+\begin{proof}
+This follows from lemmas~\ref{lemma:update-x}
+and~\ref{R-Krylov-combo}.
+\end{proof}
+
+\begin{llemma}{Residuals satisfy update relation}
+Let $R$ be a residual sequence, then there are polynomials $\{\pi_i\}$
+such that
+\begin{equation} r_{i+1}=r_i+AM\inv \pi_i(AM\inv)r_1.
+    \label{eq:r-update-abstract}\end{equation}
+holds.
+\end{llemma}
+\begin{proof}
+This immediately follows from corollary~\ref{lemma:x-update-r}, but we
+also give a direct proof. By lemma~\ref{R-Krylov-combo} we know that
+$r_{i+1}=\tilde\pi_{i+1}(AM\inv )r_1$,
+where $\tilde\pi_{i+1}$ is a polynomial normalised to $\tilde\pi_{i+1}(0)=1$.
+Thus there are polynomials $\{\pi_i\}$ such that
+\[ AM\inv\pi_i(AM\inv)=\tilde\pi_{i+1}(AM\inv)-\tilde\pi_i(AM\inv). \]
+This gives the desired result.
+\end{proof}
+
+This has the following practical implication.
+\begin{remark}
+If we derive an update relation for residuals,
+the corresponding update relation for the iterates can
+be found by `dividing out~$A$'. The update relation for the iterates
+then has the expected form
+\[ x_{i+1}=x_i+\pi_i(M\inv A)M\inv r_1 \]
+in which we recognise the left-preconditioned form.
+\end{remark}
+
+\begin{corollary}
+Let $R$ be a preconditioned residual sequence, then
+\begin{equation} r_{n+1}-r_1=AM\inv R_nv_n
+    \label{eq:r-update-combo}\end{equation}
+for some vector~$v_n$, or in block statement
+\begin{equation} R_{n+1}(J-E_1)=AM\inv R_nV
+    \label{eq:hess-foreshadow}\end{equation}
+with $V$ upper triangular.
+\end{corollary}
+\begin{proof}
+From \eqref{eq:R-norm-comb} we get
+\[
+r_{n+1}-r_1=\sum_{i=1}^{n+1}(AM\inv)^ir_1
+    =AM\inv\sum_{i=0}^n(AM\inv)^ir_1=AM\inv Rv_n \]
+for some vector~$v_n$.
+\end{proof}
+\end{precond}
+
+By lemma \ref{lemma:IJ-IE-equiv}
+we can also write \eqref{eq:hess-foreshadow} as
+\begin{equation} R(J-I)=AM\inv RV
+    \label{eq:r-hess-foreshadow1}
+\end{equation}
+with $V$ a different upper triangular matrix.
+
+\begin{remark}\label{hess-from-R-update}
+Writing \eqref{eq:hess-foreshadow} as $AM\inv R=R(J-E_1)V\inv$, we
+obtain a relation involving~$A$, $M$, $R$,~and a upper Hessenberg
+matrix. We will derive the same relation differently in
+section~\ref{sec:hessenberg}, \eqref{eq:hess-from-u}, and study this
+relation in much more detail, paying particular attention to the fact
+that this Hessenberg matrix has zero column sums.
+\end{remark}
+
+\begin{extended}
+Extending this remark, we find
+\[ AM\inv W= RH \qquad\hbox{or}\qquad AW=RH\]
+for the two forms of extended iterative methods,
+with $H$~of upper Hessenberg form and with zero column sums.
+\end{extended}
+
+\begin{question}
+Is this $R$ the residual sequence of $X$? Prove
+general statement.
+\end{question}
+
+Here is the matrix formulation of lemma \ref{R-Krylov-combo}.
+
+\begin{llemma}{Upper triangular matrix for $X$ is subblock of 
+upper triangular matrix for~$R$}\label{lemma:xr-uptri}
+A polynomial iterative method~$X$ and its residual
+sequence~$R$ satisfy
+\[
+  X_{n+1}(J-E)=KU_n,\quad R_{n+1}=K_{n+1}V_{n+1}
+  \qquad\hbox{where $K=\KmethodAv{M\inv A}{M\inv r_1}$},
+\]
+with the upper triangular matrices $U$ and~$V$
+related by
+\[
+  V_{n+1}=E_1+JU_nJ^t,\qquad \hbox{or, more pictorily},
+    \qquad V_{n+1}=\begin{pmatrix}1&e^t\cr \emptyset&U_n\cr\end{pmatrix}. 
+\]
+\end{llemma}
+\begin{proof}
+Let $X_{n+1}(J-E)=KU_n$ be given. Then, from $M\inv RE=KE$:
+\begin{eqnarray*}
+    M\inv R_{n+1}(J-E)&=&M\inv AK_nU_n=K_{n+1}JU_n\\
+    M\inv R_{n+1}J&=&K_{n+1}E+K_{n+1}JU_n\\
+    M\inv R_{n+1}JJ^t&=&K_{n+1}EJ^t+JUJ^t
+\end{eqnarray*}
+Now observe that $JJ^t$ is~$I$ except for its $(1,1)$ element, that
+the first column of the rhs is zero, that $M\inv r_1=k_1$, and that $KEJ^t$
+is~$KE$ except for its $(1,1)$ element. In sum, adding a first column
+of~$M\inv r_1$ to both sides gives $M\inv R=K(E+JUJ^t)$.
+All implications in this proof can be reversed.
+\end{proof}
+
+\begin{question}
+ Can we also show something like this for $X(J-I)=RU$?
+\end{question}
+
+\Level 2 {Affine combinations of residual sequences}
+\label{sec:affine-res}
+
+We will occasionally consider sequences that are formed by taking
+certain combinations of a residual sequence where the coefficients sum
+up to~1, i.e.,
+\begin{equation}
+        g_j = \sum_{i\leq j}r_iu_{ij},\qquad \sum_{i\leq j}u_{ij}=1.
+        \label{eq:affine-combo}\end{equation}
+
+\index{affine combinations}
+\begin{ddefinition}{Affine combinations}
+The weighted sum \[ x=\sum_i\alpha_i y_i,\qquad \sum_i\alpha_i=1 \]
+is called an {\em affine combination}\footnote{Let $V$ be a linear
+  subspace and $a\not\in V$; let $y_i\in a+V$ and $\sum_i\alpha_i=1$,
+  then $x=\sum_i\alpha_i y_i\in a+V$.}\footnote{The better known,
+  similar, definition for {\em convex} combinations involves the extra
+  condition that all $\alpha_i\geq0$}.
+\end{ddefinition}
+
+\begin{llemma}{Affine combinations of a residual sequence are a 
+residual sequence}\label{lemma:combo-res-seq}
+Let $R$ and~$G$ be sequences related by $G=RU$ where $U$~is a
+non-singular upper
+triangular matrix with column sums~$\equiv1$, that is, \[e^tU=e^t.\]
+Then $R$~is a residual sequence iff $G$~is a residual sequence.
+\end{llemma}
+\begin{proof} Noting that $e^tU=e^t$ iff $e^tU\inv=e^t$ we only prove
+the implication one way. Let $R$~be a residual sequence, i.e.,
+by lemma~\ref{R-Krylov-combo} $R=KV$ with $K$~a~Krylov sequence 
+and $V$~a~non-singular upper triangular matrix in~$\Un$, that is,
+with~$v_{1j}\equiv1$. Then $G=RU=KVU$ and $VU$~satisfies the same
+properties as~$V$, so, again by lemma~\ref{R-Krylov-combo}, $G$~is
+also a residual sequence.\end{proof}
+
+\begin{block}
+For the block version of this lemma,
+where each $u_{ij}$ is a $k\times k$ matrix,
+we recall that matrices~$U$ in~$\Un$ have blocks $u_{1j}\equiv I_{k\times k}$.
+For the lemma to hold true, we have to interpret the column sums
+being~$\equiv 1$ as
+\begin{equation} (\bm{e^t})\times U=\bm{e^t}
+    \qquad\hbox{that is,}\qquad \forall_j\colon \sum_iu_{ij}=I_k,
+    \label{eq:block-1colsum}\end{equation}
+which is a stronger statement than the column sums being~$\equiv1$
+in a scalar sense.
+The rest of the statement and proof proceed analogously.
+\end{block}
+
+We can also get a result that is in a way the reverse statement:
+\begin{llemma}{All residual sequences from $r_1$
+are affine combinations of each other}
+\label{lemma:affine-res}
+Let $R$ and $\bar R$ be residual sequences wrt the same $A$ and~$f$,
+and $r_1=\bar r_1$, then
+there is an upper triangular matrix~$V$ with column sums~$\equiv1$
+such that $\bar R=RV$.
+\end{llemma}
+\begin{proof}
+Since $r_1=\bar r_1$, $R$ and $\bar R$ are combinations of the same
+Krylov sequence~$K$, say $R=KU$ and $\bar R=K\bar U$
+with both $U$,~$\bar U\in\Un$. This gives $\bar
+R=RV$ with $V=U\inv \bar U$. From $\bar U=UV$ we get for all~$n$
+\[ 1=\bar u_{1n}=\sum_ju_{1j}v_{jn}=\sum_jv_{jn}, \]
+that is, $V$ has column sums~$\equiv1$, which with $\bar R=RV$ shows
+that $\bar R$ consists of affine combinations of~$R$.
+\end{proof}
+
+\begin{truth}
+This lemma will be used in section~\ref{sec:recover}.
+\end{truth}
+
+We can extend the update relation of \eqref{eq:r-hess-foreshadow1} to let
+residual sequences that are combinations of each other be updated in
+terms of each other.
+\begin{llemma}{Residual sequences can be updated with each other}
+Let $R$ and $G$ be residual sequences with~$r_1=\nobreak g_1$.
+Then $G$~satisfies an update relation
+\[ G_{n+1}(J-I)=AM\inv R_nV \] with $V$ upper triangular.
+\end{llemma}
+\begin{proof}
+Let $V_n$ by upper triangular such that $R_{n+1}(J-I)=AM\inv R_nV_n$
+(which exists, see \eqref{eq:r-hess-foreshadow1}), and
+$G_{n+1}=R_{n+1}U_{n+1}$ with $e^tU_{n+1}=e^t$ (the existence of
+this~$U_{n+1}$ follows from lemma~\ref{lemma:affine-res}). Then
+\begin{eqnarray*}
+   G_{n+1}(J-I)&=&R_{n+1}U_{n+1}(J-I)\\
+   &=&R_{n+1}(J-I)\tilde U_n\\
+   &=&AM\inv R_nV_n\tilde U_n\\
+   &=&AM\inv R_n\tilde V_n
+\end{eqnarray*}
+where the existence of~$\tilde U_n$ follows from
+lemma~\ref{lemma:JI-right-fac}, and $\tilde V_n=V_n\tilde U_n$, about which we
+note that $\tilde U_ne=e$ and thus $V_ne=\tilde Ve$.
+\end{proof}
+
+\begin{question}
+We need to be slightly more careful about square/rectangular matrices
+in the above.
+\end{question}
+
+\Level 1 {Termination of the iterative process}
+\label{sec:termination}
+
+In this section we investigate the conditions on termination (in exact
+arithmetic) of polynomial iterative methods.
+
+\begin{theorem}\label{th:invariant}
+Let $X$ be a polynomial method,
+let $K=\Kmethod$, and let $n$~be such that $K_n$ is an $A$-invariant
+subspace.  It is possible to choose~$\pi_n$ such that
+$x_n=x_1+\pi_n(A)f=A\inv f$.
+\end{theorem}
+\begin{proof}
+If $K_n$ is $A$-invariant, $k_{n+1}\in\Span{K_n}$, in other words
+\[ K_{n+1}c_{n+1}=0\qquad\hbox{some vector $c_{n+1}\in\R^{n+1}$,} \]
+and we can assume without loss of generality that $c_{n+1,1}=1$.
+Let $\phi_{n+1}$ be the polynomial with coefficients in~$c_{n+1}$,
+then $\phi_{n+1}(A)r_1=0$, so, with $\pi_n$ related to $\phi_{n+1}$
+by \eqref{eq:phi-pi-poly}, we find by theorem~\ref{th:solution}
+that $x_n=A\inv f$.
+\end{proof}
+
+The most interesting polynomial methods are those that orthogonalise
+the $R$ sequence under some inner product.
+\begin{corollary}
+\label{cor:solution}
+Let the residual sequence $R$ be orthogonal under some inner product,
+and let $n$ be the smallest index for which $r_{n+1}=0$. Then $x_n=A\inv f$.
+\end{corollary}
+\begin{proof}
+If $K_n$ is an independent set, $R_n=K_nU_n$ can be chosen
+as nonzero orthogonal vectors. The occurrence of $r_{n+1}=0$
+then clearly marks an invariant subspace~$K_n$, which by the above
+theorem implies that the solution has been reached.
+\end{proof}
+ 
+\begin{question}
+Something missing here. What condition guarantees that $r_i$ is
+nonzero as long as it is possible?
+\end{question}
+
+\begin{question}
+How is terminations of block sequences done? What happens if 
+some coefficient matrix merely becomes singular, not zero?
+\end{question}
+

@@ -1,0 +1,53 @@
+An orthogonal projection operator, projecting along a subspace~$V$ has
+the properties that
+\[ PV=0,\qquad x\perp V\Rightarrow Px=x \]
+from which such properties as $P^2=P$ easily follow. The explicit form
+of~$P$ is 
+\begin{equation}
+    P_V\colon x\rightarrow x-V(V^tV)\inv V^tx.
+    \label{eq:simple-projection}\end{equation}
+
+Just for reference, here is the basic theorem of projections.
+\begin{theorem}\label{th:project-min}
+The projected vector $P_Vx$ has minimum norm in the affine
+space~$x+\nobreak V$.
+\end{theorem}
+\begin{proof}
+Write $P_Vx=x-V\bar y$, where $\bar y=\nobreak (V^tV)\inv V^tx$,
+and use the property that $x-V\bar y\perp V$.
+Now, for any~$y$:
+\begin{eqnarray*}
+\|x-V(y-\bar y)\| &=&(x-V\bar y+Vy)^t(x-V\bar y+Vy)\\
+&=&\|x-V\bar y\|^2+\|Vy\|^2 +2(Vy)^t(x-V\bar y)\\
+&\geq&\|x-V\bar y\|^2
+\end{eqnarray*}
+\end{proof}
+
+Note the similarities between the proof of this theorem and
+that of theorem~\ref{th:petrov-galerkin}.
+
+We can define a general projection along~$V$, and orthogonal to~$W$
+under an inner product~$B$ as
+\begin{equation}
+    P_{V,W,B}\colon x\rightarrow x-V(W^tBV)\inv W^tBx,
+    \label{eq:general-projection}\end{equation}
+which satisfies
+\[ P_{V,W,B}V=0,\qquad x\perp_BW\Rightarrow P_{V,W,B}x=x.\]
+Trying to reproduce theorem~\ref{th:project-min} for this inner
+product gives us that $\|x-V\bar y\|_B$,
+where $\bar y=\nobreak(W^tBV)\inv W^tBx$,
+is minimal if
+\[ (Vy)^tB(x-V\bar y)+(Vy)^tB^t(x-V\bar y)\geq 0 \]
+which is true (with equality to~zero) if $B$~is symmetric,
+so that both terms are equal,
+and~$V=\nobreak W$, so that we can use the $B$-orthogonality of
+$x-\nobreak V\bar y$ to~$W$.
+
+We repeat the observation of \eqref{eq:rn+1:by-projection} that
+\[r_{n+1}h_{n+1n}=AM\inv r_n-R_n(S_n^tN\invt R_n)\inv S_n^tN AM\inv r_n,\]
+which states that $r_{n+1}$ is obtained by projecting $AM\inv r_n$
+along~$R_n$, and the result is $N$-orthogonal to~$S_n$.
+
+\begin{question}
+Generalise this for other inner products.
+\end{question}

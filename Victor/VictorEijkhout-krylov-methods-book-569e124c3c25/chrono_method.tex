@@ -1,0 +1,18 @@
+\begin{rfigure}
+\begin{itemize}
+\item From $r_i$, $M\inv r_i$, and $AM\inv r_i$ compute simultaneously
+\[ r_i^tM\inv r_i\qquad\hbox{and}\qquad (M\inv r_i)^tA M\inv r_i; \]
+\item with this,  compute $\beta_i=r_{i+1}M\inv r_{i+1}/r_iM\inv r_i$.
+\item Recursively compute $p_i^tAp_i$ from $r_i^tM\invt AM\inv r_i$
+and~$p_{i-1}^tAp_{i-1}$ using the formula
+\[p_i^tAp_i=r_i^tM\invt AM\inv r_i-\beta_i^2p_{i-1}^tAp_{i-1},\]
+\item With $p_i^tA p_i$ compute $\alpha_i = p_i^tAp_i/r_i^tM\inv r_i$,
+and use this to update $x_i$ and~$r_i$ to $x_{i+1}$ and~$r_{i+1}$.
+\item Apply the preconditioner to form~$M\inv r_{i+1}$, then the matrix to 
+form~$AM\inv r_{i+1}$.
+\item Now construct~$Ap_{i+1}$ recursively by
+\[ Ap_{i+1}=AM\inv r_{i+1}+Ap_i\beta_i \]
+\end{itemize}
+\caption{Chronopoulos and Gear's method}
+\label{fig:azevedo}
+\end{rfigure}

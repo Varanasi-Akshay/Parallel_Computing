@@ -1,0 +1,425 @@
+We will prove some minimisation results for Krylov methods; in particular
+we will investigate the relation between minimization and orthogonalisation.
+\begin{truth}
+Constructive aspects of orthogonalisation are discussed in 
+section~\ref{ch:ortho}. Also, in this section we only prove that a
+minimum norm is attained; the actual value of the minimum, that is,
+the speed of convergence of the method, will be
+discussed in section~\ref{sec:convergence}.
+\end{truth}
+
+First of all we observe the equivalence
+of error and residual minimisation 
+under norms induced by the coefficient matrix.
+In the case of symmetry we have a family of equivalence statements:
+\[ \|e\|_{A^k}^2=(x-\bar x)^tA^k(x-\bar x)=(Ax-f)^tA^{k-2}(Ax-f)
+    =\|r\|_{A^{k-2}}^2.\]
+In the nonsymmetric case we only have
+\[ \|r\|_{A\inv}^2=(Ax-f)^tA\inv(Ax-f)=(x-\bar x)^tA^t(x-\bar x)=\|e\|^2_A. \]
+
+\Level 1 {Minimization of residuals in $L_2$ norm}
+\label{sec:abstract-true-min}
+
+The following very general theorem can be found in~\cite{Krasnoselskii:1972},
+also cited in~\cite{SaadSchultz:cg-like}.
+
+\begin{theorem}\label{th:petrov-galerkin}
+Let a matrix~$A$, vectors $x_1$ and~$f$, and space~$K_m$ be given.
+The vector $\bar x$ is a solution of the Petrov-Galerkin problem
+\[ \hbox{find $x\in x_1+K_m$ such that $(Ax-f,v)=0$ for all $v\in AK_m$} \]
+if and only if $\bar x$ uniquely
+minimises $Ax-f$ over the space~$x_1+\nobreak K_m$.
+\end{theorem}
+
+\begin{proof} Let $\bar x\in x_1+K_m$ solve the Petrov-Galerkin problem,
+and let $x\in x_1+ K_m$, then
+\begin{eqnarray}
+    \|Ax-f\|^2 &=& \|A[(x-\bar x)+\bar x]-f\|^2 
+        = \|A(x-\bar x)+(A\bar x-f)\|^2\nonumber \\
+    &=& \|A\bar x-f\|^2 +2\bigl(A(x-\bar x),A\bar x-f) +
+                \|A(x-\bar x)\|^2 \label{eq:pg-writeout}
+\end{eqnarray}
+where the middle term in the last line drops out by the 
+Petrov-Galerkin condition. Hence
+\[ \|Ax-f\|^2 \geq \|A\bar x-f\|^2 \]
+with equality only if~$x=\nobreak \bar x$.
+
+Conversely, suppose $\bar x\in x_1+K_m$ uniquely minimises $\|Ax-f\|$.
+Then obviously, for any~$z$,
+\[ Q(\alpha) = \|A\bar x-f+\alpha Az\|^2 \]
+is minimised for~$\alpha=\nobreak0$. Differentiating~$Q$ and
+substituting $\alpha=\nobreak0$ gives $(Az,A\bar x-f)=0$,
+which is the Petrov-Galerkin condition.
+\end{proof}
+
+\begin{block}
+For a block version of theorem~\ref{th:petrov-galerkin}
+over a space of blockvectors of width~$s$,
+we need to interpret $x_1+K_m$
+as \[ [ x_1^{(1)}+K_m,\ldots x_1^{(s)}+K_m]. \]
+Furthermore, we need to define the norm of $N\times s$~block vectors as
+\[ \|x\|_{\R^N}=\|x^tx\|_{R^s}. \]
+\end{block}
+
+\begin{remark}
+If we would want to formulate the above theorem for more general inner
+products and norms, say induced by a positive definite matrix~$B$, the
+middle terms in \eqref{eq:pg-writeout} becomes
+\[ (A(x-\bar x),A\bar x-f)_B+(A(x-\bar x),A\bar x-f)_{B^t}. \]
+Hence, we have to impose that $B$~is {\em symmetric} positive
+definite. In particular, we can not use powers of~$A$ here, although
+powers of~$A^tA$ or $AA^t$ are feasible.
+\end{remark}
+
+Theorem \ref{th:petrov-galerkin} is related to projections. (See the
+basic theory of projections in section~\ref{sec:projection}.) The
+statement that $x\in x_1+K_m$ is equivalent to $r\in r_1+AK_m$.
+Minimising~$r$ then means minimising the difference between $u_m\in
+AK_m$ and~$-r_1$: $r_1+u_m=u_m-(-r_1)$.  (Note that if we could
+actually find~$u_m=-r_1$, then the new residual would be zero and we
+would have found the solution of the system.)  The theorem now states
+that the shortest distance between $-r_1$ and $u_m\in AK_m$ is that
+choice of~$u_m$ for which the difference vector $r=\nobreak r_1+u_m$
+is orthogonal to~$AK_m$, that is, we project~$-r_1$ onto~$AK_m$.
+\begin{figure}[ht]
+\includegraphics[scale=.5]{projection}
+\caption{The optimal update $r_m$ make the new residual orthogonal to
+the $AK_m$ subspace}
+\end{figure}
+
+
+We can apply theorem~\ref{th:petrov-galerkin} to polynomial iterative methods
+in a straightforward manner.
+
+\begin{ccorollary}{Minimisation of residuals $\Leftrightarrow$ 
+$AM\inv$-orthogonal residuals}
+\label{th:gmres}
+Let $X$ be a polynomial iterative method for the system $Ax=f$,
+with  $R$ be the residual sequence $\Rmethod$, and suppose
+the residuals are linearly independent.
+Then $r_{n+1}$ is of minimal length over all polynomials
+in the $n$-th step of the iterative method,
+if and only if $r_{n+1}$ is $AM\inv$-orthogonal to all $r_1,\ldots,r_n$.
+\end{ccorollary}
+\begin{proof}
+Every iterate 
+in a polynomial method can be written as $x_{n+1}=x_1+M\inv R_nu_n$,
+so we are in the situation for which theorem~\ref{th:petrov-galerkin} applies,
+with $K_m=M\inv R_m$.
+By this theorem, $r_{n+1}$ is minimised
+iff it is orthogonal to $AK_n$, in other words, $AM\inv $-orthogonal
+to~$R_m$.
+\end{proof}
+
+We will also give a direct proof, expressed solely in terms of
+the residuals sequence.
+
+\begin{ttheorem}{$AM\inv$-orthogonal $R$ is minimal}
+\label{th:res-seq-minimal}
+Let $R$~be a residual sequence
+satisfying $AM\inv R=RH$, and let $R^tAM\inv R$ be upper triangular,
+then the residuals are of minimum length in the sense that
+\begin{itemize}
+\item if $\tilde R$ is a residual sequence satisfying
+$AM\inv\tilde R=\tilde R\tilde H$, and $r_1=\tilde r_1$,
+\item then $\|r_i\|\leq\|\tilde r_i\|$ for all~$i$.
+\end{itemize}
+\end{ttheorem}
+\begin{proof}
+Let the Krylov sequence $K=K\method{AM\inv,r_1}$,
+and let 
+ \[ R=KU,\quad\tilde R=K\tilde U \qquad\hbox{where $U,\tilde U\in \Un$} \]
+be residual sequences.
+Then $AM\inv R=RH$ and $AM\inv\tilde R=\tilde R\tilde H$, where 
+by theorem~\ref{zero-col-residual}, lemma~\ref{H=(I-J)-fac},
+and lemma~\ref{lemma:IJ-IE-equiv}
+the Hessenberg matrices can be factored
+ \[ H=(J-E_1)V,\quad \tilde H=(J-E_1)\tilde V
+                \qquad\hbox{with $V,\tilde V$ upper triangular}. \]
+Use the fact that $RE_1=\tilde RE_1$ to combine this as
+ \[ \begin{matrix}AM\inv KUV\inv=R(J-E_1)\cr AM\inv K\tilde U\tilde V\inv
+             =\tilde R(J-E_1)\cr\end{matrix}
+    \quad\Rightarrow\quad \tilde RJ=RJ+AM\inv KW, \]
+with $W=\tilde U\tilde V\inv -UV\inv$.
+It now follows that
+\begin{eqnarray*}
+    \rlap{$J^t\tilde R^t\tilde RJ$}\\
+    &=&J^tR^tRJ+
+    J^tR^tAM\inv KW+W^tK^tM\invt A^tRJ\\
+    &&+W^tK^tM\invt A^tAM\inv KW.
+\end{eqnarray*}
+Now, the second and third term are strictly upper and lower
+triangular because of the upper triangularity
+of $R^tAM\inv K=R^tAM\inv RU\inv$, and the last
+term is of the form~$Y^tY$, hence having a positive diagonal. 
+Thus $\tilde r_i^t\tilde r_i\geq r_i^tr_i$ with equality
+only if $W=0$, that is if~$\tilde R=R$.
+\end{proof}
+
+\begin{truth}
+\begin{remark}\label{lemma:ramr-uptri}
+$R$ being $AM\inv$-orthogonal in the above discussion
+can be stated in matrix terms as $R^tAM\inv R$ being upper triangular.
+(We used this as an explicit condition in theorem~\ref{th:res-seq-minimal}.)
+This will be the basis for derivations in section~\ref{sec:arnoldi-minv}.
+In the fact that $R^t(AM\inv)^tR$ is lower triangular we recognise
+the semi-orthogonality condition \eqref{eq:cond-ortho}, with the choice
+$N\inv=AM\inv$ which we analyse in section~\ref{sec:breakdown-aminv}.
+\end{remark}
+\end{truth}
+
+\Level 1 {Minimization of residuals in the $A^{-1}$ norm}
+
+We first give the general Petrov-Galerkin theorem~\cite{Lu:programming},
+also cited in~\cite{SaadSchultz:cg-like}.
+
+\begin{theorem}\label{th:min-spd}
+Let a symmetric positive definite matrix~$A$,
+vectors $x_1$ and~$f$, and space~$K_m$ be given.
+The vector $\bar x$ is a solution of the Petrov-Galerkin problem
+\begin{eqnarray*}
+    \hbox{find $x=x_1+z$, where $z\in K_m$, such that}\\
+    \hbox{$(f-Ax,v)=0$ for all $v\in K_m$}
+\end{eqnarray*}
+if and only if $\bar x$ minimises $Ax-f$ 
+in the $\|\cdot\|_{A\inv}$~norm over the space~$x_1+\nobreak K_m$.
+\end{theorem}
+
+\begin{proof} Let $\bar x=x_1+\bar z$ with $\bar z\in K_m$
+solve the Petrov-Galerkin problem,
+and let $x=x_1+z$ with $z\in K_m$, then
+\begin{eqnarray*}
+    \|Ax-f\|_{A\inv}^2 &=& \|(A\bar x-f)+A(x-\bar x)\|_{A\inv}^2\\
+    &=& \|A\bar x-f\|_{A\inv}^2 \\
+    &&  -(x-\bar x)^tA^tA\inv(A\bar x-f) - (A\bar x-f)^tA\inv A(x-\bar x)\\
+    &&  +[A(x-\bar x)]^tA\inv [A(x-\bar x)],
+\end{eqnarray*}
+where the middle terms in the last line drop out by the 
+Petrov-Galerkin condition, and using symmetry to simplify $A^tA\inv=I$.
+Using definitess of~$A$ we conclude
+\[ \|Ax-f\|_{A\inv}^2 \geq \|A\bar x-f\|_{A\inv}^2. \]
+Conversely, suppose $\bar x=x_1+\bar z$ minimises $\|Ax-f\|_{A\inv}$
+over~$x_1+\nobreak K_m$. Then obviously, for any~$z$,
+\[ Q(\alpha) = \|A\bar x-f+\alpha Az\|_{A\inv}^2 \]
+is minimised for~$\alpha=\nobreak0$. Differentiating~$Q$ and
+substituting $\alpha=\nobreak0$ gives $z^t(A\bar x-f)=0$,
+which is the Petrov-Galerking condition.
+\end{proof}
+
+The generalisation of this theorem to inner products induced by
+power of~$A$ is immediate:
+\begin{theorem}
+Let a symmetric positive definite matrix~$A$, an integer~$k$,
+vectors $x_1$ and~$f$, and space~$K_m$ be given.
+The vector $\bar x$ is a solution of the Petrov-Galerkin problem
+\begin{eqnarray*}
+    \hbox{find $x=x_1+z$, where $z\in K_m$, such that}\\
+    \hbox{$(f-Ax,v)_{A^k}=0$ for all $v\in K_m$}
+\end{eqnarray*}
+if and only if $\bar x$ minimises $Ax-f$ 
+in the $\|\cdot\|_{A^{k-1}}$~norm over the space~$x_1+\nobreak K_m$.
+\end{theorem}
+
+We will apply this theorem the case of polynomial iterative methods.
+
+\begin{ccorollary}{For $A$ spd, $M\inv$-orthogonal $R$ 
+is minimal in $A\inv$ norm}
+\label{minimum:A-1}
+Let $A$ be symmetric positive definite, let $R$~be a residual sequence
+satisfying $AM\inv R=RH$, and let $R^tM\inv R$ be diagonal,
+then the residuals
+are of minimum length in the $A\inv$-norm in the sense that
+\begin{itemize}
+\item if $\tilde R$ is a residual sequence satisfying
+$AM\inv\tilde R=\tilde R\tilde H$, and $r_1=\tilde r_1$,
+\item then $\|r_i\|_{A\inv}\leq\|\tilde r_i\|_{A\inv}$ for all~$i$.
+\end{itemize}
+\end{ccorollary}
+\begin{proof}This follows immediately from an application
+of theorem~\ref{th:min-spd} by noting that iterates satisfy
+\[ x_{m+1} = x_1+M\inv R_mu_m, \] whence we define $K_m=\Span{M\inv R_m}$,
+and that \[ (Ax_{m+1}-f)^tM\inv R_m = 0.\]
+
+We will also give a direct proof of the statement.
+Let the Krylov sequence $K=K\method{AM\inv,r_1}$,
+and let 
+ \[ R=KU,\quad\tilde R=K\tilde U \qquad\hbox{where $U,\tilde U\in \Un$} \]
+be residual sequences.
+Then $AM\inv R=RH$ and $AM\inv\tilde R=\tilde R\tilde H$ where 
+by lemma~\ref{lemma:IJ-IE-equiv}
+the Hessenberg matrices can be factored
+ \[ H=(J-E_1)V,\quad \tilde H=(J-E_1)\tilde V
+                \qquad\hbox{with $V,\tilde V$ upper triangular}. \]
+Use the fact that $RE_1=\tilde RE_1$ to combine this as
+ \[ \begin{matrix}AM\inv KUV\inv=R(J-E_1)\cr AM\inv K\tilde U\tilde V\inv
+             =\tilde R(J-E_1)\cr\end{matrix}
+    \quad\Rightarrow\quad \tilde RJ=RJ+AM\inv KW, \]
+with $W=\tilde U\tilde V\inv -UV\inv$.
+It now follows that
+\begin{eqnarray*}
+    \rlap{$J^t\tilde R^tA^{-1}\tilde RJ$}\\
+    &=&J^tR^tA^{-1}RJ+
+    J^tR^tA^{-1}AM\inv KW+W^tK^tM\invt A^tA^{-1}RJ\\
+    &&+W^tK^tM\invt A^tA^{-1}AM\inv KW\\
+    &=&J^tR^tA^{-1}RJ+
+    J^tR^tM\inv KW + W^tK^tM\invt RJ+W^tK^tM\invt AM\inv KW,
+\end{eqnarray*}
+where we use the symmetry of~$A$ to simplify $A^tA\inv=I$.
+Now, the second and third term are strictly upper and lower
+triangular because of the upper triangularity
+of $R^tM\inv K=R^tM\inv RU\inv$. 
+Thus $\tilde r_i^tA^{-1}\tilde r_i\geq r_i^tA^{-1}r_i$ with equality
+only if $W=0$, that is if~$\tilde R=R$.
+\end{proof}
+
+Note that, even though we looked at a preconditioned system, the
+$M$-orthogonality caused the minimisation to be in the norm of the
+original matrix.
+
+\Level 1 {Minimization under general inner product}
+\label{sec:min-general-inprod}
+
+We will now investigate the minimisation properties of methods based
+on Arnoldi orthogonalisation.
+Recall that the polynomial iterative method
+is completely characterised by
+\[ \begin{cases}APD=R(I-J),\cr M\inv R=P(I-U),\cr
+                 \hbox{$R^tN\invt R$ nonsingularly lower triangular}.\end{cases} \]
+There is an equivalence between orthogonality of~$R$ and of~$P$:
+from the coupled two-term recurrences we find that
+\[ R^tN\inv R=R^tN\inv MP(I-U), \]
+so $P^tM^tN\invt R$ is lower triangular, and from this
+\[ P^tM^tN\invt APD=P^tM^tN\invt R(I-J)\quad=(I-U)\invt R^tN\invt R(I-J), \]
+so $P^tM^tN\invt AP$ is lower triangular, and
+\[ p_i^tM^tN\invt Ap_id_{ii}=r_i^tN\invt r_i. \]
+
+We easily see that, given $A$ and~$M$, $P^tZP$ is lower triangular iff
+$R^tN\invt R$ is lower triangular, with $N$ and~$Z$ related by
+$M^tN\inv A=\nobreak Z$.
+
+We will now consider special cases for the choice of~$N$.
+\begin{description}
+\item[$N=I$] This implies that $R^tR$ is diagonal and 
+$P^tM^tAP$ lower triangular.
+\item[$N=M^t$] This implies that $R^tM\inv R$ is upper triangular
+and $P^tAP$ lower triangular; in the symmetric case both are diagonal.
+\item[$N=A$] This gives $R^tA\inv R$ upper triangular
+and $P^tM^tP$ lower triangular; in the symmetric case both are diagonal.
+\item[$N=MA$] This gives $R^tA\invt M\inv R$ upper triangular
+and $P^tP$ diagonal.
+\item[$N=MA\invt$] This gives $R^tAM\inv R$ upper triangular,
+and $P^tA^tAP$ diagonal. As we know from corollary~\ref{th:gmres},
+this minimises the norms of the residuals.
+\end{description}
+
+\Level 1 {Lanczos' Minimized iterations}
+\FurtherReading
+
+\begin{theorem}\label{minimum:2}
+Choosing the sequences $R$ and $S$ to be orthogonal minimizes
+the inner products $s_i^tr_i$
+(modulo some normalization of the sequences).
+\end{theorem}
+
+\begin{proof}
+Let $X$, $Y$ be the Krylov sequences following from $AX=XJ$ and
+$A^tY=YJ$, and assume that $r_1\parallel x_1$, $s_1\parallel y_1$, and
+$AR=RH$, $A^tS=SH$ for some upper Hessenberg matrix~$H$, such that $R^tS$
+is diagonal with positive diagonal elements.
+
+Let further $\tilde r_1=r_1$, $\tilde s_1=s_1$ and
+$A\tilde R=\tilde R\tilde H$, $A^t\tilde S=\tilde S\tilde H$ for some
+upper Hessenberg matrix~$\tilde H$. 
+From lemma~\ref{R-Krylov-combo} we
+find that there are upper triangular matrices $U$, $\tilde U$ such
+that $R=XU$, $S=YU$, $\tilde R=X\tilde U$, $\tilde S=Y\tilde U$.
+This gives
+\[ AX=RHU\inv=\tilde R\tilde HU\inv;\qquad
+   A^tY=SHU\inv=\tilde S\tilde HU\inv. \]
+%Making the substitutions $H\leftarrow HU^{-1}$, $\tilde H\leftarrow
+%\tilde H\tilde U^{-1}$, we find $AX=RH=\tilde R\tilde H$,
+%$A^tY=SH=\tilde S\tilde H$.
+Now if \[ H=L+U_2,\qquad \tilde H=\tilde L+\tilde U_2 \]
+such that
+\[ HU\inv = J+U_3,\qquad \tilde HU\inv=J+\tilde U_3 \]
+(see lemma~\ref{H=J+U} for such Hessenberg matrices)
+%Assuming that the sequences have been
+%normalized such that $H$, $\tilde H$ can be written as $H=J+V$,
+%$\tilde H=J+\tilde V$ for some upper triangular matrices $V$, $\tilde V$,
+we find
+\[ \tilde RJ=RJ+RU_3,\qquad \tilde SJ=SJ+SU_3.\]
+We now get
+\[ J^t\tilde S^t\tilde RJ=J^tS^tRJ+J^tS^tRU_3+U_3^tS^tRJ
+   +U_3^tS^tRU_3 \]
+in which the second and third term are strictly upper and lower
+triangular respectively. (Here we use for instance that $S^tX=S^tRU^{-1}$
+is upper triangular; furthermore, $Y^tX=U^{-t}S^tRU^{-1}$.)
+Therefore, $\tilde s_n^t\tilde r_n\geq
+s_n^tr_n$, with equality only in the case that $\hat V=0$, that is,
+if $\tilde R=R$, $\tilde S=S$.
+\end{proof}
+
+For the symmetric case of $A=A^t$, $S=R$, this says that the
+orthogonalizing algorithm minimizes the length of the $r_n$ vectors in
+each iteration. For the general
+Lanczos method it gives the minimization of
+the inner product $s_i^tr_i$, but this implies no minimization for
+either the $r_i$~or the $s_i$~vectors. This minimization property led
+Lanczos~\cite{Lanczos1950:iteration_method,Lanczos1952:solution_of_systems}
+to name this method `minimized iterations'. Another name is the
+`biconjugate gradient method'~\cite{Fletcher1975:indefinite}.
+
+\Level 1 {Line searches}
+\label{sec:line-search}
+\FurtherReading
+
+Consider the minimisation problem \[ \min_x f(x)={1\over 2}x^tAx-b^tx \]
+where $A$~is symmetric positive definite. Taking the derivative
+$f'(x)=0$ gives the problem $Ax=b$:
+\[ f(x+h)-f(x)= {1\over2}(h^tAx+x^tAh+h^tAh)-b^th=h^t(Ax-b). \]
+Thus, solving a linear system is equivalent to minimising a quadratic
+functional.  It is infeasible to find a global minimum, but
+minimisation along a one-dimensional affine space is possible.
+
+Polynomial iterative methods are a special case of the more general
+scheme \[x_{i+1}=x_i+\alpha_ip_i.\] Here, $p_i$ is called the `search
+direction', and the problem of finding the optimal~$\alpha_i$, in the
+sense that it minimises~$f(x_{i+1})$ over the affine space $x_i+\alpha p_i$,
+is called a `line search'\index{line search} problem.
+
+If we consider the minimisation
+problem \[\min_\alpha f(x+\alpha p)=\min_\alpha {1\over2}\alpha^2p^tAp
++ {1\over2}\alpha(p^tAx+x^tAp)+{1\over2}x^tAx-b^t(x+\alpha p),\] we
+find for symmetric~$A$ by taking the directional derivative along~$p$ with
+respect to~$\alpha$ that 
+\begin{equation} \alpha p^tAp+p^tr=0 \Rightarrow \alpha=-p^tr/p^tAp,
+    \label{eq:line-search-alpha}\end{equation}
+where $r=Ax-b$.
+Combining this with \eqref{eq:rp=rr}, $r_i^tr_i=r_i^tp_i$, we
+recognise in this the coefficient used in the Conjugate Gradients method.
+
+This optimal value of the search parameter is also used in the `method
+of steepest descent'; see section~\ref{sec:steepest-descent}.
+
+In this analysis we used the symmetry of~$A$ to write
+$p^t(A^t-b)=p^tr$. In the nonsymmetric case this obviously doesn't hold.
+The value for~$\alpha$ derived above will still be used in methods
+considered later in this monograph. However, this is not motivated
+from minimisation along a line search, but from orthogonality. Under
+the assumption that $p_i$ is a combination of residuals $r_1\ldots
+r_i$, and that $x_{i+1}$ is constructed so that $r_{i+1}$~is
+orthogonal to the the previous residuals, we find
+\begin{eqnarray*}
+x_{i+1}=x_i+p_i\alpha_i&\Rightarrow&r_{i+1}=r_i+Ap_i\alpha_i\\
+&\Rightarrow&0=p_i^tr_{i+1}=p_i^tr_i+p_i^tAp_i\alpha_i
+\end{eqnarray*}
+This derivation will be given with more detail in a later section.
+
+Another use of line searches and 
+search directions is in `seed systems'\index{seed
+systems}, where the collection of $p$~vectors is built up by solving
+one linear system, after which they are used for other systems with
+the same~\cite{ChanWan:analysis-projection,SmithPetMit:cg-multiple},
+or a similar~\cite{ChanNg:Galerkin-multiple}, coefficient matrix; see
+section~\ref{sec:seed}.
+

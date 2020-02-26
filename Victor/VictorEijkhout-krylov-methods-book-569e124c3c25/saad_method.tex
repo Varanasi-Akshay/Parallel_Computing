@@ -1,0 +1,18 @@
+\begin{rfigure}
+\begin{itemize}
+\item From $p_i$ form $Ap_i$ and $M\inv Ap_i$.
+\item Now compute simultaneously the inner products
+\[ p_i^tAp_i,\qquad r_i^tM\inv r_i,\qquad\hbox{and}\qquad
+    (Ap_i)^tM\inv (Ap_i);\]
+\item with $r_i^tM\inv r_i$ compute $\alpha_i = p_i^tAp_i/r_i^tM\inv r_i$,
+and the value of the inner product 
+$r_{i+1}^tM\inv r_{i+1}=-r_iM\inv r_i +\alpha_i^2(Ap_i)^tM\inv (Ap_i)$.
+With this, also compute $\beta_i=r_{i+1}M\inv r_{i+1}/r_iM\inv r_i$.
+Save the vector $M\inv Ap_i$.
+\item Update $ r_{i+1}= r_i-\alpha_i  Ap_i$
+and $M\inv r_{i+1}=M\inv r_i-\alpha_i M\inv Ap_i$.
+\item Update $p_{i+1}=M\inv r_{i+1}-\beta_ip_i$.
+\end{itemize}
+\caption{Meurant's modification of Saad's CG method.}
+\label{fig:saad2}
+\end{rfigure}

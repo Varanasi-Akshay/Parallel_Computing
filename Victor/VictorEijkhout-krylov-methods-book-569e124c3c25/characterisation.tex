@@ -1,0 +1,124 @@
+We now summarise the preceding sections by giving a number of
+equivalent formulations for the preconditioned solution of a linear
+system.
+
+\begin{theorem}
+\label{main-theorem}
+Let a vector~$\bar x$ and a sequence~$X$ be given,
+and let $A$~and~$f$ be such that $A\bar x=f$. Define residuals by
+$R=AX-fe^t$, then the following statements are equivalent:
+\begin{enumerate}
+\item The sequence $X$ is a preconditioned polynomial method for
+$\bar x=\nobreak A\inv f$.
+%
+\item\label{x=span(MAMr)}
+There is a nonsingular matrix~$M$ such that the sequence~$X$ satisfies
+        \begin{equation} x_{i+1}-x_1\in\Span
+                {M\inv  r_1,\ldots,M\inv  (AM\inv )^{i-1} r_1}.
+                \label{eq:x-in-Mr}\end{equation}
+%
+\item\label{X(J-I)=MRU}
+There are a nonsingular matrix~$M$ and upper
+triangular matrix~$U$ such that
+        \[ X(J-I)=M\inv RU, \]
+that is,
+\begin{equation}
+                x_{i+1}-x_i=\sum_{j\leq i}M\inv r_ju_{ji}.
+                \label{sol:recurrence}\end{equation}
+%
+\item\label{AMR=RH}
+There are a nonsingular matrix~$M$ and Hessenberg matrix~$H$
+with zero column sums such that
+        \[ AM\inv R=RH \]
+that is,
+\begin{equation}
+                AM\inv r_i=h_{i+1i}r_{i+1}+\cdots+h_{1i}r_1.
+                \label{res:direct-recurrence}\end{equation}
+%
+\item\label{APD=R(I-J)}
+There are a sequence~$P$ (the `search directions'), a
+nonsingular matrix~$M$, a diagonal matrix~$D$, and an upper
+triangular matrix~$U$ with unit diagonal such that
+        \[ APD=R(I-J),\qquad PU=M\inv R \]
+that is,
+\begin{equation}
+                r_{i+1}=r_i-Ap_id_{ii},
+                \qquad
+                p_i=M\inv r_i-\sum_{j<i}p_ju_{ji}.
+                \label{res,p:recurrence}\end{equation}
+%
+\item\label{R=KU}
+There are a nonsingular matrix~$M$ and upper triangular
+matrix $U\in \Un$ such that
+\[ R=KU,\qquad K=\KmethodAv{AM\inv}{r_1}. \]
+\item\label{R=pi(AMinv)}
+There are a nonsingular matrix~$M$ and polynomials~$\Pset$
+such that
+        \[ r_i=\pi_i(AM\inv )r_1,\qquad
+                {\rm deg}(\pi_i)=i-1,\qquad
+                \pi_i(0)=1. \]
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We prove the equivalence of the statements in sequence.
+\def\eqitem#1#2{\item[$#1\Leftrightarrow#2$]}
+\begin{description}
+%
+\eqitem{1}{\ref{x=span(MAMr)}}
+Statement~\ref{x=span(MAMr)} is a simple rephrasing of the definition of
+a preconditioned polynomial method. 
+%
+\eqitem{\ref{x=span(MAMr)}}{\ref{R=KU}~and~\ref{R=pi(AMinv)}}
+Multiplying \eqref{eq:x-in-Mr} by~$A$, we find that
+        \[ r_{i+1}-r_1\in\Span
+                {AM\inv  r_1,\ldots,(AM\inv )^i r_1}. \]
+Introducing the Krylov sequence~$K$ satisfying
+        \[ k_1=r_1,\qquad AM\inv K=KJ, \]
+we find that $R=K\tilde U$ where $\tilde U$~is an upper triangular
+matrix with~$\tilde u_{1*}\equiv1$. This shows the equivalence with
+statements \ref{R=KU} and~\ref{R=pi(AMinv)}.
+%
+\eqitem{\ref{x=span(MAMr)}}{\ref{X(J-I)=MRU}}
+Since statement~\ref{x=span(MAMr)} can be
+expressed as~$X(J-I)=M\inv K\bar U$ with $U$~upper triangular, we find
+statement~\ref{X(J-I)=MRU} where $U=\tilde U\bar U$. For the reverse
+implication, note that a nonsingular upper triangular matrix~$U$ can
+easily be split as a product~$\tilde U\bar U$ where~$\tilde
+u_{1*}\equiv1$.
+%
+\eqitem{\ref{X(J-I)=MRU}}{\ref{AMR=RH}}
+We now find statement~\ref{AMR=RH} by multiplying the previous
+statement by~$A$, and defining~$H=(J-I)U\inv$. For the reverse
+implication, lemma~\ref{H=(I-J)-fac} tells us that a Hessenberg matrix
+with zero column sums can indeed be split on the
+form~${(J-I)}\allowbreak U\inv$.
+%
+\eqitem{\ref{AMR=RH}}{\ref{APD=R(I-J)}}
+Statement~\ref{APD=R(I-J)} follows by splitting the previous statement.
+\end{description}
+\end{proof}
+
+Many of the clauses of the above theorem look familiar from the
+literature on Conjugate Gradient-like methods. However, we stress that
+this theorem is general: it covers all sorts of iterative methods,
+whether based on conjugacy or not.
+
+Various different looking variants of Krylov method exist that are
+still equivalent.
+\begin{ccorollary}{Left-preconditioned residual equation}
+\label{left-gmres-basic}
+The equations
+\begin{equation}
+     X(J-I)=RU,\qquad M\inv AR=RH
+    \label{eq:MAR=RH}\end{equation}
+define a polynomial iterative method if $r_1=M\inv(Ax_1-b)$.
+\end{ccorollary}
+\begin{proof}
+Start with a standard formulation
+\[ X(J-I)=M\inv RU,\qquad AM\inv R=RH, \]
+split $U=U_1U_2$, and write $\tilde R=\nobreak M\inv RU_1$,
+then \[ X(J-I)=\tilde RU_2,\qquad M\inv A\tilde R=\tilde R\tilde H \]
+with $\tilde H=U_1\inv HU_1$.
+\end{proof}
+
+
